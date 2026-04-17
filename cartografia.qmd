@@ -1,0 +1,41 @@
+# ETAPA 2: Bases Cartográficas Territoriais {#sec-carto}
+
+
+## Introdução
+
+
+## Fluxo de Estruturação Territorial
+
+
+### Entrada de dados cartográficos
+
+### Validação topológica
+
+### Padronização
+
+
+## Atividades desenvolvidas
+
+
+### Organização das bases
+
+### Validação geométrica
+
+### Integração com cadastro
+
+
+## Resultados
+
+
+### Base territorial estruturada
+
+### Consistência topológica
+
+
+## Desafios
+
+
+
+## Escalabilidade
+
+

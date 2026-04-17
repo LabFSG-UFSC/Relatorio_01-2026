@@ -1,0 +1,22 @@
+# Fluxo Integrado do Processo {#sec-fluxo}
+
+
+
+## Descrição do *Pipeline* Completo
+
+
+
+## Integração entre Etapas
+
+
+
+## Pontos de Controle e Validação
+
+
+
+## Interface com a RFB
+
+
+## Potencial de Automação
+
+

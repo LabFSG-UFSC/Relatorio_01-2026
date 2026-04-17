@@ -1,0 +1,49 @@
+# Infraestrutura Tecnológica (LABFSG) {#sec-infra}
+
+
+## Arquitetura de Infraestrutura
+
+
+
+## Servidores Disponíveis
+
+
+
+### produção 
+
+### backup 
+
+### dedicado ao projeto 
+
+
+
+## Organização de Dados
+
+
+
+### Estrutura de diretórios 
+
+### Versionamento 
+
+
+
+## Banco de Dados
+
+
+
+
+### Estrutura PostGIS 
+
+### Modelagem 
+
+
+## Segurança e Governança dos Dados
+
+
+
+### controle de acesso 
+
+### rastreabilidade 
+
+### auditoria 
+

@@ -1,0 +1,25 @@
+# Governança e Acompanhamento
+
+
+## Estrutura de Governança do Projeto
+
+
+## Reuniões realizadas
+
+
+### Comitê Técnico
+
+
+### Comitê Gestor
+
+
+### Reuniões operacionais
+
+
+## Processos de validação
+
+
+## Controle de Qualidade
+
+
+## Registro e rastreabilidade

@@ -1,0 +1,43 @@
+# ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG) {#sec-est}
+
+## Introdução
+
+
+
+## Fluxo de Modelagem
+
+
+###	Definição de variáveis 
+
+###	Construção do modelo 
+
+### Validação 
+
+
+## Atividades Desenvolvidas
+
+
+### Seleção de variáveis 
+
+### Testes de modelos 
+
+### Calibração 
+
+## Resultados
+
+### Modelo preliminar 
+
+### *Outputs* de valor 
+
+
+## Desafios
+
+
+### Qualidade das variáveis 
+
+### Aderência ao mercado 
+
+
+## Escalabilidade
+
+### Replicação em outros municípios 

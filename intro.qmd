@@ -1,0 +1,50 @@
+# Introdução
+
+Este relatório ...
+
+## Objetivo do Relatório
+
+## Síntese do avanço no período
+
+### Visão Geral do progresso técnico
+
+### Consolidação das principais frentes de trabalho
+
+## Principais entregas do trimestre
+
+## Status geral do Projeto por Etapa
+
+(com indicação: não iniciado / em andamento / concluído / validado)
+
+### Etapa 0 - Planejamento e Governança
+
+### Etapa 1 - Observatório
+
+### Etapa 2 - Bases Territoriais
+
+### Etapa 3 - Modelagem e PVG
+
+### Etapa 4 - Internalização
+
+
+## Principais Desafios e Riscos
+
+### Técnicos
+
+### Operacionais
+
+### Institucionais
+
+## Principais Resultados Estratégicos
+
+### Avanços metodológicos
+
+### Validação da PoC
+
+### Evolução da Infraestrutura
+
+## Próximos Passos
+
+### Ações prioritárias
+
+### Marcos previstos

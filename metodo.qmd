@@ -1,0 +1,15 @@
+# Estudos Metodológicos {#sec-metodos}
+
+
+## Fundamentos da Avaliação em Massa
+
+## Definição de variáveis
+
+## Estratégias de modelagem
+
+## Conexão com Normas Técnicas
+
+## Aprendizados aplicados na PoC
+
+
+

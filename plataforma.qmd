@@ -1,0 +1,24 @@
+# Plataforma de Apresentação de Resultados {#sec-plataforma}
+
+
+## Objetivo da Plataforma
+
+
+
+## Funcionalidades
+
+
+
+## Dashboards desenvolvidos
+
+
+
+## Interface de Usuário
+
+
+## Potencial de uso pela RFB
+
+
+## Intergração com Sistemas (ex.: SINTER)
+
+

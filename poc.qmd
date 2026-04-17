@@ -1,0 +1,52 @@
+# Contextualização da PoC (Florianópolis)
+
+
+## Inserção da PoC no Projeto Nacional
+
+
+### Papel da PoC dentro do TED
+
+### Relação com macroestapas
+
+
+## Objetivos da PoC
+
+
+### Validação Metodológica
+
+### Teste de infraestrutura
+
+### Consolição da fluxos
+
+
+## Escopo da PoC
+
+
+### Recorte territorial adotado
+
+### Base de dados utilizada
+
+### Variáveis consideradas
+
+### Atores institucionais envolvidos
+
+
+## Estratégia de execução da PoC
+
+
+### Abordagem incremental
+
+### Validações sucessivas
+
+### Integração entre etapas
+
+
+## Resultados esperados da PoC
+
+
+### Técnicos
+
+### Operacionais
+
+### Institucionais
+

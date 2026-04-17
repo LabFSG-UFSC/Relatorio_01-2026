@@ -1,0 +1,58 @@
+# ETAPA 1: Observatório do Mercado Imobiliário {#sec-obs}
+
+## Introdução da Etapa
+
+
+## Fluxo de dados estruturado
+
+
+### Fontes de dados
+
+### Ingestão
+
+### Tratamento
+
+### Armazenamento
+
+
+## Atividades Desenvolvidas
+
+
+### Coleta de dados
+
+### Integração de bases
+
+### Modelagem
+
+### Desenvolvimento de Scripts
+
+
+## Resultados Obtidos
+
+
+### Estrutura
+
+### Bases Consolidadas
+
+### Dicionário de dados
+
+
+## Desafios
+
+
+### Qualidade de dados
+
+### Padronização
+
+### Integração
+
+
+## Escalabilidade
+
+
+### Replicabilidade do modelo
+
+### Dependências externas
+
+
+

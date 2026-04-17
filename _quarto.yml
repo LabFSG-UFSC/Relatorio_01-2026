@@ -1,0 +1,81 @@
+project:
+  type: book
+
+book:
+  title: "PoC"
+  subtitle: "Florianópolis/SC"
+  author: "Equipe UFSC"
+  date: today
+ # date-format: long
+  date-format: "MMMM, YYYY"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - poc.qmd
+    - part: "Execução do Projeto por Etapas"
+      chapters:
+        - planejamento.qmd
+        - observatorio.qmd
+        - cartografia.qmd
+        - estimacao.qmd
+    - part: "Blocos Transversais"
+      chapters:
+        - metodo.qmd
+        - fluxo.qmd
+        - visitas.qmd
+        - infra.qmd
+        - plataforma.qmd
+        - entregas.qmd
+    - part: "Governança"
+      chapters:
+        - governanca.qmd
+        - indicadores.qmd
+        - ppassos.qmd
+    - references.qmd
+    - anexos.qmd
+  cover-image: cover.png
+  cover-image-alt: "Description of my book cover"
+  page-footer: 
+    left: "© 2026 UFSC"
+    center: "![](img/RECEITA_LOGO_FUNDO_CLARO.png){width=50px}"
+
+bibliography: references.bib
+
+lang: pt-br
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+    geometry:
+      - top=30mm
+      - bottom=35mm
+      - right=20mm
+      - left=30mm
+    include-in-header:
+      text: |
+        \usepackage{tikz}
+        \usepackage{everypage}
+        \AtBeginDocument{
+          \begin{tikzpicture}[remember picture,overlay]
+            \node at (current page.center) {
+              \includegraphics[width=\paperwidth,height=\paperheight]{img/Capa rel mensal - geral.png}
+            };
+          \end{tikzpicture}
+          \clearpage
+        }
+        \AddEverypageHook{
+          \begin{tikzpicture}[remember picture,overlay]
+            \node at (current page.center) {
+              \includegraphics[width=\paperwidth,height=\paperheight]{img/img-background_2.png}
+            };
+          \end{tikzpicture}
+        }
+        \input{footer.tex}
+    link-citations: true
+    fontsize: 14pt
+
+editor: visual

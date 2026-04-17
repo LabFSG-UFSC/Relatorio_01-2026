@@ -1,0 +1,22 @@
+# Próximos Passos {#sec-ppassos}
+
+
+
+
+## Continuidade da PoC
+
+
+
+## Ajustes metodológicos
+
+
+
+## Evolução da infraestrutura
+
+
+
+## Estratégia de escalonamento
+
+
+
+## Integração com Ambiente RFB
