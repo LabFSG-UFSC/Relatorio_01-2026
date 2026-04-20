@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; Infraestrutura Tecnológica (LABFSG) – PoC</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./plataforma.html" rel="next">
+<link href="./visitas.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="cover-style.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./metodo.html">Blocos Transversais</a></li><li class="breadcrumb-item"><a href="./infra.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Infraestrutura Tecnológica (LABFSG)</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">PoC</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefácio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./poc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Contextualização da PoC (Florianópolis)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Execução do Projeto por Etapas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./planejamento.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">ETAPA 0: Planejamento, Governança e Acompanhamento</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./observatorio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">ETAPA 1: Observatório do Mercado Imobiliário</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cartografia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">ETAPA 2: Bases Cartográficas Territoriais</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./estimacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Blocos Transversais</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./metodo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estudos Metodológicos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fluxo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Fluxo Integrado do Processo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./visitas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visitas Técnicas e Intercâmbio de Conhecimento</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./infra.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Infraestrutura Tecnológica (LABFSG)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plataforma.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Plataforma de Apresentação de Resultados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./entregas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Entregáveis do período</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Governança</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./governanca.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Governança e Acompanhamento</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./indicadores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Indicadores de Desempenho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ppassos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Próximos Passos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Apêndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./diagramas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Diagramas de Fluxo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./arquitetura.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Arquitetura Tecnológica</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./relatorios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Relatórios Técnicos Detalhados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scripts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Scripts e documentações</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./evidencias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Evidências de entregas</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#arquitetura-de-infraestrutura" id="toc-arquitetura-de-infraestrutura" class="nav-link active" data-scroll-target="#arquitetura-de-infraestrutura"><span class="header-section-number">10.1</span> Arquitetura de Infraestrutura</a></li>
+  <li><a href="#servidores-disponíveis" id="toc-servidores-disponíveis" class="nav-link" data-scroll-target="#servidores-disponíveis"><span class="header-section-number">10.2</span> Servidores Disponíveis</a>
+  <ul class="collapse">
+  <li><a href="#produção" id="toc-produção" class="nav-link" data-scroll-target="#produção"><span class="header-section-number">10.2.1</span> produção</a></li>
+  <li><a href="#backup" id="toc-backup" class="nav-link" data-scroll-target="#backup"><span class="header-section-number">10.2.2</span> backup</a></li>
+  <li><a href="#dedicado-ao-projeto" id="toc-dedicado-ao-projeto" class="nav-link" data-scroll-target="#dedicado-ao-projeto"><span class="header-section-number">10.2.3</span> dedicado ao projeto</a></li>
+  </ul></li>
+  <li><a href="#organização-de-dados" id="toc-organização-de-dados" class="nav-link" data-scroll-target="#organização-de-dados"><span class="header-section-number">10.3</span> Organização de Dados</a>
+  <ul class="collapse">
+  <li><a href="#estrutura-de-diretórios" id="toc-estrutura-de-diretórios" class="nav-link" data-scroll-target="#estrutura-de-diretórios"><span class="header-section-number">10.3.1</span> Estrutura de diretórios</a></li>
+  <li><a href="#versionamento" id="toc-versionamento" class="nav-link" data-scroll-target="#versionamento"><span class="header-section-number">10.3.2</span> Versionamento</a></li>
+  </ul></li>
+  <li><a href="#banco-de-dados" id="toc-banco-de-dados" class="nav-link" data-scroll-target="#banco-de-dados"><span class="header-section-number">10.4</span> Banco de Dados</a>
+  <ul class="collapse">
+  <li><a href="#estrutura-postgis" id="toc-estrutura-postgis" class="nav-link" data-scroll-target="#estrutura-postgis"><span class="header-section-number">10.4.1</span> Estrutura PostGIS</a></li>
+  <li><a href="#modelagem" id="toc-modelagem" class="nav-link" data-scroll-target="#modelagem"><span class="header-section-number">10.4.2</span> Modelagem</a></li>
+  </ul></li>
+  <li><a href="#segurança-e-governança-dos-dados" id="toc-segurança-e-governança-dos-dados" class="nav-link" data-scroll-target="#segurança-e-governança-dos-dados"><span class="header-section-number">10.5</span> Segurança e Governança dos Dados</a>
+  <ul class="collapse">
+  <li><a href="#controle-de-acesso" id="toc-controle-de-acesso" class="nav-link" data-scroll-target="#controle-de-acesso"><span class="header-section-number">10.5.1</span> controle de acesso</a></li>
+  <li><a href="#rastreabilidade" id="toc-rastreabilidade" class="nav-link" data-scroll-target="#rastreabilidade"><span class="header-section-number">10.5.2</span> rastreabilidade</a></li>
+  <li><a href="#auditoria" id="toc-auditoria" class="nav-link" data-scroll-target="#auditoria"><span class="header-section-number">10.5.3</span> auditoria</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./metodo.html">Blocos Transversais</a></li><li class="breadcrumb-item"><a href="./infra.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Infraestrutura Tecnológica (LABFSG)</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-infra" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Infraestrutura Tecnológica (LABFSG)</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="arquitetura-de-infraestrutura" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="arquitetura-de-infraestrutura"><span class="header-section-number">10.1</span> Arquitetura de Infraestrutura</h2>
+<p>A infraestrutura tecnológica do LABFSG encontra-se organizada em torno de três servidores com funções primárias definidas e complementares. Em termos gerais, o <code>sv-labfsg</code> concentra a persistência de dados e os serviços centrais do ambiente, o <code>sv-thinkcentre</code> sustenta o processamento técnico cotidiano do projeto e o <code>sv-acesso</code> estrutura a camada de entrada e publicação interna dos serviços.</p>
+<ul>
+<li><code>sv-labfsg</code>: workstation <code>HP Z420</code>, processador <code>Intel Xeon E5-1620</code>, <code>15 GiB</code> de memória RAM, SSD local para sistema e <code>RAID1</code> dedicado aos dados, <code>Ubuntu 22.04.5 LTS</code> e kernel <code>5.15.0-174-generic</code>. Suas funções primárias são manter o PostgreSQL/PostGIS do projeto, a pilha do OpenProject em Docker e a persistência operacional mais sensível do ambiente.</li>
+<li><code>sv-thinkcentre</code>: <code>Lenovo ThinkCentre M75s Gen 2</code>, processador <code>AMD Ryzen 7 5700G</code>, <code>30 GiB</code> de memória RAM, armazenamento local em <code>NVMe</code> para sistema e área rápida, além de <code>SSD SATA</code> para dados, <code>Ubuntu 24.04.4 LTS</code> e kernel <code>6.8.0-107-generic</code>. Suas funções primárias são hospedar a <code>rstudio-vm</code>, executar rotinas de processamento em <code>Python</code> e <code>R</code> e operar como estação técnica de apoio conectada ao banco de dados do projeto.</li>
+<li><code>sv-acesso</code>: equipamento com processador <code>AMD Athlon 3000G</code>, <code>5.7 GiB</code> de memória RAM, armazenamento em <code>LVM</code> local, <code>Ubuntu 24.04.4 LTS</code> e kernel <code>6.8.0-110-generic</code>. Suas funções primárias são prover <code>DNS</code> interno, <code>proxy HTTP</code> e a camada de acesso administrativo e institucional aos serviços publicados.</li>
+</ul>
+<p>Essa distribuição reduz o acoplamento entre acesso, processamento e persistência. Além disso, favorece a governança operacional ao manter, em componentes distintos porém integrados, o ambiente de dados, o ambiente de trabalho analítico e a camada de publicação interna.</p>
+</section>
+<section id="servidores-disponíveis" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="servidores-disponíveis"><span class="header-section-number">10.2</span> Servidores Disponíveis</h2>
+<section id="produção" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="produção"><span class="header-section-number">10.2.1</span> produção</h3>
+<p>O ambiente de produção está concentrado no <code>sv-labfsg</code>. Nesse servidor permanecem o cluster PostgreSQL <code>16/main</code> com <code>PostGIS</code>, a pilha do OpenProject em Docker e a persistência dos dados operacionais centrais do projeto. Por concentrar serviços de produção e dados persistentes, o <code>sv-labfsg</code> constitui o componente mais sensível da infraestrutura sob a perspectiva da continuidade operacional.</p>
+<p>Por essa razão, a documentação operacional adota maior rigor de governança para qualquer intervenção nesse servidor, exigindo planejamento prévio, estratégia de reversão e validação de backup antes da execução de mudanças relevantes.</p>
+</section>
+<section id="backup" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="backup"><span class="header-section-number">10.2.2</span> backup</h3>
+<p>O plano de backup hoje está ancorado no <code>sv-labfsg</code>, com cópia externa para o Synology/NAS do laboratório. Há dois fluxos principais em operação. O primeiro é o backup diário do OpenProject, executado por <code>systemd</code> via <code>op-backup.timer</code>, gerando dump lógico do banco, empacotamento dos assets e manifesto com hash. O segundo é o backup geral do servidor, acionado por <code>/etc/cron.d/backup-servidor</code>, que encadeia scripts para backup do PostgreSQL, coleta de artefatos extras, montagem de pacote operacional e envio ao armazenamento externo.</p>
+<p>Esse arranjo indica que o LABFSG não depende de uma única cópia de segurança, mas de uma estratégia combinada de backup por serviço e por servidor. Além do fluxo automatizado documentado, também já houve movimentação manual de backups de segurança para o Synology, reforçando a camada externa de preservação dos dados.</p>
+</section>
+<section id="dedicado-ao-projeto" class="level3" data-number="10.2.3">
+<h3 data-number="10.2.3" class="anchored" data-anchor-id="dedicado-ao-projeto"><span class="header-section-number">10.2.3</span> dedicado ao projeto</h3>
+<p>Todos os servidores estão atualmente dedicados ao projeto, cada qual com atribuições específicas. O <code>sv-labfsg</code> está orientado à persistência, aos serviços centrais e à sustentação do banco de dados e do OpenProject. O <code>sv-thinkcentre</code> está voltado ao processamento técnico ativo, com execução de rotinas em <code>Python</code> e <code>R</code>, suporte ao ambiente de trabalho da <code>rstudio-vm</code> e comunicação operacional com o banco de dados do projeto. O <code>sv-acesso</code>, por sua vez, está direcionado à organização da camada de acesso, à resolução interna de serviços e à publicação institucional do ambiente.</p>
+<p>Esse arranjo distribui responsabilidades sem comprometer a integração entre os componentes. Em vez de concentrar todas as cargas em um único servidor, o projeto opera com servidores especializados que cooperam entre si, o que contribui para melhor desempenho, maior previsibilidade operacional e maior clareza de governança.</p>
+</section>
+</section>
+<section id="organização-de-dados" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="organização-de-dados"><span class="header-section-number">10.3</span> Organização de Dados</h2>
+<section id="estrutura-de-diretórios" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="estrutura-de-diretórios"><span class="header-section-number">10.3.1</span> Estrutura de diretórios</h3>
+<p>A organização de dados segue a especialização de cada servidor. No <code>sv-labfsg</code>, o diretório mais importante é <code>/srv/data</code>, onde ficam tanto o <code>PGDATA</code> do PostgreSQL em <code>/srv/data/postgres/16/main</code> quanto os dados persistentes do OpenProject, como assets, logs e backups. Essa separação por subdiretórios favorece a administração do armazenamento em <code>RAID1</code> e torna mais claro o que pertence a dados transacionais, dados de aplicação e artefatos de backup.</p>
+<p>No <code>sv-thinkcentre</code>, a documentação consolidada aponta <code>/srv/dados</code> como o principal ponto de armazenamento local, além de <code>/srv/fast</code> para uso complementar. Já na <code>rstudio-vm</code>, foi formalizado um diretório compartilhado de colaboração em <code>/srv/rstudio-shared</code>, acessado pelos usuários por meio do link <code>~/compartilhado</code> em suas <code>home</code>. Essa organização distingue, de forma clara, os diretórios pessoais de uso individual de uma área comum voltada à troca de arquivos de trabalho entre participantes autorizados.</p>
+<p>Também existe uma camada importante de diretórios voltados à operação e à documentação. O checkout operacional do repositório aparece documentado em <code>/opt/operacao/capacitacao-operacao</code> e em <code>/home/admin1/Capacitacao</code>, servindo como fonte de verdade para scripts, runbooks, wiki técnica e registro de mudanças. Além disso, a organização de dados do projeto considera a estrutura compartilhada no Synology em <code>smb://serverreceita.synology.me/VRCIB_DS_000123/RECEITA_FEDERAL/</code>, utilizada como referência externa de armazenamento e organização de acervo.</p>
+</section>
+<section id="versionamento" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="versionamento"><span class="header-section-number">10.3.2</span> Versionamento</h3>
+<p>O versionamento da infraestrutura é tratado como parte da própria operação. O repositório <code>Capacitacao</code> centraliza a documentação navegável em <code>docs/wiki/</code>, os materiais específicos por domínio técnico e, principalmente, o histórico formal de mudanças em <code>changes/</code>. A diretriz operacional registrada no próprio repositório é que mudanças relevantes em produção não devem ocorrer sem um diretório formal de mudança, contendo pedido, plano, impacto, rollback e evidências.</p>
+<p>Essa estratégia amplia a rastreabilidade do ambiente, pois não versiona apenas código: versiona também decisões operacionais, comandos executados, critérios de sucesso e registros de validação. O padrão Git adotado reforça essa prática ao recomendar que cada commit represente uma intenção operacional claramente delimitada, sempre evitando o versionamento de segredos e privilegiando a explicitação de rollback.</p>
+</section>
+</section>
+<section id="banco-de-dados" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="banco-de-dados"><span class="header-section-number">10.4</span> Banco de Dados</h2>
+<p>O ambiente de banco de dados do projeto está concentrado no <code>sv-labfsg</code>, em um cluster PostgreSQL <code>16/main</code> separado da stack do OpenProject. Essa separação é fundamental: o banco <code>openproject</code> opera em um contêiner próprio (<code>openproject-db</code>), enquanto o PostgreSQL/PostGIS do LabGIS atende ao domínio analítico e geoespacial do projeto. Trata-se, portanto, de dois contextos distintos de governança, backup e operação, ainda que coexistam no mesmo servidor.</p>
+<p>A exposição do PostgreSQL/PostGIS foi mantida restrita ao loopback (<code>127.0.0.1:5432</code>), o que evita a publicação direta do serviço na rede e condiciona o acesso remoto ao uso de túnel SSH. Esse arranjo favorece a segurança, a rastreabilidade individual e a redução da superfície de ataque, ao mesmo tempo em que preserva acesso técnico controlado para usuários autorizados.</p>
+<section id="estrutura-postgis" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="estrutura-postgis"><span class="header-section-number">10.4.1</span> Estrutura PostGIS</h3>
+<p>O modelo documentado para o ambiente PostGIS baseia-se em camadas de maturidade dos dados e em organização territorial. As bases principais identificadas no host são <code>labgis</code>, <code>bronze</code>, <code>prata</code> e <code>ouro</code>. Em especial, <code>bronze</code>, <code>prata</code> e <code>ouro</code> representam etapas sucessivas do fluxo de dados, permitindo distinguir a ingestão inicial, o tratamento intermediário e a consolidação analítica.</p>
+<p>Dentro dessas bases, a estrutura recomendada adota <code>schemas</code> territoriais, incluindo <code>br</code> e um schema por unidade da federação. Em vez de multiplicar schemas por tema, o repositório propõe manter os temas por convenção de nomenclatura das tabelas, com prefixos como <code>cartografia_</code>, <code>omi_</code> e <code>estimacao_</code>. Essa escolha simplifica a estrutura lógica do banco e mantém a dimensão espacial e territorial como eixo principal da organização dos dados.</p>
+</section>
+<section id="modelagem" class="level3" data-number="10.4.2">
+<h3 data-number="10.4.2" class="anchored" data-anchor-id="modelagem"><span class="header-section-number">10.4.2</span> Modelagem</h3>
+<p>Do ponto de vista da modelagem, o ambiente combina duas lógicas complementares. A primeira é a modelagem por camadas (<code>bronze</code>, <code>prata</code>, <code>ouro</code>), que organiza o ciclo de transformação dos dados. A segunda é a modelagem territorial por <code>schema</code>, que distribui os dados por unidade da federação e por abrangência nacional (<code>br</code>). Sobre essa base, os temas do projeto aparecem como convenções de nomes de tabelas e como perfis de acesso, e não como bancos ou <code>schemas</code> isolados.</p>
+<p>Esse modelo é adequado a um ambiente colaborativo porque permite que diferentes frentes, como cartografia, OMI e estimativa, atuem sobre o mesmo recorte territorial sem gerar proliferação excessiva de estruturas. Em contrapartida, exige disciplina de nomenclatura e governança de permissões por tabela, de modo que a colaboração não comprometa a separação de responsabilidades entre equipes e etapas de processamento.</p>
+</section>
+</section>
+<section id="segurança-e-governança-dos-dados" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="segurança-e-governança-dos-dados"><span class="header-section-number">10.5</span> Segurança e Governança dos Dados</h2>
+<section id="controle-de-acesso" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="controle-de-acesso"><span class="header-section-number">10.5.1</span> controle de acesso</h3>
+<p>O controle de acesso segue o princípio da individualização de credenciais e da minimização da exposição dos serviços. No PostgreSQL/PostGIS, o acesso remoto ocorre por túnel SSH para <code>127.0.0.1:5432</code>, com cada pessoa utilizando login individual no sistema e <code>role</code> correspondente no banco. A documentação do <code>Capacitacao</code> explicita que o ideal é preservar esse vínculo entre identidade individual, autenticação no sistema e autenticação no banco, favorecendo revogação pontual e responsabilização por usuário.</p>
+<p>No ambiente de RStudio, a autenticação atual é realizada por contas locais do sistema operacional na <code>rstudio-vm</code>. A gestão recente de usuários formalizou um grupo compartilhado (<code>rstudio-shared</code>), um diretório comum em <code>/srv/rstudio-shared</code>, links simbólicos nas <code>home</code> dos usuários e permissões adequadas para leitura e escrita colaborativa. Esse desenho diferencia diretórios pessoais de espaço compartilhado e evita a concessão ampla de privilégios administrativos aos usuários comuns da plataforma.</p>
+</section>
+<section id="rastreabilidade" class="level3" data-number="10.5.2">
+<h3 data-number="10.5.2" class="anchored" data-anchor-id="rastreabilidade"><span class="header-section-number">10.5.2</span> rastreabilidade</h3>
+<p>A rastreabilidade é sustentada em três frentes. A primeira é a identidade individual no acesso aos servidores, ao banco e ao RStudio, o que permite associar ações a pessoas específicas. A segunda é o versionamento operacional no repositório <code>Capacitacao</code>, onde mudanças, runbooks, scripts e evidências são registrados em Git. A terceira é a própria instrumentação do ambiente, que mantém <code>timers</code>, logs de serviços e registros de execução para componentes críticos, como os backups do OpenProject e a publicação periódica de informações de operação do <code>sv-thinkcentre</code>.</p>
+<p>Esse conjunto torna a operação menos dependente de conhecimento tácito. Em vez de mudanças informais, o ambiente passa a dispor de memória técnica institucionalizada, apoiada por documentação viva e por histórico versionado de intervenções.</p>
+</section>
+<section id="auditoria" class="level3" data-number="10.5.3">
+<h3 data-number="10.5.3" class="anchored" data-anchor-id="auditoria"><span class="header-section-number">10.5.3</span> auditoria</h3>
+<p>Do ponto de vista de auditoria, o ambiente já dispõe de mecanismos relevantes, embora ainda em processo de amadurecimento. Os backups do OpenProject geram manifestos com hash, o repositório exige registro de impacto, rollback e evidências em mudanças operacionais, e a documentação de segurança aponta a necessidade de revisão recorrente de logs de SSH, UFW e <code>systemd</code>. Além disso, a separação entre o banco do OpenProject e o PostgreSQL/PostGIS do projeto favorece auditorias mais precisas por domínio técnico.</p>
+<p>Ao mesmo tempo, a própria wiki registra pontos pendentes que merecem fortalecimento, como endurecimento adicional do <code>sv-acesso</code>, revalidação periódica das regras efetivas de firewall e consolidação dos testes de restore. Assim, a auditoria no LABFSG já está incorporada ao desenho de governança, mas ainda se encontra em processo contínuo de amadurecimento e padronização.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./visitas.html" class="pagination-link" aria-label="Visitas Técnicas e Intercâmbio de Conhecimento">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visitas Técnicas e Intercâmbio de Conhecimento</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./plataforma.html" class="pagination-link" aria-label="Plataforma de Apresentação de Resultados">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Plataforma de Apresentação de Resultados</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 UFSC</p>
+</div>   
+    <div class="nav-footer-center">
+<p><img src="img/Logo com RFB e UFSC.png" class="img-fluid" width="250"></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,901 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "PoC",
+    "section": "",
+    "text": "Prefácio\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 + 1\n\n[1] 2",
+    "crumbs": [
+      "Prefácio"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introdução",
+    "section": "",
+    "text": "1.1 Objetivo do Relatório\nEste relatório …",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#síntese-do-avanço-no-período",
+    "href": "intro.html#síntese-do-avanço-no-período",
+    "title": "1  Introdução",
+    "section": "1.2 Síntese do avanço no período",
+    "text": "1.2 Síntese do avanço no período\n\n1.2.1 Visão Geral do progresso técnico\n\n\n1.2.2 Consolidação das principais frentes de trabalho",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#principais-entregas-do-trimestre",
+    "href": "intro.html#principais-entregas-do-trimestre",
+    "title": "1  Introdução",
+    "section": "1.3 Principais entregas do trimestre",
+    "text": "1.3 Principais entregas do trimestre",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#status-geral-do-projeto-por-etapa",
+    "href": "intro.html#status-geral-do-projeto-por-etapa",
+    "title": "1  Introdução",
+    "section": "1.4 Status geral do Projeto por Etapa",
+    "text": "1.4 Status geral do Projeto por Etapa\n(com indicação: não iniciado / em andamento / concluído / validado)\n\n1.4.1 Etapa 0 - Planejamento e Governança\n\n\n1.4.2 Etapa 1 - Observatório\n\n\n1.4.3 Etapa 2 - Bases Territoriais\n\n\n1.4.4 Etapa 3 - Modelagem e PVG\n\n\n1.4.5 Etapa 4 - Internalização",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#principais-desafios-e-riscos",
+    "href": "intro.html#principais-desafios-e-riscos",
+    "title": "1  Introdução",
+    "section": "1.5 Principais Desafios e Riscos",
+    "text": "1.5 Principais Desafios e Riscos\n\n1.5.1 Técnicos\n\n\n1.5.2 Operacionais\n\n\n1.5.3 Institucionais",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#principais-resultados-estratégicos",
+    "href": "intro.html#principais-resultados-estratégicos",
+    "title": "1  Introdução",
+    "section": "1.6 Principais Resultados Estratégicos",
+    "text": "1.6 Principais Resultados Estratégicos\n\n1.6.1 Avanços metodológicos\n\n\n1.6.2 Validação da PoC\n\n\n1.6.3 Evolução da Infraestrutura",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#próximos-passos",
+    "href": "intro.html#próximos-passos",
+    "title": "1  Introdução",
+    "section": "1.7 Próximos Passos",
+    "text": "1.7 Próximos Passos\n\n1.7.1 Ações prioritárias\n\n\n1.7.2 Marcos previstos",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
+    ]
+  },
+  {
+    "objectID": "poc.html",
+    "href": "poc.html",
+    "title": "2  Contextualização da PoC (Florianópolis)",
+    "section": "",
+    "text": "2.1 Inserção da PoC no Projeto Nacional",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Contextualização da PoC (Florianópolis)</span>"
+    ]
+  },
+  {
+    "objectID": "poc.html#inserção-da-poc-no-projeto-nacional",
+    "href": "poc.html#inserção-da-poc-no-projeto-nacional",
+    "title": "2  Contextualização da PoC (Florianópolis)",
+    "section": "",
+    "text": "2.1.1 Papel da PoC dentro do TED\n\n\n2.1.2 Relação com macroestapas",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Contextualização da PoC (Florianópolis)</span>"
+    ]
+  },
+  {
+    "objectID": "poc.html#objetivos-da-poc",
+    "href": "poc.html#objetivos-da-poc",
+    "title": "2  Contextualização da PoC (Florianópolis)",
+    "section": "2.2 Objetivos da PoC",
+    "text": "2.2 Objetivos da PoC\n\n2.2.1 Validação Metodológica\n\n\n2.2.2 Teste de infraestrutura\n\n\n2.2.3 Consolição da fluxos",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Contextualização da PoC (Florianópolis)</span>"
+    ]
+  },
+  {
+    "objectID": "poc.html#escopo-da-poc",
+    "href": "poc.html#escopo-da-poc",
+    "title": "2  Contextualização da PoC (Florianópolis)",
+    "section": "2.3 Escopo da PoC",
+    "text": "2.3 Escopo da PoC\n\n2.3.1 Recorte territorial adotado\n\n\n2.3.2 Base de dados utilizada\n\n\n2.3.3 Variáveis consideradas\n\n\n2.3.4 Atores institucionais envolvidos",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Contextualização da PoC (Florianópolis)</span>"
+    ]
+  },
+  {
+    "objectID": "poc.html#estratégia-de-execução-da-poc",
+    "href": "poc.html#estratégia-de-execução-da-poc",
+    "title": "2  Contextualização da PoC (Florianópolis)",
+    "section": "2.4 Estratégia de execução da PoC",
+    "text": "2.4 Estratégia de execução da PoC\n\n2.4.1 Abordagem incremental\n\n\n2.4.2 Validações sucessivas\n\n\n2.4.3 Integração entre etapas",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Contextualização da PoC (Florianópolis)</span>"
+    ]
+  },
+  {
+    "objectID": "poc.html#resultados-esperados-da-poc",
+    "href": "poc.html#resultados-esperados-da-poc",
+    "title": "2  Contextualização da PoC (Florianópolis)",
+    "section": "2.5 Resultados esperados da PoC",
+    "text": "2.5 Resultados esperados da PoC\n\n2.5.1 Técnicos\n\n\n2.5.2 Operacionais\n\n\n2.5.3 Institucionais",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Contextualização da PoC (Florianópolis)</span>"
+    ]
+  },
+  {
+    "objectID": "planejamento.html",
+    "href": "planejamento.html",
+    "title": "3  ETAPA 0: Planejamento, Governança e Acompanhamento",
+    "section": "",
+    "text": "3.1 Introdução da Etapa",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ETAPA 0: Planejamento, Governança e Acompanhamento</span>"
+    ]
+  },
+  {
+    "objectID": "planejamento.html#fluxo-de-governnaça-definido",
+    "href": "planejamento.html#fluxo-de-governnaça-definido",
+    "title": "3  ETAPA 0: Planejamento, Governança e Acompanhamento",
+    "section": "3.2 Fluxo de Governnaça definido",
+    "text": "3.2 Fluxo de Governnaça definido\n\n3.2.1 Estrutura decisória\n\n\n3.2.2 Fluxo de validação (UFSC –&gt; RFB –&gt; Comitê)",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ETAPA 0: Planejamento, Governança e Acompanhamento</span>"
+    ]
+  },
+  {
+    "objectID": "planejamento.html#atividades-desenvolvidas",
+    "href": "planejamento.html#atividades-desenvolvidas",
+    "title": "3  ETAPA 0: Planejamento, Governança e Acompanhamento",
+    "section": "3.3 Atividades Desenvolvidas",
+    "text": "3.3 Atividades Desenvolvidas\n\n3.3.1 Reuniões realizadas\n\n\n3.3.2 Definição de instrumentos de gestão\n\n\n3.3.3 Estruturação do Plano de Gerenciamento",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ETAPA 0: Planejamento, Governança e Acompanhamento</span>"
+    ]
+  },
+  {
+    "objectID": "planejamento.html#resultados-obtidos",
+    "href": "planejamento.html#resultados-obtidos",
+    "title": "3  ETAPA 0: Planejamento, Governança e Acompanhamento",
+    "section": "3.4 Resultados Obtidos",
+    "text": "3.4 Resultados Obtidos\n\n3.4.1 Plano de Gerenciamento\n\n\n3.4.2 Estrutura de Governança\n\n\n3.4.3 Fluxos documentados",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ETAPA 0: Planejamento, Governança e Acompanhamento</span>"
+    ]
+  },
+  {
+    "objectID": "planejamento.html#desafios",
+    "href": "planejamento.html#desafios",
+    "title": "3  ETAPA 0: Planejamento, Governança e Acompanhamento",
+    "section": "3.5 Desafios",
+    "text": "3.5 Desafios",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ETAPA 0: Planejamento, Governança e Acompanhamento</span>"
+    ]
+  },
+  {
+    "objectID": "planejamento.html#escalabilidade-da-governança",
+    "href": "planejamento.html#escalabilidade-da-governança",
+    "title": "3  ETAPA 0: Planejamento, Governança e Acompanhamento",
+    "section": "3.6 Escalabilidade da Governança",
+    "text": "3.6 Escalabilidade da Governança",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ETAPA 0: Planejamento, Governança e Acompanhamento</span>"
+    ]
+  },
+  {
+    "objectID": "observatorio.html",
+    "href": "observatorio.html",
+    "title": "4  ETAPA 1: Observatório do Mercado Imobiliário",
+    "section": "",
+    "text": "4.1 Introdução da Etapa",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ETAPA 1: Observatório do Mercado Imobiliário</span>"
+    ]
+  },
+  {
+    "objectID": "observatorio.html#fluxo-de-dados-estruturado",
+    "href": "observatorio.html#fluxo-de-dados-estruturado",
+    "title": "4  ETAPA 1: Observatório do Mercado Imobiliário",
+    "section": "4.2 Fluxo de dados estruturado",
+    "text": "4.2 Fluxo de dados estruturado\n\n4.2.1 Fontes de dados\n\n\n4.2.2 Ingestão\n\n\n4.2.3 Tratamento\n\n\n4.2.4 Armazenamento",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ETAPA 1: Observatório do Mercado Imobiliário</span>"
+    ]
+  },
+  {
+    "objectID": "observatorio.html#atividades-desenvolvidas",
+    "href": "observatorio.html#atividades-desenvolvidas",
+    "title": "4  ETAPA 1: Observatório do Mercado Imobiliário",
+    "section": "4.3 Atividades Desenvolvidas",
+    "text": "4.3 Atividades Desenvolvidas\n\n4.3.1 Coleta de dados\n\n\n4.3.2 Integração de bases\n\n\n4.3.3 Modelagem\n\n\n4.3.4 Desenvolvimento de Scripts",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ETAPA 1: Observatório do Mercado Imobiliário</span>"
+    ]
+  },
+  {
+    "objectID": "observatorio.html#resultados-obtidos",
+    "href": "observatorio.html#resultados-obtidos",
+    "title": "4  ETAPA 1: Observatório do Mercado Imobiliário",
+    "section": "4.4 Resultados Obtidos",
+    "text": "4.4 Resultados Obtidos\n\n4.4.1 Estrutura\n\n\n4.4.2 Bases Consolidadas\n\n\n4.4.3 Dicionário de dados",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ETAPA 1: Observatório do Mercado Imobiliário</span>"
+    ]
+  },
+  {
+    "objectID": "observatorio.html#desafios",
+    "href": "observatorio.html#desafios",
+    "title": "4  ETAPA 1: Observatório do Mercado Imobiliário",
+    "section": "4.5 Desafios",
+    "text": "4.5 Desafios\n\n4.5.1 Qualidade de dados\n\n\n4.5.2 Padronização\n\n\n4.5.3 Integração",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ETAPA 1: Observatório do Mercado Imobiliário</span>"
+    ]
+  },
+  {
+    "objectID": "observatorio.html#escalabilidade",
+    "href": "observatorio.html#escalabilidade",
+    "title": "4  ETAPA 1: Observatório do Mercado Imobiliário",
+    "section": "4.6 Escalabilidade",
+    "text": "4.6 Escalabilidade\n\n4.6.1 Replicabilidade do modelo\n\n\n4.6.2 Dependências externas",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ETAPA 1: Observatório do Mercado Imobiliário</span>"
+    ]
+  },
+  {
+    "objectID": "cartografia.html",
+    "href": "cartografia.html",
+    "title": "5  ETAPA 2: Bases Cartográficas Territoriais",
+    "section": "",
+    "text": "5.1 Introdução",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ETAPA 2: Bases Cartográficas Territoriais</span>"
+    ]
+  },
+  {
+    "objectID": "cartografia.html#fluxo-de-estruturação-territorial",
+    "href": "cartografia.html#fluxo-de-estruturação-territorial",
+    "title": "5  ETAPA 2: Bases Cartográficas Territoriais",
+    "section": "5.2 Fluxo de Estruturação Territorial",
+    "text": "5.2 Fluxo de Estruturação Territorial\n\n5.2.1 Entrada de dados cartográficos\n\n\n5.2.2 Validação topológica\n\n\n5.2.3 Padronização",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ETAPA 2: Bases Cartográficas Territoriais</span>"
+    ]
+  },
+  {
+    "objectID": "cartografia.html#atividades-desenvolvidas",
+    "href": "cartografia.html#atividades-desenvolvidas",
+    "title": "5  ETAPA 2: Bases Cartográficas Territoriais",
+    "section": "5.3 Atividades desenvolvidas",
+    "text": "5.3 Atividades desenvolvidas\n\n5.3.1 Organização das bases\n\n\n5.3.2 Validação geométrica\n\n\n5.3.3 Integração com cadastro",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ETAPA 2: Bases Cartográficas Territoriais</span>"
+    ]
+  },
+  {
+    "objectID": "cartografia.html#resultados",
+    "href": "cartografia.html#resultados",
+    "title": "5  ETAPA 2: Bases Cartográficas Territoriais",
+    "section": "5.4 Resultados",
+    "text": "5.4 Resultados\n\n5.4.1 Base territorial estruturada\n\n\n5.4.2 Consistência topológica",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ETAPA 2: Bases Cartográficas Territoriais</span>"
+    ]
+  },
+  {
+    "objectID": "cartografia.html#desafios",
+    "href": "cartografia.html#desafios",
+    "title": "5  ETAPA 2: Bases Cartográficas Territoriais",
+    "section": "5.5 Desafios",
+    "text": "5.5 Desafios",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ETAPA 2: Bases Cartográficas Territoriais</span>"
+    ]
+  },
+  {
+    "objectID": "cartografia.html#escalabilidade",
+    "href": "cartografia.html#escalabilidade",
+    "title": "5  ETAPA 2: Bases Cartográficas Territoriais",
+    "section": "5.6 Escalabilidade",
+    "text": "5.6 Escalabilidade",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ETAPA 2: Bases Cartográficas Territoriais</span>"
+    ]
+  },
+  {
+    "objectID": "estimacao.html",
+    "href": "estimacao.html",
+    "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
+    "section": "",
+    "text": "6.1 Introdução",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
+    ]
+  },
+  {
+    "objectID": "estimacao.html#fluxo-de-modelagem",
+    "href": "estimacao.html#fluxo-de-modelagem",
+    "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
+    "section": "6.2 Fluxo de Modelagem",
+    "text": "6.2 Fluxo de Modelagem\n\n6.2.1 Definição de variáveis\n\n\n6.2.2 Construção do modelo\n\n\n6.2.3 Validação",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
+    ]
+  },
+  {
+    "objectID": "estimacao.html#atividades-desenvolvidas",
+    "href": "estimacao.html#atividades-desenvolvidas",
+    "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
+    "section": "6.3 Atividades Desenvolvidas",
+    "text": "6.3 Atividades Desenvolvidas\n\n6.3.1 Seleção de variáveis\n\n\n6.3.2 Testes de modelos\n\n\n6.3.3 Calibração",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
+    ]
+  },
+  {
+    "objectID": "estimacao.html#resultados",
+    "href": "estimacao.html#resultados",
+    "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
+    "section": "6.4 Resultados",
+    "text": "6.4 Resultados\n\n6.4.1 Modelo preliminar\n\n\n6.4.2 Outputs de valor",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
+    ]
+  },
+  {
+    "objectID": "estimacao.html#desafios",
+    "href": "estimacao.html#desafios",
+    "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
+    "section": "6.5 Desafios",
+    "text": "6.5 Desafios\n\n6.5.1 Qualidade das variáveis\n\n\n6.5.2 Aderência ao mercado",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
+    ]
+  },
+  {
+    "objectID": "estimacao.html#escalabilidade",
+    "href": "estimacao.html#escalabilidade",
+    "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
+    "section": "6.6 Escalabilidade",
+    "text": "6.6 Escalabilidade\n\n6.6.1 Replicação em outros municípios",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
+    ]
+  },
+  {
+    "objectID": "metodo.html",
+    "href": "metodo.html",
+    "title": "7  Estudos Metodológicos",
+    "section": "",
+    "text": "7.1 Fundamentos da Avaliação em Massa",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Estudos Metodológicos</span>"
+    ]
+  },
+  {
+    "objectID": "metodo.html#definição-de-variáveis",
+    "href": "metodo.html#definição-de-variáveis",
+    "title": "7  Estudos Metodológicos",
+    "section": "7.2 Definição de variáveis",
+    "text": "7.2 Definição de variáveis",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Estudos Metodológicos</span>"
+    ]
+  },
+  {
+    "objectID": "metodo.html#estratégias-de-modelagem",
+    "href": "metodo.html#estratégias-de-modelagem",
+    "title": "7  Estudos Metodológicos",
+    "section": "7.3 Estratégias de modelagem",
+    "text": "7.3 Estratégias de modelagem",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Estudos Metodológicos</span>"
+    ]
+  },
+  {
+    "objectID": "metodo.html#conexão-com-normas-técnicas",
+    "href": "metodo.html#conexão-com-normas-técnicas",
+    "title": "7  Estudos Metodológicos",
+    "section": "7.4 Conexão com Normas Técnicas",
+    "text": "7.4 Conexão com Normas Técnicas",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Estudos Metodológicos</span>"
+    ]
+  },
+  {
+    "objectID": "metodo.html#aprendizados-aplicados-na-poc",
+    "href": "metodo.html#aprendizados-aplicados-na-poc",
+    "title": "7  Estudos Metodológicos",
+    "section": "7.5 Aprendizados aplicados na PoC",
+    "text": "7.5 Aprendizados aplicados na PoC",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Estudos Metodológicos</span>"
+    ]
+  },
+  {
+    "objectID": "fluxo.html",
+    "href": "fluxo.html",
+    "title": "8  Fluxo Integrado do Processo",
+    "section": "",
+    "text": "8.1 Descrição do Pipeline Completo",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Fluxo Integrado do Processo</span>"
+    ]
+  },
+  {
+    "objectID": "fluxo.html#integração-entre-etapas",
+    "href": "fluxo.html#integração-entre-etapas",
+    "title": "8  Fluxo Integrado do Processo",
+    "section": "8.2 Integração entre Etapas",
+    "text": "8.2 Integração entre Etapas",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Fluxo Integrado do Processo</span>"
+    ]
+  },
+  {
+    "objectID": "fluxo.html#pontos-de-controle-e-validação",
+    "href": "fluxo.html#pontos-de-controle-e-validação",
+    "title": "8  Fluxo Integrado do Processo",
+    "section": "8.3 Pontos de Controle e Validação",
+    "text": "8.3 Pontos de Controle e Validação",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Fluxo Integrado do Processo</span>"
+    ]
+  },
+  {
+    "objectID": "fluxo.html#interface-com-a-rfb",
+    "href": "fluxo.html#interface-com-a-rfb",
+    "title": "8  Fluxo Integrado do Processo",
+    "section": "8.4 Interface com a RFB",
+    "text": "8.4 Interface com a RFB",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Fluxo Integrado do Processo</span>"
+    ]
+  },
+  {
+    "objectID": "fluxo.html#potencial-de-automação",
+    "href": "fluxo.html#potencial-de-automação",
+    "title": "8  Fluxo Integrado do Processo",
+    "section": "8.5 Potencial de Automação",
+    "text": "8.5 Potencial de Automação",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Fluxo Integrado do Processo</span>"
+    ]
+  },
+  {
+    "objectID": "visitas.html",
+    "href": "visitas.html",
+    "title": "9  Visitas Técnicas e Intercâmbio de Conhecimento",
+    "section": "",
+    "text": "9.1 Fortaleza",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Visitas Técnicas e Intercâmbio de Conhecimento</span>"
+    ]
+  },
+  {
+    "objectID": "visitas.html#fortaleza",
+    "href": "visitas.html#fortaleza",
+    "title": "9  Visitas Técnicas e Intercâmbio de Conhecimento",
+    "section": "",
+    "text": "9.1.1 Objetivo da Missão\n\n\n9.1.2 Instituições visitadas\n\n\n9.1.3 Atividades realizadas\n\n\n9.1.4 Principais aprendizados\n\n\n9.1.5 Contribuições para o Projeto",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Visitas Técnicas e Intercâmbio de Conhecimento</span>"
+    ]
+  },
+  {
+    "objectID": "visitas.html#córdoba",
+    "href": "visitas.html#córdoba",
+    "title": "9  Visitas Técnicas e Intercâmbio de Conhecimento",
+    "section": "9.2 Córdoba",
+    "text": "9.2 Córdoba\n\n9.2.1 Objetivo da Missão\n\n\n9.2.2 Instituições e Interlocutores\n\n\n9.2.3 Experiências observadas\n\n\n9.2.4 Lições aprendidas\n\n\n9.2.5 Aplicabilidade no Contexto Brasileiro",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Visitas Técnicas e Intercâmbio de Conhecimento</span>"
+    ]
+  },
+  {
+    "objectID": "infra.html",
+    "href": "infra.html",
+    "title": "10  Infraestrutura Tecnológica (LABFSG)",
+    "section": "",
+    "text": "10.1 Arquitetura de Infraestrutura\nA infraestrutura tecnológica do LABFSG encontra-se organizada em torno de três servidores com funções primárias definidas e complementares. Em termos gerais, o sv-labfsg concentra a persistência de dados e os serviços centrais do ambiente, o sv-thinkcentre sustenta o processamento técnico cotidiano do projeto e o sv-acesso estrutura a camada de entrada e publicação interna dos serviços.\nEssa distribuição reduz o acoplamento entre acesso, processamento e persistência. Além disso, favorece a governança operacional ao manter, em componentes distintos porém integrados, o ambiente de dados, o ambiente de trabalho analítico e a camada de publicação interna.",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Infraestrutura Tecnológica (LABFSG)</span>"
+    ]
+  },
+  {
+    "objectID": "infra.html#arquitetura-de-infraestrutura",
+    "href": "infra.html#arquitetura-de-infraestrutura",
+    "title": "10  Infraestrutura Tecnológica (LABFSG)",
+    "section": "",
+    "text": "sv-labfsg: workstation HP Z420, processador Intel Xeon E5-1620, 15 GiB de memória RAM, SSD local para sistema e RAID1 dedicado aos dados, Ubuntu 22.04.5 LTS e kernel 5.15.0-174-generic. Suas funções primárias são manter o PostgreSQL/PostGIS do projeto, a pilha do OpenProject em Docker e a persistência operacional mais sensível do ambiente.\nsv-thinkcentre: Lenovo ThinkCentre M75s Gen 2, processador AMD Ryzen 7 5700G, 30 GiB de memória RAM, armazenamento local em NVMe para sistema e área rápida, além de SSD SATA para dados, Ubuntu 24.04.4 LTS e kernel 6.8.0-107-generic. Suas funções primárias são hospedar a rstudio-vm, executar rotinas de processamento em Python e R e operar como estação técnica de apoio conectada ao banco de dados do projeto.\nsv-acesso: equipamento com processador AMD Athlon 3000G, 5.7 GiB de memória RAM, armazenamento em LVM local, Ubuntu 24.04.4 LTS e kernel 6.8.0-110-generic. Suas funções primárias são prover DNS interno, proxy HTTP e a camada de acesso administrativo e institucional aos serviços publicados.",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Infraestrutura Tecnológica (LABFSG)</span>"
+    ]
+  },
+  {
+    "objectID": "infra.html#servidores-disponíveis",
+    "href": "infra.html#servidores-disponíveis",
+    "title": "10  Infraestrutura Tecnológica (LABFSG)",
+    "section": "10.2 Servidores Disponíveis",
+    "text": "10.2 Servidores Disponíveis\n\n10.2.1 produção\nO ambiente de produção está concentrado no sv-labfsg. Nesse servidor permanecem o cluster PostgreSQL 16/main com PostGIS, a pilha do OpenProject em Docker e a persistência dos dados operacionais centrais do projeto. Por concentrar serviços de produção e dados persistentes, o sv-labfsg constitui o componente mais sensível da infraestrutura sob a perspectiva da continuidade operacional.\nPor essa razão, a documentação operacional adota maior rigor de governança para qualquer intervenção nesse servidor, exigindo planejamento prévio, estratégia de reversão e validação de backup antes da execução de mudanças relevantes.\n\n\n10.2.2 backup\nO plano de backup hoje está ancorado no sv-labfsg, com cópia externa para o Synology/NAS do laboratório. Há dois fluxos principais em operação. O primeiro é o backup diário do OpenProject, executado por systemd via op-backup.timer, gerando dump lógico do banco, empacotamento dos assets e manifesto com hash. O segundo é o backup geral do servidor, acionado por /etc/cron.d/backup-servidor, que encadeia scripts para backup do PostgreSQL, coleta de artefatos extras, montagem de pacote operacional e envio ao armazenamento externo.\nEsse arranjo indica que o LABFSG não depende de uma única cópia de segurança, mas de uma estratégia combinada de backup por serviço e por servidor. Além do fluxo automatizado documentado, também já houve movimentação manual de backups de segurança para o Synology, reforçando a camada externa de preservação dos dados.\n\n\n10.2.3 dedicado ao projeto\nTodos os servidores estão atualmente dedicados ao projeto, cada qual com atribuições específicas. O sv-labfsg está orientado à persistência, aos serviços centrais e à sustentação do banco de dados e do OpenProject. O sv-thinkcentre está voltado ao processamento técnico ativo, com execução de rotinas em Python e R, suporte ao ambiente de trabalho da rstudio-vm e comunicação operacional com o banco de dados do projeto. O sv-acesso, por sua vez, está direcionado à organização da camada de acesso, à resolução interna de serviços e à publicação institucional do ambiente.\nEsse arranjo distribui responsabilidades sem comprometer a integração entre os componentes. Em vez de concentrar todas as cargas em um único servidor, o projeto opera com servidores especializados que cooperam entre si, o que contribui para melhor desempenho, maior previsibilidade operacional e maior clareza de governança.",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Infraestrutura Tecnológica (LABFSG)</span>"
+    ]
+  },
+  {
+    "objectID": "infra.html#organização-de-dados",
+    "href": "infra.html#organização-de-dados",
+    "title": "10  Infraestrutura Tecnológica (LABFSG)",
+    "section": "10.3 Organização de Dados",
+    "text": "10.3 Organização de Dados\n\n10.3.1 Estrutura de diretórios\nA organização de dados segue a especialização de cada servidor. No sv-labfsg, o diretório mais importante é /srv/data, onde ficam tanto o PGDATA do PostgreSQL em /srv/data/postgres/16/main quanto os dados persistentes do OpenProject, como assets, logs e backups. Essa separação por subdiretórios favorece a administração do armazenamento em RAID1 e torna mais claro o que pertence a dados transacionais, dados de aplicação e artefatos de backup.\nNo sv-thinkcentre, a documentação consolidada aponta /srv/dados como o principal ponto de armazenamento local, além de /srv/fast para uso complementar. Já na rstudio-vm, foi formalizado um diretório compartilhado de colaboração em /srv/rstudio-shared, acessado pelos usuários por meio do link ~/compartilhado em suas home. Essa organização distingue, de forma clara, os diretórios pessoais de uso individual de uma área comum voltada à troca de arquivos de trabalho entre participantes autorizados.\nTambém existe uma camada importante de diretórios voltados à operação e à documentação. O checkout operacional do repositório aparece documentado em /opt/operacao/capacitacao-operacao e em /home/admin1/Capacitacao, servindo como fonte de verdade para scripts, runbooks, wiki técnica e registro de mudanças. Além disso, a organização de dados do projeto considera a estrutura compartilhada no Synology em smb://serverreceita.synology.me/VRCIB_DS_000123/RECEITA_FEDERAL/, utilizada como referência externa de armazenamento e organização de acervo.\n\n\n10.3.2 Versionamento\nO versionamento da infraestrutura é tratado como parte da própria operação. O repositório Capacitacao centraliza a documentação navegável em docs/wiki/, os materiais específicos por domínio técnico e, principalmente, o histórico formal de mudanças em changes/. A diretriz operacional registrada no próprio repositório é que mudanças relevantes em produção não devem ocorrer sem um diretório formal de mudança, contendo pedido, plano, impacto, rollback e evidências.\nEssa estratégia amplia a rastreabilidade do ambiente, pois não versiona apenas código: versiona também decisões operacionais, comandos executados, critérios de sucesso e registros de validação. O padrão Git adotado reforça essa prática ao recomendar que cada commit represente uma intenção operacional claramente delimitada, sempre evitando o versionamento de segredos e privilegiando a explicitação de rollback.",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Infraestrutura Tecnológica (LABFSG)</span>"
+    ]
+  },
+  {
+    "objectID": "infra.html#banco-de-dados",
+    "href": "infra.html#banco-de-dados",
+    "title": "10  Infraestrutura Tecnológica (LABFSG)",
+    "section": "10.4 Banco de Dados",
+    "text": "10.4 Banco de Dados\nO ambiente de banco de dados do projeto está concentrado no sv-labfsg, em um cluster PostgreSQL 16/main separado da stack do OpenProject. Essa separação é fundamental: o banco openproject opera em um contêiner próprio (openproject-db), enquanto o PostgreSQL/PostGIS do LabGIS atende ao domínio analítico e geoespacial do projeto. Trata-se, portanto, de dois contextos distintos de governança, backup e operação, ainda que coexistam no mesmo servidor.\nA exposição do PostgreSQL/PostGIS foi mantida restrita ao loopback (127.0.0.1:5432), o que evita a publicação direta do serviço na rede e condiciona o acesso remoto ao uso de túnel SSH. Esse arranjo favorece a segurança, a rastreabilidade individual e a redução da superfície de ataque, ao mesmo tempo em que preserva acesso técnico controlado para usuários autorizados.\n\n10.4.1 Estrutura PostGIS\nO modelo documentado para o ambiente PostGIS baseia-se em camadas de maturidade dos dados e em organização territorial. As bases principais identificadas no host são labgis, bronze, prata e ouro. Em especial, bronze, prata e ouro representam etapas sucessivas do fluxo de dados, permitindo distinguir a ingestão inicial, o tratamento intermediário e a consolidação analítica.\nDentro dessas bases, a estrutura recomendada adota schemas territoriais, incluindo br e um schema por unidade da federação. Em vez de multiplicar schemas por tema, o repositório propõe manter os temas por convenção de nomenclatura das tabelas, com prefixos como cartografia_, omi_ e estimacao_. Essa escolha simplifica a estrutura lógica do banco e mantém a dimensão espacial e territorial como eixo principal da organização dos dados.\n\n\n10.4.2 Modelagem\nDo ponto de vista da modelagem, o ambiente combina duas lógicas complementares. A primeira é a modelagem por camadas (bronze, prata, ouro), que organiza o ciclo de transformação dos dados. A segunda é a modelagem territorial por schema, que distribui os dados por unidade da federação e por abrangência nacional (br). Sobre essa base, os temas do projeto aparecem como convenções de nomes de tabelas e como perfis de acesso, e não como bancos ou schemas isolados.\nEsse modelo é adequado a um ambiente colaborativo porque permite que diferentes frentes, como cartografia, OMI e estimativa, atuem sobre o mesmo recorte territorial sem gerar proliferação excessiva de estruturas. Em contrapartida, exige disciplina de nomenclatura e governança de permissões por tabela, de modo que a colaboração não comprometa a separação de responsabilidades entre equipes e etapas de processamento.",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Infraestrutura Tecnológica (LABFSG)</span>"
+    ]
+  },
+  {
+    "objectID": "infra.html#segurança-e-governança-dos-dados",
+    "href": "infra.html#segurança-e-governança-dos-dados",
+    "title": "10  Infraestrutura Tecnológica (LABFSG)",
+    "section": "10.5 Segurança e Governança dos Dados",
+    "text": "10.5 Segurança e Governança dos Dados\n\n10.5.1 controle de acesso\nO controle de acesso segue o princípio da individualização de credenciais e da minimização da exposição dos serviços. No PostgreSQL/PostGIS, o acesso remoto ocorre por túnel SSH para 127.0.0.1:5432, com cada pessoa utilizando login individual no sistema e role correspondente no banco. A documentação do Capacitacao explicita que o ideal é preservar esse vínculo entre identidade individual, autenticação no sistema e autenticação no banco, favorecendo revogação pontual e responsabilização por usuário.\nNo ambiente de RStudio, a autenticação atual é realizada por contas locais do sistema operacional na rstudio-vm. A gestão recente de usuários formalizou um grupo compartilhado (rstudio-shared), um diretório comum em /srv/rstudio-shared, links simbólicos nas home dos usuários e permissões adequadas para leitura e escrita colaborativa. Esse desenho diferencia diretórios pessoais de espaço compartilhado e evita a concessão ampla de privilégios administrativos aos usuários comuns da plataforma.\n\n\n10.5.2 rastreabilidade\nA rastreabilidade é sustentada em três frentes. A primeira é a identidade individual no acesso aos servidores, ao banco e ao RStudio, o que permite associar ações a pessoas específicas. A segunda é o versionamento operacional no repositório Capacitacao, onde mudanças, runbooks, scripts e evidências são registrados em Git. A terceira é a própria instrumentação do ambiente, que mantém timers, logs de serviços e registros de execução para componentes críticos, como os backups do OpenProject e a publicação periódica de informações de operação do sv-thinkcentre.\nEsse conjunto torna a operação menos dependente de conhecimento tácito. Em vez de mudanças informais, o ambiente passa a dispor de memória técnica institucionalizada, apoiada por documentação viva e por histórico versionado de intervenções.\n\n\n10.5.3 auditoria\nDo ponto de vista de auditoria, o ambiente já dispõe de mecanismos relevantes, embora ainda em processo de amadurecimento. Os backups do OpenProject geram manifestos com hash, o repositório exige registro de impacto, rollback e evidências em mudanças operacionais, e a documentação de segurança aponta a necessidade de revisão recorrente de logs de SSH, UFW e systemd. Além disso, a separação entre o banco do OpenProject e o PostgreSQL/PostGIS do projeto favorece auditorias mais precisas por domínio técnico.\nAo mesmo tempo, a própria wiki registra pontos pendentes que merecem fortalecimento, como endurecimento adicional do sv-acesso, revalidação periódica das regras efetivas de firewall e consolidação dos testes de restore. Assim, a auditoria no LABFSG já está incorporada ao desenho de governança, mas ainda se encontra em processo contínuo de amadurecimento e padronização.",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Infraestrutura Tecnológica (LABFSG)</span>"
+    ]
+  },
+  {
+    "objectID": "plataforma.html",
+    "href": "plataforma.html",
+    "title": "11  Plataforma de Apresentação de Resultados",
+    "section": "",
+    "text": "11.1 Objetivo da Plataforma",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Plataforma de Apresentação de Resultados</span>"
+    ]
+  },
+  {
+    "objectID": "plataforma.html#funcionalidades",
+    "href": "plataforma.html#funcionalidades",
+    "title": "11  Plataforma de Apresentação de Resultados",
+    "section": "11.2 Funcionalidades",
+    "text": "11.2 Funcionalidades",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Plataforma de Apresentação de Resultados</span>"
+    ]
+  },
+  {
+    "objectID": "plataforma.html#dashboards-desenvolvidos",
+    "href": "plataforma.html#dashboards-desenvolvidos",
+    "title": "11  Plataforma de Apresentação de Resultados",
+    "section": "11.3 Dashboards desenvolvidos",
+    "text": "11.3 Dashboards desenvolvidos",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Plataforma de Apresentação de Resultados</span>"
+    ]
+  },
+  {
+    "objectID": "plataforma.html#interface-de-usuário",
+    "href": "plataforma.html#interface-de-usuário",
+    "title": "11  Plataforma de Apresentação de Resultados",
+    "section": "11.4 Interface de Usuário",
+    "text": "11.4 Interface de Usuário",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Plataforma de Apresentação de Resultados</span>"
+    ]
+  },
+  {
+    "objectID": "plataforma.html#potencial-de-uso-pela-rfb",
+    "href": "plataforma.html#potencial-de-uso-pela-rfb",
+    "title": "11  Plataforma de Apresentação de Resultados",
+    "section": "11.5 Potencial de uso pela RFB",
+    "text": "11.5 Potencial de uso pela RFB",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Plataforma de Apresentação de Resultados</span>"
+    ]
+  },
+  {
+    "objectID": "plataforma.html#intergração-com-sistemas-ex.-sinter",
+    "href": "plataforma.html#intergração-com-sistemas-ex.-sinter",
+    "title": "11  Plataforma de Apresentação de Resultados",
+    "section": "11.6 Intergração com Sistemas (ex.: SINTER)",
+    "text": "11.6 Intergração com Sistemas (ex.: SINTER)",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Plataforma de Apresentação de Resultados</span>"
+    ]
+  },
+  {
+    "objectID": "entregas.html",
+    "href": "entregas.html",
+    "title": "12  Entregáveis do período",
+    "section": "",
+    "text": "12.1 Lista consolidada de entregáveis",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Entregáveis do período</span>"
+    ]
+  },
+  {
+    "objectID": "entregas.html#classificação-por-etapa",
+    "href": "entregas.html#classificação-por-etapa",
+    "title": "12  Entregáveis do período",
+    "section": "12.2 Classificação por Etapa",
+    "text": "12.2 Classificação por Etapa",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Entregáveis do período</span>"
+    ]
+  },
+  {
+    "objectID": "entregas.html#status-dos-entregáveis",
+    "href": "entregas.html#status-dos-entregáveis",
+    "title": "12  Entregáveis do período",
+    "section": "12.3 Status dos Entregáveis",
+    "text": "12.3 Status dos Entregáveis",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Entregáveis do período</span>"
+    ]
+  },
+  {
+    "objectID": "entregas.html#evidências-de-entrega",
+    "href": "entregas.html#evidências-de-entrega",
+    "title": "12  Entregáveis do período",
+    "section": "12.4 Evidências de entrega",
+    "text": "12.4 Evidências de entrega",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Entregáveis do período</span>"
+    ]
+  },
+  {
+    "objectID": "entregas.html#aderência-aos-critérios-de-qualidade",
+    "href": "entregas.html#aderência-aos-critérios-de-qualidade",
+    "title": "12  Entregáveis do período",
+    "section": "12.5 Aderência aos critérios de qualidade",
+    "text": "12.5 Aderência aos critérios de qualidade",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Entregáveis do período</span>"
+    ]
+  },
+  {
+    "objectID": "governanca.html",
+    "href": "governanca.html",
+    "title": "13  Governança e Acompanhamento",
+    "section": "",
+    "text": "13.1 Estrutura de Governança do Projeto",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Governança e Acompanhamento</span>"
+    ]
+  },
+  {
+    "objectID": "governanca.html#reuniões-realizadas",
+    "href": "governanca.html#reuniões-realizadas",
+    "title": "13  Governança e Acompanhamento",
+    "section": "13.2 Reuniões realizadas",
+    "text": "13.2 Reuniões realizadas\n\n13.2.1 Comitê Técnico\n\n\n13.2.2 Comitê Gestor\n\n\n13.2.3 Reuniões operacionais",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Governança e Acompanhamento</span>"
+    ]
+  },
+  {
+    "objectID": "governanca.html#processos-de-validação",
+    "href": "governanca.html#processos-de-validação",
+    "title": "13  Governança e Acompanhamento",
+    "section": "13.3 Processos de validação",
+    "text": "13.3 Processos de validação",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Governança e Acompanhamento</span>"
+    ]
+  },
+  {
+    "objectID": "governanca.html#controle-de-qualidade",
+    "href": "governanca.html#controle-de-qualidade",
+    "title": "13  Governança e Acompanhamento",
+    "section": "13.4 Controle de Qualidade",
+    "text": "13.4 Controle de Qualidade",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Governança e Acompanhamento</span>"
+    ]
+  },
+  {
+    "objectID": "governanca.html#registro-e-rastreabilidade",
+    "href": "governanca.html#registro-e-rastreabilidade",
+    "title": "13  Governança e Acompanhamento",
+    "section": "13.5 Registro e rastreabilidade",
+    "text": "13.5 Registro e rastreabilidade",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Governança e Acompanhamento</span>"
+    ]
+  },
+  {
+    "objectID": "indicadores.html",
+    "href": "indicadores.html",
+    "title": "14  Indicadores de Desempenho",
+    "section": "",
+    "text": "14.1 Indicadores de Avanço Físico",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Indicadores de Desempenho</span>"
+    ]
+  },
+  {
+    "objectID": "indicadores.html#aderência-ao-cronograma",
+    "href": "indicadores.html#aderência-ao-cronograma",
+    "title": "14  Indicadores de Desempenho",
+    "section": "14.2 Aderência ao cronograma",
+    "text": "14.2 Aderência ao cronograma",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Indicadores de Desempenho</span>"
+    ]
+  },
+  {
+    "objectID": "indicadores.html#qualidade-dos-dados",
+    "href": "indicadores.html#qualidade-dos-dados",
+    "title": "14  Indicadores de Desempenho",
+    "section": "14.3 Qualidade dos dados",
+    "text": "14.3 Qualidade dos dados",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Indicadores de Desempenho</span>"
+    ]
+  },
+  {
+    "objectID": "indicadores.html#qualidade-dos-modelos",
+    "href": "indicadores.html#qualidade-dos-modelos",
+    "title": "14  Indicadores de Desempenho",
+    "section": "14.4 Qualidade dos modelos",
+    "text": "14.4 Qualidade dos modelos",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Indicadores de Desempenho</span>"
+    ]
+  },
+  {
+    "objectID": "indicadores.html#indicadores-de-governaça",
+    "href": "indicadores.html#indicadores-de-governaça",
+    "title": "14  Indicadores de Desempenho",
+    "section": "14.5 Indicadores de governaça",
+    "text": "14.5 Indicadores de governaça",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Indicadores de Desempenho</span>"
+    ]
+  },
+  {
+    "objectID": "ppassos.html",
+    "href": "ppassos.html",
+    "title": "15  Próximos Passos",
+    "section": "",
+    "text": "15.1 Continuidade da PoC",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Próximos Passos</span>"
+    ]
+  },
+  {
+    "objectID": "ppassos.html#ajustes-metodológicos",
+    "href": "ppassos.html#ajustes-metodológicos",
+    "title": "15  Próximos Passos",
+    "section": "15.2 Ajustes metodológicos",
+    "text": "15.2 Ajustes metodológicos",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Próximos Passos</span>"
+    ]
+  },
+  {
+    "objectID": "ppassos.html#evolução-da-infraestrutura",
+    "href": "ppassos.html#evolução-da-infraestrutura",
+    "title": "15  Próximos Passos",
+    "section": "15.3 Evolução da infraestrutura",
+    "text": "15.3 Evolução da infraestrutura",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Próximos Passos</span>"
+    ]
+  },
+  {
+    "objectID": "ppassos.html#estratégia-de-escalonamento",
+    "href": "ppassos.html#estratégia-de-escalonamento",
+    "title": "15  Próximos Passos",
+    "section": "15.4 Estratégia de escalonamento",
+    "text": "15.4 Estratégia de escalonamento",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Próximos Passos</span>"
+    ]
+  },
+  {
+    "objectID": "ppassos.html#integração-com-ambiente-rfb",
+    "href": "ppassos.html#integração-com-ambiente-rfb",
+    "title": "15  Próximos Passos",
+    "section": "15.5 Integração com Ambiente RFB",
+    "text": "15.5 Integração com Ambiente RFB",
+    "crumbs": [
+      "Governança",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Próximos Passos</span>"
+    ]
+  }
+]
