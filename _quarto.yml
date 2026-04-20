@@ -32,12 +32,17 @@ book:
         - indicadores.qmd
         - ppassos.qmd
     - references.qmd
-    - anexos.qmd
-  cover-image: cover.png
+  appendices:
+    - diagramas.qmd
+    - arquitetura.qmd
+    - relatorios.qmd
+    - scripts.qmd
+    - evidencias.qmd
+  cover-image: img/Capa rel mensal - geral.png
   cover-image-alt: "Description of my book cover"
   page-footer: 
     left: "© 2026 UFSC"
-    center: "![](img/RECEITA_LOGO_FUNDO_CLARO.png){width=50px}"
+    center: "![](img/Logo com RFB e UFSC.png){width=250px}"
 
 bibliography: references.bib
 
@@ -45,6 +50,7 @@ lang: pt-br
 
 format:
   html:
+    css: [styles.css, cover-style.css]
     theme:
       - cosmo
       - brand
