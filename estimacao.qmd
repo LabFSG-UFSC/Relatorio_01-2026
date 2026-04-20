@@ -2,42 +2,66 @@
 
 ## Introdução
 
-
-
 ## Fluxo de Modelagem
 
 
-###	Definição de variáveis 
+```{mermaid}
+%%| fig-width: 4
+%%| label: fig-fluxo_Est
+%%| fig-cap: "Fluxograma da estimação do Valor de Referência."
+flowchart TB
+    A("RECEBIMENTO DOS DADOS DAS ETAPAS 1 E 2") --> B("LIMPEZA DOS DADOS COM REGRESSÃO ROBUSTA")
+    B --> C(["CLASSIFICAÇÃO DE IMÓVEIS CONSTRUÍDOS (PADRÃO CONSTRUTIVO)"])
+    B --> D(["CLASSIFICAÇÃO DE LOTES (AGRUPAMENTO ESPACIAL)"])
+    C --> E("CONJUNTO DE DADOS DE IMÓVEIS EDIFICADOS PARA ANÁLISES")
+    E --> F("MODELOS DE INTELIGÊNCIA ARTIFICIAL")
+    F --VUM2 --> G("CONJUNTO DE DADOS DE LOTES PARA ANÁLISES")
+    D --> G
+    G --> H("MODELOS LINEARES GENERALIZADOS")
+    H --Resíduos --> I("KRIGAGEM")
+    I --> J("MODELO FINAL DE LOTES")
+    K["CIB"] --Dados Cadastrais --> L["CÁLCULO DO CUSTO DE REEDIÇÃO"]
+    J --Valores de Terrenos --> M
+    L --Custo de Benfeitorias --> M["ESTIMAÇÃO DO FATOR DE AJUSTE DE MERCADO"]
+    M --> N["ATRIBUIÇÃO DE VALORES DE REFERÊNCIA"]
+    F --VUM2--> M
+  
+    style A stroke:#2962FF, fill:#2962FF,color:#FFFFFF
+    style B stroke:#2962FF, fill:#FFD600,color:#FFFFFF
+    style F stroke:#2962FF, fill:#FFD600,color:#FFFFFF
+    style E stroke:#2962FF, fill:#2962FF,color:#FFFFFF
+    style G stroke:#2962FF, fill:#2962FF,color:#FFFFFF
+    style H stroke:#2962FF, fill:#FFD600,color:#FFFFFF
+    style J stroke:#2962FF, fill:#FFD600,color:#FFFFFF
+    style M stroke:#2962FF, fill:#FFD600,color:#FFFFFF
+```
 
-###	Construção do modelo 
+### Definição de variáveis
 
-### Validação 
+### Construção do modelo
 
+### Validação
 
 ## Atividades Desenvolvidas
 
+### Seleção de variáveis
 
-### Seleção de variáveis 
+### Testes de modelos
 
-### Testes de modelos 
-
-### Calibração 
+### Calibração
 
 ## Resultados
 
-### Modelo preliminar 
+### Modelo preliminar
 
-### *Outputs* de valor 
-
+### *Outputs* de valor
 
 ## Desafios
 
+### Qualidade das variáveis
 
-### Qualidade das variáveis 
-
-### Aderência ao mercado 
-
+### Aderência ao mercado
 
 ## Escalabilidade
 
-### Replicação em outros municípios 
+### Replicação em outros municípios
