@@ -3,6 +3,13 @@
 
 ## Arquitetura de Infraestrutura
 
+A infraestrutura tecnológica do LABFSG encontra-se organizada em torno de três servidores com funções primárias definidas e complementares. Em termos gerais, o `sv-labfsg` concentra a persistência de dados e os serviços centrais do ambiente, o `sv-thinkcentre` sustenta o processamento técnico cotidiano do projeto e o `sv-acesso` estrutura a camada de entrada e publicação interna dos serviços.
+
+- `sv-labfsg`: workstation `HP Z420`, processador `Intel Xeon E5-1620`, `15 GiB` de memória RAM, SSD local para sistema e `RAID1` dedicado aos dados, `Ubuntu 22.04.5 LTS` e kernel `5.15.0-174-generic`. Suas funções primárias são manter o PostgreSQL/PostGIS do projeto, a pilha do OpenProject em Docker e a persistência operacional mais sensível do ambiente.
+- `sv-thinkcentre`: `Lenovo ThinkCentre M75s Gen 2`, processador `AMD Ryzen 7 5700G`, `30 GiB` de memória RAM, armazenamento local em `NVMe` para sistema e área rápida, além de `SSD SATA` para dados, `Ubuntu 24.04.4 LTS` e kernel `6.8.0-107-generic`. Suas funções primárias são hospedar a `rstudio-vm`, executar rotinas de processamento em `Python` e `R` e operar como estação técnica de apoio conectada ao banco de dados do projeto.
+- `sv-acesso`: equipamento com processador `AMD Athlon 3000G`, `5.7 GiB` de memória RAM, armazenamento em `LVM` local, `Ubuntu 24.04.4 LTS` e kernel `6.8.0-110-generic`. Suas funções primárias são prover `DNS` interno, `proxy HTTP` e a camada de acesso administrativo e institucional aos serviços publicados.
+
+Essa distribuição reduz o acoplamento entre acesso, processamento e persistência. Além disso, favorece a governança operacional ao manter, em componentes distintos porém integrados, o ambiente de dados, o ambiente de trabalho analítico e a camada de publicação interna.
 
 
 ## Servidores Disponíveis
@@ -11,10 +18,21 @@
 
 ### produção 
 
+O ambiente de produção está concentrado no `sv-labfsg`. Nesse servidor permanecem o cluster PostgreSQL `16/main` com `PostGIS`, a pilha do OpenProject em Docker e a persistência dos dados operacionais centrais do projeto. Por concentrar serviços de produção e dados persistentes, o `sv-labfsg` constitui o componente mais sensível da infraestrutura sob a perspectiva da continuidade operacional.
+
+Por essa razão, a documentação operacional adota maior rigor de governança para qualquer intervenção nesse servidor, exigindo planejamento prévio, estratégia de reversão e validação de backup antes da execução de mudanças relevantes.
+
 ### backup 
+
+O plano de backup hoje está ancorado no `sv-labfsg`, com cópia externa para o Synology/NAS do laboratório. Há dois fluxos principais em operação. O primeiro é o backup diário do OpenProject, executado por `systemd` via `op-backup.timer`, gerando dump lógico do banco, empacotamento dos assets e manifesto com hash. O segundo é o backup geral do servidor, acionado por `/etc/cron.d/backup-servidor`, que encadeia scripts para backup do PostgreSQL, coleta de artefatos extras, montagem de pacote operacional e envio ao armazenamento externo.
+
+Esse arranjo indica que o LABFSG não depende de uma única cópia de segurança, mas de uma estratégia combinada de backup por serviço e por servidor. Além do fluxo automatizado documentado, também já houve movimentação manual de backups de segurança para o Synology, reforçando a camada externa de preservação dos dados.
 
 ### dedicado ao projeto 
 
+Todos os servidores estão atualmente dedicados ao projeto, cada qual com atribuições específicas. O `sv-labfsg` está orientado à persistência, aos serviços centrais e à sustentação do banco de dados e do OpenProject. O `sv-thinkcentre` está voltado ao processamento técnico ativo, com execução de rotinas em `Python` e `R`, suporte ao ambiente de trabalho da `rstudio-vm` e comunicação operacional com o banco de dados do projeto. O `sv-acesso`, por sua vez, está direcionado à organização da camada de acesso, à resolução interna de serviços e à publicação institucional do ambiente.
+
+Esse arranjo distribui responsabilidades sem comprometer a integração entre os componentes. Em vez de concentrar todas as cargas em um único servidor, o projeto opera com servidores especializados que cooperam entre si, o que contribui para melhor desempenho, maior previsibilidade operacional e maior clareza de governança.
 
 
 ## Organização de Dados
@@ -23,18 +41,37 @@
 
 ### Estrutura de diretórios 
 
+A organização de dados segue a especialização de cada servidor. No `sv-labfsg`, o diretório mais importante é `/srv/data`, onde ficam tanto o `PGDATA` do PostgreSQL em `/srv/data/postgres/16/main` quanto os dados persistentes do OpenProject, como assets, logs e backups. Essa separação por subdiretórios favorece a administração do armazenamento em `RAID1` e torna mais claro o que pertence a dados transacionais, dados de aplicação e artefatos de backup.
+
+No `sv-thinkcentre`, a documentação consolidada aponta `/srv/dados` como o principal ponto de armazenamento local, além de `/srv/fast` para uso complementar. Já na `rstudio-vm`, foi formalizado um diretório compartilhado de colaboração em `/srv/rstudio-shared`, acessado pelos usuários por meio do link `~/compartilhado` em suas `home`. Essa organização distingue, de forma clara, os diretórios pessoais de uso individual de uma área comum voltada à troca de arquivos de trabalho entre participantes autorizados.
+
+Também existe uma camada importante de diretórios voltados à operação e à documentação. O checkout operacional do repositório aparece documentado em `/opt/operacao/capacitacao-operacao` e em `/home/admin1/Capacitacao`, servindo como fonte de verdade para scripts, runbooks, wiki técnica e registro de mudanças. Além disso, a organização de dados do projeto considera a estrutura compartilhada no Synology em `smb://serverreceita.synology.me/VRCIB_DS_000123/RECEITA_FEDERAL/`, utilizada como referência externa de armazenamento e organização de acervo.
+
 ### Versionamento 
 
+O versionamento da infraestrutura é tratado como parte da própria operação. O repositório `Capacitacao` centraliza a documentação navegável em `docs/wiki/`, os materiais específicos por domínio técnico e, principalmente, o histórico formal de mudanças em `changes/`. A diretriz operacional registrada no próprio repositório é que mudanças relevantes em produção não devem ocorrer sem um diretório formal de mudança, contendo pedido, plano, impacto, rollback e evidências.
+
+Essa estratégia amplia a rastreabilidade do ambiente, pois não versiona apenas código: versiona também decisões operacionais, comandos executados, critérios de sucesso e registros de validação. O padrão Git adotado reforça essa prática ao recomendar que cada commit represente uma intenção operacional claramente delimitada, sempre evitando o versionamento de segredos e privilegiando a explicitação de rollback.
 
 
 ## Banco de Dados
 
+O ambiente de banco de dados do projeto está concentrado no `sv-labfsg`, em um cluster PostgreSQL `16/main` separado da stack do OpenProject. Essa separação é fundamental: o banco `openproject` opera em um contêiner próprio (`openproject-db`), enquanto o PostgreSQL/PostGIS do LabGIS atende ao domínio analítico e geoespacial do projeto. Trata-se, portanto, de dois contextos distintos de governança, backup e operação, ainda que coexistam no mesmo servidor.
 
+A exposição do PostgreSQL/PostGIS foi mantida restrita ao loopback (`127.0.0.1:5432`), o que evita a publicação direta do serviço na rede e condiciona o acesso remoto ao uso de túnel SSH. Esse arranjo favorece a segurança, a rastreabilidade individual e a redução da superfície de ataque, ao mesmo tempo em que preserva acesso técnico controlado para usuários autorizados.
 
 
 ### Estrutura PostGIS 
 
+O modelo documentado para o ambiente PostGIS baseia-se em camadas de maturidade dos dados e em organização territorial. As bases principais identificadas no host são `labgis`, `bronze`, `prata` e `ouro`. Em especial, `bronze`, `prata` e `ouro` representam etapas sucessivas do fluxo de dados, permitindo distinguir a ingestão inicial, o tratamento intermediário e a consolidação analítica.
+
+Dentro dessas bases, a estrutura recomendada adota `schemas` territoriais, incluindo `br` e um schema por unidade da federação. Em vez de multiplicar schemas por tema, o repositório propõe manter os temas por convenção de nomenclatura das tabelas, com prefixos como `cartografia_`, `omi_` e `estimacao_`. Essa escolha simplifica a estrutura lógica do banco e mantém a dimensão espacial e territorial como eixo principal da organização dos dados.
+
 ### Modelagem 
+
+Do ponto de vista da modelagem, o ambiente combina duas lógicas complementares. A primeira é a modelagem por camadas (`bronze`, `prata`, `ouro`), que organiza o ciclo de transformação dos dados. A segunda é a modelagem territorial por `schema`, que distribui os dados por unidade da federação e por abrangência nacional (`br`). Sobre essa base, os temas do projeto aparecem como convenções de nomes de tabelas e como perfis de acesso, e não como bancos ou `schemas` isolados.
+
+Esse modelo é adequado a um ambiente colaborativo porque permite que diferentes frentes, como cartografia, OMI e estimativa, atuem sobre o mesmo recorte territorial sem gerar proliferação excessiva de estruturas. Em contrapartida, exige disciplina de nomenclatura e governança de permissões por tabela, de modo que a colaboração não comprometa a separação de responsabilidades entre equipes e etapas de processamento.
 
 
 ## Segurança e Governança dos Dados
@@ -43,7 +80,18 @@
 
 ### controle de acesso 
 
+O controle de acesso segue o princípio da individualização de credenciais e da minimização da exposição dos serviços. No PostgreSQL/PostGIS, o acesso remoto ocorre por túnel SSH para `127.0.0.1:5432`, com cada pessoa utilizando login individual no sistema e `role` correspondente no banco. A documentação do `Capacitacao` explicita que o ideal é preservar esse vínculo entre identidade individual, autenticação no sistema e autenticação no banco, favorecendo revogação pontual e responsabilização por usuário.
+
+No ambiente de RStudio, a autenticação atual é realizada por contas locais do sistema operacional na `rstudio-vm`. A gestão recente de usuários formalizou um grupo compartilhado (`rstudio-shared`), um diretório comum em `/srv/rstudio-shared`, links simbólicos nas `home` dos usuários e permissões adequadas para leitura e escrita colaborativa. Esse desenho diferencia diretórios pessoais de espaço compartilhado e evita a concessão ampla de privilégios administrativos aos usuários comuns da plataforma.
+
 ### rastreabilidade 
+
+A rastreabilidade é sustentada em três frentes. A primeira é a identidade individual no acesso aos servidores, ao banco e ao RStudio, o que permite associar ações a pessoas específicas. A segunda é o versionamento operacional no repositório `Capacitacao`, onde mudanças, runbooks, scripts e evidências são registrados em Git. A terceira é a própria instrumentação do ambiente, que mantém `timers`, logs de serviços e registros de execução para componentes críticos, como os backups do OpenProject e a publicação periódica de informações de operação do `sv-thinkcentre`.
+
+Esse conjunto torna a operação menos dependente de conhecimento tácito. Em vez de mudanças informais, o ambiente passa a dispor de memória técnica institucionalizada, apoiada por documentação viva e por histórico versionado de intervenções.
 
 ### auditoria 
 
+Do ponto de vista de auditoria, o ambiente já dispõe de mecanismos relevantes, embora ainda em processo de amadurecimento. Os backups do OpenProject geram manifestos com hash, o repositório exige registro de impacto, rollback e evidências em mudanças operacionais, e a documentação de segurança aponta a necessidade de revisão recorrente de logs de SSH, UFW e `systemd`. Além disso, a separação entre o banco do OpenProject e o PostgreSQL/PostGIS do projeto favorece auditorias mais precisas por domínio técnico.
+
+Ao mesmo tempo, a própria wiki registra pontos pendentes que merecem fortalecimento, como endurecimento adicional do `sv-acesso`, revalidação periódica das regras efetivas de firewall e consolidação dos testes de restore. Assim, a auditoria no LABFSG já está incorporada ao desenho de governança, mas ainda se encontra em processo contínuo de amadurecimento e padronização.
