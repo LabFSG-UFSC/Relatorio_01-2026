@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420">
+  <defs>
+    <style>
+      .title { font: 700 30px 'Arial', sans-serif; fill: #0d47a1; }
+      .txt { font: 500 20px 'Arial', sans-serif; fill: #1a237e; }
+      .small { font: 500 18px 'Arial', sans-serif; fill: #37474f; }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,6 L0,12 z" fill="#1565c0"/>
+    </marker>
+  </defs>
+
+  <text x="600" y="45" text-anchor="middle" class="title">Agrupamento Espacial por Tipologia</text>
+
+  <rect x="40" y="120" rx="16" ry="16" width="260" height="170" fill="#e3f2fd" stroke="#1565c0" stroke-width="3"/>
+  <text x="170" y="185" text-anchor="middle" class="txt">Coordenada</text>
+  <text x="170" y="215" text-anchor="middle" class="txt">lat/lon</text>
+  <text x="170" y="245" text-anchor="middle" class="small">(escala z)</text>
+
+  <rect x="370" y="120" rx="16" ry="16" width="260" height="170" fill="#e3f2fd" stroke="#1565c0" stroke-width="3"/>
+  <text x="500" y="185" text-anchor="middle" class="txt">K-Means</text>
+  <text x="500" y="215" text-anchor="middle" class="txt">k = 3 e k = 5</text>
+  <text x="500" y="245" text-anchor="middle" class="small">por tipologia</text>
+
+  <rect x="700" y="95" rx="16" ry="16" width="460" height="220" fill="#e8f5e9" stroke="#2e7d32" stroke-width="3"/>
+  <text x="930" y="170" text-anchor="middle" class="txt">Clusterização final</text>
+  <text x="930" y="205" text-anchor="middle" class="txt">class_5_cluster</text>
+  <text x="930" y="240" text-anchor="middle" class="small">uso operacional na PVG</text>
+
+  <line x1="300" y1="205" x2="370" y2="205" stroke="#1565c0" stroke-width="4" marker-end="url(#arrow)"/>
+  <line x1="630" y1="205" x2="700" y2="205" stroke="#1565c0" stroke-width="4" marker-end="url(#arrow)"/>
+</svg>
