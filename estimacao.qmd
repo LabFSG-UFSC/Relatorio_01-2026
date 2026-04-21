@@ -12,7 +12,7 @@
 flowchart TB
     A("RECEBIMENTO DOS DADOS DAS ETAPAS 1 E 2") --> B("LIMPEZA DOS DADOS COM REGRESSÃO ROBUSTA")
     B --> C(["CLASSIFICAÇÃO DE IMÓVEIS CONSTRUÍDOS (PADRÃO CONSTRUTIVO)"])
-    B --> D(["CLASSIFICAÇÃO DE LOTES (AGRUPAMENTO ESPACIAL)"])
+    B --> D(["CLASSIFICAÇÃO ESPACIAL"])
     C --> E("CONJUNTO DE DADOS DE IMÓVEIS EDIFICADOS PARA ANÁLISES")
     E --> F("MODELOS DE INTELIGÊNCIA ARTIFICIAL")
     F --VUM2 --> G("CONJUNTO DE DADOS DE LOTES PARA ANÁLISES")
@@ -37,6 +37,45 @@ flowchart TB
 ```
 
 ### Definição de variáveis
+
+#### Classificação de imóveis construídos (padrão construtivo)
+
+Para a classificação de imóveis construídos, adotou-se como variável principal o **valor unitário** (R$/m²), calculado pela razão entre preço anunciado e área privativa. Essa escolha foi feita por representar, de forma sintética, o posicionamento econômico do imóvel e refletir diferenças construtivas observáveis no mercado.
+
+A aplicação foi realizada separadamente para os conjuntos de **apartamentos** e **casas**, preservando a heterogeneidade entre tipologias. Em seguida, a variável foi padronizada e submetida a agrupamento não supervisionado (**K-Means**, com `k = 3`), com ordenação dos grupos pela média de valor unitário e rotulagem final em três classes técnicas:
+
+- baixo padrão;
+- padrão normal;
+- alto padrão.
+
+No contexto deste relatório, o K-Means foi utilizado para organizar observações em grupos com maior semelhança interna e maior distinção externa. O algoritmo opera de forma iterativa, alternando duas etapas: (i) alocação de cada observação ao centróide mais próximo; (ii) recálculo dos centróides como média dos elementos de cada grupo. O processo é repetido até estabilização, minimizando a soma dos quadrados das distâncias intragrupo. Como resultado, obtém-se uma tipologia objetiva de padrão construtivo, sem impor limiares arbitrários de preço.
+
+![Fluxo metodológico da classificação de padrão construtivo.](img/fluxo-padrao-construtivo.svg){#fig-padrao-construtivo width=85%}
+
+Os histogramas a seguir apresentam a distribuição do valor unitário (R$/m²) por classe de padrão construtivo gerada pelo K-Means, separadamente para apartamentos e casas. As distribuições confirmam a separação entre os grupos: em ambas as tipologias, as curvas dos padrões baixo, normal e alto apresentam picos em faixas distintas de valor, com sobreposição controlada nas fronteiras. Essa separação valida que o algoritmo capturou com consistência a segmentação econômica dos imóveis sem necessidade de limiares definidos manualmente.
+
+Para os **apartamentos** (@fig-hist-padrao-aptos), o padrão baixo concentra-se predominantemente na faixa de R$ 5.000 a R$ 15.000/m², o padrão normal entre R$ 10.000 e R$ 20.000/m², e o padrão alto apresenta distribuição mais dispersa, com valores a partir de R$ 20.000/m² e cauda longa até R$ 70.000/m², refletindo a heterogeneidade do segmento de alto padrão em Florianópolis.
+
+![Distribuição do valor unitário por padrão de imóvel — Apartamentos.](img/histograma-padrao-apartamentos.png){#fig-hist-padrao-aptos width=90%}
+
+Para as **casas** (@fig-hist-padrao-casas), o padrão baixo concentra-se até R$ 10.000/m², o padrão normal entre R$ 8.000 e R$ 15.000/m², e o padrão alto acima de R$ 15.000/m². Em comparação com os apartamentos, as casas apresentam faixas de valor unitário mais comprimidas e menor dispersão no padrão alto, o que evidencia diferenças estruturais entre as duas tipologias.
+
+![Distribuição do valor unitário por padrão de imóvel — Casas.](img/histograma-padrao-casas.png){#fig-hist-padrao-casas width=90%}
+
+#### Classificação espacial
+
+Na classificação espacial, as variáveis utilizadas foram as coordenadas geográficas dos registros (**latitude** e **longitude**) para **cada tipologia de imóvel**: apartamentos, casas e lotes. Utilizando as coordenadas (escala z), foi aplicado agrupamento não supervisionado (**K-Means**) por tipologia.
+
+Foram geradas e comparadas as classificações `class_3_cluster` e `class_5_cluster` em cada conjunto tipológico, com inspeção visual da distribuição espacial e da separação entre grupos. Para uso operacional no fluxo da PVG, foi consolidada a classificação final **`class_5_cluster`**, por apresentar melhor equilíbrio entre detalhamento territorial e estabilidade do tamanho dos grupos.
+
+No agrupamento espacial, o K-Means separa zonas com comportamento locacional semelhante a partir da proximidade entre coordenadas padronizadas. Embora não substitua uma regionalização administrativa formal, essa estratégia melhora a representação da heterogeneidade espacial em cada tipologia e cria estratos técnicos úteis para os modelos de valor.
+
+![Fluxo metodológico do agrupamento espacial por tipologia.](img/fluxo-agrupamento.svg){#fig-agrupamento width=85%}
+
+![Clusterização espacial por tipologia com comparação entre class_3_cluster e class_5_cluster (apartamentos, casas e lotes).](img/clusterizacao-tipologias-k3-k5.png){#fig-clusterizacao-tipologias width=95%}
+
+#### Critérios de validação adotados
+
 
 ### Construção do modelo
 
