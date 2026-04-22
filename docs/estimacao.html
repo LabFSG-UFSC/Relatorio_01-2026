@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dda8909163e0b4f3670ba323ebd66e56.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -70,6 +70,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Procurar"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -103,6 +106,43 @@ ul.task-list li input[type="checkbox"] {
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">PoC</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/LabFSG-UFSC/Relatorio_01-2026/" title="Código fonte" class="quarto-navigation-tool px-1" aria-label="Código fonte"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Baixar" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Baixar"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./PoC.pdf">
+              <i class="bi bi-file-pdf pe-1"></i>
+            Baixar PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./PoC.epub">
+              <i class="bi bi-journal pe-1"></i>
+            Baixar ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="" title="Compartilhar" id="quarto-navigation-tool-dropdown-1" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Compartilhar"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-1">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+              <i class="bi bi-facebook pe-1"></i>
+            Facebook
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -299,34 +339,40 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">6.1</span> Introdução</a></li>
-  <li><a href="#fluxo-de-modelagem" id="toc-fluxo-de-modelagem" class="nav-link" data-scroll-target="#fluxo-de-modelagem"><span class="header-section-number">6.2</span> Fluxo de Modelagem</a>
+  <li><a href="#sec-fluxo-modelagem" id="toc-sec-fluxo-modelagem" class="nav-link" data-scroll-target="#sec-fluxo-modelagem"><span class="header-section-number">6.2</span> Fluxo de Modelagem</a></li>
+  <li><a href="#limpeza-dos-dados" id="toc-limpeza-dos-dados" class="nav-link" data-scroll-target="#limpeza-dos-dados"><span class="header-section-number">6.3</span> Limpeza dos dados</a></li>
+  <li><a href="#definição-de-variáveis" id="toc-definição-de-variáveis" class="nav-link" data-scroll-target="#definição-de-variáveis"><span class="header-section-number">6.4</span> Definição de variáveis</a>
   <ul class="collapse">
-  <li><a href="#definição-de-variáveis" id="toc-definição-de-variáveis" class="nav-link" data-scroll-target="#definição-de-variáveis"><span class="header-section-number">6.2.1</span> Definição de variáveis</a></li>
-  <li><a href="#construção-do-modelo" id="toc-construção-do-modelo" class="nav-link" data-scroll-target="#construção-do-modelo"><span class="header-section-number">6.2.2</span> Construção do modelo</a></li>
-  <li><a href="#validação" id="toc-validação" class="nav-link" data-scroll-target="#validação"><span class="header-section-number">6.2.3</span> Validação</a></li>
+  <li><a href="#sec-classif-pc" id="toc-sec-classif-pc" class="nav-link" data-scroll-target="#sec-classif-pc"><span class="header-section-number">6.4.1</span> Classificação de imóveis construídos (padrão construtivo)</a></li>
+  <li><a href="#sec-classif-geo" id="toc-sec-classif-geo" class="nav-link" data-scroll-target="#sec-classif-geo"><span class="header-section-number">6.4.2</span> Classificação espacial</a></li>
   </ul></li>
-  <li><a href="#atividades-desenvolvidas" id="toc-atividades-desenvolvidas" class="nav-link" data-scroll-target="#atividades-desenvolvidas"><span class="header-section-number">6.3</span> Atividades Desenvolvidas</a>
+  <li><a href="#critérios-de-validação-adotados" id="toc-critérios-de-validação-adotados" class="nav-link" data-scroll-target="#critérios-de-validação-adotados"><span class="header-section-number">6.5</span> Critérios de validação adotados</a></li>
+  <li><a href="#construção-do-modelo" id="toc-construção-do-modelo" class="nav-link" data-scroll-target="#construção-do-modelo"><span class="header-section-number">6.6</span> Construção do modelo</a>
   <ul class="collapse">
-  <li><a href="#seleção-de-variáveis" id="toc-seleção-de-variáveis" class="nav-link" data-scroll-target="#seleção-de-variáveis"><span class="header-section-number">6.3.1</span> Seleção de variáveis</a></li>
-  <li><a href="#testes-de-modelos" id="toc-testes-de-modelos" class="nav-link" data-scroll-target="#testes-de-modelos"><span class="header-section-number">6.3.2</span> Testes de modelos</a></li>
-  <li><a href="#calibração" id="toc-calibração" class="nav-link" data-scroll-target="#calibração"><span class="header-section-number">6.3.3</span> Calibração</a></li>
+  <li><a href="#validação" id="toc-validação" class="nav-link" data-scroll-target="#validação"><span class="header-section-number">6.6.1</span> Validação</a></li>
   </ul></li>
-  <li><a href="#resultados" id="toc-resultados" class="nav-link" data-scroll-target="#resultados"><span class="header-section-number">6.4</span> Resultados</a>
+  <li><a href="#atividades-desenvolvidas" id="toc-atividades-desenvolvidas" class="nav-link" data-scroll-target="#atividades-desenvolvidas"><span class="header-section-number">6.7</span> Atividades Desenvolvidas</a>
   <ul class="collapse">
-  <li><a href="#modelo-preliminar" id="toc-modelo-preliminar" class="nav-link" data-scroll-target="#modelo-preliminar"><span class="header-section-number">6.4.1</span> Modelo preliminar</a></li>
-  <li><a href="#outputs-de-valor" id="toc-outputs-de-valor" class="nav-link" data-scroll-target="#outputs-de-valor"><span class="header-section-number">6.4.2</span> <em>Outputs</em> de valor</a></li>
+  <li><a href="#seleção-de-variáveis" id="toc-seleção-de-variáveis" class="nav-link" data-scroll-target="#seleção-de-variáveis"><span class="header-section-number">6.7.1</span> Seleção de variáveis</a></li>
+  <li><a href="#testes-de-modelos" id="toc-testes-de-modelos" class="nav-link" data-scroll-target="#testes-de-modelos"><span class="header-section-number">6.7.2</span> Testes de modelos</a></li>
+  <li><a href="#calibração" id="toc-calibração" class="nav-link" data-scroll-target="#calibração"><span class="header-section-number">6.7.3</span> Calibração</a></li>
   </ul></li>
-  <li><a href="#desafios" id="toc-desafios" class="nav-link" data-scroll-target="#desafios"><span class="header-section-number">6.5</span> Desafios</a>
+  <li><a href="#sec-resultados-modelagem" id="toc-sec-resultados-modelagem" class="nav-link" data-scroll-target="#sec-resultados-modelagem"><span class="header-section-number">6.8</span> Resultados</a>
   <ul class="collapse">
-  <li><a href="#qualidade-das-variáveis" id="toc-qualidade-das-variáveis" class="nav-link" data-scroll-target="#qualidade-das-variáveis"><span class="header-section-number">6.5.1</span> Qualidade das variáveis</a></li>
-  <li><a href="#aderência-ao-mercado" id="toc-aderência-ao-mercado" class="nav-link" data-scroll-target="#aderência-ao-mercado"><span class="header-section-number">6.5.2</span> Aderência ao mercado</a></li>
+  <li><a href="#modelo-preliminar" id="toc-modelo-preliminar" class="nav-link" data-scroll-target="#modelo-preliminar"><span class="header-section-number">6.8.1</span> Modelo preliminar</a></li>
+  <li><a href="#outputs-de-valor" id="toc-outputs-de-valor" class="nav-link" data-scroll-target="#outputs-de-valor"><span class="header-section-number">6.8.2</span> <em>Outputs</em> de valor</a></li>
   </ul></li>
-  <li><a href="#escalabilidade" id="toc-escalabilidade" class="nav-link" data-scroll-target="#escalabilidade"><span class="header-section-number">6.6</span> Escalabilidade</a>
+  <li><a href="#sec-desafios-modelagem" id="toc-sec-desafios-modelagem" class="nav-link" data-scroll-target="#sec-desafios-modelagem"><span class="header-section-number">6.9</span> Desafios</a>
   <ul class="collapse">
-  <li><a href="#replicação-em-outros-municípios" id="toc-replicação-em-outros-municípios" class="nav-link" data-scroll-target="#replicação-em-outros-municípios"><span class="header-section-number">6.6.1</span> Replicação em outros municípios</a></li>
+  <li><a href="#qualidade-das-variáveis" id="toc-qualidade-das-variáveis" class="nav-link" data-scroll-target="#qualidade-das-variáveis"><span class="header-section-number">6.9.1</span> Qualidade das variáveis</a></li>
+  <li><a href="#aderência-ao-mercado" id="toc-aderência-ao-mercado" class="nav-link" data-scroll-target="#aderência-ao-mercado"><span class="header-section-number">6.9.2</span> Aderência ao mercado</a></li>
+  </ul></li>
+  <li><a href="#sec-escalabilidade" id="toc-sec-escalabilidade" class="nav-link" data-scroll-target="#sec-escalabilidade"><span class="header-section-number">6.10</span> Escalabilidade</a>
+  <ul class="collapse">
+  <li><a href="#replicação-em-outros-municípios" id="toc-replicação-em-outros-municípios" class="nav-link" data-scroll-target="#replicação-em-outros-municípios"><span class="header-section-number">6.10.1</span> Replicação em outros municípios</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/LabFSG-UFSC/Relatorio_01-2026/edit/main/estimacao.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -352,56 +398,184 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introdução" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">6.1</span> Introdução</h2>
+<p>Este capítulo apresenta os resultados obtidos na Etapa de Modelagem e Planta de Valores Genéricos (PVG) para a cidade de Florianópolis/SC. Na <a href="#sec-fluxo-modelagem" class="quarto-xref"><span>Seção 6.2</span></a> encontra-se o fluxo de modelagem utilizado. Todos os passos constantes do fluxo de modelagem são descritos na sequência. Os resultados podem ser vistos na <a href="#sec-resultados-modelagem" class="quarto-xref"><span>Seção 6.8</span></a>. Nas seções <a href="#sec-desafios-modelagem" class="quarto-xref"><span>6.9</span></a> e <a href="#sec-escalabilidade" class="quarto-xref"><span>6.10</span></a> são descritos os principais desafios encontrados e considerações sobre a escalabilidade da solução adotada para o restante do projeto.</p>
 </section>
-<section id="fluxo-de-modelagem" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="fluxo-de-modelagem"><span class="header-section-number">6.2</span> Fluxo de Modelagem</h2>
-<section id="definição-de-variáveis" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="definição-de-variáveis"><span class="header-section-number">6.2.1</span> Definição de variáveis</h3>
+<section id="sec-fluxo-modelagem" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sec-fluxo-modelagem"><span class="header-section-number">6.2</span> Fluxo de Modelagem</h2>
+<p>O fluxo de modelagem pode ser visto na <a href="#fig-fluxo-modelagem" class="quarto-xref">Figura&nbsp;<span>6.1</span></a>. Basicamente, o fluxo mostra que parte do conjunto de dados (dados de imóveis edificados) foi utilizada para prever valores de metro quadrado construído (VUM2), gerando uma variável para a localização que posteriomente foi utilizada na modelagem de valores unitários de lotes, assim como na definição do fator de ajuste de mercado.</p>
+<p>Para a estimação de valores de metro quadrado construído, foi necessária a classificação dos imóveis edificados (casas e apartamentos) segundo seu padrão construtivo. Este procedimento encontra-se detalhado na <a href="#sec-classif-pc" class="quarto-xref"><span>Seção 6.4.1</span></a>.</p>
+<p>Além disso, os dados foram classificados segundo a sua localização geoespacial, conforme pode ser visto na <a href="#sec-classif-geo" class="quarto-xref"><span>Seção 6.4.2</span></a>, visando a identificação de submercados imobiliários<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div class="cell" data-fig-width="4" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-fluxo-modelagem" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fluxo-modelagem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<pre class="mermaid mermaid-js" data-label="fig-fluxo-modelagem">flowchart TB
+    A("RECEBIMENTO DOS DADOS DAS ETAPAS 1 E 2") --&gt; B("LIMPEZA DOS DADOS COM REGRESSÃO ROBUSTA")
+    B --&gt; C(["CLASSIFICAÇÃO DE IMÓVEIS CONSTRUÍDOS (PADRÃO CONSTRUTIVO)"])
+    B --&gt; D(["CLASSIFICAÇÃO ESPACIAL"])
+    C --&gt; E("CONJUNTO DE DADOS DE IMÓVEIS EDIFICADOS PARA ANÁLISES")
+    E --&gt; F("MODELOS DE INTELIGÊNCIA ARTIFICIAL")
+    F --VUM2 --&gt; G("CONJUNTO DE DADOS DE LOTES PARA ANÁLISES")
+    D --&gt; G
+    G --&gt; H("MODELOS LINEARES GENERALIZADOS")
+    H --Resíduos --&gt; I("KRIGAGEM")
+    I --&gt; J("MODELO FINAL DE LOTES")
+    K["CIB"] --Dados Cadastrais --&gt; L["CÁLCULO DO CUSTO DE REEDIÇÃO"]
+    J --Valores de Terrenos --&gt; M
+    L --Custo de Benfeitorias --&gt; M["ESTIMAÇÃO DO FATOR DE AJUSTE DE MERCADO"]
+    M --&gt; N["ATRIBUIÇÃO DE VALORES DE REFERÊNCIA"]
+    F --VUM2--&gt; M
+  
+    style A stroke:#2962FF, fill:#2962FF,color:#FFFFFF
+    style B stroke:#2962FF, fill:#FFD600,color:#FFFFFF
+    style F stroke:#2962FF, fill:#FFD600,color:#FFFFFF
+    style E stroke:#2962FF, fill:#2962FF,color:#FFFFFF
+    style G stroke:#2962FF, fill:#2962FF,color:#FFFFFF
+    style H stroke:#2962FF, fill:#FFD600,color:#FFFFFF
+    style J stroke:#2962FF, fill:#FFD600,color:#FFFFFF
+    style M stroke:#2962FF, fill:#FFD600,color:#FFFFFF
+</pre>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fluxo-modelagem-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.1: Fluxograma da estimação do Valor de Referência.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="construção-do-modelo" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="construção-do-modelo"><span class="header-section-number">6.2.2</span> Construção do modelo</h3>
+<section id="limpeza-dos-dados" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="limpeza-dos-dados"><span class="header-section-number">6.3</span> Limpeza dos dados</h2>
+<p>Os dados oriundos do observatório do mercado imobiliário foram limpos com o auxílio de regressão robusta.</p>
 </section>
-<section id="validação" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="validação"><span class="header-section-number">6.2.3</span> Validação</h3>
+<section id="definição-de-variáveis" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="definição-de-variáveis"><span class="header-section-number">6.4</span> Definição de variáveis</h2>
+<section id="sec-classif-pc" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="sec-classif-pc"><span class="header-section-number">6.4.1</span> Classificação de imóveis construídos (padrão construtivo)</h3>
+<p>Para a classificação de imóveis construídos, adotou-se como variável principal o <strong>valor unitário</strong> (R$/m²), calculado pela razão entre preço anunciado e área privativa. Essa escolha foi feita por representar, de forma sintética, o posicionamento econômico do imóvel e refletir diferenças construtivas observáveis no mercado.</p>
+<p>A aplicação foi realizada separadamente para os conjuntos de <strong>apartamentos</strong> e <strong>casas</strong>, preservando a heterogeneidade entre tipologias. Em seguida, a variável foi padronizada e submetida a agrupamento não supervisionado (<strong>K-Means</strong>, com <code>k = 3</code>), com ordenação dos grupos pela média de valor unitário e rotulagem final em três classes técnicas:</p>
+<ul>
+<li>baixo padrão;</li>
+<li>padrão normal;</li>
+<li>alto padrão.</li>
+</ul>
+<p>No contexto deste relatório, o K-Means foi utilizado para organizar observações em grupos com maior semelhança interna e maior distinção externa. O algoritmo opera de forma iterativa, alternando duas etapas: (i) alocação de cada observação ao centróide mais próximo; (ii) recálculo dos centróides como média dos elementos de cada grupo. O processo é repetido até estabilização, minimizando a soma dos quadrados das distâncias intragrupo. Como resultado, obtém-se uma tipologia objetiva de padrão construtivo, sem impor limiares arbitrários de preço.</p>
+<div id="fig-padrao-construtivo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-padrao-construtivo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/fluxo-padrao-construtivo.svg" class="img-fluid figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-padrao-construtivo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.2: Fluxo metodológico da classificação de padrão construtivo.
+</figcaption>
+</figure>
+</div>
+<p>Os histogramas a seguir apresentam a distribuição do valor unitário (R$/m²) por classe de padrão construtivo gerada pelo K-Means, separadamente para apartamentos e casas. As distribuições confirmam a separação entre os grupos: em ambas as tipologias, as curvas dos padrões baixo, normal e alto apresentam picos em faixas distintas de valor, com sobreposição controlada nas fronteiras. Essa separação valida que o algoritmo capturou com consistência a segmentação econômica dos imóveis sem necessidade de limiares definidos manualmente.</p>
+<p>Para os <strong>apartamentos</strong> (<a href="#fig-hist-padrao-aptos" class="quarto-xref">Figura&nbsp;<span>6.3</span></a>), o padrão baixo concentra-se predominantemente na faixa de R$ 5.000 a R$ 15.000/m², o padrão normal entre R$ 10.000 e R$ 20.000/m², e o padrão alto apresenta distribuição mais dispersa, com valores a partir de R$ 20.000/m² e cauda longa até R$ 70.000/m², refletindo a heterogeneidade do segmento de alto padrão em Florianópolis.</p>
+<div id="fig-hist-padrao-aptos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hist-padrao-aptos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/histograma-padrao-apartamentos.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hist-padrao-aptos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.3: Distribuição do valor unitário por padrão de imóvel — Apartamentos.
+</figcaption>
+</figure>
+</div>
+<p>Para as <strong>casas</strong> (<a href="#fig-hist-padrao-casas" class="quarto-xref">Figura&nbsp;<span>6.4</span></a>), o padrão baixo concentra-se até R$ 10.000/m², o padrão normal entre R$ 8.000 e R$ 15.000/m², e o padrão alto acima de R$ 15.000/m². Em comparação com os apartamentos, as casas apresentam faixas de valor unitário mais comprimidas e menor dispersão no padrão alto, o que evidencia diferenças estruturais entre as duas tipologias.</p>
+<div id="fig-hist-padrao-casas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hist-padrao-casas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/histograma-padrao-casas.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hist-padrao-casas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.4: Distribuição do valor unitário por padrão de imóvel — Casas.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-classif-geo" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="sec-classif-geo"><span class="header-section-number">6.4.2</span> Classificação espacial</h3>
+<p>Na classificação espacial, as variáveis utilizadas foram as coordenadas geográficas dos registros (<strong>latitude</strong> e <strong>longitude</strong>) para <strong>cada tipologia de imóvel</strong>: apartamentos, casas e lotes. Utilizando as coordenadas (escala z), foi aplicado agrupamento não supervisionado (<strong>K-Means</strong>) por tipologia.</p>
+<p>Foram geradas e comparadas as classificações <code>class_3_cluster</code> e <code>class_5_cluster</code> em cada conjunto tipológico, com inspeção visual da distribuição espacial e da separação entre grupos. Para uso operacional no fluxo da PVG, foi consolidada a classificação final <strong><code>class_5_cluster</code></strong>, por apresentar melhor equilíbrio entre detalhamento territorial e estabilidade do tamanho dos grupos.</p>
+<p>No agrupamento espacial, o K-Means separa zonas com comportamento locacional semelhante a partir da proximidade entre coordenadas padronizadas. Embora não substitua uma regionalização administrativa formal, essa estratégia melhora a representação da heterogeneidade espacial em cada tipologia e cria estratos técnicos úteis para os modelos de valor.</p>
+<div id="fig-agrupamento" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-agrupamento-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/fluxo-agrupamento.svg" class="img-fluid figure-img" style="width:85.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-agrupamento-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.5: Fluxo metodológico do agrupamento espacial por tipologia.
+</figcaption>
+</figure>
+</div>
+<div id="fig-clusterizacao-tipologias" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-clusterizacao-tipologias-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/clusterizacao-tipologias-k3-k5.png" class="img-fluid figure-img" style="width:95.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clusterizacao-tipologias-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.6: Clusterização espacial por tipologia com comparação entre class_3_cluster e class_5_cluster (apartamentos, casas e lotes).
+</figcaption>
+</figure>
+</div>
 </section>
 </section>
-<section id="atividades-desenvolvidas" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="atividades-desenvolvidas"><span class="header-section-number">6.3</span> Atividades Desenvolvidas</h2>
-<section id="seleção-de-variáveis" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="seleção-de-variáveis"><span class="header-section-number">6.3.1</span> Seleção de variáveis</h3>
+<section id="critérios-de-validação-adotados" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="critérios-de-validação-adotados"><span class="header-section-number">6.5</span> Critérios de validação adotados</h2>
 </section>
-<section id="testes-de-modelos" class="level3" data-number="6.3.2">
-<h3 data-number="6.3.2" class="anchored" data-anchor-id="testes-de-modelos"><span class="header-section-number">6.3.2</span> Testes de modelos</h3>
-</section>
-<section id="calibração" class="level3" data-number="6.3.3">
-<h3 data-number="6.3.3" class="anchored" data-anchor-id="calibração"><span class="header-section-number">6.3.3</span> Calibração</h3>
+<section id="construção-do-modelo" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="construção-do-modelo"><span class="header-section-number">6.6</span> Construção do modelo</h2>
+<section id="validação" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="validação"><span class="header-section-number">6.6.1</span> Validação</h3>
 </section>
 </section>
-<section id="resultados" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="resultados"><span class="header-section-number">6.4</span> Resultados</h2>
-<section id="modelo-preliminar" class="level3" data-number="6.4.1">
-<h3 data-number="6.4.1" class="anchored" data-anchor-id="modelo-preliminar"><span class="header-section-number">6.4.1</span> Modelo preliminar</h3>
+<section id="atividades-desenvolvidas" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="atividades-desenvolvidas"><span class="header-section-number">6.7</span> Atividades Desenvolvidas</h2>
+<section id="seleção-de-variáveis" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="seleção-de-variáveis"><span class="header-section-number">6.7.1</span> Seleção de variáveis</h3>
 </section>
-<section id="outputs-de-valor" class="level3" data-number="6.4.2">
-<h3 data-number="6.4.2" class="anchored" data-anchor-id="outputs-de-valor"><span class="header-section-number">6.4.2</span> <em>Outputs</em> de valor</h3>
+<section id="testes-de-modelos" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="testes-de-modelos"><span class="header-section-number">6.7.2</span> Testes de modelos</h3>
 </section>
-</section>
-<section id="desafios" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="desafios"><span class="header-section-number">6.5</span> Desafios</h2>
-<section id="qualidade-das-variáveis" class="level3" data-number="6.5.1">
-<h3 data-number="6.5.1" class="anchored" data-anchor-id="qualidade-das-variáveis"><span class="header-section-number">6.5.1</span> Qualidade das variáveis</h3>
-</section>
-<section id="aderência-ao-mercado" class="level3" data-number="6.5.2">
-<h3 data-number="6.5.2" class="anchored" data-anchor-id="aderência-ao-mercado"><span class="header-section-number">6.5.2</span> Aderência ao mercado</h3>
+<section id="calibração" class="level3" data-number="6.7.3">
+<h3 data-number="6.7.3" class="anchored" data-anchor-id="calibração"><span class="header-section-number">6.7.3</span> Calibração</h3>
 </section>
 </section>
-<section id="escalabilidade" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="escalabilidade"><span class="header-section-number">6.6</span> Escalabilidade</h2>
-<section id="replicação-em-outros-municípios" class="level3" data-number="6.6.1">
-<h3 data-number="6.6.1" class="anchored" data-anchor-id="replicação-em-outros-municípios"><span class="header-section-number">6.6.1</span> Replicação em outros municípios</h3>
+<section id="sec-resultados-modelagem" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="sec-resultados-modelagem"><span class="header-section-number">6.8</span> Resultados</h2>
+<section id="modelo-preliminar" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="modelo-preliminar"><span class="header-section-number">6.8.1</span> Modelo preliminar</h3>
+</section>
+<section id="outputs-de-valor" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="outputs-de-valor"><span class="header-section-number">6.8.2</span> <em>Outputs</em> de valor</h3>
+</section>
+</section>
+<section id="sec-desafios-modelagem" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="sec-desafios-modelagem"><span class="header-section-number">6.9</span> Desafios</h2>
+<section id="qualidade-das-variáveis" class="level3" data-number="6.9.1">
+<h3 data-number="6.9.1" class="anchored" data-anchor-id="qualidade-das-variáveis"><span class="header-section-number">6.9.1</span> Qualidade das variáveis</h3>
+</section>
+<section id="aderência-ao-mercado" class="level3" data-number="6.9.2">
+<h3 data-number="6.9.2" class="anchored" data-anchor-id="aderência-ao-mercado"><span class="header-section-number">6.9.2</span> Aderência ao mercado</h3>
+</section>
+</section>
+<section id="sec-escalabilidade" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="sec-escalabilidade"><span class="header-section-number">6.10</span> Escalabilidade</h2>
+<section id="replicação-em-outros-municípios" class="level3" data-number="6.10.1">
+<h3 data-number="6.10.1" class="anchored" data-anchor-id="replicação-em-outros-municípios"><span class="header-section-number">6.10.1</span> Replicação em outros municípios</h3>
 
 
 </section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Apesar da classificação geoespacial efetuada, verificou-se que, em Florianópolis/SC, os modelos responderam bem à subdivisão dos mercados em distritos, portanto esta segmentação geospacial dos mercados foi adotada. Optou-se por manter aqui o estudo da divisão geoespacial do mercado para fins de eventual necessidade em outros municípios.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -825,7 +999,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
 <p><img src="img/Logo com RFB e UFSC.png" class="img-fluid" width="250"></p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/LabFSG-UFSC/Relatorio_01-2026/edit/main/estimacao.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

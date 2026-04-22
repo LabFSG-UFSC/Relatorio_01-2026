@@ -44,6 +44,10 @@ book:
   page-footer: 
     left: "© 2026 UFSC"
     center: "![](img/Logo com RFB e UFSC.png){width=250px}"
+  downloads: [pdf, epub]
+  repo-url: https://github.com/LabFSG-UFSC/Relatorio_01-2026/
+  repo-actions: [edit]
+  sharing: [twitter, facebook]
 
 bibliography: references.bib
 
@@ -53,8 +57,8 @@ format:
   html:
     css: [styles.css, cover-style.css]
     theme:
-      - cosmo
-      - brand
+      - zephyr
+
   pdf:
     documentclass: scrreprt
     geometry:

@@ -342,18 +342,62 @@
     "href": "estimacao.html",
     "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
     "section": "",
-    "text": "6.1 Introdução",
+    "text": "6.1 Introdução\nEste capítulo apresenta os resultados obtidos na Etapa de Modelagem e Planta de Valores Genéricos (PVG) para a cidade de Florianópolis/SC. Na Seção 6.2 encontra-se o fluxo de modelagem utilizado. Todos os passos constantes do fluxo de modelagem são descritos na sequência. Os resultados podem ser vistos na Seção 6.8. Nas seções 6.9 e 6.10 são descritos os principais desafios encontrados e considerações sobre a escalabilidade da solução adotada para o restante do projeto.",
     "crumbs": [
       "Execução do Projeto por Etapas",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
     ]
   },
   {
-    "objectID": "estimacao.html#fluxo-de-modelagem",
-    "href": "estimacao.html#fluxo-de-modelagem",
+    "objectID": "estimacao.html#sec-fluxo-modelagem",
+    "href": "estimacao.html#sec-fluxo-modelagem",
     "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
     "section": "6.2 Fluxo de Modelagem",
-    "text": "6.2 Fluxo de Modelagem\n\n6.2.1 Definição de variáveis\n\n\n6.2.2 Construção do modelo\n\n\n6.2.3 Validação",
+    "text": "6.2 Fluxo de Modelagem\nO fluxo de modelagem pode ser visto na Figura 6.1. Basicamente, o fluxo mostra que parte do conjunto de dados (dados de imóveis edificados) foi utilizada para prever valores de metro quadrado construído (VUM2), gerando uma variável para a localização que posteriomente foi utilizada na modelagem de valores unitários de lotes, assim como na definição do fator de ajuste de mercado.\nPara a estimação de valores de metro quadrado construído, foi necessária a classificação dos imóveis edificados (casas e apartamentos) segundo seu padrão construtivo. Este procedimento encontra-se detalhado na Seção 6.4.1.\nAlém disso, os dados foram classificados segundo a sua localização geoespacial, conforme pode ser visto na Seção 6.4.2, visando a identificação de submercados imobiliários1.\n\n\n\n\n\n\nflowchart TB\n    A(\"RECEBIMENTO DOS DADOS DAS ETAPAS 1 E 2\") --&gt; B(\"LIMPEZA DOS DADOS COM REGRESSÃO ROBUSTA\")\n    B --&gt; C([\"CLASSIFICAÇÃO DE IMÓVEIS CONSTRUÍDOS (PADRÃO CONSTRUTIVO)\"])\n    B --&gt; D([\"CLASSIFICAÇÃO ESPACIAL\"])\n    C --&gt; E(\"CONJUNTO DE DADOS DE IMÓVEIS EDIFICADOS PARA ANÁLISES\")\n    E --&gt; F(\"MODELOS DE INTELIGÊNCIA ARTIFICIAL\")\n    F --VUM2 --&gt; G(\"CONJUNTO DE DADOS DE LOTES PARA ANÁLISES\")\n    D --&gt; G\n    G --&gt; H(\"MODELOS LINEARES GENERALIZADOS\")\n    H --Resíduos --&gt; I(\"KRIGAGEM\")\n    I --&gt; J(\"MODELO FINAL DE LOTES\")\n    K[\"CIB\"] --Dados Cadastrais --&gt; L[\"CÁLCULO DO CUSTO DE REEDIÇÃO\"]\n    J --Valores de Terrenos --&gt; M\n    L --Custo de Benfeitorias --&gt; M[\"ESTIMAÇÃO DO FATOR DE AJUSTE DE MERCADO\"]\n    M --&gt; N[\"ATRIBUIÇÃO DE VALORES DE REFERÊNCIA\"]\n    F --VUM2--&gt; M\n  \n    style A stroke:#2962FF, fill:#2962FF,color:#FFFFFF\n    style B stroke:#2962FF, fill:#FFD600,color:#FFFFFF\n    style F stroke:#2962FF, fill:#FFD600,color:#FFFFFF\n    style E stroke:#2962FF, fill:#2962FF,color:#FFFFFF\n    style G stroke:#2962FF, fill:#2962FF,color:#FFFFFF\n    style H stroke:#2962FF, fill:#FFD600,color:#FFFFFF\n    style J stroke:#2962FF, fill:#FFD600,color:#FFFFFF\n    style M stroke:#2962FF, fill:#FFD600,color:#FFFFFF\n\n\n\n\nFigura 6.1: Fluxograma da estimação do Valor de Referência.",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
+    ]
+  },
+  {
+    "objectID": "estimacao.html#limpeza-dos-dados",
+    "href": "estimacao.html#limpeza-dos-dados",
+    "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
+    "section": "6.3 Limpeza dos dados",
+    "text": "6.3 Limpeza dos dados\nOs dados oriundos do observatório do mercado imobiliário foram limpos com o auxílio de regressão robusta.",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
+    ]
+  },
+  {
+    "objectID": "estimacao.html#definição-de-variáveis",
+    "href": "estimacao.html#definição-de-variáveis",
+    "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
+    "section": "6.4 Definição de variáveis",
+    "text": "6.4 Definição de variáveis\n\n6.4.1 Classificação de imóveis construídos (padrão construtivo)\nPara a classificação de imóveis construídos, adotou-se como variável principal o valor unitário (R$/m²), calculado pela razão entre preço anunciado e área privativa. Essa escolha foi feita por representar, de forma sintética, o posicionamento econômico do imóvel e refletir diferenças construtivas observáveis no mercado.\nA aplicação foi realizada separadamente para os conjuntos de apartamentos e casas, preservando a heterogeneidade entre tipologias. Em seguida, a variável foi padronizada e submetida a agrupamento não supervisionado (K-Means, com k = 3), com ordenação dos grupos pela média de valor unitário e rotulagem final em três classes técnicas:\n\nbaixo padrão;\npadrão normal;\nalto padrão.\n\nNo contexto deste relatório, o K-Means foi utilizado para organizar observações em grupos com maior semelhança interna e maior distinção externa. O algoritmo opera de forma iterativa, alternando duas etapas: (i) alocação de cada observação ao centróide mais próximo; (ii) recálculo dos centróides como média dos elementos de cada grupo. O processo é repetido até estabilização, minimizando a soma dos quadrados das distâncias intragrupo. Como resultado, obtém-se uma tipologia objetiva de padrão construtivo, sem impor limiares arbitrários de preço.\n\n\n\n\n\n\nFigura 6.2: Fluxo metodológico da classificação de padrão construtivo.\n\n\n\nOs histogramas a seguir apresentam a distribuição do valor unitário (R$/m²) por classe de padrão construtivo gerada pelo K-Means, separadamente para apartamentos e casas. As distribuições confirmam a separação entre os grupos: em ambas as tipologias, as curvas dos padrões baixo, normal e alto apresentam picos em faixas distintas de valor, com sobreposição controlada nas fronteiras. Essa separação valida que o algoritmo capturou com consistência a segmentação econômica dos imóveis sem necessidade de limiares definidos manualmente.\nPara os apartamentos (Figura 6.3), o padrão baixo concentra-se predominantemente na faixa de R$ 5.000 a R$ 15.000/m², o padrão normal entre R$ 10.000 e R$ 20.000/m², e o padrão alto apresenta distribuição mais dispersa, com valores a partir de R$ 20.000/m² e cauda longa até R$ 70.000/m², refletindo a heterogeneidade do segmento de alto padrão em Florianópolis.\n\n\n\n\n\n\nFigura 6.3: Distribuição do valor unitário por padrão de imóvel — Apartamentos.\n\n\n\nPara as casas (Figura 6.4), o padrão baixo concentra-se até R$ 10.000/m², o padrão normal entre R$ 8.000 e R$ 15.000/m², e o padrão alto acima de R$ 15.000/m². Em comparação com os apartamentos, as casas apresentam faixas de valor unitário mais comprimidas e menor dispersão no padrão alto, o que evidencia diferenças estruturais entre as duas tipologias.\n\n\n\n\n\n\nFigura 6.4: Distribuição do valor unitário por padrão de imóvel — Casas.\n\n\n\n\n\n6.4.2 Classificação espacial\nNa classificação espacial, as variáveis utilizadas foram as coordenadas geográficas dos registros (latitude e longitude) para cada tipologia de imóvel: apartamentos, casas e lotes. Utilizando as coordenadas (escala z), foi aplicado agrupamento não supervisionado (K-Means) por tipologia.\nForam geradas e comparadas as classificações class_3_cluster e class_5_cluster em cada conjunto tipológico, com inspeção visual da distribuição espacial e da separação entre grupos. Para uso operacional no fluxo da PVG, foi consolidada a classificação final class_5_cluster, por apresentar melhor equilíbrio entre detalhamento territorial e estabilidade do tamanho dos grupos.\nNo agrupamento espacial, o K-Means separa zonas com comportamento locacional semelhante a partir da proximidade entre coordenadas padronizadas. Embora não substitua uma regionalização administrativa formal, essa estratégia melhora a representação da heterogeneidade espacial em cada tipologia e cria estratos técnicos úteis para os modelos de valor.\n\n\n\n\n\n\nFigura 6.5: Fluxo metodológico do agrupamento espacial por tipologia.\n\n\n\n\n\n\n\n\n\nFigura 6.6: Clusterização espacial por tipologia com comparação entre class_3_cluster e class_5_cluster (apartamentos, casas e lotes).",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
+    ]
+  },
+  {
+    "objectID": "estimacao.html#critérios-de-validação-adotados",
+    "href": "estimacao.html#critérios-de-validação-adotados",
+    "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
+    "section": "6.5 Critérios de validação adotados",
+    "text": "6.5 Critérios de validação adotados",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
+    ]
+  },
+  {
+    "objectID": "estimacao.html#construção-do-modelo",
+    "href": "estimacao.html#construção-do-modelo",
+    "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
+    "section": "6.6 Construção do modelo",
+    "text": "6.6 Construção do modelo\n\n6.6.1 Validação",
     "crumbs": [
       "Execução do Projeto por Etapas",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
@@ -363,41 +407,52 @@
     "objectID": "estimacao.html#atividades-desenvolvidas",
     "href": "estimacao.html#atividades-desenvolvidas",
     "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
-    "section": "6.3 Atividades Desenvolvidas",
-    "text": "6.3 Atividades Desenvolvidas\n\n6.3.1 Seleção de variáveis\n\n\n6.3.2 Testes de modelos\n\n\n6.3.3 Calibração",
+    "section": "6.7 Atividades Desenvolvidas",
+    "text": "6.7 Atividades Desenvolvidas\n\n6.7.1 Seleção de variáveis\n\n\n6.7.2 Testes de modelos\n\n\n6.7.3 Calibração",
     "crumbs": [
       "Execução do Projeto por Etapas",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
     ]
   },
   {
-    "objectID": "estimacao.html#resultados",
-    "href": "estimacao.html#resultados",
+    "objectID": "estimacao.html#sec-resultados-modelagem",
+    "href": "estimacao.html#sec-resultados-modelagem",
     "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
-    "section": "6.4 Resultados",
-    "text": "6.4 Resultados\n\n6.4.1 Modelo preliminar\n\n\n6.4.2 Outputs de valor",
+    "section": "6.8 Resultados",
+    "text": "6.8 Resultados\n\n6.8.1 Modelo preliminar\n\n\n6.8.2 Outputs de valor",
     "crumbs": [
       "Execução do Projeto por Etapas",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
     ]
   },
   {
-    "objectID": "estimacao.html#desafios",
-    "href": "estimacao.html#desafios",
+    "objectID": "estimacao.html#sec-desafios-modelagem",
+    "href": "estimacao.html#sec-desafios-modelagem",
     "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
-    "section": "6.5 Desafios",
-    "text": "6.5 Desafios\n\n6.5.1 Qualidade das variáveis\n\n\n6.5.2 Aderência ao mercado",
+    "section": "6.9 Desafios",
+    "text": "6.9 Desafios\n\n6.9.1 Qualidade das variáveis\n\n\n6.9.2 Aderência ao mercado",
     "crumbs": [
       "Execução do Projeto por Etapas",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
     ]
   },
   {
-    "objectID": "estimacao.html#escalabilidade",
-    "href": "estimacao.html#escalabilidade",
+    "objectID": "estimacao.html#sec-escalabilidade",
+    "href": "estimacao.html#sec-escalabilidade",
     "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
-    "section": "6.6 Escalabilidade",
-    "text": "6.6 Escalabilidade\n\n6.6.1 Replicação em outros municípios",
+    "section": "6.10 Escalabilidade",
+    "text": "6.10 Escalabilidade\n\n6.10.1 Replicação em outros municípios",
+    "crumbs": [
+      "Execução do Projeto por Etapas",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
+    ]
+  },
+  {
+    "objectID": "estimacao.html#footnotes",
+    "href": "estimacao.html#footnotes",
+    "title": "6  ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)",
+    "section": "",
+    "text": "Apesar da classificação geoespacial efetuada, verificou-se que, em Florianópolis/SC, os modelos responderam bem à subdivisão dos mercados em distritos, portanto esta segmentação geospacial dos mercados foi adotada. Optou-se por manter aqui o estudo da divisão geoespacial do mercado para fins de eventual necessidade em outros municípios.↩︎",
     "crumbs": [
       "Execução do Projeto por Etapas",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG)</span>"
