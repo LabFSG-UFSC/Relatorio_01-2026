@@ -1,50 +1,497 @@
 # Introdução
 
-Este relatório ...
+O presente relatório técnico tem por finalidade apresentar, de forma estruturada
+e detalhada, o avanço das atividades desenvolvidas no âmbito do Projeto TED
+firmado entre a Receita Federal do Brasil (RFB) e a Universidade Federal de
+Santa Catarina (UFSC), voltado à construção, validação e institucionalização de
+uma metodologia nacional para determinação de Valores de Referência de imóveis
+urbanos, em consonância com as diretrizes estabelecidas pela Lei Complementar nº
+214/2025 e com as demandas do novo sistema tributário brasileiro.
+
+O período contemplado neste relatório corresponde ao ciclo trimestral de
+acompanhamento do projeto (período de XXX aXXX), no qual foram desenvolvidas
+atividades estratégicas relacionadas à implementação da Prova de Conceito (POC)
+no município de Florianópolis. Essa POC tem papel central no projeto, pois
+constitui o ambiente de experimentação, validação e consolidação dos processos
+metodológicos, tecnológicos e operacionais que darão suporte à futura aplicação
+em escala nacional.
+
+Neste contexto, o relatório abrange de forma integrada as atividades realizadas
+nas diferentes etapas do projeto,  desde a estruturação da governança e
+organização dos dados até o desenvolvimento de modelos de avaliação em massa e a
+preparação para sua internalização. São apresentados os fluxos estabelecidos, os
+resultados obtidos, os estudos realizados para embasamento metodológico, as
+iniciativas de intercâmbio técnico, bem como a infraestrutura tecnológica
+implantada para suporte às atividades.
+
+Adicionalmente, o documento evidencia os principais entregáveis produzidos no
+período, os desafios enfrentados ao longo da execução, os avanços alcançados em
+termos de consolidação metodológica e os aspectos relacionados à escalabilidade
+da solução proposta. A abordagem adotada busca garantir não apenas o registro
+das atividades realizadas, mas também a rastreabilidade dos processos, a
+transparência das decisões técnicas e a aderência aos critérios de qualidade e
+governança definidos no projeto.
+
+Por fim, o relatório se insere no contexto de acompanhamento sistemático das
+ações do TED, contribuindo para o alinhamento entre as equipes técnicas da UFSC
+e da RFB, e subsidiando as instâncias de validação e tomada de decisão, com
+vistas à consolidação de uma solução robusta, auditável e replicável para o
+território nacional.
+
 
 ## Objetivo do Relatório
 
+Este relatório tem como objetivo consolidar, de forma sistematizada, as
+evidências técnicas e operacionais das atividades desenvolvidas no período, no
+contexto da implementação da Prova de Conceito (POC) em Florianópolis. O
+documento organiza e apresenta os principais resultados alcançados, os fluxos
+estruturados, os produtos gerados e os desafios identificados ao longo da
+execução das diferentes etapas do projeto.
+
+Adicionalmente, busca-se evidenciar o grau de maturidade das soluções
+desenvolvidas, especialmente no que se refere à estruturação dos dados, à
+modelagem de avaliação em massa e à preparação para a internalização dos
+processos. O relatório também tem a função de apoiar o acompanhamento contínuo
+do projeto, oferecendo subsídios técnicos para análise, validação e
+encaminhamento das próximas fases, em alinhamento com as diretrizes
+estabelecidas pela Receita Federal do Brasil.
+
+
 ## Síntese do avanço no período
+
+A síntese a seguir apresenta uma visão consolidada do avanço das atividades no
+período, estruturada a partir de dois eixos complementares: (i) a análise do
+progresso técnico alcançado nas principais frentes do projeto e (ii) a
+consolidação das atividades desenvolvidas, evidenciando a integração entre
+dados, modelagem, infraestrutura e governança. Essa abordagem permite não apenas
+compreender o estágio atual da Prova de Conceito (POC) em Florianópolis, mas
+também identificar os elementos já estruturados e aqueles em processo de
+amadurecimento, com foco na construção de uma arquitetura de dados robusta, na
+consistência dos processos e na preparação para escalabilidade da solução.
 
 ### Visão Geral do progresso técnico
 
+No período analisado, observou-se avanço consistente na estruturação da Prova de
+Conceito (POC) de Florianópolis, com evolução integrada nas frentes de dados,
+modelagem, infraestrutura e governança. Esse avanço reflete a consolidação
+inicial do fluxo estruturado do processo, articulando de forma progressiva as
+etapas de organização das bases de dados, tratamento das informações e
+desenvolvimento preliminar dos modelos de avaliação em massa.
+
+Destaca-se, nesse contexto, a evolução na construção da arquitetura de dados do
+projeto, com a integração de diferentes fontes e a organização de um ambiente
+estruturado que possibilita o processamento e a análise das informações de forma
+consistente e rastreável. Paralelamente, houve avanço significativo na
+organização das bases cartográficas territoriais e na definição das variáveis
+geoespaciais e cadastrais que subsidiam a modelagem.
+
+No campo da modelagem, foram realizados testes iniciais com geração de
+resultados preliminares, os quais permitem não apenas avaliar o desempenho dos
+modelos, mas também validar, de forma incremental, a abordagem metodológica
+adotada. Esses resultados constituem uma base importante para o refinamento das
+etapas subsequentes e para a consolidação do processo em direção à
+escalabilidade.
+
+
 ### Consolidação das principais frentes de trabalho
+
+As principais frentes de trabalho consolidadas no trimestre refletem o avanço
+integrado das dimensões estruturantes do projeto, articulando dados, território,
+modelagem, infraestrutura e governança. A seguir, detalham-se essas frentes com
+base nas atividades desenvolvidas e nos resultados obtidos:
+
+- **Estruturação da arquitetura de dados e integração de bases heterogêneas**:
+Esta frente concentrou esforços na organização de um ambiente estruturado para
+armazenamento, tratamento e integração de dados provenientes de diferentes
+fontes, com distintas características e níveis de qualidade. Foram realizadas
+atividades de padronização, limpeza, compatibilização e consolidação das bases,
+permitindo a construção de uma arquitetura de dados capaz de suportar análises
+consistentes e reprodutíveis. Esse processo foi fundamental para viabilizar a
+integração entre dados cadastrais, territoriais e de mercado, estabelecendo a
+base para as etapas subsequentes do projeto.
+
+- **Organização e validação das bases territoriais**:
+As atividades desta frente envolveram a estruturação das bases cartográficas
+utilizadas na POC, com foco na consistência geométrica, topológica e na
+aderência ao sistema de referência adotado. Foram realizados procedimentos de
+validação para garantir a integridade espacial dos dados, incluindo verificação
+de sobreposições, lacunas e inconsistências geométricas. A organização dessas
+bases é essencial para assegurar a qualidade das análises espaciais e a correta
+associação entre imóveis, atributos e valores.
+
+- **Definição e tratamento de variáveis geoespaciais e cadastrais**:
+Nesta frente, foram identificadas, estruturadas e tratadas as variáveis que
+compõem os modelos de avaliação em massa, considerando aspectos locacionais,
+físicos e funcionais dos imóveis. O processo incluiu a seleção de variáveis
+relevantes, a padronização de atributos, o tratamento de inconsistências e a
+geração de novas variáveis derivadas, especialmente de natureza geoespacial.
+Essa etapa é determinante para a qualidade dos modelos, uma vez que influencia
+diretamente sua capacidade explicativa e preditiva.
+
+- **Desenvolvimento inicial dos modelos de avaliação em massa**:
+Foram conduzidos testes iniciais de modelagem com base nas variáveis
+estruturadas, visando a construção de modelos capazes de estimar valores de
+referência de forma sistemática. As atividades incluíram a definição de
+abordagens metodológicas, a aplicação de técnicas estatísticas e computacionais
+e a análise dos resultados obtidos. Os modelos desenvolvidos nesta fase possuem
+caráter preliminar, sendo utilizados para validação da metodologia e
+identificação de ajustes necessários para aprimoramento.
+
+- **Implementação da infraestrutura tecnológica no laboratório**:
+Paralelamente às atividades técnicas, foi implantada a infraestrutura
+computacional necessária para suporte ao projeto, incluindo servidores
+dedicados, ambiente de armazenamento e organização de dados, bem como
+ferramentas para processamento e análise. Essa infraestrutura foi estruturada de
+forma a garantir desempenho, segurança, controle de acesso e rastreabilidade das
+informações, constituindo um elemento fundamental para a execução das atividades
+e para a escalabilidade futura.
+
+- **Estruturação dos fluxos de governança e validação técnica**:
+Foi estabelecido um fluxo estruturado de governança, contemplando a organização
+das instâncias de decisão, os processos de validação técnica e os mecanismos de
+acompanhamento das atividades. Esse fluxo assegura que os produtos desenvolvidos
+sejam submetidos à análise e validação pelas instâncias competentes, promovendo
+alinhamento institucional, controle de qualidade e formalização das decisões ao
+longo do projeto.
+
+- **Realização de intercâmbios técnicos para fortalecimento metodológico**:
+Foram realizadas atividades de intercâmbio técnico com instituições e
+especialistas, com o objetivo de incorporar boas práticas, referências
+metodológicas e experiências consolidadas na área de cadastro territorial e
+avaliação imobiliária. Essas iniciativas contribuíram para o aprimoramento da
+abordagem adotada no projeto, ampliando a base de conhecimento e fortalecendo a
+consistência técnica das soluções desenvolvidas.
+
 
 ## Principais entregas do trimestre
 
+### Lista sintética dos entregáveis concluídos
+
+-	As entregas realizadas no período refletem o avanço estruturado das atividades
+do projeto, evidenciando a consolidação progressiva dos componentes necessários 
+à implementação da Prova de Conceito (POC). A seguir, detalham-se os principais 
+entregáveis, com a respectiva contextualização técnica:
+
+  + Estrutura inicial da arquitetura de dados com bases integradas: foi
+  consolidada uma primeira versão da arquitetura de dados do projeto,
+  contemplando a integração de diferentes bases provenientes de fontes diversas.
+  Essa estrutura permite o armazenamento organizado, o tratamento padronizado e
+  a recuperação eficiente das informações, constituindo o núcleo operacional
+  para suporte às análises e à modelagem.
+  + Organização e padronização das bases cartográficas da POC: as bases
+  territoriais foram organizadas e submetidas a processos de padronização,
+  garantindo consistência geométrica, compatibilidade de sistemas de referência
+  e adequação para uso em análises espaciais. Esse processo assegura a
+  integridade da base territorial e sua integração com os demais componentes do
+  projeto.
+  + Conjunto inicial de variáveis geoespaciais estruturadas: foi desenvolvido um
+  conjunto inicial de variáveis derivadas e estruturadas, considerando atributos
+  locacionais, físicos e cadastrais dos imóveis. Essas variáveis foram tratadas
+  e organizadas de modo a subsidiar os modelos de avaliação em massa,
+  representando os principais fatores que influenciam a formação de valor.
+  + Modelos preliminares de avaliação em massa: foram implementados modelos
+  iniciais com base nas variáveis estruturadas, permitindo a geração de
+  estimativas preliminares de valor. Esses modelos possuem caráter exploratório
+  e são fundamentais para validação da abordagem metodológica, bem como para
+  identificação de ajustes necessários nas etapas subsequentes.
+  + Scripts de processamento e tratamento de dados: foram desenvolvidos scripts
+  para automatização dos processos de ingestão, tratamento, transformação e
+  análise de dados. Esses scripts garantem padronização, reprodutibilidade e
+  eficiência operacional, além de constituírem base essencial para futura
+  escalabilidade.
+  + Estrutura de armazenamento e versionamento implantada: foi implementada uma
+  estrutura organizada de armazenamento de dados e versionamento de arquivos,
+  assegurando controle sobre as diferentes versões de bases, scripts e produtos
+  gerados. Essa estrutura é fundamental para garantir rastreabilidade, auditoria
+  e governança da informação.
+  + Relatórios técnicos intermediários de acompanhamento: foram elaborados
+  relatórios técnicos parciais com o objetivo de documentar o avanço das
+  atividades, registrar decisões metodológicas e consolidar os resultados
+  obtidos em cada etapa. Esses documentos contribuem para a transparência e o
+  acompanhamento contínuo do projeto.
+  + Estrutura inicial de visualização de resultados (dashboards): foi
+  desenvolvida uma estrutura inicial de visualização dos resultados, por meio de
+  dashboards que permitem a análise exploratória das informações e dos outputs
+  dos modelos. Essa ferramenta representa um primeiro passo na construção de
+  interfaces voltadas à interpretação e utilização dos resultados
+
+### Destaque dos produtos estratégicos
+
+Dentre as entregas realizadas, destacam-se alguns produtos com maior relevância
+estratégica para o projeto, por sua contribuição direta à consolidação
+metodológica, à validação da POC e à preparação para escalabilidade:
+
+- Consolidação da arquitetura de dados estruturada: a estruturação da 
+arquitetura de dados representa um dos pilares do projeto, viabilizando a 
+integração de informações e garantindo a base necessária para análises 
+consistentes e replicáveis em outros contextos.
+- Primeira versão funcional do modelo de avaliação em massa: a implementação de 
+um modelo funcional, ainda que preliminar, constitui um marco importante, pois 
+demonstra a viabilidade técnica da abordagem adotada e permite avaliar o 
+comportamento das variáveis e dos resultados.
+- Definição do fluxo integrado do processo (pipeline metodológico): foi 
+estabelecido um fluxo estruturado que conecta todas as etapas do projeto — desde
+a organização dos dados até a geração dos valores — garantindo coerência, 
+rastreabilidade e clareza metodológica.
+- Implantação da infraestrutura tecnológica dedicada ao projeto: a 
+disponibilização de ambiente computacional estruturado assegura capacidade de 
+processamento, armazenamento e segurança das informações, sendo condição e
+ssencial para a execução e continuidade das atividades.
+- Estruturação dos mecanismos de rastreabilidade e auditabilidade: foram 
+implementados mecanismos que permitem o acompanhamento detalhado das 
+transformações realizadas nos dados e nos modelos, garantindo transparência, 
+controle e aderência aos requisitos institucionais da RFB.
+
+
 ## Status geral do Projeto por Etapa
 
-(com indicação: não iniciado / em andamento / concluído / validado)
+A avaliação do status do projeto no período foi realizada com base no avanço
+físico das atividades, considerando a execução das etapas previstas no plano de
+trabalho, bem como a evolução dos diferentes lotes de produção associados à
+Prova de Conceito (POC) de Florianópolis e à estratégia de expansão territorial.
+
+Para fins de acompanhamento, foi estruturado um cronograma físico de execução,
+complementado por painéis de monitoramento (dashboards), que permitem visualizar
+quantitativamente o progresso das atividades, incluindo volume de dados
+processados, número de registros estruturados, variáveis geradas e modelos
+testados. Esses instrumentos possibilitam uma leitura integrada do avanço do
+projeto, tanto sob a perspectiva técnica quanto operacional.
+
+Adicionalmente, foi definida uma estratégia de execução baseada em lotes de
+trabalho, permitindo organizar o desenvolvimento de forma escalonada e
+controlada. Essa estratégia contempla:
+
+- POC Florianópolis – ambiente de validação metodológica 
+- Lote 1 – primeira expansão controlada 
+- Lote 2, Lote 3, Lote 4 e Lote 5 – escalonamento progressivo por regiões 
+- Estruturação por capitais, regiões e sub-regiões administrativas, visando 
+replicabilidade nacional 
+
+Essa organização permite testar, ajustar e consolidar os processos em diferentes
+contextos territoriais, garantindo robustez e aderência da metodologia antes da
+ampliação em escala nacional.
+
+A seguir, apresenta-se o status consolidado por etapa.
+
 
 ### Etapa 0 - Planejamento e Governança
 
+As atividades relacionadas à estruturação da governança do projeto foram
+concluídas e validadas, incluindo a definição dos fluxos de decisão, organização
+das instâncias técnicas e estabelecimento dos mecanismos de acompanhamento e
+controle. Essa etapa garantiu a base institucional necessária para o
+desenvolvimento das demais fases.
+
 ### Etapa 1 - Observatório
+
+A Etapa 1 apresenta avanço significativo, com a consolidação da arquitetura de 
+dados no âmbito da POC Florianópolis e início de expansão para outros lotes.
+Destaca-se:
+
+•	Estruturação do ambiente de dados integrado 
+•	Processamento e organização das bases da POC 
+•	Avanço inicial do Lote 1 do Observatório, com replicação da lógica de 
+estruturação 
+
+Os dashboards indicam crescimento consistente no volume de dados tratados e 
+integrados, evidenciando maturidade progressiva da arquitetura de dados.
 
 ### Etapa 2 - Bases Territoriais
 
+A Etapa 2 encontra-se em desenvolvimento, com avanço relevante tanto na POC 
+quanto nos lotes iniciais de expansão.
+
+Destaca-se:
+
+-	Organização e validação das bases cartográficas da POC 
+-	Avanço do Lote 1 da cartografia, com estruturação inicial das bases territoriais 
+-	Início do Lote 2 da cartografia, com preparação e organização dos dados 
+
+Os indicadores demonstram evolução no quantitativo de feições territoriais 
+estruturadas, bem como melhoria na consistência topológica das bases.
+
+
 ### Etapa 3 - Modelagem e PVG
 
+A Etapa 3 apresenta avanço inicial, concentrado na POC Florianópolis, com 
+desenvolvimento de modelos preliminares.
+
+Destaca-se:
+-	Aplicação inicial das variáveis estruturadas 
+-	Execução de testes de modelagem 
+-	Geração de resultados preliminares 
+
+Os dashboards evidenciam evolução no número de modelos testados e na capacidade
+de processamento das variáveis, indicando progresso consistente, ainda em fase
+de validação metodológica.
+
+
 ### Etapa 4 - Internalização
+
+A Etapa 4 ainda não foi iniciada formalmente, encontrando-se em fase de 
+preparação conceitual e técnica.
+
+As atividades em andamento nas etapas anteriores já incorporam elementos 
+fundamentais para a internalização futura, como:
+-	padronização de processos 
+-	estruturação da arquitetura de dados 
+-	definição de fluxos replicáveis 
+
+Essa preparação é essencial para garantir que a transição para o ambiente 
+institucional da RFB ocorra de forma estruturada e segura.
+
+### Síntese do status geral
+
+A análise integrada do cronograma físico e dos indicadores operacionais 
+demonstra que o projeto se encontra em estágio consistente de desenvolvimento, 
+com:
+-	Consolidação da POC Florianópolis como ambiente de validação 
+-	Avanço progressivo dos primeiros lotes de expansão 
+-	Estruturação das bases necessárias para escalabilidade 
+-	Evolução contínua da arquitetura de dados, cartografia e modelagem 
+
+A estratégia baseada em lotes tem se mostrado adequada, permitindo controle do 
+processo, validação incremental e preparação estruturada para expansão em nível
+nacional.
 
 
 ## Principais Desafios e Riscos
 
+A execução da Prova de Conceito (POC) no âmbito do Projeto TED RFB/UFSC envolve
+um conjunto de atividades interdependentes, que abrangem desde a estruturação de
+bases de dados até o desenvolvimento de modelos de avaliação e a preparação para
+sua internalização em ambiente institucional. Nesse contexto, a identificação e
+análise dos desafios e riscos associados ao processo são fundamentais para
+garantir o adequado acompanhamento do projeto, permitindo antecipar limitações,
+orientar ajustes metodológicos e apoiar a tomada de decisão.
+
+Os desafios observados no período podem ser organizados em três dimensões
+complementares — técnica, operacional e institucional —, refletindo tanto a
+complexidade inerente ao desenvolvimento da metodologia quanto as exigências de
+integração, governança e escalabilidade impostas pelo projeto. A seguir, são
+detalhados os principais aspectos identificados em cada uma dessas dimensões.
+
+
 ### Técnicos
+
+Os desafios técnicos observados no período estão diretamente associados à
+natureza estrutural do projeto, que depende da integração de múltiplas bases de
+dados heterogêneas, com diferentes níveis de qualidade, granularidade e
+padronização. A consolidação do Data Lake evidenciou a necessidade de tratamento
+intensivo de dados, incluindo limpeza, harmonização e definição de padrões
+mínimos para viabilizar análises consistentes.
+
+Outro ponto crítico refere-se à definição e construção das variáveis
+explicativas utilizadas nos modelos de avaliação em massa. A seleção adequada
+dessas variáveis exige não apenas disponibilidade de dados, mas também
+consistência espacial, aderência ao comportamento do mercado imobiliário e
+capacidade de generalização para diferentes contextos territoriais.
+
+Adicionalmente, a etapa de modelagem apresentou desafios relacionados à
+calibração dos modelos, especialmente no equilíbrio entre precisão estatística e
+interpretabilidade, aspecto essencial para a futura adoção institucional pela
+RFB. A reprodutibilidade dos resultados e a rastreabilidade dos processos também
+se configuram como requisitos técnicos críticos, exigindo controle rigoroso de
+versões, scripts e bases utilizadas.
+
+Principais desafios e riscos técnicos:
+-	Heterogeneidade e baixa padronização das bases de dados 
+-	Inconsistências e lacunas nos dados utilizados 
+-	Complexidade na definição e validação de variáveis 
+-	Dificuldade de calibração dos modelos em contextos reais 
+-	Necessidade de garantir reprodutibilidade e rastreabilidade 
+-	Dependência da qualidade dos dados para robustez dos resultados 
+
 
 ### Operacionais
 
+No âmbito operacional, os principais desafios estão relacionados à execução
+coordenada de múltiplas frentes de trabalho, que envolvem processamento
+intensivo de dados, desenvolvimento técnico e validação contínua. O volume de
+informações manipuladas no projeto exige infraestrutura adequada, organização
+rigorosa dos fluxos e definição clara de responsabilidades.
+
+A necessidade de integração entre diferentes etapas — desde a coleta de dados
+até a geração de resultados — impõe uma dependência direta da maturidade dos
+processos estabelecidos. Qualquer fragilidade em uma etapa impacta as
+subsequentes, exigindo retrabalho e ajustes constantes.
+
+Outro aspecto relevante é a necessidade de formalização e padronização dos
+fluxos operacionais, garantindo que os processos desenvolvidos na POC possam ser
+replicados em outros contextos. Isso inclui documentação técnica, organização
+dos scripts e definição de rotinas automatizadas.
+
+Além disso, a dependência de dados externos e de interlocução com diferentes
+instituições pode impactar prazos e a continuidade das atividades, configurando
+um risco operacional relevante.
+
 ### Institucionais
+
+Os desafios institucionais estão associados, principalmente, à necessidade de
+alinhamento entre os diferentes atores envolvidos no projeto, especialmente no
+que se refere à validação técnica, tomada de decisão e futura internalização da
+metodologia pela Receita Federal do Brasil.
+
+A governança do projeto exige um fluxo estruturado de validação, no qual os
+produtos desenvolvidos pela UFSC devem ser analisados tecnicamente pela RFB e,
+posteriormente, deliberados em instâncias formais. Esse processo, embora
+essencial para garantir qualidade e legitimidade, pode introduzir tempos
+adicionais no ciclo de desenvolvimento.
+
+Outro ponto crítico refere-se à preparação para a internalização dos resultados,
+que envolve não apenas aspectos técnicos, mas também adequação a sistemas
+institucionais, conformidade com normas internas e aderência a requisitos legais
+e operacionais.
+
+Adicionalmente, a necessidade de consolidação de uma metodologia nacional
+implica garantir que os resultados obtidos na POC sejam compreensíveis,
+auditáveis e aceitos institucionalmente, o que exige clareza metodológica,
+transparência e documentação rigorosa.
+
+Principais desafios e riscos institucionais:
+-	Necessidade de alinhamento contínuo entre UFSC e RFB 
+-	Dependência de processos formais de validação e decisão 
+-	Risco de aumento de prazos devido à governança 
+-	Desafios na internalização em ambiente institucional 
+-	Necessidade de aderência a normas e requisitos legais 
+-	Exigência de transparência e auditabilidade metodológica
+
 
 ## Principais Resultados Estratégicos
 
 ### Avanços metodológicos
 
+-	Estruturação de um fluxo integrado para avaliação em massa 
+-	Definição de abordagem baseada em dados e variáveis geoespaciais 
+-	Desenvolvimento de modelos replicáveis em escala nacional 
+
 ### Validação da PoC
 
+-	Comprovação da viabilidade técnica da abordagem proposta 
+-	Geração de resultados preliminares consistentes 
+-	Integração entre dados, modelos e visualização 
+
 ### Evolução da Infraestrutura
+
+-	Implantação de ambiente computacional dedicado ao projeto 
+-	Estruturação de servidores e armazenamento de dados 
+- Implementação de práticas de versionamento e rastreabilidade 
+
 
 ## Próximos Passos
 
 ### Ações prioritárias
 
+-	Refinamento dos modelos de avaliação em massa 
+-	Aprimoramento da qualidade e consistência dos dados 
+-	Consolidação dos fluxos automatizados de processamento 
+-	Evolução da plataforma de visualização de resultados 
+-	Estruturação dos mecanismos de internalização 
+
 ### Marcos previstos
+
+-	Validação técnica dos modelos preliminares junto à RFB 
+-	Consolidação da base territorial validada 
+-	Entrega de versão aprimorada do Data Lake 
+-	Estruturação do ambiente de integração com sistemas institucionais 
+-	Início da Etapa 4 (Internalização e Operação) 

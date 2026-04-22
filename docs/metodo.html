@@ -384,22 +384,15 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#fundamentos-da-avaliação-em-massa" id="toc-fundamentos-da-avaliação-em-massa" class="nav-link active" data-scroll-target="#fundamentos-da-avaliação-em-massa"><span class="header-section-number">7.1</span> Fundamentos da Avaliação em Massa</a></li>
-  <li><a href="#metodologia" id="toc-metodologia" class="nav-link" data-scroll-target="#metodologia"><span class="header-section-number">7.2</span> Metodologia</a></li>
-  <li><a href="#resultados" id="toc-resultados" class="nav-link" data-scroll-target="#resultados"><span class="header-section-number">7.3</span> Resultados</a>
+  <li><a href="#fundamentos-da-avaliação-em-massa" id="toc-fundamentos-da-avaliação-em-massa" class="nav-link active" data-scroll-target="#fundamentos-da-avaliação-em-massa"><span class="header-section-number">7.1</span> Fundamentos da Avaliação em Massa</a>
   <ul class="collapse">
-  <li><a href="#análise-exploratória" id="toc-análise-exploratória" class="nav-link" data-scroll-target="#análise-exploratória"><span class="header-section-number">7.3.1</span> Análise Exploratória</a></li>
-  <li><a href="#limpeza-dos-dados" id="toc-limpeza-dos-dados" class="nav-link" data-scroll-target="#limpeza-dos-dados"><span class="header-section-number">7.3.2</span> Limpeza dos dados</a></li>
-  <li><a href="#geração-da-renda-krigada" id="toc-geração-da-renda-krigada" class="nav-link" data-scroll-target="#geração-da-renda-krigada"><span class="header-section-number">7.3.3</span> Geração da Renda Krigada</a></li>
-  <li><a href="#ajuste-do-modelo-de-casas-e-apartamentos" id="toc-ajuste-do-modelo-de-casas-e-apartamentos" class="nav-link" data-scroll-target="#ajuste-do-modelo-de-casas-e-apartamentos"><span class="header-section-number">7.3.4</span> Ajuste do modelo de casas e apartamentos</a></li>
-  <li><a href="#sec-VUM2" id="toc-sec-VUM2" class="nav-link" data-scroll-target="#sec-VUM2"><span class="header-section-number">7.3.5</span> Geração da superfície de VU de m2 construído</a></li>
-  <li><a href="#ajuste-do-modelo-de-lotes" id="toc-ajuste-do-modelo-de-lotes" class="nav-link" data-scroll-target="#ajuste-do-modelo-de-lotes"><span class="header-section-number">7.3.6</span> Ajuste do modelo de lotes</a></li>
-  <li><a href="#geração-da-superfície-de-valores-de-lotes" id="toc-geração-da-superfície-de-valores-de-lotes" class="nav-link" data-scroll-target="#geração-da-superfície-de-valores-de-lotes"><span class="header-section-number">7.3.7</span> Geração da superfície de valores de lotes</a></li>
+  <li><a href="#metodologia" id="toc-metodologia" class="nav-link" data-scroll-target="#metodologia"><span class="header-section-number">7.1.1</span> Metodologia</a></li>
+  <li><a href="#resultados" id="toc-resultados" class="nav-link" data-scroll-target="#resultados"><span class="header-section-number">7.1.2</span> Resultados</a></li>
   </ul></li>
-  <li><a href="#definição-de-variáveis" id="toc-definição-de-variáveis" class="nav-link" data-scroll-target="#definição-de-variáveis"><span class="header-section-number">7.4</span> Definição de variáveis</a></li>
-  <li><a href="#estratégias-de-modelagem" id="toc-estratégias-de-modelagem" class="nav-link" data-scroll-target="#estratégias-de-modelagem"><span class="header-section-number">7.5</span> Estratégias de modelagem</a></li>
-  <li><a href="#conexão-com-normas-técnicas" id="toc-conexão-com-normas-técnicas" class="nav-link" data-scroll-target="#conexão-com-normas-técnicas"><span class="header-section-number">7.6</span> Conexão com Normas Técnicas</a></li>
-  <li><a href="#aprendizados-aplicados-na-poc" id="toc-aprendizados-aplicados-na-poc" class="nav-link" data-scroll-target="#aprendizados-aplicados-na-poc"><span class="header-section-number">7.7</span> Aprendizados aplicados na PoC</a></li>
+  <li><a href="#definição-de-variáveis" id="toc-definição-de-variáveis" class="nav-link" data-scroll-target="#definição-de-variáveis"><span class="header-section-number">7.2</span> Definição de variáveis</a></li>
+  <li><a href="#estratégias-de-modelagem" id="toc-estratégias-de-modelagem" class="nav-link" data-scroll-target="#estratégias-de-modelagem"><span class="header-section-number">7.3</span> Estratégias de modelagem</a></li>
+  <li><a href="#conexão-com-normas-técnicas" id="toc-conexão-com-normas-técnicas" class="nav-link" data-scroll-target="#conexão-com-normas-técnicas"><span class="header-section-number">7.4</span> Conexão com Normas Técnicas</a></li>
+  <li><a href="#aprendizados-aplicados-na-poc" id="toc-aprendizados-aplicados-na-poc" class="nav-link" data-scroll-target="#aprendizados-aplicados-na-poc"><span class="header-section-number">7.5</span> Aprendizados aplicados na PoC</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/LabFSG-UFSC/Relatorio_01-2026/edit/main/metodo.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li></ul></div></nav>
     </div>
@@ -430,9 +423,8 @@ window.Quarto = {
 <p>Segundo <span class="citation" data-cites="Carranza2026">Carranza, Bologna, e Lucca (<a href="references.html#ref-Carranza2026" role="doc-biblioref">2026</a>)</span>, existem diversas abordagens viáveis para a avaliação em massa de imóveis urbanos. <span class="citation" data-cites="Carranza2026">Carranza, Bologna, e Lucca (<a href="references.html#ref-Carranza2026" role="doc-biblioref">2026</a>)</span> elencam três dessas diferentes abordagens - estimação via algoritmos de <em>Machine Learning</em>, Geoestatística (krigagem) e modelos lineares - e as compara no contexto da América Latina.</p>
 <p>Cada uma destas diferentes abordagens possui pontos fortes e fracos. De um lado, segundo <span class="citation" data-cites="Carranza2026">Carranza, Bologna, e Lucca (<a href="references.html#ref-Carranza2026" role="doc-biblioref">2026</a>)</span>, a estimação via modelos lineares tem a vantagem de explicar claramente aos contribuintes como são compostos os valores de mercado estimados, ainda que a performance destes modelos geralmente seja mais baixa na previsão destes valores. De outro lado, os algoritmos de <em>Machine Learning</em> apresentam performance superior, porém falham em explicar ao contribuinte como são formados os valores de mercado. Entre estas duas abordagens citadas situa-se a geoestatística que, segundo <span class="citation" data-cites="Carranza2026">Carranza, Bologna, e Lucca (<a href="references.html#ref-Carranza2026" role="doc-biblioref">2026</a>)</span>, atinge uma performance aceitável, ainda que apresente problemas em identificar barreiras urbanas.</p>
 <p>Neste trabalho procurou-se combinar as diferentes abordagens para uma melhor estimação dos valores de mercado. Como será visto ao longo deste capítulo, os algoritmos de <em>Machine Learning</em>, a geoestatística e os modelos lineares foram combinados de maneira que possibilitou a estimação de valores de mercado de maneira suficientemente precisa, mantendo o poder de explicação da formação destes valores.</p>
-</section>
-<section id="metodologia" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="metodologia"><span class="header-section-number">7.2</span> Metodologia</h2>
+<section id="metodologia" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="metodologia"><span class="header-section-number">7.1.1</span> Metodologia</h3>
 <p>Como descrito nos Capítulos <a href="observatorio.html" class="quarto-xref"><span>4</span></a> e <a href="cartografia.html" class="quarto-xref"><span>5</span></a>, para a estimação foram coletados dados de anúncios de imóveis edificados e não-edificados, que foram fortalecidos com variáveis cartográficas para adicionar poder de explicação aos valores de mercado. Procurou-se, durante o processo de estimação, extrair o máximo de informação de todo o conjunto de dados, que envolvem anúncios tanto de venda quanto de aluguéis de lotes, casas, apartamentos e outros.</p>
 <p>O método adotado para a estimação de valores de mercado neste trabalho é o método evolutivo, método consagrado que estima o valor de mercado de um imóvel através da soma dos seus componentes (terra e capital):</p>
 <p><span id="eq-Evolutivo"><span class="math display">\[V_{\text{Imóvel}} = (V_{\text{Terreno}} + V_{\text{Benfeitorias}})\cdot FC \tag{7.1}\]</span></span></p>
@@ -445,28 +437,28 @@ window.Quarto = {
 </ul>
 <p>Os valores de benfeitorias podem ser calculados através dos custos de construção divulgados pelos SINDUSCON locais. Os valores dos terrenos, por outro lado, devem ser estimados via modelos lineares, geoestatística ou algoritmos preditivos de aprendizado de máquina. Para o fator de comercialização, o ideal é que este seja inferido através de dados de mercado de imóveis edificados.</p>
 </section>
-<section id="resultados" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="resultados"><span class="header-section-number">7.3</span> Resultados</h2>
-<section id="análise-exploratória" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="análise-exploratória"><span class="header-section-number">7.3.1</span> Análise Exploratória</h3>
+<section id="resultados" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="resultados"><span class="header-section-number">7.1.2</span> Resultados</h3>
+<section id="análise-exploratória" class="level4" data-number="7.1.2.1">
+<h4 data-number="7.1.2.1" class="anchored" data-anchor-id="análise-exploratória"><span class="header-section-number">7.1.2.1</span> Análise Exploratória</h4>
 <p>A análise explotarória de dados foi feita com auxílio do R, versão 4.5.2.</p>
 </section>
-<section id="limpeza-dos-dados" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="limpeza-dos-dados"><span class="header-section-number">7.3.2</span> Limpeza dos dados</h3>
+<section id="limpeza-dos-dados" class="level4" data-number="7.1.2.2">
+<h4 data-number="7.1.2.2" class="anchored" data-anchor-id="limpeza-dos-dados"><span class="header-section-number">7.1.2.2</span> Limpeza dos dados</h4>
 <p>Os dados foram limpos utilizando-se regressão robusta. O método de regressão robusta escolhido foi o método dos mínimos quadrados ponderados <span class="citation" data-cites="Rousseeuw_least_1984">(ver <a href="references.html#ref-Rousseeuw_least_1984" role="doc-biblioref">Rousseeuw 1984</a>)</span>.</p>
 </section>
-<section id="geração-da-renda-krigada" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="geração-da-renda-krigada"><span class="header-section-number">7.3.3</span> Geração da Renda Krigada</h3>
+<section id="geração-da-renda-krigada" class="level4" data-number="7.1.2.3">
+<h4 data-number="7.1.2.3" class="anchored" data-anchor-id="geração-da-renda-krigada"><span class="header-section-number">7.1.2.3</span> Geração da Renda Krigada</h4>
 <p>Os dados de renda do chefe do domicílio do IBGE foram tratados pela equipe de estimação. Inicialmente foi gerada a variável renda per capita, obtida conforme a <a href="#eq-RendaPerCapita" class="quarto-xref">Equação&nbsp;<span>7.2</span></a>:</p>
 <p><span id="eq-RendaPerCapita"><span class="math display">\[R_{\text{per capita}} = \frac{R_{\text{chefe dom.}}}{N} \tag{7.2}\]</span></span></p>
 </section>
-<section id="ajuste-do-modelo-de-casas-e-apartamentos" class="level3" data-number="7.3.4">
-<h3 data-number="7.3.4" class="anchored" data-anchor-id="ajuste-do-modelo-de-casas-e-apartamentos"><span class="header-section-number">7.3.4</span> Ajuste do modelo de casas e apartamentos</h3>
+<section id="ajuste-do-modelo-de-casas-e-apartamentos" class="level4" data-number="7.1.2.4">
+<h4 data-number="7.1.2.4" class="anchored" data-anchor-id="ajuste-do-modelo-de-casas-e-apartamentos"><span class="header-section-number">7.1.2.4</span> Ajuste do modelo de casas e apartamentos</h4>
 <p>Após a limpeza dos dados, foi executado o processo de classificação dos dados segundo o padrão construtivo. Os dados foram agrupados em três padrões construtivos, a saber, padrão baixo, normal e alto.</p>
 <p>Então, foi ajustado um modelo de regressão linear múltipla para descrever o comportamento do mercado imobiliário de casas e apartamentos em Florianópolis.</p>
 </section>
-<section id="sec-VUM2" class="level3" data-number="7.3.5">
-<h3 data-number="7.3.5" class="anchored" data-anchor-id="sec-VUM2"><span class="header-section-number">7.3.5</span> Geração da superfície de VU de m2 construído</h3>
+<section id="sec-VUM2" class="level4" data-number="7.1.2.5">
+<h4 data-number="7.1.2.5" class="anchored" data-anchor-id="sec-VUM2"><span class="header-section-number">7.1.2.5</span> Geração da superfície de VU de m2 construído</h4>
 <p>Após o ajuste do modelo de mínimos quadrados ordinários, os dados da amostra utilizados para o ajuste do modelo foram homogeneizados de acordo com fatores de homogeneização estimados diretamente do modelo. Por exemplo, para a variável área, foi derivado o fator área, conforme a <a href="#eq-FatorArea" class="quarto-xref">Equação&nbsp;<span>7.3</span></a>:</p>
 <p><span id="eq-FatorArea"><span class="math display">\[F_{\text{Área}} = \left ( \frac{A_\text{imóvel}}{100} \right)^{-0,25} \tag{7.3}\]</span></span></p>
 <p>Veja <a href="#nte-fatores" class="quarto-xref">Note&nbsp;<span>7.1</span></a> para entender com é feita a derivação racional de fatores de homogeneização.</p>
@@ -494,25 +486,26 @@ Nota&nbsp;7.1: Derivação Racional de Fatores
 </div>
 </div>
 </section>
-<section id="ajuste-do-modelo-de-lotes" class="level3" data-number="7.3.6">
-<h3 data-number="7.3.6" class="anchored" data-anchor-id="ajuste-do-modelo-de-lotes"><span class="header-section-number">7.3.6</span> Ajuste do modelo de lotes</h3>
-<p>Com a superfície de valores de metro quadrado construído elaborada conforme descrito na <a href="#sec-VUM2" class="quarto-xref"><span>Seção 7.3.5</span></a>.</p>
+<section id="ajuste-do-modelo-de-lotes" class="level4" data-number="7.1.2.6">
+<h4 data-number="7.1.2.6" class="anchored" data-anchor-id="ajuste-do-modelo-de-lotes"><span class="header-section-number">7.1.2.6</span> Ajuste do modelo de lotes</h4>
+<p>Com a superfície de valores de metro quadrado construído elaborada conforme descrito na <a href="#sec-VUM2" class="quarto-xref"><span>Seção 7.1.2.5</span></a>.</p>
 </section>
-<section id="geração-da-superfície-de-valores-de-lotes" class="level3" data-number="7.3.7">
-<h3 data-number="7.3.7" class="anchored" data-anchor-id="geração-da-superfície-de-valores-de-lotes"><span class="header-section-number">7.3.7</span> Geração da superfície de valores de lotes</h3>
+<section id="geração-da-superfície-de-valores-de-lotes" class="level4" data-number="7.1.2.7">
+<h4 data-number="7.1.2.7" class="anchored" data-anchor-id="geração-da-superfície-de-valores-de-lotes"><span class="header-section-number">7.1.2.7</span> Geração da superfície de valores de lotes</h4>
 </section>
 </section>
-<section id="definição-de-variáveis" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="definição-de-variáveis"><span class="header-section-number">7.4</span> Definição de variáveis</h2>
 </section>
-<section id="estratégias-de-modelagem" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="estratégias-de-modelagem"><span class="header-section-number">7.5</span> Estratégias de modelagem</h2>
+<section id="definição-de-variáveis" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="definição-de-variáveis"><span class="header-section-number">7.2</span> Definição de variáveis</h2>
 </section>
-<section id="conexão-com-normas-técnicas" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="conexão-com-normas-técnicas"><span class="header-section-number">7.6</span> Conexão com Normas Técnicas</h2>
+<section id="estratégias-de-modelagem" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="estratégias-de-modelagem"><span class="header-section-number">7.3</span> Estratégias de modelagem</h2>
 </section>
-<section id="aprendizados-aplicados-na-poc" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="aprendizados-aplicados-na-poc"><span class="header-section-number">7.7</span> Aprendizados aplicados na PoC</h2>
+<section id="conexão-com-normas-técnicas" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="conexão-com-normas-técnicas"><span class="header-section-number">7.4</span> Conexão com Normas Técnicas</h2>
+</section>
+<section id="aprendizados-aplicados-na-poc" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="aprendizados-aplicados-na-poc"><span class="header-section-number">7.5</span> Aprendizados aplicados na PoC</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">

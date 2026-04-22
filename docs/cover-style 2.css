@@ -1,0 +1,10 @@
+/* cover-style.css */
+.cover h1.title {
+  color: white;
+  font-size: 4em;
+  text-transform: uppercase;
+  font-family: serif;
+}
+.cover .author {
+  font-style: italic;
+}

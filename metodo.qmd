@@ -24,7 +24,7 @@ combinados de maneira que possibilitou a estimação de valores de mercado de
 maneira suficientemente precisa, mantendo o poder de explicação da formação
 destes valores.
 
-## Metodologia
+### Metodologia
 
 Como descrito nos Capítulos [-@sec-obs] e [-@sec-carto], para a estimação foram
 coletados dados de anúncios de imóveis edificados e não-edificados, que foram
@@ -56,9 +56,9 @@ devem ser estimados via modelos lineares, geoestatística ou algoritmos
 preditivos de aprendizado de máquina. Para o fator de comercialização, o ideal é
 que este seja inferido através de dados de mercado de imóveis edificados.
 
-## Resultados
+### Resultados
 
-### Análise Exploratória
+#### Análise Exploratória
 
 ```{r}
 #| echo: false
@@ -67,13 +67,13 @@ version <- paste(R.Version()$major, '.', R.Version()$minor, sep='')
 
 A análise explotarória de dados foi feita com auxílio do R, versão `{r} I(version)`.
 
-### Limpeza dos dados
+#### Limpeza dos dados
 
 Os dados foram limpos utilizando-se regressão robusta. O método de regressão
 robusta escolhido foi o método dos mínimos quadrados ponderados [ver
 @Rousseeuw_least_1984].
 
-### Geração da Renda Krigada
+#### Geração da Renda Krigada
 
 Os dados de renda do chefe do domicílio do IBGE foram tratados pela equipe de
 estimação. Inicialmente foi gerada a variável renda per capita, obtida conforme
@@ -81,7 +81,7 @@ a @eq-RendaPerCapita:
 
 $$R_{\text{per capita}} = \frac{R_{\text{chefe dom.}}}{N}$$ {#eq-RendaPerCapita}
 
-### Ajuste do modelo de casas e apartamentos
+#### Ajuste do modelo de casas e apartamentos
 
 Após a limpeza dos dados, foi executado o processo de classificação dos dados
 segundo o padrão construtivo. Os dados foram agrupados em três padrões
@@ -90,7 +90,7 @@ construtivos, a saber, padrão baixo, normal e alto.
 Então, foi ajustado um modelo de regressão linear múltipla para descrever o
 comportamento do mercado imobiliário de casas e apartamentos em Florianópolis.
 
-### Geração da superfície de VU de m2 construído {#sec-VUM2}
+#### Geração da superfície de VU de m2 construído {#sec-VUM2}
 
 Após o ajuste do modelo de mínimos quadrados ordinários, os dados da amostra
 utilizados para o ajuste do modelo foram homogeneizados de acordo com fatores de
@@ -137,12 +137,12 @@ multiplicativos, pois, deste modelo, deduz-se:
 $$F_1 = \exp(\hat \beta_1 x_1); F_2 = \exp(\hat \beta_2 x_2); \ldots ; F_k =  \exp(\hat\beta_kx_k)$$
 :::
 
-### Ajuste do modelo de lotes
+#### Ajuste do modelo de lotes
 
 Com a superfície de valores de metro quadrado construído elaborada conforme 
 descrito na @sec-VUM2.
 
-### Geração da superfície de valores de lotes
+#### Geração da superfície de valores de lotes
 
 
 ## Definição de variáveis
