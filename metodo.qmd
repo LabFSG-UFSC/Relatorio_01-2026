@@ -1,7 +1,149 @@
 # Estudos Metodológicos {#sec-metodos}
 
-
 ## Fundamentos da Avaliação em Massa
+
+Segundo @Carranza2026, existem diversas abordagens viáveis para a avaliação em
+massa de imóveis urbanos. @Carranza2026 elencam três dessas diferentes
+abordagens - estimação via algoritmos de *Machine Learning*, Geoestatística
+(krigagem) e modelos lineares - e as compara no contexto da América Latina.
+
+Cada uma destas diferentes abordagens possui pontos fortes e fracos. De um lado,
+segundo @Carranza2026, a estimação via modelos lineares tem a vantagem de
+explicar claramente aos contribuintes como são compostos os valores de mercado
+estimados, ainda que a performance destes modelos geralmente seja mais baixa na
+previsão destes valores. De outro lado, os algoritmos de *Machine Learning*
+apresentam performance superior, porém falham em explicar ao contribuinte como
+são formados os valores de mercado. Entre estas duas abordagens citadas situa-se
+a geoestatística que, segundo @Carranza2026, atinge uma performance aceitável,
+ainda que apresente problemas em identificar barreiras urbanas.
+
+Neste trabalho procurou-se combinar as diferentes abordagens para uma melhor
+estimação dos valores de mercado. Como será visto ao longo deste capítulo, os
+algoritmos de *Machine Learning*, a geoestatística e os modelos lineares foram
+combinados de maneira que possibilitou a estimação de valores de mercado de
+maneira suficientemente precisa, mantendo o poder de explicação da formação
+destes valores.
+
+## Metodologia
+
+Como descrito nos Capítulos [-@sec-obs] e [-@sec-carto], para a estimação foram
+coletados dados de anúncios de imóveis edificados e não-edificados, que foram
+fortalecidos com variáveis cartográficas para adicionar poder de explicação aos
+valores de mercado. Procurou-se, durante o processo de estimação, extrair o
+máximo de informação de todo o conjunto de dados, que envolvem anúncios tanto de
+venda quanto de aluguéis de lotes, casas, apartamentos e outros.
+
+O método adotado para a estimação de valores de mercado neste trabalho é o
+método evolutivo, método consagrado que estima o valor de mercado de um imóvel
+através da soma dos seus componentes (terra e capital):
+
+$$V_{\text{Imóvel}} = (V_{\text{Terreno}} + V_{\text{Benfeitorias}})\cdot FC$$ {#eq-Evolutivo}
+
+Em que:
+
+-   $V_{\text{Imóvel}}$ é o valor de mercado do imóvel acabado;
+-   $V_{\text{Terreno}}$ é o valor de mercado do lote sobre o qual o imóvel 
+encontra-se edificado;
+-   $V_{\text{Benfeitorias}}$ é o valor do capital aplicado em benfeitorias no 
+imóvel e;
+-   $FC$ é um "fator de comercialização" empregado para ajustar a diferença 
+entre o valor real de mercado do imóvel e a diferença entre a soma dos seus 
+componentes.
+
+Os valores de benfeitorias podem ser calculados através dos custos de construção
+divulgados pelos SINDUSCON locais. Os valores dos terrenos, por outro lado,
+devem ser estimados via modelos lineares, geoestatística ou algoritmos
+preditivos de aprendizado de máquina. Para o fator de comercialização, o ideal é
+que este seja inferido através de dados de mercado de imóveis edificados.
+
+## Resultados
+
+### Análise Exploratória
+
+```{r}
+#| echo: false
+version <- paste(R.Version()$major, '.', R.Version()$minor, sep='')
+```
+
+A análise explotarória de dados foi feita com auxílio do R, versão `{r} I(version)`.
+
+### Limpeza dos dados
+
+Os dados foram limpos utilizando-se regressão robusta. O método de regressão
+robusta escolhido foi o método dos mínimos quadrados ponderados [ver
+@Rousseeuw_least_1984].
+
+### Geração da Renda Krigada
+
+Os dados de renda do chefe do domicílio do IBGE foram tratados pela equipe de
+estimação. Inicialmente foi gerada a variável renda per capita, obtida conforme
+a @eq-RendaPerCapita:
+
+$$R_{\text{per capita}} = \frac{R_{\text{chefe dom.}}}{N}$$ {#eq-RendaPerCapita}
+
+### Ajuste do modelo de casas e apartamentos
+
+Após a limpeza dos dados, foi executado o processo de classificação dos dados
+segundo o padrão construtivo. Os dados foram agrupados em três padrões
+construtivos, a saber, padrão baixo, normal e alto.
+
+Então, foi ajustado um modelo de regressão linear múltipla para descrever o
+comportamento do mercado imobiliário de casas e apartamentos em Florianópolis.
+
+### Geração da superfície de VU de m2 construído {#sec-VUM2}
+
+Após o ajuste do modelo de mínimos quadrados ordinários, os dados da amostra
+utilizados para o ajuste do modelo foram homogeneizados de acordo com fatores de
+homogeneização estimados diretamente do modelo. Por exemplo, para a variável
+área, foi derivado o fator área, conforme a @eq-FatorArea:
+
+$$F_{\text{Área}} = \left ( \frac{A_\text{imóvel}}{100} \right)^{-0,25}$$ {#eq-FatorArea}
+
+Veja @nte-fatores para entender com é feita a derivação racional de fatores de 
+homogeneização.
+
+Após o procedimento de homoegeneização, foi gerada uma superfície de valores de
+metro quadrado construído com os dados homogeneizados através do algoritmo IDW
+(*inverse distance weighting*).
+
+::: {#nte-fatores .callout-note}
+## Derivação Racional de Fatores
+
+A derivação racional de fatores de homogeneização é feita de acordo com os
+coeficientes estimados em um modelo de regressão linear múltipla (RLM).
+
+Os fatores serão aditivos quando o modelo RLM for ajustado na escala de preços
+unitários (PU), ou serão multiplicativos quando o modelo RLM for ajustado com a
+transformação da variável dependente para a escala logaritmica, o que é usual na
+Engenharia de Avaliações.
+
+Para entender, basta perceber que, para um modelo ajustado na escala 
+logaritmica, tem-se:
+
+$$\widehat{\log(PU)} = \hat \beta_0 + \hat \beta_1 x_1 + \ldots + \hat\beta_kx_k$$ {#eq-ModeloMultiplicativo}
+
+Efetuando a exponenciação em ambos os lados de @eq-ModeloMultiplicativo, tem-se:
+
+$$\widehat{PU} = \exp(\hat \beta_0 + \hat \beta_1 x_1 + \ldots + \hat\beta_kx_k)$$ {#eq-ModeloMultiplicativo2}
+
+Como a exponencial da soma é o produto das exponenciais, a 
+@eq-ModeloMultiplicativo2 torna-se:
+
+$$\widehat{PU} = \exp(\hat \beta_0)\cdot\exp(\hat \beta_1 x_1)\cdot \ldots \cdot \exp(\hat\beta_kx_k)$$ {#eq-ModeloMultiplicativo3}
+
+Donde entende-se o motivo dos fatores derivados com este modelo serem 
+multiplicativos, pois, deste modelo, deduz-se:
+
+$$F_1 = \exp(\hat \beta_1 x_1); F_2 = \exp(\hat \beta_2 x_2); \ldots ; F_k =  \exp(\hat\beta_kx_k)$$
+:::
+
+### Ajuste do modelo de lotes
+
+Com a superfície de valores de metro quadrado construído elaborada conforme 
+descrito na @sec-VUM2.
+
+### Geração da superfície de valores de lotes
+
 
 ## Definição de variáveis
 
@@ -10,6 +152,3 @@
 ## Conexão com Normas Técnicas
 
 ## Aprendizados aplicados na PoC
-
-
-

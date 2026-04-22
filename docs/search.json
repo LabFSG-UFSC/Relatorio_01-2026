@@ -463,7 +463,29 @@
     "href": "metodo.html",
     "title": "7  Estudos Metodológicos",
     "section": "",
-    "text": "7.1 Fundamentos da Avaliação em Massa",
+    "text": "7.1 Fundamentos da Avaliação em Massa\nSegundo Carranza, Bologna, e Lucca (2026), existem diversas abordagens viáveis para a avaliação em massa de imóveis urbanos. Carranza, Bologna, e Lucca (2026) elencam três dessas diferentes abordagens - estimação via algoritmos de Machine Learning, Geoestatística (krigagem) e modelos lineares - e as compara no contexto da América Latina.\nCada uma destas diferentes abordagens possui pontos fortes e fracos. De um lado, segundo Carranza, Bologna, e Lucca (2026), a estimação via modelos lineares tem a vantagem de explicar claramente aos contribuintes como são compostos os valores de mercado estimados, ainda que a performance destes modelos geralmente seja mais baixa na previsão destes valores. De outro lado, os algoritmos de Machine Learning apresentam performance superior, porém falham em explicar ao contribuinte como são formados os valores de mercado. Entre estas duas abordagens citadas situa-se a geoestatística que, segundo Carranza, Bologna, e Lucca (2026), atinge uma performance aceitável, ainda que apresente problemas em identificar barreiras urbanas.\nNeste trabalho procurou-se combinar as diferentes abordagens para uma melhor estimação dos valores de mercado. Como será visto ao longo deste capítulo, os algoritmos de Machine Learning, a geoestatística e os modelos lineares foram combinados de maneira que possibilitou a estimação de valores de mercado de maneira suficientemente precisa, mantendo o poder de explicação da formação destes valores.",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Estudos Metodológicos</span>"
+    ]
+  },
+  {
+    "objectID": "metodo.html#metodologia",
+    "href": "metodo.html#metodologia",
+    "title": "7  Estudos Metodológicos",
+    "section": "7.2 Metodologia",
+    "text": "7.2 Metodologia\nComo descrito nos Capítulos 4 e 5, para a estimação foram coletados dados de anúncios de imóveis edificados e não-edificados, que foram fortalecidos com variáveis cartográficas para adicionar poder de explicação aos valores de mercado. Procurou-se, durante o processo de estimação, extrair o máximo de informação de todo o conjunto de dados, que envolvem anúncios tanto de venda quanto de aluguéis de lotes, casas, apartamentos e outros.\nO método adotado para a estimação de valores de mercado neste trabalho é o método evolutivo, método consagrado que estima o valor de mercado de um imóvel através da soma dos seus componentes (terra e capital):\n\\[V_{\\text{Imóvel}} = (V_{\\text{Terreno}} + V_{\\text{Benfeitorias}})\\cdot FC \\tag{7.1}\\]\nEm que:\n\n\\(V_{\\text{Imóvel}}\\) é o valor de mercado do imóvel acabado;\n\\(V_{\\text{Terreno}}\\) é o valor de mercado do lote sobre o qual o imóvel encontra-se edificado;\n\\(V_{\\text{Benfeitorias}}\\) é o valor do capital aplicado em benfeitorias no imóvel e;\n\\(FC\\) é um “fator de comercialização” empregado para ajustar a diferença entre o valor real de mercado do imóvel e a diferença entre a soma dos seus componentes.\n\nOs valores de benfeitorias podem ser calculados através dos custos de construção divulgados pelos SINDUSCON locais. Os valores dos terrenos, por outro lado, devem ser estimados via modelos lineares, geoestatística ou algoritmos preditivos de aprendizado de máquina. Para o fator de comercialização, o ideal é que este seja inferido através de dados de mercado de imóveis edificados.",
+    "crumbs": [
+      "Blocos Transversais",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Estudos Metodológicos</span>"
+    ]
+  },
+  {
+    "objectID": "metodo.html#resultados",
+    "href": "metodo.html#resultados",
+    "title": "7  Estudos Metodológicos",
+    "section": "7.3 Resultados",
+    "text": "7.3 Resultados\n\n7.3.1 Análise Exploratória\nA análise explotarória de dados foi feita com auxílio do R, versão 4.5.2.\n\n\n7.3.2 Limpeza dos dados\nOs dados foram limpos utilizando-se regressão robusta. O método de regressão robusta escolhido foi o método dos mínimos quadrados ponderados (ver Rousseeuw 1984).\n\n\n7.3.3 Geração da Renda Krigada\nOs dados de renda do chefe do domicílio do IBGE foram tratados pela equipe de estimação. Inicialmente foi gerada a variável renda per capita, obtida conforme a Equação 7.2:\n\\[R_{\\text{per capita}} = \\frac{R_{\\text{chefe dom.}}}{N} \\tag{7.2}\\]\n\n\n7.3.4 Ajuste do modelo de casas e apartamentos\nApós a limpeza dos dados, foi executado o processo de classificação dos dados segundo o padrão construtivo. Os dados foram agrupados em três padrões construtivos, a saber, padrão baixo, normal e alto.\nEntão, foi ajustado um modelo de regressão linear múltipla para descrever o comportamento do mercado imobiliário de casas e apartamentos em Florianópolis.\n\n\n7.3.5 Geração da superfície de VU de m2 construído\nApós o ajuste do modelo de mínimos quadrados ordinários, os dados da amostra utilizados para o ajuste do modelo foram homogeneizados de acordo com fatores de homogeneização estimados diretamente do modelo. Por exemplo, para a variável área, foi derivado o fator área, conforme a Equação 7.3:\n\\[F_{\\text{Área}} = \\left ( \\frac{A_\\text{imóvel}}{100} \\right)^{-0,25} \\tag{7.3}\\]\nVeja Note 7.1 para entender com é feita a derivação racional de fatores de homogeneização.\nApós o procedimento de homoegeneização, foi gerada uma superfície de valores de metro quadrado construído com os dados homogeneizados através do algoritmo IDW (inverse distance weighting).\n\n\n\n\n\n\nNota 7.1: Derivação Racional de Fatores\n\n\n\nA derivação racional de fatores de homogeneização é feita de acordo com os coeficientes estimados em um modelo de regressão linear múltipla (RLM).\nOs fatores serão aditivos quando o modelo RLM for ajustado na escala de preços unitários (PU), ou serão multiplicativos quando o modelo RLM for ajustado com a transformação da variável dependente para a escala logaritmica, o que é usual na Engenharia de Avaliações.\nPara entender, basta perceber que, para um modelo ajustado na escala logaritmica, tem-se:\n\\[\\widehat{\\log(PU)} = \\hat \\beta_0 + \\hat \\beta_1 x_1 + \\ldots + \\hat\\beta_kx_k \\tag{7.4}\\]\nEfetuando a exponenciação em ambos os lados de Equação 7.4, tem-se:\n\\[\\widehat{PU} = \\exp(\\hat \\beta_0 + \\hat \\beta_1 x_1 + \\ldots + \\hat\\beta_kx_k) \\tag{7.5}\\]\nComo a exponencial da soma é o produto das exponenciais, a Equação 7.5 torna-se:\n\\[\\widehat{PU} = \\exp(\\hat \\beta_0)\\cdot\\exp(\\hat \\beta_1 x_1)\\cdot \\ldots \\cdot \\exp(\\hat\\beta_kx_k) \\tag{7.6}\\]\nDonde entende-se o motivo dos fatores derivados com este modelo serem multiplicativos, pois, deste modelo, deduz-se:\n\\[F_1 = \\exp(\\hat \\beta_1 x_1); F_2 = \\exp(\\hat \\beta_2 x_2); \\ldots ; F_k =  \\exp(\\hat\\beta_kx_k)\\]\n\n\n\n\n7.3.6 Ajuste do modelo de lotes\nCom a superfície de valores de metro quadrado construído elaborada conforme descrito na Seção 7.3.5.\n\n\n7.3.7 Geração da superfície de valores de lotes",
     "crumbs": [
       "Blocos Transversais",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Estudos Metodológicos</span>"
@@ -473,8 +495,8 @@
     "objectID": "metodo.html#definição-de-variáveis",
     "href": "metodo.html#definição-de-variáveis",
     "title": "7  Estudos Metodológicos",
-    "section": "7.2 Definição de variáveis",
-    "text": "7.2 Definição de variáveis",
+    "section": "7.4 Definição de variáveis",
+    "text": "7.4 Definição de variáveis",
     "crumbs": [
       "Blocos Transversais",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Estudos Metodológicos</span>"
@@ -484,8 +506,8 @@
     "objectID": "metodo.html#estratégias-de-modelagem",
     "href": "metodo.html#estratégias-de-modelagem",
     "title": "7  Estudos Metodológicos",
-    "section": "7.3 Estratégias de modelagem",
-    "text": "7.3 Estratégias de modelagem",
+    "section": "7.5 Estratégias de modelagem",
+    "text": "7.5 Estratégias de modelagem",
     "crumbs": [
       "Blocos Transversais",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Estudos Metodológicos</span>"
@@ -495,8 +517,8 @@
     "objectID": "metodo.html#conexão-com-normas-técnicas",
     "href": "metodo.html#conexão-com-normas-técnicas",
     "title": "7  Estudos Metodológicos",
-    "section": "7.4 Conexão com Normas Técnicas",
-    "text": "7.4 Conexão com Normas Técnicas",
+    "section": "7.6 Conexão com Normas Técnicas",
+    "text": "7.6 Conexão com Normas Técnicas",
     "crumbs": [
       "Blocos Transversais",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Estudos Metodológicos</span>"
@@ -506,8 +528,8 @@
     "objectID": "metodo.html#aprendizados-aplicados-na-poc",
     "href": "metodo.html#aprendizados-aplicados-na-poc",
     "title": "7  Estudos Metodológicos",
-    "section": "7.5 Aprendizados aplicados na PoC",
-    "text": "7.5 Aprendizados aplicados na PoC",
+    "section": "7.7 Aprendizados aplicados na PoC",
+    "text": "7.7 Aprendizados aplicados na PoC\n\n\n\n\nCarranza, Juan Pablo, Eduardo León Bologna, e Carlos María Lucca. 2026. “The missing link: Comparing mass appraisal techniques and their implications for urban land valuation policies in Latin America”. Land Use Policy 166 (julho): 107998. https://doi.org/10.1016/j.landusepol.2026.107998.\n\n\nRousseeuw, Peter J. 1984. “Least Median of Squares Regression”. Journal of the American Statistical Association 79 (388): 871–80. http://www.jstor.org/stable/2288718.",
     "crumbs": [
       "Blocos Transversais",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Estudos Metodológicos</span>"
@@ -951,6 +973,16 @@
     "crumbs": [
       "Governança",
       "<span class='chapter-number'>15</span>  <span class='chapter-title'>Próximos Passos</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "Referências",
+    "section": "",
+    "text": "Carranza, Juan Pablo, Eduardo León Bologna, and Carlos María Lucca.\n2026. “The Missing Link: Comparing Mass Appraisal\nTechniques and Their Implications for Urban Land Valuation Policies in\nLatin America.” Land Use\nPolicy 166 (July): 107998. https://doi.org/10.1016/j.landusepol.2026.107998.\n\n\nRousseeuw, Peter J. 1984. “Least Median of\nSquares Regression.” Journal of the\nAmerican Statistical Association 79 (388): 871–80. http://www.jstor.org/stable/2288718.",
+    "crumbs": [
+      "Referências"
     ]
   }
 ]
