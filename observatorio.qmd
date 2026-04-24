@@ -64,7 +64,7 @@ e concentra os atributos cruciais para a modelagem estatística e de precificaç
     **61.416 registros** (aproximadamente 73,2% do total) que apresentavam o indicador `precisao = 4` —
     nível máximo de exatidão do ArcGIS, que indica teoreticamente a localização exata ao nível do número da porta.
 
-    ![Mapa de Ofertas Brutas (ArcGIS)](img/obs.png){#fig-mapa-ofertas fig-alt="Mapa da distribução dos dados brutos no Município de Florianópolis"}
+    ![Mapa de Ofertas](img/obs.png){#fig-fluxo-pipeline fig-alt="Mapa da distribução dos dados no Município de Florianópolis"}
 
 #### 2. Dados de Referência Espacial Oficial (Governo)
 
@@ -347,8 +347,6 @@ Funil de processamento e validação cruzada
 Como resultado primário, construímos a tabela `monit_2025_11_poc_floripa_v3`,
 na qual verificamos que a **mediana de distância entre os provedores é de 24.35 metros** e a **distância média é de 215.26 metros**.
 
-![Mapa da Base Consolidada e Validada](img/obs.jpg){#fig-mapa-consolidado fig-alt="Mapa com a distribuição espacial das coordenadas finais validadas"}
-
 #### Decisão sobre Coordenadas Finais
 
 No resultado final, aplicou-se a lógica de decisão V3:
@@ -435,13 +433,13 @@ Ele detalha minuciosamente a natureza das colunas expandidas, incluindo:
 
 Estabelece a semântica correta para as equipes da RFB, incluindo explicação detalhada da lógica de threshold dinâmico.
 
-## Estudos de Caso {#sec-estudos-caso}
+## Análises Aprofundadas e Validação {#sec-analises-aprofundadas}
 
 Nesta seção, apresentamos análises detalhadas conduzidas pelos bolsistas do projeto,
 ilustrando aplicações práticas da metodologia desenvolvida e evidenciando padrões identificados
 durante a validação cruzada ArcGIS vs CNEFE.
 
-### Caso 1: Recuperação Espacial com Vias Curtas (Short Streets)
+### 1. Metodologia de Recuperação: Vias Curtas (Short Streets)
 
 **Período:** Janeiro - Março 2026
 **Objetivo:** Demonstrar como registros de precisão intermediária (precisão = 3) podem ser recuperados através de
@@ -521,7 +519,7 @@ influenciam significativamente a capacidade de recuperação.
 
 ---
 
-### Caso 2: Análise de Lotes/Terrenos (Desafio Específico V3)
+### 2. Análise Exploratória: Desempenho em Lotes e Terrenos
 
 **Período:** Março 2026
 **Objetivo:** Investigar as causas raiz da menor taxa de processamento em imóveis não-edificados
@@ -584,7 +582,7 @@ Para entender o desempenho inferior de Lotes/Terrenos, executou-se análise expl
 
 ---
 
-### Caso 3: Avaliação de Acurácia Locacional (Benchmarking Google Maps)
+### 3. Validação de Acurácia (Benchmarking com Google Maps)
 
 **Autor:** Ville Rodrigues
 **Período:** Abril 2026
@@ -625,7 +623,7 @@ O estudo conclui que o ArcGIS é, em média, a fonte que mais se aproxima do pon
 
 ---
 
-### Caso 4: Próximas Análises Recomendadas
+### 4. Recomendações e Próximos Passos
 
 Para consolidar os aprendizados da POC Florianópolis e escalar para Lote 1 e Lote 2, recomenda-se:
 
