@@ -64,7 +64,7 @@ e concentra os atributos cruciais para a modelagem estatística e de precificaç
     **61.416 registros** (aproximadamente 73,2% do total) que apresentavam o indicador `precisao = 4` —
     nível máximo de exatidão do ArcGIS, que indica teoreticamente a localização exata ao nível do número da porta.
 
-    ![Mapa de Ofertas](img/obs.png){#fig-fluxo-pipeline fig-alt="Mapa da distribução dos dados no Município de Florianópolis"}
+    ![Mapa de Ofertas Brutas (ArcGIS)](img/obs.png){#fig-mapa-ofertas fig-alt="Mapa da distribução dos dados brutos no Município de Florianópolis"}
 
 #### 2. Dados de Referência Espacial Oficial (Governo)
 
@@ -346,6 +346,8 @@ Funil de processamento e validação cruzada
 
 Como resultado primário, construímos a tabela `monit_2025_11_poc_floripa_v3`,
 na qual verificamos que a **mediana de distância entre os provedores é de 24.35 metros** e a **distância média é de 215.26 metros**.
+
+![Mapa da Base Consolidada e Validada](img/obs.jpg){#fig-mapa-consolidado fig-alt="Mapa com a distribuição espacial das coordenadas finais validadas"}
 
 #### Decisão sobre Coordenadas Finais
 
