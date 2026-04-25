@@ -2,6 +2,11 @@ project:
   type: book
   output-dir: docs
 
+execute:
+  echo: false
+  message: false
+  warning: false
+  
 book:
   title: "PoC"
   subtitle: "Florianópolis/SC"
@@ -50,6 +55,7 @@ book:
   sharing: [twitter, facebook]
 
 bibliography: references.bib
+csl: ABNT_UFPR_2011-Mendeley.csl
 
 lang: pt-br
 
@@ -68,6 +74,7 @@ format:
       - left=30mm
     include-in-header:
       text: |
+        % Capa:
         \usepackage{tikz}
         \usepackage{everypage}
         \AtBeginDocument{
@@ -78,6 +85,7 @@ format:
           \end{tikzpicture}
           \clearpage
         }
+        % Imagem de fundo:
         \AddEverypageHook{
           \begin{tikzpicture}[remember picture,overlay]
             \node at (current page.center) {
@@ -85,8 +93,10 @@ format:
             };
           \end{tikzpicture}
         }
+        % Rodapé:
         \input{footer.tex}
     link-citations: true
     fontsize: 14pt
 
 editor: visual
+
