@@ -420,12 +420,11 @@ window.Quarto = {
 
 <section id="fundamentos-da-avaliação-em-massa" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="fundamentos-da-avaliação-em-massa"><span class="header-section-number">7.1</span> Fundamentos da Avaliação em Massa</h2>
-<p>Segundo <span class="citation" data-cites="Carranza2026">Carranza, Bologna, e Lucca (<a href="references.html#ref-Carranza2026" role="doc-biblioref">2026</a>)</span>, existem diversas abordagens viáveis para a avaliação em massa de imóveis urbanos. <span class="citation" data-cites="Carranza2026">Carranza, Bologna, e Lucca (<a href="references.html#ref-Carranza2026" role="doc-biblioref">2026</a>)</span> elencam três dessas diferentes abordagens - estimação via algoritmos de <em>Machine Learning</em>, Geoestatística (krigagem) e modelos lineares - e as compara no contexto da América Latina.</p>
-<p>Cada uma destas diferentes abordagens possui pontos fortes e fracos. De um lado, segundo <span class="citation" data-cites="Carranza2026">Carranza, Bologna, e Lucca (<a href="references.html#ref-Carranza2026" role="doc-biblioref">2026</a>)</span>, a estimação via modelos lineares tem a vantagem de explicar claramente aos contribuintes como são compostos os valores de mercado estimados, ainda que a performance destes modelos geralmente seja mais baixa na previsão destes valores. De outro lado, os algoritmos de <em>Machine Learning</em> apresentam performance superior, porém falham em explicar ao contribuinte como são formados os valores de mercado. Entre estas duas abordagens citadas situa-se a geoestatística que, segundo <span class="citation" data-cites="Carranza2026">Carranza, Bologna, e Lucca (<a href="references.html#ref-Carranza2026" role="doc-biblioref">2026</a>)</span>, atinge uma performance aceitável, ainda que apresente problemas em identificar barreiras urbanas.</p>
-<p>Neste trabalho procurou-se combinar as diferentes abordagens para uma melhor estimação dos valores de mercado. Como será visto ao longo deste capítulo, os algoritmos de <em>Machine Learning</em>, a geoestatística e os modelos lineares foram combinados de maneira que possibilitou a estimação de valores de mercado de maneira suficientemente precisa, mantendo o poder de explicação da formação destes valores.</p>
+<p>Segundo <span class="citation" data-cites="Carranza2026">CARRANZA et al. (<a href="references.html#ref-Carranza2026" role="doc-biblioref">2026</a>)</span>, existem diversas abordagens viáveis para a avaliação em massa de imóveis urbanos. <span class="citation" data-cites="Carranza2026">CARRANZA et al. (<a href="references.html#ref-Carranza2026" role="doc-biblioref">2026</a>)</span> elencam três dessas diferentes abordagens - estimação via algoritmos de <em>Machine Learning</em>, Geoestatística (krigagem) e modelos lineares - e as compara no contexto da América Latina.</p>
+<p>Cada uma destas diferentes abordagens possui pontos fortes e fracos. De um lado, segundo <span class="citation" data-cites="Carranza2026">CARRANZA et al. (<a href="references.html#ref-Carranza2026" role="doc-biblioref">2026</a>)</span>, a estimação via modelos lineares tem a vantagem de explicar claramente aos contribuintes como são compostos os valores de mercado estimados, ainda que a performance destes modelos geralmente seja mais baixa na previsão destes valores. De outro lado, os algoritmos de <em>Machine Learning</em> apresentam performance superior, porém falham em explicar ao contribuinte como são formados os valores de mercado. Entre estas duas abordagens citadas situa-se a geoestatística que, segundo <span class="citation" data-cites="Carranza2026">CARRANZA et al. (<a href="references.html#ref-Carranza2026" role="doc-biblioref">2026</a>)</span>, atinge uma performance aceitável, ainda que apresente problemas em identificar barreiras urbanas.</p>
+<p>Neste trabalho procurou-se combinar as diferentes abordagens para uma melhor estimação dos valores de mercado. Como será visto ao longo deste capítulo, os algoritmos de <em>Machine Learning</em>, a geoestatística e os modelos lineares foram combinados de maneira que possibilitou a estimação de valores de mercado de maneira suficientemente precisa, sem abrir mão do poder de explicação da formação de valores.</p>
 <section id="metodologia" class="level3" data-number="7.1.1">
 <h3 data-number="7.1.1" class="anchored" data-anchor-id="metodologia"><span class="header-section-number">7.1.1</span> Metodologia</h3>
-<p>Como descrito nos Capítulos <a href="observatorio.html" class="quarto-xref"><span>4</span></a> e <a href="cartografia.html" class="quarto-xref"><span>5</span></a>, para a estimação foram coletados dados de anúncios de imóveis edificados e não-edificados, que foram fortalecidos com variáveis cartográficas para adicionar poder de explicação aos valores de mercado. Procurou-se, durante o processo de estimação, extrair o máximo de informação de todo o conjunto de dados, que envolvem anúncios tanto de venda quanto de aluguéis de lotes, casas, apartamentos e outros.</p>
 <p>O método adotado para a estimação de valores de mercado neste trabalho é o método evolutivo, método consagrado que estima o valor de mercado de um imóvel através da soma dos seus componentes (terra e capital):</p>
 <p><span id="eq-Evolutivo"><span class="math display">\[V_{\text{Imóvel}} = (V_{\text{Terreno}} + V_{\text{Benfeitorias}})\cdot FC \tag{7.1}\]</span></span></p>
 <p>Em que:</p>
@@ -435,6 +434,7 @@ window.Quarto = {
 <li><span class="math inline">\(V_{\text{Benfeitorias}}\)</span> é o valor do capital aplicado em benfeitorias no imóvel e;</li>
 <li><span class="math inline">\(FC\)</span> é um “fator de comercialização” empregado para ajustar a diferença entre o valor real de mercado do imóvel e a diferença entre a soma dos seus componentes.</li>
 </ul>
+<p>Como descrito nos Capítulos <a href="observatorio.html" class="quarto-xref"><span>5</span></a> e <a href="cartografia.html" class="quarto-xref"><span>5</span></a>, para a estimação foram coletados dados de anúncios de imóveis edificados e não-edificados, que foram fortalecidos com variáveis cartográficas para adicionar poder de explicação aos valores de mercado. Procurou-se, durante o processo de estimação, extrair o máximo de informação de todo o conjunto de dados, que envolvem anúncios não apenas de lotes, mas também de casas, apartamentos e outros tipos de imóveis, tanto para a venda quanto para locação.</p>
 <p>Os valores de benfeitorias podem ser calculados através dos custos de construção divulgados pelos SINDUSCON locais. Os valores dos terrenos, por outro lado, devem ser estimados via modelos lineares, geoestatística ou algoritmos preditivos de aprendizado de máquina. Para o fator de comercialização, o ideal é que este seja inferido através de dados de mercado de imóveis edificados.</p>
 </section>
 <section id="resultados" class="level3" data-number="7.1.2">
@@ -442,45 +442,118 @@ window.Quarto = {
 <section id="análise-exploratória" class="level4" data-number="7.1.2.1">
 <h4 data-number="7.1.2.1" class="anchored" data-anchor-id="análise-exploratória"><span class="header-section-number">7.1.2.1</span> Análise Exploratória</h4>
 <p>A análise explotarória de dados foi feita com auxílio do R, versão 4.5.2.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `variavel_geografica_setor_censitario' from data source 
+  `/Users/droubi/Documents/LabFSG/POC-FLN/data/4205407_Florianopolis_r006_2026-03-23.gpkg' 
+  using driver `GPKG'
+Simple feature collection with 1004 features and 54 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -48.61347 ymin: -27.85377 xmax: -48.32788 ymax: -27.26797
+Geodetic CRS:  SIRGAS 2000</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-EDALotes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-EDALotes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="metodo_files/figure-html/fig-EDALotes-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-EDALotes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.1: Análise Exploratória para os dados de Lotes
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Na <a href="#fig-EDALotes" class="quarto-xref">Figura&nbsp;<span>7.1</span></a> é possível perceber a presença de forte assimetria nos dados oriundos do observatório do mercado imobiliário (variáveis <code>PU</code>e <code>area</code>), causada pela presença de <em>outliers</em> na amostra.</p>
 </section>
 <section id="limpeza-dos-dados" class="level4" data-number="7.1.2.2">
 <h4 data-number="7.1.2.2" class="anchored" data-anchor-id="limpeza-dos-dados"><span class="header-section-number">7.1.2.2</span> Limpeza dos dados</h4>
-<p>Os dados foram limpos utilizando-se regressão robusta. O método de regressão robusta escolhido foi o método dos mínimos quadrados ponderados <span class="citation" data-cites="Rousseeuw_least_1984">(ver <a href="references.html#ref-Rousseeuw_least_1984" role="doc-biblioref">Rousseeuw 1984</a>)</span>.</p>
+<p>Os dados foram limpos utilizando-se regressão robusta. O método de regressão robusta escolhido foi o método dos mínimos quadrados ponderados <span class="citation" data-cites="Rousseeuw_least_1984">(ver <a href="references.html#ref-Rousseeuw_least_1984" role="doc-biblioref">ROUSSEEUW, 1984</a>)</span>.</p>
 </section>
 <section id="geração-da-renda-krigada" class="level4" data-number="7.1.2.3">
 <h4 data-number="7.1.2.3" class="anchored" data-anchor-id="geração-da-renda-krigada"><span class="header-section-number">7.1.2.3</span> Geração da Renda Krigada</h4>
 <p>Os dados de renda do chefe do domicílio do IBGE foram tratados pela equipe de estimação. Inicialmente foi gerada a variável renda per capita, obtida conforme a <a href="#eq-RendaPerCapita" class="quarto-xref">Equação&nbsp;<span>7.2</span></a>:</p>
 <p><span id="eq-RendaPerCapita"><span class="math display">\[R_{\text{per capita}} = \frac{R_{\text{chefe dom.}}}{N} \tag{7.2}\]</span></span></p>
+<p>Em que:</p>
+<ul>
+<li><span class="math inline">\(R_{\text{chefe dom.}}\)</span> é a renda do chefe do domicílio divulgada pelo censo 2022 (IBGE);</li>
+<li><span class="math inline">\(N\)</span> é o número de pessoas por domicílio, também divulgada pelo IBGE.</li>
+</ul>
+<p>Na <a href="#fig-rendakrigada" class="quarto-xref">Figura&nbsp;<span>7.2</span></a> pode ser visualizado o resultado da krigagem da variável <span class="math inline">\(R_{\text{per capita}}\)</span> para o município de Florianópolis.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-rendakrigada" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rendakrigada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="metodo_files/figure-html/fig-rendakrigada-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rendakrigada-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.2: Renda per capita krigada para o município de Florianópolis.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="ajuste-do-modelo-de-casas-e-apartamentos" class="level4" data-number="7.1.2.4">
-<h4 data-number="7.1.2.4" class="anchored" data-anchor-id="ajuste-do-modelo-de-casas-e-apartamentos"><span class="header-section-number">7.1.2.4</span> Ajuste do modelo de casas e apartamentos</h4>
-<p>Após a limpeza dos dados, foi executado o processo de classificação dos dados segundo o padrão construtivo. Os dados foram agrupados em três padrões construtivos, a saber, padrão baixo, normal e alto.</p>
-<p>Então, foi ajustado um modelo de regressão linear múltipla para descrever o comportamento do mercado imobiliário de casas e apartamentos em Florianópolis.</p>
+<section id="ajuste-do-modelo-de-imóveis-edificados" class="level4" data-number="7.1.2.4">
+<h4 data-number="7.1.2.4" class="anchored" data-anchor-id="ajuste-do-modelo-de-imóveis-edificados"><span class="header-section-number">7.1.2.4</span> Ajuste do modelo de imóveis edificados</h4>
+<p>Após a limpeza dos dados, foi executado o processo de classificação dos dados segundo o padrão construtivo. Os dados foram agrupados em três padrões construtivos, a saber, padrão baixo, normal e alto, conforme descrito na <a href="estimacao.html#sec-classif-pc" class="quarto-xref"><span>Seção 6.4.1</span></a>.</p>
+<p>Então, foi ajustado um modelo de regressão linear múltipla para descrever o comportamento do mercado imobiliário de casas e apartamentos em Florianópolis <a href="estimacao.html#sec-modelo-edificados" class="quarto-xref">ver&nbsp;<span>6.5.1</span></a>.</p>
 </section>
 <section id="sec-VUM2" class="level4" data-number="7.1.2.5">
 <h4 data-number="7.1.2.5" class="anchored" data-anchor-id="sec-VUM2"><span class="header-section-number">7.1.2.5</span> Geração da superfície de VU de m2 construído</h4>
 <p>Após o ajuste do modelo de mínimos quadrados ordinários, os dados da amostra utilizados para o ajuste do modelo foram homogeneizados de acordo com fatores de homogeneização estimados diretamente do modelo. Por exemplo, para a variável área, foi derivado o fator área, conforme a <a href="#eq-FatorArea" class="quarto-xref">Equação&nbsp;<span>7.3</span></a>:</p>
 <p><span id="eq-FatorArea"><span class="math display">\[F_{\text{Área}} = \left ( \frac{A_\text{imóvel}}{100} \right)^{-0,25} \tag{7.3}\]</span></span></p>
-<p>Veja <a href="#nte-fatores" class="quarto-xref">Note&nbsp;<span>7.1</span></a> para entender com é feita a derivação racional de fatores de homogeneização.</p>
+<p>Veja <a href="#nte-fatores" class="quarto-xref">Note&nbsp;<span>7.2</span></a> para entender com é feita a derivação racional de fatores de homogeneização.</p>
 <p>Após o procedimento de homoegeneização, foi gerada uma superfície de valores de metro quadrado construído com os dados homogeneizados através do algoritmo IDW (<em>inverse distance weighting</em>).</p>
+<div id="nte-idw" class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota&nbsp;7.1: Inverse Distance Weighting
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Segundo <span class="citation" data-cites="Embrapa2004">DRUCK et al. (<a href="references.html#ref-Embrapa2004" role="doc-biblioref">2004, p. 83</a>)</span>, “uma alternativa simples para gerar uma superfície bidimensional” consiste em ajustar uma função bidimensional sobre as amostras, prevendo valores em uma grade (<span class="math inline">\(\hat z_i\)</span>), com a seguinte formulação:</p>
+<p><span id="eq-IDW"><span class="math display">\[
+\hat z_i = \frac{\sum_{j = 1}^n w_{ij}z_j}{\sum_{j=1}^n w_{ij}}
+\tag{7.4}\]</span></span></p>
+<p>Em que:</p>
+<ul>
+<li><span class="math inline">\(z_j\)</span> é o valor da cota (VU) de uma amostra vizinha do ponto <span class="math inline">\(i\)</span> da grade;</li>
+<li><span class="math inline">\(w_{ij}\)</span> é um fator de ponderação.</li>
+</ul>
+<p>Com base neste esquema básico supra-mencionado, é possível gerar vários interpoladores (vizinho mais próximo, média simples ou média ponderada). A ponderação mais usada consiste em adotar pesos que variam com o inverso de uma potência <span class="math inline">\(k\)</span> da distância euclidiana do ponto da amostra ao ponto da grade em que se deseja prever valores (<span class="math inline">\(d_{ij}\)</span>), assim:</p>
+<p><span id="eq-IDW2"><span class="math display">\[
+w_{ij} = \frac{1}{d_{ij}^k}
+\tag{7.5}\]</span></span></p>
+<p>Em que: - <span class="math inline">\(d_{ij} = \sqrt{(x_i-x_j)^2 + (y_i - y_j)^2}\)</span></p>
+</div>
+</div>
 <div id="nte-fatores" class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nota&nbsp;7.1: Derivação Racional de Fatores
+Nota&nbsp;7.2: Derivação Racional de Fatores
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>A derivação racional de fatores de homogeneização é feita de acordo com os coeficientes estimados em um modelo de regressão linear múltipla (RLM).</p>
 <p>Os fatores serão aditivos quando o modelo RLM for ajustado na escala de preços unitários (PU), ou serão multiplicativos quando o modelo RLM for ajustado com a transformação da variável dependente para a escala logaritmica, o que é usual na Engenharia de Avaliações.</p>
 <p>Para entender, basta perceber que, para um modelo ajustado na escala logaritmica, tem-se:</p>
-<p><span id="eq-ModeloMultiplicativo"><span class="math display">\[\widehat{\log(PU)} = \hat \beta_0 + \hat \beta_1 x_1 + \ldots + \hat\beta_kx_k \tag{7.4}\]</span></span></p>
-<p>Efetuando a exponenciação em ambos os lados de <a href="#eq-ModeloMultiplicativo" class="quarto-xref">Equação&nbsp;<span>7.4</span></a>, tem-se:</p>
-<p><span id="eq-ModeloMultiplicativo2"><span class="math display">\[\widehat{PU} = \exp(\hat \beta_0 + \hat \beta_1 x_1 + \ldots + \hat\beta_kx_k) \tag{7.5}\]</span></span></p>
-<p>Como a exponencial da soma é o produto das exponenciais, a <a href="#eq-ModeloMultiplicativo2" class="quarto-xref">Equação&nbsp;<span>7.5</span></a> torna-se:</p>
-<p><span id="eq-ModeloMultiplicativo3"><span class="math display">\[\widehat{PU} = \exp(\hat \beta_0)\cdot\exp(\hat \beta_1 x_1)\cdot \ldots \cdot \exp(\hat\beta_kx_k) \tag{7.6}\]</span></span></p>
+<p><span id="eq-ModeloMultiplicativo"><span class="math display">\[\widehat{\log(PU)} = \hat \beta_0 + \hat \beta_1 x_1 + \ldots + \hat\beta_kx_k \tag{7.6}\]</span></span></p>
+<p>Efetuando a exponenciação em ambos os lados de <a href="#eq-ModeloMultiplicativo" class="quarto-xref">Equação&nbsp;<span>7.6</span></a>, tem-se:</p>
+<p><span id="eq-ModeloMultiplicativo2"><span class="math display">\[\widehat{PU} = \exp(\hat \beta_0 + \hat \beta_1 x_1 + \ldots + \hat\beta_kx_k) \tag{7.7}\]</span></span></p>
+<p>Como a exponencial da soma é o produto das exponenciais, a <a href="#eq-ModeloMultiplicativo2" class="quarto-xref">Equação&nbsp;<span>7.7</span></a> torna-se:</p>
+<p><span id="eq-ModeloMultiplicativo3"><span class="math display">\[\widehat{PU} = \exp(\hat \beta_0)\cdot\exp(\hat \beta_1 x_1)\cdot \ldots \cdot \exp(\hat\beta_kx_k) \tag{7.8}\]</span></span></p>
 <p>Donde entende-se o motivo dos fatores derivados com este modelo serem multiplicativos, pois, deste modelo, deduz-se:</p>
 <p><span class="math display">\[F_1 = \exp(\hat \beta_1 x_1); F_2 = \exp(\hat \beta_2 x_2); \ldots ; F_k =  \exp(\hat\beta_kx_k)\]</span></p>
 </div>
@@ -508,12 +581,15 @@ Nota&nbsp;7.1: Derivação Racional de Fatores
 <h2 data-number="7.5" class="anchored" data-anchor-id="aprendizados-aplicados-na-poc"><span class="header-section-number">7.5</span> Aprendizados aplicados na PoC</h2>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-Carranza2026" class="csl-entry" role="listitem">
-Carranza, Juan Pablo, Eduardo León Bologna, e Carlos María Lucca. 2026. <span>“The missing link: <span>Comparing</span> mass appraisal techniques and their implications for urban land valuation policies in <span>Latin</span> <span>America</span>”</span>. <em>Land Use Policy</em> 166 (julho): 107998. <a href="https://doi.org/10.1016/j.landusepol.2026.107998">https://doi.org/10.1016/j.landusepol.2026.107998</a>.
+CARRANZA, J. P.; BOLOGNA, E. L.; LUCCA, C. M. The missing link: <span>Comparing</span> mass appraisal techniques and their implications for urban land valuation policies in <span>Latin</span> <span>America</span>. <strong>Land Use Policy</strong>, v. 166, p. 107998, 2026. Disponível em: &lt;<a href="https://www.sciencedirect.com/science/article/pii/S0264837726000827">https://www.sciencedirect.com/science/article/pii/S0264837726000827</a>&gt;.
+</div>
+<div id="ref-Embrapa2004" class="csl-entry" role="listitem">
+DRUCK, S.; CARVALHO, M. S.; CÂMARA, G.; MONTEIRO, A. MI. V. (ORGS.). <strong>Análise Espacial de Dados Geográficos</strong>. Planaltina, DF: Embrapa Cerrados, 2004.
 </div>
 <div id="ref-Rousseeuw_least_1984" class="csl-entry" role="listitem">
-Rousseeuw, Peter J. 1984. <span>“Least <span>Median</span> of <span>Squares</span> <span>Regression</span>”</span>. <em>Journal of the American Statistical Association</em> 79 (388): 871–80. <a href="http://www.jstor.org/stable/2288718">http://www.jstor.org/stable/2288718</a>.
+ROUSSEEUW, P. J. Least <span>Median</span> of <span>Squares</span> <span>Regression</span>. <strong>Journal of the American Statistical Association</strong>, v. 79, n. 388, p. 871–880, 1984. [American Statistical Association, Taylor &amp; Francis, Ltd.]. Disponível em: &lt;<a href="http://www.jstor.org/stable/2288718">http://www.jstor.org/stable/2288718</a>&gt;. Acesso em: 5/3/2026.
 </div>
 </div>
 </section>

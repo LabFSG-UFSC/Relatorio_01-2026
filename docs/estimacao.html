@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -73,7 +93,38 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="cover-style.css">
@@ -341,35 +392,35 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução"><span class="header-section-number">6.1</span> Introdução</a></li>
   <li><a href="#sec-fluxo-modelagem" id="toc-sec-fluxo-modelagem" class="nav-link" data-scroll-target="#sec-fluxo-modelagem"><span class="header-section-number">6.2</span> Fluxo de Modelagem</a></li>
   <li><a href="#limpeza-dos-dados" id="toc-limpeza-dos-dados" class="nav-link" data-scroll-target="#limpeza-dos-dados"><span class="header-section-number">6.3</span> Limpeza dos dados</a></li>
-  <li><a href="#definição-de-variáveis" id="toc-definição-de-variáveis" class="nav-link" data-scroll-target="#definição-de-variáveis"><span class="header-section-number">6.4</span> Definição de variáveis</a>
+  <li><a href="#sec-variaveis-modelagem" id="toc-sec-variaveis-modelagem" class="nav-link" data-scroll-target="#sec-variaveis-modelagem"><span class="header-section-number">6.4</span> Definição de variáveis</a>
   <ul class="collapse">
   <li><a href="#sec-classif-pc" id="toc-sec-classif-pc" class="nav-link" data-scroll-target="#sec-classif-pc"><span class="header-section-number">6.4.1</span> Classificação de imóveis construídos (padrão construtivo)</a></li>
   <li><a href="#sec-classif-geo" id="toc-sec-classif-geo" class="nav-link" data-scroll-target="#sec-classif-geo"><span class="header-section-number">6.4.2</span> Classificação espacial</a></li>
   </ul></li>
-  <li><a href="#critérios-de-validação-adotados" id="toc-critérios-de-validação-adotados" class="nav-link" data-scroll-target="#critérios-de-validação-adotados"><span class="header-section-number">6.5</span> Critérios de validação adotados</a></li>
-  <li><a href="#construção-do-modelo" id="toc-construção-do-modelo" class="nav-link" data-scroll-target="#construção-do-modelo"><span class="header-section-number">6.6</span> Construção do modelo</a>
+  <li><a href="#construção-dos-modelos" id="toc-construção-dos-modelos" class="nav-link" data-scroll-target="#construção-dos-modelos"><span class="header-section-number">6.5</span> Construção dos modelos</a>
   <ul class="collapse">
-  <li><a href="#validação" id="toc-validação" class="nav-link" data-scroll-target="#validação"><span class="header-section-number">6.6.1</span> Validação</a></li>
+  <li><a href="#sec-modelo-edificados" id="toc-sec-modelo-edificados" class="nav-link" data-scroll-target="#sec-modelo-edificados"><span class="header-section-number">6.5.1</span> Modelo de imóveis edificados</a></li>
+  <li><a href="#modelo-de-lotes" id="toc-modelo-de-lotes" class="nav-link" data-scroll-target="#modelo-de-lotes"><span class="header-section-number">6.5.2</span> Modelo de Lotes</a></li>
   </ul></li>
-  <li><a href="#atividades-desenvolvidas" id="toc-atividades-desenvolvidas" class="nav-link" data-scroll-target="#atividades-desenvolvidas"><span class="header-section-number">6.7</span> Atividades Desenvolvidas</a>
+  <li><a href="#sec-atividades-modelagem" id="toc-sec-atividades-modelagem" class="nav-link" data-scroll-target="#sec-atividades-modelagem"><span class="header-section-number">6.6</span> Atividades Desenvolvidas</a>
   <ul class="collapse">
-  <li><a href="#seleção-de-variáveis" id="toc-seleção-de-variáveis" class="nav-link" data-scroll-target="#seleção-de-variáveis"><span class="header-section-number">6.7.1</span> Seleção de variáveis</a></li>
-  <li><a href="#testes-de-modelos" id="toc-testes-de-modelos" class="nav-link" data-scroll-target="#testes-de-modelos"><span class="header-section-number">6.7.2</span> Testes de modelos</a></li>
-  <li><a href="#calibração" id="toc-calibração" class="nav-link" data-scroll-target="#calibração"><span class="header-section-number">6.7.3</span> Calibração</a></li>
+  <li><a href="#seleção-de-variáveis" id="toc-seleção-de-variáveis" class="nav-link" data-scroll-target="#seleção-de-variáveis"><span class="header-section-number">6.6.1</span> Seleção de variáveis</a></li>
+  <li><a href="#testes-de-modelos" id="toc-testes-de-modelos" class="nav-link" data-scroll-target="#testes-de-modelos"><span class="header-section-number">6.6.2</span> Testes de modelos</a></li>
+  <li><a href="#calibração" id="toc-calibração" class="nav-link" data-scroll-target="#calibração"><span class="header-section-number">6.6.3</span> Calibração</a></li>
   </ul></li>
-  <li><a href="#sec-resultados-modelagem" id="toc-sec-resultados-modelagem" class="nav-link" data-scroll-target="#sec-resultados-modelagem"><span class="header-section-number">6.8</span> Resultados</a>
+  <li><a href="#sec-resultados-modelagem" id="toc-sec-resultados-modelagem" class="nav-link" data-scroll-target="#sec-resultados-modelagem"><span class="header-section-number">6.7</span> Resultados</a>
   <ul class="collapse">
-  <li><a href="#modelo-preliminar" id="toc-modelo-preliminar" class="nav-link" data-scroll-target="#modelo-preliminar"><span class="header-section-number">6.8.1</span> Modelo preliminar</a></li>
-  <li><a href="#outputs-de-valor" id="toc-outputs-de-valor" class="nav-link" data-scroll-target="#outputs-de-valor"><span class="header-section-number">6.8.2</span> <em>Outputs</em> de valor</a></li>
+  <li><a href="#modelo-preliminar" id="toc-modelo-preliminar" class="nav-link" data-scroll-target="#modelo-preliminar"><span class="header-section-number">6.7.1</span> Modelo preliminar</a></li>
+  <li><a href="#outputs-de-valor" id="toc-outputs-de-valor" class="nav-link" data-scroll-target="#outputs-de-valor"><span class="header-section-number">6.7.2</span> <em>Outputs</em> de valor</a></li>
   </ul></li>
-  <li><a href="#sec-desafios-modelagem" id="toc-sec-desafios-modelagem" class="nav-link" data-scroll-target="#sec-desafios-modelagem"><span class="header-section-number">6.9</span> Desafios</a>
+  <li><a href="#sec-desafios-modelagem" id="toc-sec-desafios-modelagem" class="nav-link" data-scroll-target="#sec-desafios-modelagem"><span class="header-section-number">6.8</span> Desafios</a>
   <ul class="collapse">
-  <li><a href="#qualidade-das-variáveis" id="toc-qualidade-das-variáveis" class="nav-link" data-scroll-target="#qualidade-das-variáveis"><span class="header-section-number">6.9.1</span> Qualidade das variáveis</a></li>
-  <li><a href="#aderência-ao-mercado" id="toc-aderência-ao-mercado" class="nav-link" data-scroll-target="#aderência-ao-mercado"><span class="header-section-number">6.9.2</span> Aderência ao mercado</a></li>
+  <li><a href="#qualidade-das-variáveis" id="toc-qualidade-das-variáveis" class="nav-link" data-scroll-target="#qualidade-das-variáveis"><span class="header-section-number">6.8.1</span> Qualidade das variáveis</a></li>
+  <li><a href="#aderência-ao-mercado" id="toc-aderência-ao-mercado" class="nav-link" data-scroll-target="#aderência-ao-mercado"><span class="header-section-number">6.8.2</span> Aderência ao mercado</a></li>
   </ul></li>
-  <li><a href="#sec-escalabilidade" id="toc-sec-escalabilidade" class="nav-link" data-scroll-target="#sec-escalabilidade"><span class="header-section-number">6.10</span> Escalabilidade</a>
+  <li><a href="#sec-escalabilidade" id="toc-sec-escalabilidade" class="nav-link" data-scroll-target="#sec-escalabilidade"><span class="header-section-number">6.9</span> Escalabilidade</a>
   <ul class="collapse">
-  <li><a href="#replicação-em-outros-municípios" id="toc-replicação-em-outros-municípios" class="nav-link" data-scroll-target="#replicação-em-outros-municípios"><span class="header-section-number">6.10.1</span> Replicação em outros municípios</a></li>
+  <li><a href="#replicação-em-outros-municípios" id="toc-replicação-em-outros-municípios" class="nav-link" data-scroll-target="#replicação-em-outros-municípios"><span class="header-section-number">6.9.1</span> Replicação em outros municípios</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/LabFSG-UFSC/Relatorio_01-2026/edit/main/estimacao.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li></ul></div></nav>
@@ -398,7 +449,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introdução" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="introdução"><span class="header-section-number">6.1</span> Introdução</h2>
-<p>Este capítulo apresenta os resultados obtidos na Etapa de Modelagem e Planta de Valores Genéricos (PVG) para a cidade de Florianópolis/SC. Na <a href="#sec-fluxo-modelagem" class="quarto-xref"><span>Seção 6.2</span></a> encontra-se o fluxo de modelagem utilizado. Todos os passos constantes do fluxo de modelagem são descritos na sequência. Os resultados podem ser vistos na <a href="#sec-resultados-modelagem" class="quarto-xref"><span>Seção 6.8</span></a>. Nas seções <a href="#sec-desafios-modelagem" class="quarto-xref"><span>6.9</span></a> e <a href="#sec-escalabilidade" class="quarto-xref"><span>6.10</span></a> são descritos os principais desafios encontrados e considerações sobre a escalabilidade da solução adotada para o restante do projeto.</p>
+<p>Este capítulo apresenta os resultados obtidos na Etapa de Modelagem e Planta de Valores Genéricos (PVG) para a cidade de Florianópolis/SC. Na <a href="#sec-fluxo-modelagem" class="quarto-xref"><span>Seção 6.2</span></a> encontra-se o fluxo de modelagem utilizado. Todos os passos constantes do fluxo de modelagem são descritos na sequência. Os resultados podem ser vistos na <a href="#sec-resultados-modelagem" class="quarto-xref"><span>Seção 6.7</span></a>. Nas seções <a href="#sec-desafios-modelagem" class="quarto-xref"><span>6.8</span></a> e <a href="#sec-escalabilidade" class="quarto-xref"><span>6.9</span></a> são descritos os principais desafios encontrados e considerações sobre a escalabilidade da solução adotada para o restante do projeto.</p>
 </section>
 <section id="sec-fluxo-modelagem" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="sec-fluxo-modelagem"><span class="header-section-number">6.2</span> Fluxo de Modelagem</h2>
@@ -449,10 +500,48 @@ Figura&nbsp;6.1: Fluxograma da estimação do Valor de Referência.
 </section>
 <section id="limpeza-dos-dados" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="limpeza-dos-dados"><span class="header-section-number">6.3</span> Limpeza dos dados</h2>
-<p>Os dados oriundos do observatório do mercado imobiliário foram limpos com o auxílio de regressão robusta.</p>
+<p>Os dados oriundos do observatório do mercado imobiliário foram limpos com o auxílio de regressão robusta. Na regressão linear ordinária o quadrado dos resíduos, <span class="math inline">\(r_i\)</span>, são minimizados:</p>
+<p><span id="eq-OLS"><span class="math display">\[\hat\beta_{\text{OLS}} = \min r_i^2 = \arg\min\limits_{\beta} (\mathbb y - \mathbb X\beta)^2 \tag{6.1}\]</span></span></p>
+<p>Já a regressão robusta pode ser ajustada de diversas maneiras, com a aplicação de uma função, <span class="math inline">\(\rho\)</span>, dos resíduos diferentes da função quadrática, como ilustrado na <a href="#eq-RLS" class="quarto-xref">Equação&nbsp;<span>6.2</span></a>. O mais natural seria utilizar o absoluto dos resíduos, em lugar do seu quadrado. Porém, a função absoluto, <span class="math inline">\(abs(t)\)</span>, não possui propriedades desejáveis (não é uma função derivável em <span class="math inline">\(t = 0\)</span>, o que dificulta o processo de minimização). Por isso é mais comum a utilização de uma função como o <em>M-Estimador</em> de Huber <span class="citation" data-cites="Huber1964">(<a href="references.html#ref-Huber1964" role="doc-biblioref">PETER J. HUBER, 1964</a>)</span>, da <a href="#eq-HLoss" class="quarto-xref">Equação&nbsp;<span>6.3</span></a>.</p>
+<p><span id="eq-RLS"><span class="math display">\[\hat\beta_{\text{RLS}} =  \arg\min\limits_{\beta} \rho(\mathbb y - \mathbb X\beta) \tag{6.2}\]</span></span></p>
+<p>Deve-se notar que a função de Huber equivale aproximadamente a um processo de <em>Winsorização</em> os resíduos, ou seja, a partir de um determinado valor de <span class="math inline">\(k\)</span> (em geral igual a 1,5) os resíduos são alterados de forma que para <span class="math inline">\(|r_i| &gt; k\)</span> a função de minimização equivale a tomar o valor absoluto dos resíduos e para resíduos em que <span class="math inline">\(r_i \leq k\)</span> são tomados os resíduos quadráticos.</p>
+<p><span id="eq-HLoss"><span class="math display">\[
+\rho_{Huber}(t) = \begin{cases}
+\frac{1}{2} t^2 &amp; |t| \leq k\\
+k|t| - \frac{1}{2} k^2&amp; |t| &gt;k
+\end{cases}
+\tag{6.3}\]</span></span></p>
+<p>Diversas outras funções foram propostas para a <a href="#eq-RLS" class="quarto-xref">Equação&nbsp;<span>6.2</span></a>, como a função <em>biweight</em> de Tukey. No entanto, este método de estimação padece do problema de não ser robusto a <em>outliers</em> nas variáveis explicativas, porém apenas a <em>outliers</em> presentes na variável dependente (no caso, imóveis de valores muito mais altos ou mais baixos do que os que seria previstos pelos modelos).</p>
+<p>Para dar conta dos <em>outliers</em> presentes nas variáveis explicativas, <span class="citation" data-cites="Rousseeuw_least_1984">ROUSSEEUW (<a href="references.html#ref-Rousseeuw_least_1984" role="doc-biblioref">1984</a>)</span> propôs dois estimadores: o estimador <strong>LMS</strong> (<em>Least Median of Squares</em>), que minimiza <strong>a mediana</strong> dos resíduos quadráticos, e o estimador LTS (<em>Least Trimmed Squares</em>, ou Mínimos Quadrados Aparados), que minimiza o quadrado dos resíduos, porém apenas para os “bons” pontos da amostra:</p>
+<p><span id="eq-LTS"><span class="math display">\[
+\beta_{LTS} = \underset{\beta}{\arg \min} \sum_{i=1}^h (y_i - X\beta)^2_{i:n}
+\tag{6.4}\]</span></span></p>
+<p>Resumidamente, o estimador LTS da <a href="#eq-LTS" class="quarto-xref">Equação&nbsp;<span>6.4</span></a> utiliza aproximadamente apenas <span class="math inline">\(h\)</span> pontos da amostra (em geral, <span class="math inline">\(h \approx 0,5\cdot n\)</span>) para um ajuste mais estável, e calcula os resíduos de cada ponto da amostra em relação à esta reta de regressão robusta. Após o cálculo dos resíduos os pontos são classificados como “bons” (pontos cujos resíduos padronizados são menores que 2,5 em módulo) ou “ruins” (em que <span class="math inline">\(|r_i| &gt; 2,5\)</span>). Por questões computacionais, a princípio o estimador LMS foi adotado em detrimento do estimador LTS. No entanto, com o desenvolvimento da capacidade de processamento dos computadores, o método LTS tornou-se mais popular e, por isso, foi o escolhido para a limpeza de dados neste projeto.</p>
 </section>
-<section id="definição-de-variáveis" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="definição-de-variáveis"><span class="header-section-number">6.4</span> Definição de variáveis</h2>
+<section id="sec-variaveis-modelagem" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="sec-variaveis-modelagem"><span class="header-section-number">6.4</span> Definição de variáveis</h2>
+<p>Para os imóveis edificados, foram utilizadas as seguintes variáveis:</p>
+<ul>
+<li><code>dist_litoral</code>: variável numérica quantitativa que mede a distância do imóvel ao litoral, em metros;</li>
+<li><code>renda_pct_krigada</code>: variável numérica quantitativa que mede a renda per capita do censo 2022 (IBGE), krigada, em Reais;</li>
+<li><code>tipo_imovel</code>: variável qualitativa (dicotômica em grupo) que designa a tipologia do imóvel (Apartamento, Cobertura, Flat, Casa ou Casa de Condomínio);</li>
+<li><code>area</code>: variável numérica quantitativa que mede a área privativa do imóvel, em <span class="math inline">\(m^2\)</span>;</li>
+<li><code>num_banheiros</code>: variável numérica quantitativa que representa o número de banheiros do imóvel;</li>
+<li><code>num_vagas_garagem</code>: variável numérica quantitativa que representa o número de vagas de garagem do imóvel;</li>
+<li><code>num_suites</code>: variável numérica quantitativa que representa o número de suítes do imóvel;</li>
+<li><code>PC</code>: variável qualitativa (dicotômica em grupo) que designa o padrão construtivo do imóvel (Baixo, Médio ou Alto);</li>
+<li><code>Tipologia</code>: variável qualitativa (dicotômica) que divide a amostra em Apartamentos (Apartamentos, Coberturas e Flats) ou Casas (Casas e Casas de Condomínio).</li>
+</ul>
+<p>Já para os lotes, foram utilizadas:</p>
+<ul>
+<li><code>area</code>: variável numérica quantitativa que mede a área do lote, em <span class="math inline">\(m^2\)</span>;</li>
+<li><code>Dist</code>: variável numérica quantitativa que representa a média harmônica das distâncias ao centro da cidade e da distância ao litoral;</li>
+<li><code>VUM2</code>: variável numérica quantitativa que representa o valor unitário do metro quadrado construído na localidade do lote;</li>
+<li><code>renda_pct_krigada</code>: variável numérica quantitativa que mede a renda per capita do censo 2022 (IBGE), krigada, em Reais;</li>
+<li><code>ca_max</code>: variável numérica quantitativa que representa o coeficiente de aproveitamento máximo do lote;</li>
+<li><code>dens_equip_saud</code>: variável numérica quantitativa que representa a densidade de equipamentos de saúde no entorno do imóvel;</li>
+<li><code>tipo_uso</code>: variável qualitativa (dicotômica) que designa se o imóvel tem um potencial de uso residencial ou comercial.</li>
+</ul>
 <section id="sec-classif-pc" class="level3" data-number="6.4.1">
 <h3 data-number="6.4.1" class="anchored" data-anchor-id="sec-classif-pc"><span class="header-section-number">6.4.1</span> Classificação de imóveis construídos (padrão construtivo)</h3>
 <p>Para a classificação de imóveis construídos, adotou-se como variável principal o <strong>valor unitário</strong> (R$/m²), calculado pela razão entre preço anunciado e área privativa. Essa escolha foi feita por representar, de forma sintética, o posicionamento econômico do imóvel e refletir diferenças construtivas observáveis no mercado.</p>
@@ -524,51 +613,541 @@ Figura&nbsp;6.6: Clusterização espacial por tipologia com comparação entre c
 </div>
 </section>
 </section>
-<section id="critérios-de-validação-adotados" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="critérios-de-validação-adotados"><span class="header-section-number">6.5</span> Critérios de validação adotados</h2>
+<section id="construção-dos-modelos" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="construção-dos-modelos"><span class="header-section-number">6.5</span> Construção dos modelos</h2>
+<p>Nesta seção são reportados os modelos ajustados para os imóveis edificados e para os lotes urbanos da cidade de Florianópolis/SC.</p>
+<section id="sec-modelo-edificados" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="sec-modelo-edificados"><span class="header-section-number">6.5.1</span> Modelo de imóveis edificados</h3>
+<p>Uma vez realizada a limpeza e classificação dos dados segundo o padrão construtivo, foi ajustado um modelo de regressão linear múltipla sobre os dados de imóveis edificados (casas e apartamentos). De posse deste modelo, foram obtidos fatores de homogeneização a partir dos coeficientes estimados para as diversas variáveis explicativas. Então, com estes fatores assim ajustados, os dados da amostra de imóveis edificados foram homogeneizados, para fins de criação de uma superfície de valores de metro quadrado construído. As estatísticas do modelo de regressão de imóveis edificados podem ser vistas na <a href="#tbl-EdifModel" class="quarto-xref">Tabela&nbsp;<span>6.1</span></a>.</p>
+<div class="cell">
+<div id="tbl-EdifModel" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-EdifModel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.1: Modelo de imóveis edificados. Coeficientes exponenciados.
+</figcaption>
+<div aria-describedby="tbl-EdifModel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Termo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Coef.</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Erro-padrão</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Estat. t</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p-valor</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">IC_inf</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">IC_sup</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">12.555,05</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">2.311,38</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">12.489,52</td>
+<td style="text-align: right;">12.620,92</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log1p(dist_litoral/100)</td>
+<td style="text-align: right;">0,99</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">-13,21</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">0,99</td>
+<td style="text-align: right;">0,99</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">log(renda_pct_krigada/1212)</td>
+<td style="text-align: right;">1,10</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">35,59</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">1,09</td>
+<td style="text-align: right;">1,10</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tipo_imovelCobertura</td>
+<td style="text-align: right;">0,97</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">-7,73</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">0,96</td>
+<td style="text-align: right;">0,97</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tipo_imovelFlat</td>
+<td style="text-align: right;">0,98</td>
+<td style="text-align: right;">0,02</td>
+<td style="text-align: right;">-0,90</td>
+<td style="text-align: right;">0,37</td>
+<td style="text-align: right;">0,95</td>
+<td style="text-align: right;">1,01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tipo_imovelCasa</td>
+<td style="text-align: right;">0,76</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">-65,96</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">0,75</td>
+<td style="text-align: right;">0,76</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tipo_imovelCasa de Condomínio</td>
+<td style="text-align: right;">0,79</td>
+<td style="text-align: right;">0,01</td>
+<td style="text-align: right;">-41,15</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">0,78</td>
+<td style="text-align: right;">0,79</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log(area/100):TipologiaAptos</td>
+<td style="text-align: right;">0,88</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">-32,86</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">0,87</td>
+<td style="text-align: right;">0,88</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">log(area/100):TipologiaCasas</td>
+<td style="text-align: right;">0,90</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">-26,73</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">0,89</td>
+<td style="text-align: right;">0,90</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TipologiaAptos:I(num_banheiros - 2)</td>
+<td style="text-align: right;">1,01</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">3,86</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">1,01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TipologiaCasas:I(num_banheiros - 2)</td>
+<td style="text-align: right;">1,01</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">4,03</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">1,01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TipologiaAptos:I(num_vagas_garagem - 2)</td>
+<td style="text-align: right;">1,05</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">24,70</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">1,05</td>
+<td style="text-align: right;">1,06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TipologiaCasas:I(num_vagas_garagem - 2)</td>
+<td style="text-align: right;">1,01</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">11,23</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">1,01</td>
+<td style="text-align: right;">1,01</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TipologiaAptos:I(num_suites - 1)</td>
+<td style="text-align: right;">1,05</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">26,68</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">1,05</td>
+<td style="text-align: right;">1,05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TipologiaCasas:I(num_suites - 1)</td>
+<td style="text-align: right;">1,04</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">22,50</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">1,04</td>
+<td style="text-align: right;">1,04</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TipologiaAptos:PCAlto</td>
+<td style="text-align: right;">1,55</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">143,46</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">1,54</td>
+<td style="text-align: right;">1,55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TipologiaCasas:PCAlto</td>
+<td style="text-align: right;">1,54</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">95,65</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">1,53</td>
+<td style="text-align: right;">1,55</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TipologiaAptos:PCBaixo</td>
+<td style="text-align: right;">0,64</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">-146,19</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">0,64</td>
+<td style="text-align: right;">0,65</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TipologiaCasas:PCBaixo</td>
+<td style="text-align: right;">0,62</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">-125,52</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">0,62</td>
+<td style="text-align: right;">0,62</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup>a</sup> Erro-padrão dos resíduos: 0,17 em 32128 graus de liberdade</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0;"><sup>b</sup> R2: 0,86</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup>c</sup> R2aj: 0,86</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tfoot>
+
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Como é possível notar na <a href="#tbl-EdifModel" class="quarto-xref">Tabela&nbsp;<span>6.1</span></a>, foram utilizadas como variáveis explicativas do logarítmo natural dos preços unitários as variáveis citadas na <a href="#sec-variaveis-modelagem" class="quarto-xref"><span>Seção 6.4</span></a>. É possível notar na <a href="#tbl-EdifModel" class="quarto-xref">Tabela&nbsp;<span>6.1</span></a>, ainda, que as variáveis explicativas <code>area</code>, <code>num_banheiros</code>, <code>num_vagas_garagem</code>, <code>num_suites</code> e <code>PC</code> foram consideradas com efeitos diferentes segundo a <code>Tipologia</code>.</p>
+<p>Este modelo foi utilizado para a geração de uma superfície de valores (ver <a href="#sec-resultados-modelagem" class="quarto-xref"><span>Seção 6.7</span></a>).</p>
 </section>
-<section id="construção-do-modelo" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="construção-do-modelo"><span class="header-section-number">6.6</span> Construção do modelo</h2>
-<section id="validação" class="level3" data-number="6.6.1">
-<h3 data-number="6.6.1" class="anchored" data-anchor-id="validação"><span class="header-section-number">6.6.1</span> Validação</h3>
+<section id="modelo-de-lotes" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="modelo-de-lotes"><span class="header-section-number">6.5.2</span> Modelo de Lotes</h3>
+<p>Com a variável <code>VUM2</code> criada a partir do modelo de lotes edificados, foi ajustado um modelo linear generalizado, com família gamma e função de ligação <code>log</code>. As estatísticas desse modelo podem ser vistas na <a href="#tbl-LotesGLM" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a>.</p>
+<div class="cell">
+<div id="tbl-LotesGLM" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-LotesGLM-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.2: Modelo linear generalizado de lotes urbanos. Coeficientes exponenciados.
+</figcaption>
+<div aria-describedby="tbl-LotesGLM-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Termo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Est.</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Erro-padrão</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Est. t</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p-valor</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">IC_inf</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">IC_sup</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">2.449,01</td>
+<td style="text-align: right;">0,05</td>
+<td style="text-align: right;">169,54</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2.307,02</td>
+<td style="text-align: right;">2.600,87</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log(area/450)</td>
+<td style="text-align: right;">0,70</td>
+<td style="text-align: right;">0,01</td>
+<td style="text-align: right;">-49,63</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0,69</td>
+<td style="text-align: right;">0,71</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">log1p(Dist)</td>
+<td style="text-align: right;">0,99</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">-3,93</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0,98</td>
+<td style="text-align: right;">0,99</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log(VUM2/10000)</td>
+<td style="text-align: right;">2,56</td>
+<td style="text-align: right;">0,05</td>
+<td style="text-align: right;">18,97</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2,40</td>
+<td style="text-align: right;">2,73</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">log(renda_pct_krigada/1212)</td>
+<td style="text-align: right;">1,43</td>
+<td style="text-align: right;">0,03</td>
+<td style="text-align: right;">14,25</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,38</td>
+<td style="text-align: right;">1,48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I(ca_max - 1)</td>
+<td style="text-align: right;">1,09</td>
+<td style="text-align: right;">0,01</td>
+<td style="text-align: right;">14,88</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,08</td>
+<td style="text-align: right;">1,10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">log1p(dens_equip_saud)</td>
+<td style="text-align: right;">1,07</td>
+<td style="text-align: right;">0,01</td>
+<td style="text-align: right;">9,25</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,06</td>
+<td style="text-align: right;">1,08</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tipo_usoResidencial</td>
+<td style="text-align: right;">0,73</td>
+<td style="text-align: right;">0,04</td>
+<td style="text-align: right;">-8,66</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0,70</td>
+<td style="text-align: right;">0,77</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup>a</sup> Erro-padrão dos resíduos: 0,50 em 3820 graus de liberdade</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tfoot>
+
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>No modelo da <a href="#tbl-LotesGLM" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a>, para a explicação dos valores unitários dos lotes foram utilizadas como variáveis explicativas <code>area</code>, <code>Dist</code>, <code>VUM2</code>, <code>renda_pct_krigada</code>, <code>ca_max</code>, <code>dens_equip_saud</code> e <code>tipo_uso</code>, descritas na <a href="#sec-variaveis-modelagem" class="quarto-xref"><span>Seção 6.4</span></a>.</p>
+<p>Os resíduos do modelo da <a href="#tbl-LotesGLM" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a> foram krigados, conforme procedimento descrito na <a href="#sec-atividades-modelagem" class="quarto-xref"><span>Seção 6.6</span></a>. Por fim, estes resíduos krigados foram utilizados como uma variável explicativa de localização (<code>layer</code>) para o ajuste do modelo final de lotes, da <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a>:</p>
+<div class="cell">
+<div id="tbl-LotesModel" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-LotesModel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.3: Modelo de lotes urbanos. Coeficientes exponenciados.
+</figcaption>
+<div aria-describedby="tbl-LotesModel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Termo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Est.</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Erro-padrão</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Est. t</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p-valor</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">IC_inf</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">IC_sup</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">1.784,45</td>
+<td style="text-align: right;">0,03</td>
+<td style="text-align: right;">256,23</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.718,85</td>
+<td style="text-align: right;">1.852,55</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log(area/450)</td>
+<td style="text-align: right;">0,68</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">-76,61</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0,68</td>
+<td style="text-align: right;">0,69</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">log(VUM2/10000)</td>
+<td style="text-align: right;">2,96</td>
+<td style="text-align: right;">0,03</td>
+<td style="text-align: right;">32,09</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2,83</td>
+<td style="text-align: right;">3,09</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log(renda_pct_krigada/1212)</td>
+<td style="text-align: right;">1,42</td>
+<td style="text-align: right;">0,02</td>
+<td style="text-align: right;">20,44</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,39</td>
+<td style="text-align: right;">1,45</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I(ca_max - 1)</td>
+<td style="text-align: right;">1,08</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">20,45</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,08</td>
+<td style="text-align: right;">1,09</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log1p(dens_equip_saud)</td>
+<td style="text-align: right;">1,07</td>
+<td style="text-align: right;">0,01</td>
+<td style="text-align: right;">13,21</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,06</td>
+<td style="text-align: right;">1,08</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tipo_usoResidencial</td>
+<td style="text-align: right;">0,83</td>
+<td style="text-align: right;">0,02</td>
+<td style="text-align: right;">-7,33</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0,81</td>
+<td style="text-align: right;">0,86</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">layer</td>
+<td style="text-align: right;">2,72</td>
+<td style="text-align: right;">0,02</td>
+<td style="text-align: right;">59,38</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2,66</td>
+<td style="text-align: right;">2,78</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup>a</sup> Erro-padrão dos resíduos: 0,34 em 3796 graus de liberdade</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0;"><sup>b</sup> R2: 0,82</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup>c</sup> R2aj: 0,82</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tfoot>
+
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Como é possível notar na <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a>, o modelo final tem poder de explicar em torno de 82% dos preços unitários de mercado, um resultado que pode ser considerado notável, se consideramos a falta de diversas variáveis acerca das características físicas dos lotes (frente, forma, pedologia e outras).</p>
+<p>Este modelo, portanto, pode ser considerado viável para a predição de valores unitários de terrenos visando a aplicação do método evolutivo para toda a cidade.</p>
 </section>
 </section>
-<section id="atividades-desenvolvidas" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="atividades-desenvolvidas"><span class="header-section-number">6.7</span> Atividades Desenvolvidas</h2>
-<section id="seleção-de-variáveis" class="level3" data-number="6.7.1">
-<h3 data-number="6.7.1" class="anchored" data-anchor-id="seleção-de-variáveis"><span class="header-section-number">6.7.1</span> Seleção de variáveis</h3>
+<section id="sec-atividades-modelagem" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="sec-atividades-modelagem"><span class="header-section-number">6.6</span> Atividades Desenvolvidas</h2>
+<section id="seleção-de-variáveis" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="seleção-de-variáveis"><span class="header-section-number">6.6.1</span> Seleção de variáveis</h3>
 </section>
-<section id="testes-de-modelos" class="level3" data-number="6.7.2">
-<h3 data-number="6.7.2" class="anchored" data-anchor-id="testes-de-modelos"><span class="header-section-number">6.7.2</span> Testes de modelos</h3>
+<section id="testes-de-modelos" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="testes-de-modelos"><span class="header-section-number">6.6.2</span> Testes de modelos</h3>
+<p>O modelo utilizado para a confecção da supercíes de valores de metro quadrado construído é um modelo preditivo que, por este motivo, não demanda uma verificação pormenorizada das hipóteses da inferência clássica.</p>
+<p>Para o modelo de lotes, contudo, seria desejável que as hipóteses da inferência clássica (linearidade, normalidade e homoscedasticidade) fossem todas verificadas. No entanto, nem sempre é fácil conseguir um modelo com estas características. A não-verificação das hipóteses da inferência clássica, contudo, não invalidam a propriedade de consistência do estimador de mínimos quadrados <span class="citation" data-cites="Matloff2017">(<a href="references.html#ref-Matloff2017" role="doc-biblioref">MATLOFF, 2017, p. 81</a>)</span>. Ou seja, quando o tamanho da amostra <span class="math inline">\(n\)</span> tende a infinito, o valor estimado, <span class="math inline">\(\hat\beta\)</span>, tende a <span class="math inline">\(\beta\)</span>, independentemente de verificação das hipóteses de homoscedasticidade e normalidade.</p>
 </section>
-<section id="calibração" class="level3" data-number="6.7.3">
-<h3 data-number="6.7.3" class="anchored" data-anchor-id="calibração"><span class="header-section-number">6.7.3</span> Calibração</h3>
-</section>
-</section>
-<section id="sec-resultados-modelagem" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="sec-resultados-modelagem"><span class="header-section-number">6.8</span> Resultados</h2>
-<section id="modelo-preliminar" class="level3" data-number="6.8.1">
-<h3 data-number="6.8.1" class="anchored" data-anchor-id="modelo-preliminar"><span class="header-section-number">6.8.1</span> Modelo preliminar</h3>
-</section>
-<section id="outputs-de-valor" class="level3" data-number="6.8.2">
-<h3 data-number="6.8.2" class="anchored" data-anchor-id="outputs-de-valor"><span class="header-section-number">6.8.2</span> <em>Outputs</em> de valor</h3>
+<section id="calibração" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="calibração"><span class="header-section-number">6.6.3</span> Calibração</h3>
 </section>
 </section>
-<section id="sec-desafios-modelagem" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="sec-desafios-modelagem"><span class="header-section-number">6.9</span> Desafios</h2>
-<section id="qualidade-das-variáveis" class="level3" data-number="6.9.1">
-<h3 data-number="6.9.1" class="anchored" data-anchor-id="qualidade-das-variáveis"><span class="header-section-number">6.9.1</span> Qualidade das variáveis</h3>
+<section id="sec-resultados-modelagem" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="sec-resultados-modelagem"><span class="header-section-number">6.7</span> Resultados</h2>
+<section id="modelo-preliminar" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="modelo-preliminar"><span class="header-section-number">6.7.1</span> Modelo preliminar</h3>
 </section>
-<section id="aderência-ao-mercado" class="level3" data-number="6.9.2">
-<h3 data-number="6.9.2" class="anchored" data-anchor-id="aderência-ao-mercado"><span class="header-section-number">6.9.2</span> Aderência ao mercado</h3>
+<section id="outputs-de-valor" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="outputs-de-valor"><span class="header-section-number">6.7.2</span> <em>Outputs</em> de valor</h3>
 </section>
 </section>
-<section id="sec-escalabilidade" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="sec-escalabilidade"><span class="header-section-number">6.10</span> Escalabilidade</h2>
-<section id="replicação-em-outros-municípios" class="level3" data-number="6.10.1">
-<h3 data-number="6.10.1" class="anchored" data-anchor-id="replicação-em-outros-municípios"><span class="header-section-number">6.10.1</span> Replicação em outros municípios</h3>
+<section id="sec-desafios-modelagem" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="sec-desafios-modelagem"><span class="header-section-number">6.8</span> Desafios</h2>
+<section id="qualidade-das-variáveis" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="qualidade-das-variáveis"><span class="header-section-number">6.8.1</span> Qualidade das variáveis</h3>
+</section>
+<section id="aderência-ao-mercado" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="aderência-ao-mercado"><span class="header-section-number">6.8.2</span> Aderência ao mercado</h3>
+</section>
+</section>
+<section id="sec-escalabilidade" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="sec-escalabilidade"><span class="header-section-number">6.9</span> Escalabilidade</h2>
+<section id="replicação-em-outros-municípios" class="level3" data-number="6.9.1">
+<h3 data-number="6.9.1" class="anchored" data-anchor-id="replicação-em-outros-municípios"><span class="header-section-number">6.9.1</span> Replicação em outros municípios</h3>
 
 
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Matloff2017" class="csl-entry" role="listitem">
+MATLOFF, N. <strong>Statistical <span>Regression</span> and <span>Classification</span>: <span>From Linear Models</span> to <span>Machine Learning</span></strong>. Boca Raton, FL, 2017.
+</div>
+<div id="ref-Huber1964" class="csl-entry" role="listitem">
+PETER J. HUBER. Robust <span>Estimation</span> of a <span>Location Parameter</span>. <strong>The Annals of Mathematical Statistics</strong>, v. 35, n. 1, p. 73–101, 1964. Disponível em: &lt;<a href="https://doi.org/10.1214/aoms/1177703732">https://doi.org/10.1214/aoms/1177703732</a>&gt;.
+</div>
+<div id="ref-Rousseeuw_least_1984" class="csl-entry" role="listitem">
+ROUSSEEUW, P. J. Least <span>Median</span> of <span>Squares</span> <span>Regression</span>. <strong>Journal of the American Statistical Association</strong>, v. 79, n. 388, p. 871–880, 1984. [American Statistical Association, Taylor &amp; Francis, Ltd.]. Disponível em: &lt;<a href="http://www.jstor.org/stable/2288718">http://www.jstor.org/stable/2288718</a>&gt;. Acesso em: 5/3/2026.
+</div>
+</div>
 </section>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
