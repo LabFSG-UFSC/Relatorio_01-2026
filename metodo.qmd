@@ -21,17 +21,10 @@ Neste trabalho procurou-se combinar as diferentes abordagens para uma melhor
 estimação dos valores de mercado. Como será visto ao longo deste capítulo, os
 algoritmos de *Machine Learning*, a geoestatística e os modelos lineares foram
 combinados de maneira que possibilitou a estimação de valores de mercado de
-maneira suficientemente precisa, mantendo o poder de explicação da formação
-destes valores.
+maneira suficientemente precisa, sem abrir mão do poder de explicação da 
+formação de valores.
 
 ### Metodologia
-
-Como descrito nos Capítulos [-@sec-obs] e [-@sec-carto], para a estimação foram
-coletados dados de anúncios de imóveis edificados e não-edificados, que foram
-fortalecidos com variáveis cartográficas para adicionar poder de explicação aos
-valores de mercado. Procurou-se, durante o processo de estimação, extrair o
-máximo de informação de todo o conjunto de dados, que envolvem anúncios tanto de
-venda quanto de aluguéis de lotes, casas, apartamentos e outros.
 
 O método adotado para a estimação de valores de mercado neste trabalho é o
 método evolutivo, método consagrado que estima o valor de mercado de um imóvel
@@ -50,6 +43,14 @@ imóvel e;
 entre o valor real de mercado do imóvel e a diferença entre a soma dos seus 
 componentes.
 
+Como descrito nos Capítulos -@sec-obs e -@sec-carto, para a estimação foram
+coletados dados de anúncios de imóveis edificados e não-edificados, que foram
+fortalecidos com variáveis cartográficas para adicionar poder de explicação aos
+valores de mercado. Procurou-se, durante o processo de estimação, extrair o
+máximo de informação de todo o conjunto de dados, que envolvem anúncios não 
+apenas de lotes, mas também de casas, apartamentos e outros tipos de imóveis, 
+tanto para a venda quanto para locação.
+
 Os valores de benfeitorias podem ser calculados através dos custos de construção
 divulgados pelos SINDUSCON locais. Os valores dos terrenos, por outro lado,
 devem ser estimados via modelos lineares, geoestatística ou algoritmos
@@ -65,7 +66,68 @@ que este seja inferido através de dados de mercado de imóveis edificados.
 version <- paste(R.Version()$major, '.', R.Version()$minor, sep='')
 ```
 
-A análise explotarória de dados foi feita com auxílio do R, versão `{r} I(version)`.
+A análise explotarória de dados foi feita com auxílio do R, versão 
+`{r} I(version)`.
+
+```{r}
+dadosVenda <- readr::read_rds("../POC-FLN/data/dadosVenda.rds")
+```
+
+```{r}
+library(dplyr)
+library(sf)
+VendaLotes <- 
+  dadosVenda |>
+  filter(tipo_imovel == "Lote/Terreno") |>
+  mutate(tipo_imovel = droplevels(tipo_imovel))
+```
+
+```{r}
+# Praça XV: -27.597500, -48.549789
+Centro <- st_sfc(st_point(c(741839.754, 6944978.630)), crs = 31982)
+```
+
+```{r}
+# Calculate distances
+VendaLotes$dist_centro <- st_distance(VendaLotes, Centro, which = "Euclidean")
+VendaLotes$dist_centro <- units::drop_units(VendaLotes$dist_centro)
+```
+
+```{r}
+dados_setores <- 
+  st_read("../POC-FLN/data/4205407_Florianopolis_r006_2026-03-23.gpkg", 
+          layer = "variavel_geografica_setor_censitario") |>
+  st_transform(crs = 31982)
+```
+
+
+```{r}
+# Perform spatial join (left join is default, preserves all points)
+VendaLotes <- st_join(VendaLotes, 
+                      subset(dados_setores, select = -c(id, dist_centro)),
+                 join = st_intersects)
+```
+
+```{r}
+#| label: fig-EDALotes
+#| fig-cap: "Análise Exploratória para os dados de Lotes"
+library(ggplot2)
+library(patchwork)
+p1 <- ggplot(VendaLotes, aes(x = PU)) +
+  geom_histogram()
+p2 <- ggplot(VendaLotes, aes(x = area)) +
+  geom_histogram()
+p3 <- ggplot(VendaLotes, aes(x = dist_litoral)) +
+  geom_histogram()
+p4 <- ggplot(VendaLotes, aes(x = dist_centro)) +
+  geom_histogram()
+(p1 + p2) / (p3 + p4)
+```
+
+Na @fig-EDALotes é possível perceber a presença de forte assimetria nos dados
+oriundos do observatório do mercado imobiliário (variáveis `PU`e `area`), 
+causada pela presença de *outliers* na amostra.
+
 
 #### Limpeza dos dados
 
@@ -81,14 +143,34 @@ a @eq-RendaPerCapita:
 
 $$R_{\text{per capita}} = \frac{R_{\text{chefe dom.}}}{N}$$ {#eq-RendaPerCapita}
 
-#### Ajuste do modelo de casas e apartamentos
+Em que:
+
+- $R_{\text{chefe dom.}}$ é a renda do chefe do domicílio divulgada pelo censo 
+2022 (IBGE);
+- $N$ é o número de pessoas por domicílio, também divulgada pelo IBGE.
+
+Na @fig-rendakrigada pode ser visualizado o resultado da krigagem da variável
+$R_{\text{per capita}}$ para o município de Florianópolis.
+
+```{r}
+#| label: fig-rendakrigada
+#| fig-cap: "Renda per capita krigada para o município de Florianópolis."
+library(terra)
+Raster <- rast("../POC-FLN/KO/4205407_Florianopolis_v002.tif")
+plot(Raster)
+```
+
+
+#### Ajuste do modelo de imóveis edificados
 
 Após a limpeza dos dados, foi executado o processo de classificação dos dados
 segundo o padrão construtivo. Os dados foram agrupados em três padrões
-construtivos, a saber, padrão baixo, normal e alto.
+construtivos, a saber, padrão baixo, normal e alto, conforme descrito na 
+@sec-classif-pc.
 
 Então, foi ajustado um modelo de regressão linear múltipla para descrever o
-comportamento do mercado imobiliário de casas e apartamentos em Florianópolis.
+comportamento do mercado imobiliário de casas e apartamentos em Florianópolis
+[ver @sec-modelo-edificados].
 
 #### Geração da superfície de VU de m2 construído {#sec-VUM2}
 
@@ -105,6 +187,38 @@ homogeneização.
 Após o procedimento de homoegeneização, foi gerada uma superfície de valores de
 metro quadrado construído com os dados homogeneizados através do algoritmo IDW
 (*inverse distance weighting*).
+
+::: {#nte-idw .callout-note}
+## Inverse Distance Weighting
+
+Segundo @Embrapa2004 [p. 83], "uma alternativa simples para gerar uma
+superfície bidimensional" consiste em ajustar uma função bidimensional sobre as
+amostras, prevendo valores em uma grade ($\hat z_i$), com a seguinte formulação:
+
+$$
+\hat z_i = \frac{\sum_{j = 1}^n w_{ij}z_j}{\sum_{j=1}^n w_{ij}}
+$$ {#eq-IDW}
+
+Em que:
+
+- $z_j$ é o valor da cota (VU) de uma amostra vizinha do ponto $i$ da grade;
+- $w_{ij}$ é um fator de ponderação.
+
+Com base neste esquema básico supra-mencionado, é possível gerar vários
+interpoladores (vizinho mais próximo, média simples ou média ponderada). A 
+ponderação mais usada consiste em adotar pesos que variam com o inverso de uma 
+potência $k$ da distância euclidiana do ponto da amostra ao ponto da grade em 
+que se deseja prever valores ($d_{ij}$), assim:
+
+$$
+w_{ij} = \frac{1}{d_{ij}^k}
+$$ {#eq-IDW2}
+
+Em que:
+  - $d_{ij} = \sqrt{(x_i-x_j)^2 + (y_i - y_j)^2}$
+
+:::
+
 
 ::: {#nte-fatores .callout-note}
 ## Derivação Racional de Fatores
