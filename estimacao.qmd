@@ -1,5 +1,44 @@
 # ETAPA 3: Modelagem e Planta de Valores Genéricos (PVG) {#sec-est}
 
+```{r, include = FALSE}
+library(ggplot2)
+set_theme(theme_minimal())
+library(RColorBrewer)
+library(tmap)
+col = rev(brewer.pal(n=5, "Spectral"))
+# col <- brewer.pal(n = 9, "OrRd")
+
+brf <- function(x, decimal.mark = ",", big.mark = ".", digits = 2,
+                     nsmall = 2, scientific = FALSE, ...) {
+  format(x, decimal.mark = decimal.mark, big.mark = big.mark, digits = digits,
+         nsmall = nsmall, scientific = scientific, ...)
+}
+R2 <- function(model) {
+  y <- model$fitted.values + model$residuals
+  res <- model$residuals
+  w <- model$weights
+
+  if (is.null(w)) {
+    TSS <- sum((y - mean(y))^2)
+    RSS <- sum(res^2)
+  } else {
+    TSS <- sum(w*(y-weighted.mean(y,w))^2)
+    RSS <- sum(w*(res)^2)
+  }
+
+  R2 <- 1 - RSS/TSS
+  return(R2)
+}
+adjR2 <- function(model) {
+  R2 <- R2(model)
+  n <- nobs(model)
+  gl <- df.residual(model)
+
+  R2adj <- 1-(1-R2)*(n-1)/gl
+  return(R2adj)
+}
+```
+
 ## Introdução
 
 Este capítulo apresenta os resultados obtidos na Etapa de Modelagem e Planta de
@@ -38,6 +77,7 @@ eventual necessidade em outros municípios.
 %%| fig-width: 4
 %%| label: fig-fluxo-modelagem
 %%| fig-cap: "Fluxograma da estimação do Valor de Referência."
+%%| eval: false
 flowchart TB
     A("RECEBIMENTO DOS DADOS DAS ETAPAS 1 E 2") --> B("LIMPEZA DOS DADOS COM REGRESSÃO ROBUSTA")
     B --> C(["CLASSIFICAÇÃO DE IMÓVEIS CONSTRUÍDOS (PADRÃO CONSTRUTIVO)"])
@@ -63,6 +103,11 @@ flowchart TB
     style H stroke:#2962FF, fill:#FFD600,color:#FFFFFF
     style J stroke:#2962FF, fill:#FFD600,color:#FFFFFF
     style M stroke:#2962FF, fill:#FFD600,color:#FFFFFF
+```
+
+```{r}
+#| eval: true
+knitr::include_graphics("./img/fluxo-modelagem.png")
 ```
 
 
@@ -264,18 +309,24 @@ estatísticas do modelo de regressão de imóveis edificados podem ser vistas na
 #| echo: false
 library(broom)
 library(kableExtra)
-library(appraiseR)
 load("../POC-FLN/model/Edif_OLS.rda")
-FinalFit |>
-  tidy(conf.int = TRUE, conf.level = .80, exponentiate = TRUE) |>
+tab <- FinalFit |>
+  tidy(conf.int = TRUE, conf.level = .80, exponentiate = TRUE)
+
+tab[which(tab$term == "(Intercept)"), "term"] <- "Intercepto"
+
+tab |>
   kable(digits = 2, format.args = list(decimal.mark = ",", big.mark = "."),
         col.names = c("Termo", "Coef.", "Erro-padrão", "Estat. t", "p-valor", 
-                      "IC_inf", "IC_sup")) |>
+                      "IC_inf", "IC_sup"),
+        booktabs = TRUE) |>
+ # kable_styling() |>
   footnote(alphabet = c(
     paste("Erro-padrão dos resíduos: ", brf(sigma(FinalFit)), "em ", 
           df.residual(FinalFit), "graus de liberdade"),
     paste("R2: ", brf(R2(FinalFit))),
-    paste("R2aj: ", brf(adjR2(FinalFit)))
+    paste("R2aj: ", brf(adjR2(FinalFit))),
+    paste("AIC: ", brf(AIC(FinalFit)))
   ))
 ```
 
@@ -301,16 +352,25 @@ ajustado um modelo linear generalizado, com família gamma e função de ligaç�
 #| echo: false
 library(broom)
 library(kableExtra)
+library(DescTools)
 load("../POC-FLN/model/Lotes_GLM.rda")
-GammaR2 |>
-  tidy(conf.int = TRUE, conf.level = .80, exponentiate = TRUE) |>
+tab <- GammaR2 |>
+  tidy(conf.int = TRUE, conf.level = .80, exponentiate = TRUE)
+
+tab[which(tab$term == "(Intercept)"), "term"] <- "Intercepto"
+
+tab |>
   kable(digits = 2, format.args = list(decimal.mark = ",", big.mark = "."),
         col.names = c("Termo", "Est.", "Erro-padrão", "Est. t", "p-valor", 
                       "IC_inf", "IC_sup")) |>
   footnote(alphabet = c(
     paste("Erro-padrão dos resíduos: ", brf(sigma(GammaR2)), "em ", 
-          df.residual(GammaR2), "graus de liberdade")
-  ))
+          df.residual(GammaR2), "graus de liberdade"),
+    paste("Pseudo-R2 (NagelKerke):", 
+          brf(PseudoR2(GammaR2, which = "Nagelkerk"))),
+    paste("AIC:", brf(AIC(GammaR2)))
+            )
+  )
 ```
 
 
@@ -329,8 +389,12 @@ do modelo final de lotes, da @tbl-LotesModel:
 #| tbl-cap: "Modelo de lotes urbanos. Coeficientes exponenciados."
 #| echo: false
 load("../POC-FLN/model/LotesFinalFit.rda")
-FinalFit |>
-  tidy(conf.int = T, conf.level = .80, exponentiate = T) |>
+tab <- FinalFit |>
+  tidy(conf.int = T, conf.level = .80, exponentiate = T) 
+
+tab[which(tab$term == "(Intercept)"), "term"] <- "Intercepto"
+
+tab |>
   kable(digits = 2, format.args = list(decimal.mark = ",", big.mark = "."),
         col.names = c("Termo", "Est.", "Erro-padrão", "Est. t", "p-valor", 
                       "IC_inf", "IC_sup"))  |>
@@ -339,7 +403,8 @@ FinalFit |>
           df.residual(FinalFit), "graus de liberdade"),
     paste("R2: ", brf(R2(FinalFit))),
     paste("R2aj: ", brf(adjR2(FinalFit)))
-  ))
+        )
+  )
 ```
 
 Como é possível notar na @tbl-LotesModel, o modelo final tem poder de 
@@ -354,6 +419,14 @@ cidade.
 ## Atividades Desenvolvidas {#sec-atividades-modelagem}
 
 ### Seleção de variáveis
+
+A seleção das variáveis envolvidas nas análises não foi feita de forma 
+automática, mas através da inclusão e exclusão manual de variáveis, testando
+com cada combinação os modelos, até que um modelo ótimo fosse obtido, apenas
+com aquelas variáveis consideradas importantes, evitando assim o fenômeno do
+*overfitting*.
+
+Os algoritmos de seleção de variáveis 
 
 ### Testes de modelos
 
@@ -371,12 +444,36 @@ infinito, o valor estimado, $\hat\beta$, tende a $\beta$, independentemente de
 verificação das hipóteses de homoscedasticidade e normalidade.
 
 
-
-
-
-### Calibração
-
 ## Resultados {#sec-resultados-modelagem}
+
+### Superfície de valores de metro quadrado construído
+
+```{r}
+#| label: fig-superficieVU
+#| fig-cap: "Mapa de Valores de metro quadrado construído (R$/m2)."
+library(terra)
+library(tidyterra)
+Raster <- rast("../POC-FLN/IDW/4205407_Florianopolis_v001.tif")
+# plot(Raster, col = terrain.colors(100))
+# ggplot() +
+#   geom_spatraster(data = Raster) +
+#   scale_color_viridis_b()
+
+mapa_ko <-
+  tm_basemap(c(Satelite = "Esri.WorldImagery")) +
+  tm_shape(Raster) +
+  tm_raster(palette = col, title = "Superfície de Valores Unitários") +
+  tm_layout("Amostra de Imóveis Edificados",
+            legend.outside=TRUE,
+            attr.color = "orange",
+            inner.margins = c(0.1,0.1,0.1,0.1) # bottom, left, top, right
+  ) +
+  tm_compass() +
+  tm_scalebar() +
+  tm_check_fix() 
+mapa_ko
+```
+
 
 ### Modelo preliminar
 

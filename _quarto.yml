@@ -72,8 +72,15 @@ format:
       - bottom=35mm
       - right=20mm
       - left=30mm
+    fig-format: png
+    fig-dpi: 300  # Recommended to maintain quality
+    extract-media: img
     include-in-header:
       text: |
+        \usepackage{longtable}
+        \usepackage{booktabs}
+        \usepackage{array}
+        \usepackage{multirow}
         % Capa:
         \usepackage{tikz}
         \usepackage{everypage}
