@@ -69,9 +69,100 @@ flowchart TB
 ## Limpeza dos dados
 
 Os dados oriundos do observatório do mercado imobiliário foram limpos com o 
-auxílio de regressão robusta.
+auxílio de regressão robusta. Na regressão linear ordinária o quadrado dos 
+resíduos, $r_i$, são minimizados:
 
-## Definição de variáveis
+$$\hat\beta_{\text{OLS}} = \min r_i^2 = \arg\min\limits_{\beta} (\mathbb y - \mathbb X\beta)^2$$ {#eq-OLS}
+
+Já a regressão robusta pode ser ajustada de diversas maneiras, com a aplicação
+de uma função, $\rho$, dos resíduos diferentes da função quadrática, como
+ilustrado na @eq-RLS. O mais natural seria utilizar o absoluto dos resíduos, em 
+lugar do seu quadrado. Porém, a função absoluto, $abs(t)$, não possui 
+propriedades desejáveis (não é uma função derivável em $t = 0$, o que dificulta
+o processo de minimização). Por isso é mais comum a utilização de uma
+função como o *M-Estimador* de Huber [@Huber1964], da @eq-HLoss.
+
+$$\hat\beta_{\text{RLS}} =  \arg\min\limits_{\beta} \rho(\mathbb y - \mathbb X\beta)$$ {#eq-RLS}
+
+Deve-se notar que a função de Huber equivale aproximadamente a um processo de
+*Winsorização* os resíduos, ou seja, a partir de um determinado valor de $k$ (em
+geral igual a 1,5) os resíduos são alterados de forma que para $|r_i| > k$ a 
+função de minimização equivale a tomar o valor absoluto dos resíduos e para
+resíduos em que $r_i \leq k$ são tomados os resíduos quadráticos.
+
+$$
+\rho_{Huber}(t) = \begin{cases}
+\frac{1}{2} t^2 & |t| \leq k\\
+k|t| - \frac{1}{2} k^2& |t| >k
+\end{cases}
+$$ {#eq-HLoss}
+
+Diversas outras funções foram propostas para a @eq-RLS, como a função *biweight* 
+de Tukey. No entanto, este método de estimação padece do problema de não ser
+robusto a *outliers* nas variáveis explicativas, porém apenas a *outliers*
+presentes na variável dependente (no caso, imóveis de valores muito mais altos
+ou mais baixos do que os que seria previstos pelos modelos). 
+
+Para dar conta dos *outliers* presentes nas variáveis explicativas, 
+@Rousseeuw_least_1984 propôs dois estimadores: o estimador **LMS** (*Least
+Median of Squares*), que minimiza **a mediana** dos resíduos quadráticos, e o
+estimador LTS (*Least Trimmed Squares*, ou Mínimos Quadrados Aparados), que 
+minimiza o quadrado dos resíduos, porém apenas para os "bons" pontos da amostra:
+
+$$
+\beta_{LTS} = \underset{\beta}{\arg \min} \sum_{i=1}^h (y_i - X\beta)^2_{i:n}
+$$ {#eq-LTS}
+
+Resumidamente, o estimador LTS da @eq-LTS utiliza aproximadamente apenas $h$
+pontos da amostra (em geral, $h \approx 0,5\cdot n$) para um ajuste mais
+estável, e calcula os resíduos de cada ponto da amostra em relação à esta reta
+de regressão robusta. Após o cálculo dos resíduos os pontos são classificados
+como "bons" (pontos cujos resíduos padronizados são menores que 2,5 em módulo)
+ou "ruins" (em que $|r_i| > 2,5$). Por questões computacionais, a princípio o
+estimador LMS foi adotado em detrimento do estimador LTS. No entanto, com o
+desenvolvimento da capacidade de processamento dos computadores, o método LTS
+tornou-se mais popular e, por isso, foi o escolhido para a limpeza de dados
+neste projeto.
+
+## Definição de variáveis {#sec-variaveis-modelagem}
+
+Para os imóveis edificados, foram utilizadas as seguintes variáveis:
+
+- `dist_litoral`: variável numérica quantitativa que mede a distância do imóvel 
+ao litoral, em metros;
+- `renda_pct_krigada`: variável numérica quantitativa que mede a renda per 
+capita do censo 2022 (IBGE), krigada, em Reais;
+- `tipo_imovel`: variável qualitativa (dicotômica em grupo) que designa a 
+tipologia do imóvel (Apartamento, Cobertura, Flat, Casa ou Casa de Condomínio);
+- `area`: variável numérica quantitativa que mede a área privativa do imóvel, em
+$m^2$;
+- `num_banheiros`: variável numérica quantitativa que representa o número de 
+banheiros do imóvel;
+- `num_vagas_garagem`: variável numérica quantitativa que representa o número de
+vagas de garagem do imóvel;
+- `num_suites`: variável numérica quantitativa que representa o número de suítes
+do imóvel;
+- `PC`: variável qualitativa (dicotômica em grupo) que designa o padrão 
+construtivo do imóvel (Baixo, Médio ou Alto);
+- `Tipologia`: variável qualitativa (dicotômica) que divide a amostra em 
+Apartamentos (Apartamentos, Coberturas e Flats) ou Casas (Casas e Casas de 
+Condomínio).
+
+Já para os lotes, foram utilizadas:
+
+- `area`: variável numérica quantitativa que mede a área do lote, em $m^2$;
+- `Dist`: variável numérica quantitativa que representa a média harmônica das
+distâncias ao centro da cidade e da distância ao litoral;
+- `VUM2`: variável numérica quantitativa que representa o valor unitário do
+metro quadrado construído na localidade do lote;
+- `renda_pct_krigada`: variável numérica quantitativa que mede a renda per 
+capita do censo 2022 (IBGE), krigada, em Reais;
+- `ca_max`: variável numérica quantitativa que representa o coeficiente de 
+aproveitamento máximo do lote;
+- `dens_equip_saud`: variável numérica quantitativa que representa a densidade 
+de equipamentos de saúde no entorno do imóvel;
+- `tipo_uso`: variável qualitativa (dicotômica) que designa se o imóvel tem um
+potencial de uso residencial ou comercial.
 
 ### Classificação de imóveis construídos (padrão construtivo) {#sec-classif-pc}
 
@@ -150,17 +241,138 @@ técnicos úteis para os modelos de valor.
 
 ![Clusterização espacial por tipologia com comparação entre class_3_cluster e class_5_cluster (apartamentos, casas e lotes).](img/clusterizacao-tipologias-k3-k5.png){#fig-clusterizacao-tipologias width=95%}
 
-## Critérios de validação adotados
+## Construção dos modelos
 
-## Construção do modelo
+Nesta seção são reportados os modelos ajustados para os imóveis edificados e 
+para os lotes urbanos da cidade de Florianópolis/SC. 
 
-### Validação
+### Modelo de imóveis edificados {#sec-modelo-edificados}
 
-## Atividades Desenvolvidas
+Uma vez realizada a limpeza e classificação dos dados segundo o padrão
+construtivo, foi ajustado um modelo de regressão linear múltipla sobre os dados
+de imóveis edificados (casas e apartamentos). De posse deste modelo, foram
+obtidos fatores de homogeneização a partir dos coeficientes estimados para as
+diversas variáveis explicativas. Então, com estes fatores assim ajustados, os
+dados da amostra de imóveis edificados foram homogeneizados, para fins de 
+criação de uma superfície de valores de metro quadrado construído. As 
+estatísticas do modelo de regressão de imóveis edificados podem ser vistas na
+@tbl-EdifModel. 
+
+```{r}
+#| label: tbl-EdifModel
+#| tbl-cap: "Modelo de imóveis edificados. Coeficientes exponenciados."
+#| echo: false
+library(broom)
+library(kableExtra)
+library(appraiseR)
+load("../POC-FLN/model/Edif_OLS.rda")
+FinalFit |>
+  tidy(conf.int = TRUE, conf.level = .80, exponentiate = TRUE) |>
+  kable(digits = 2, format.args = list(decimal.mark = ",", big.mark = "."),
+        col.names = c("Termo", "Coef.", "Erro-padrão", "Estat. t", "p-valor", 
+                      "IC_inf", "IC_sup")) |>
+  footnote(alphabet = c(
+    paste("Erro-padrão dos resíduos: ", brf(sigma(FinalFit)), "em ", 
+          df.residual(FinalFit), "graus de liberdade"),
+    paste("R2: ", brf(R2(FinalFit))),
+    paste("R2aj: ", brf(adjR2(FinalFit)))
+  ))
+```
+
+Como é possível notar na @tbl-EdifModel, foram utilizadas como variáveis 
+explicativas do logarítmo natural dos preços unitários as variáveis citadas na
+@sec-variaveis-modelagem. É possível notar na @tbl-EdifModel, ainda, que as 
+variáveis explicativas `area`, `num_banheiros`, `num_vagas_garagem`, 
+`num_suites` e `PC` foram consideradas com efeitos diferentes segundo a 
+`Tipologia`.
+
+Este modelo foi utilizado para a geração de uma superfície de valores (ver 
+@sec-resultados-modelagem).
+
+### Modelo de Lotes
+
+Com a variável `VUM2` criada a partir do modelo de lotes edificados, foi 
+ajustado um modelo linear generalizado, com família gamma e função de ligação
+`log`. As estatísticas desse modelo podem ser vistas na @tbl-LotesGLM.
+
+```{r}
+#| label: tbl-LotesGLM
+#| tbl-cap: "Modelo linear generalizado de lotes urbanos. Coeficientes exponenciados."
+#| echo: false
+library(broom)
+library(kableExtra)
+load("../POC-FLN/model/Lotes_GLM.rda")
+GammaR2 |>
+  tidy(conf.int = TRUE, conf.level = .80, exponentiate = TRUE) |>
+  kable(digits = 2, format.args = list(decimal.mark = ",", big.mark = "."),
+        col.names = c("Termo", "Est.", "Erro-padrão", "Est. t", "p-valor", 
+                      "IC_inf", "IC_sup")) |>
+  footnote(alphabet = c(
+    paste("Erro-padrão dos resíduos: ", brf(sigma(GammaR2)), "em ", 
+          df.residual(GammaR2), "graus de liberdade")
+  ))
+```
+
+
+No modelo da @tbl-LotesGLM, para a explicação dos valores unitários dos lotes
+foram utilizadas como variáveis explicativas `area`, `Dist`, `VUM2`, 
+`renda_pct_krigada`, `ca_max`, `dens_equip_saud` e `tipo_uso`, descritas na
+@sec-variaveis-modelagem.
+
+Os resíduos do modelo da @tbl-LotesGLM foram krigados, conforme procedimento 
+descrito na @sec-atividades-modelagem. Por fim, estes resíduos krigados foram 
+utilizados como uma variável explicativa de localização (`layer`) para o ajuste
+do modelo final de lotes, da @tbl-LotesModel:
+
+```{r}
+#| label: tbl-LotesModel
+#| tbl-cap: "Modelo de lotes urbanos. Coeficientes exponenciados."
+#| echo: false
+load("../POC-FLN/model/LotesFinalFit.rda")
+FinalFit |>
+  tidy(conf.int = T, conf.level = .80, exponentiate = T) |>
+  kable(digits = 2, format.args = list(decimal.mark = ",", big.mark = "."),
+        col.names = c("Termo", "Est.", "Erro-padrão", "Est. t", "p-valor", 
+                      "IC_inf", "IC_sup"))  |>
+  footnote(alphabet = c(
+    paste("Erro-padrão dos resíduos: ", brf(sigma(FinalFit)), "em ", 
+          df.residual(FinalFit), "graus de liberdade"),
+    paste("R2: ", brf(R2(FinalFit))),
+    paste("R2aj: ", brf(adjR2(FinalFit)))
+  ))
+```
+
+Como é possível notar na @tbl-LotesModel, o modelo final tem poder de 
+explicar em torno de 82% dos preços unitários de mercado, um resultado que pode
+ser considerado notável, se consideramos a falta de diversas variáveis acerca 
+das características físicas dos lotes (frente, forma, pedologia e outras).
+
+Este modelo, portanto, pode ser considerado viável para a predição de valores
+unitários de terrenos visando a aplicação do método evolutivo para toda a 
+cidade.
+
+## Atividades Desenvolvidas {#sec-atividades-modelagem}
 
 ### Seleção de variáveis
 
 ### Testes de modelos
+
+O modelo utilizado para a confecção da supercíes de valores de metro quadrado
+construído é um modelo preditivo que, por este motivo, não demanda uma 
+verificação pormenorizada das hipóteses da inferência clássica. 
+
+Para o modelo de lotes, contudo, seria desejável que as hipóteses da inferência
+clássica (linearidade, normalidade e homoscedasticidade) fossem todas 
+verificadas. No entanto, nem sempre é fácil conseguir um modelo com estas
+características. A não-verificação das hipóteses da inferência clássica, contudo,
+não invalidam a propriedade de consistência do estimador de mínimos quadrados
+[@Matloff2017, p. 81]. Ou seja, quando o tamanho da amostra $n$ tende a 
+infinito, o valor estimado, $\hat\beta$, tende a $\beta$, independentemente de
+verificação das hipóteses de homoscedasticidade e normalidade.
+
+
+
+
 
 ### Calibração
 
