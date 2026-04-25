@@ -5,6 +5,7 @@ author: "Equipe Observatório - Receita Federal do Brasil"
 date: "2026-03-31"
 format:
   html:
+    embed-resources: true
     toc: true
     toc-depth: 3
     number-sections: true
@@ -20,13 +21,17 @@ format:
 
 ## Introdução da Etapa
 
-O presente relatório detalha a metodologia e os resultados da fase inaugural do **Observatório do Mercado Imobiliário**, uma Prova de Conceito (PoC) implementada em Florianópolis/SC. Este trabalho estabelece o marco de um sistema de inteligência de dados projetado para superar a dependência de informações autodeclaradas, gerando um acervo de ativos imobiliários com um nível de confiabilidade posicional e de atributos compatível com as necessidades de análise da administração pública.
+O presente relatório detalha a metodologia e os resultados da Prova de Conceito (PoC) do Observatório do Mercado Imobiliário (OMI), realizada em Florianópolis/SC. O monitoramento do mercado por meio de dados de portais web é uma prática consolidada na América Latina como instrumento de apoio à avaliação em massa e à política fiscal. Neste contexto, o objetivo principal deste projeto é construir uma base de dados limpa e confiável para apoiar a Receita Federal do Brasil (RFB) no cálculo do Valor de Referência do Cadastro Imobiliário Brasileiro (CIB), superando a dependência de informações puramente autodeclaradas.
 
-O desafio central reside na inerente imprecisão dos dados provenientes de portais de mercado. Embora a geocodificação comercial forneça uma localização inicial, as inconsistências de endereçamento e os deslocamentos geográficos são obstáculos críticos para análises fiscais e de conformidade. A ausência de um padrão de validação sistemático compromete a fidedignidade necessária para a tomada de decisões de alto impacto.
+O desafio prático não é novo: embora a coleta massiva de dados brutos de mercado já seja uma rotina tecnológica difundida; garantir que cada evento tenha localização confiável e atributos íntegros o suficiente para uma análise fiscal rigorosa é o verdadeiro obstáculo. Os dados brutos extraídos de portais comerciais chegam com dois tipos críticos de ruído:
 
-Para endereçar esta lacuna, a arquitetura do Observatório foi fundamentada em dois pilares: a adoção do **Cadastro Nacional de Endereços para Fins Estatísticos (CNEFE)**, do IBGE, como referencial de validação governamental (*ground truth*), e o desenvolvimento de um motor de processamento próprio, o **Geocoder V3**. Este último aplica uma sofisticada lógica de *matching* em cascata, que compara, qualifica e refina cada registro de mercado contra a base oficial.
+* Ruído Posicional: CEPs incorretos, números de porta ausentes e coordenadas deslocadas em centenas de metros — imprecisões suficientes para vincular um imóvel ao setor censitário errado.
 
-A execução desta PoC em Florianópolis não apenas validou a eficácia e a performance do modelo, mas também produziu um *dataset* de alta fidelidade, onde cada imóvel possui coordenadas verificadas e atributos normalizados. Este relatório apresenta, portanto, a consolidação de um alicerce de dados robusto e rastreável, pronto para servir como base para as futuras etapas de modelagem estatística, detecção de anomalias econômicas e inteligência geoespacial do projeto.
+* Ruído Cadastral: duplicatas do mesmo imóvel em anúncios distintos, valores de área ou preço estatisticamente anômalos, campos obrigatórios ausentes e terminologias fora do padrão da administração pública.
+
+Esta PoC estruturou um pipeline que ataca os dois problemas em paralelo e de forma independente. Para sanar a questão posicional, adotamos o Cadastro Nacional de Endereços para Fins Estatísticos (CNEFE), do IBGE, como nossa referência oficial (ground truth), aliado ao desenvolvimento de um motor de processamento próprio, o Geocoder V3. Esse motor aplica uma lógica de matching em cascata para cruzar, corrigir e qualificar cada registro contra a malha viária oficial. Simultaneamente, o sistema executa um saneamento cadastral robusto para identificar redundâncias e anomalias econômicas.
+
+O resultado é que cada oferta recebe dois flags independentes — integridade cadastral e validação posicional — que podem ser combinados conforme o objetivo da análise. A PoC processou 83.869 ofertas brutas de novembro de 2025 em Florianópolis.
 
 ## Fluxo de dados estruturado
 
@@ -224,23 +229,73 @@ Adiciona as seguintes colunas na tabela:
 
 #### 3. Validação Cruzada Avançada (Geocoder V3 - PostGIS)
 
-Com a base de mercado padronizada e com suas coordenadas primárias (ArcGIS) estabelecidas,
-o fluxo migra para a validação contra a base governamental.
-Para garantir a qualidade posicional, construímos o **Geocoder V3**,
-um algoritmo de processamento em cascata dentro do PostgreSQL que submete cada endereço aos seguintes níveis sucessivos de verificação:
+Com a base de mercado padronizada e as coordenadas primárias (ArcGIS) estabelecidas, o fluxo migra para a
+validação contra a base governamental. O **Geocoder V3** implementa uma cascata de seis níveis dentro do
+PostgreSQL: cada nível processa **exclusivamente os registros que todos os níveis anteriores não resolveram**.
+O processamento para assim que um match é encontrado — garantindo que o critério mais rigoroso sempre tenha
+prioridade sobre os mais permissivos.
 
-*   **L1 (Match Exato):** Correspondência perfeita de CEP + Logradouro + Número.
-*   **L2 (Fuzzy do Número - Composite Score):** Quando há pequenas variações no número ou na grafia da rua, o algoritmo busca o número oficial mais próximo. Utiliza um *score composto* que pondera 65% para a similaridade textual (`pg_trgm`) e 35% para a proximidade numérica, com decaimento inverso:
-    $$Score = 0.65 \times (Simil. Trigram) + 0.35 \times \left( \frac{1}{1 + |N_{mercado} - N_{cnefe}|} \right)$$
-*   **L3 (Interpolação Linear):** Quando o número exato não existe no CNEFE, o algoritmo estima a posição entre os dois números conhecidos mais próximos (bounds) no mesmo logradouro e CEP. Esta técnica é aplicada com um filtro conservador de no máximo 500m de divergência.
-*   **L4 (Fuzzy da Rua):** Similaridade textual apenas no logradouro, assumindo endereços sem numeração viável no CNEFE.
-*   **L5 (Fuzzy sem CEP):** Correspondência baseada na combinação de bairro e nome da rua (filtrado sem acentuação), atuando como *fallback* quando o CEP informado é inválido.
-*   **L6 (No Match):** Registros que não encontram qualquer aderência lógica na base oficial.
+##### Pré-processamento de Entrada
 
-::: {.callout-note}
-### Nota de Evolução Metodológica (V3.3)
-Diferente das versões anteriores, a hierarquia do Geocoder V3.3 prioriza o matching por proximidade numérica (**L2 - Fuzzy Number**) em detrimento da estimativa matemática (**L3 - Interpolated**). Esta decisão estratégica visa mitigar erros em logradouros com numeração irregular ou CEPs únicos extensos, onde a interpolação linear poderia sugerir coordenadas teoricamente corretas, mas geograficamente imprecisas. Ao priorizar o match em números oficiais vizinhos já validados pelo IBGE, o modelo adota um viés conservador que aumenta a confiabilidade do dado final.
-:::
+Antes de entrar na cascata, cada registro é normalizado inteiramente em SQL:
+
+- **`cep_clean`:** Remove o hífen do CEP (`88010-200` → `88010200`).
+- **`logr_limpo`:** Remove prefixo de tipo de logradouro (`Rua`, `Av.`, `Travessa`, `Servidão`, `Estrada` etc.)
+  via `REGEXP_REPLACE`, aplica `LOWER` e `unaccent` — igualando grafias como *"Av. Beira-Mar Norte"* e
+  *"Avenida Beira Mar Norte"* antes de qualquer comparação.
+
+Esta normalização é o que permite ao L1 (match "exato") funcionar mesmo com variações menores de grafia entre
+portais imobiliários e o cadastro oficial.
+
+##### Níveis da Cascata
+
+| Nível | Nome | Chaves de Match | Score |
+|:---:|:---|:---|:---:|
+| **L1** | Exact | CEP + Logradouro normalizado + Número exato | 1,00 (fixo) |
+| **L2** | Fuzzy Number | CEP + Trigrama logradouro (≥ 0,40) + Número mais próximo | Composto |
+| **L3** | Interpolated | CEP + Logradouro exato + Interpolação entre bounds numéricos | Dinâmico |
+| **L4** | Fuzzy Street | CEP + Trigrama logradouro (≥ 0,40), sem número | Trigrama |
+| **L5** | Fuzzy Bairro | Bairro exato + Trigrama logradouro (≥ 0,40) + Número próximo | Composto |
+| **L6** | No Match | — | 0,00 |
+
+##### Descrição de Cada Nível
+
+**L1 — Match Exato:** Correspondência de `cep_clean` + `logr_limpo` + número exato (`TRIM` em ambos os lados).
+Score fixo em 1,00. Respondeu por **22.098 dos 54.007 matches** (40,9%) — os mais confiáveis da base.
+
+**L2 — Fuzzy Number (Score Composto):** Para registros com número informado mas sem match exato, busca o
+número oficial mais próximo dentro do mesmo CEP. Opera com dois thresholds de trigrama distintos: um
+*pré-filtro* (≥ 0,35) que usa o índice GIN para eliminar candidatos sem entrar em *full scan*, e um de
+*aceitação final* (≥ 0,40) após o `LATERAL JOIN`. O candidato é selecionado ordenado pela menor diferença
+numérica e, em empate, pela melhor precisão IBGE (`nv_geo_coord`). O score pondera:
+
+$$Score = 0{,}65 \times Simil_{trigrama} + 0{,}35 \times \frac{1}{1 + |N_{mercado} - N_{cnefe}|}$$
+
+**L3 — Interpolação Linear:** Quando o número não existe no CNEFE mas o CEP e logradouro existem com outros
+números, estima a coordenada por interpolação linear entre os dois vizinhos conhecidos (bound inferior e
+superior). Requer `logr_limpo` exato (sem fuzzy), garantindo que a interpolação ocorra dentro do logradouro
+correto. A fórmula é:
+
+$$lat_{interp} = lat_{baixo} + \frac{N_{alvo} - N_{baixo}}{N_{alto} - N_{baixo}} \times (lat_{alto} - lat_{baixo})$$
+
+O score parte de 0,90 e decai com o intervalo entre os bounds (`0,90 − 0,0001 × gap`). Filtro conservador:
+resultados com distância > 500m são descartados.
+
+**L4 — Fuzzy Street:** Para registros sem número válido (ou cujo número não auxiliou nos níveis anteriores),
+busca apenas por similaridade de logradouro dentro do mesmo CEP — sem considerar numeração. Usa os mesmos
+thresholds de pré-filtro (≥ 0,35) e aceitação (≥ 0,40). É o nível com maior dispersão de distância
+(mediana de 252m).
+
+**L5 — Fuzzy Bairro (sem CEP):** Fallback para registros com CEP ausente ou inválido. Substitui a âncora
+do CEP pelo bairro exato (`dsc_localidade = bairro_tratado`) e aplica a mesma fórmula de score composto
+do L2. Processado em batches de 500 registros para evitar locks longos no banco. Usa índice GIN sobre
+`f_unaccent(nom_seglogr)` para viabilizar o pré-filtro sem CEP.
+
+**L6 — No Match:** Registros sem aderência em nenhum nível são registrados com `cnefe_match_type = 'no_match'`,
+`confidence_score = 0,00` e `is_problematic = TRUE`. As coordenadas do ArcGIS são mantidas como fallback,
+sinalizadas como `arcgis_nao_validado`.
+
+**Nota de Evolução Metodológica (V3.3):** Diferente das versões anteriores, a hierarquia do Geocoder V3.3 prioriza o matching por proximidade numérica (**L2 - Fuzzy Number**) em detrimento da estimativa matemática (**L3 - Interpolated**). Esta decisão visa mitigar erros em logradouros com numeração irregular ou CEPs únicos extensos — cenários onde a interpolação linear poderia sugerir coordenadas teoricamente corretas, mas geograficamente imprecisas. Ao priorizar o match em números oficiais vizinhos já validados pelo IBGE, o modelo adota um viés conservador que aumenta a confiabilidade do dado final.
 
 #### 4. Veredito e Tolerância Dinâmica
 
@@ -250,15 +305,42 @@ A aprovação de qual delas prevalecerá como coordenada final não é engessada
 ela depende do `nv_geo_coord` (precisão original mapeada pelo IBGE):
 
 - **Precisão IBGE 1 e 2:** A coordenada do mercado só é tolerada se divergir no máximo **100m** da oficial
-  (além de exigir *score* de confiança $\geq 0.80$).
+  (além de exigir *score* de confiança $\geq 0{,}80$).
 - **Precisão IBGE 3:** Tolerância de até **200m**.
 - **Precisão IBGE 4:** Tolerância de até **500m**.
+- **Precisão IBGE 5 e 6:** Apenas o score é avaliado (distância ignorada) — coordenada CNEFE é imprecisa
+  demais para servir de referência métrica confiável.
 
-::: {.callout-tip}
-## Performance
-Na PoC de Florianópolis, esse fluxo em cascata processou cerca de **52.386 registros em apenas ~2.4 minutos**,
-representando uma melhoria exponencial de performance (17x mais rápido que as arquiteturas anteriores).
-:::
+Quando `is_problematic = FALSE` e `nv_geo_coord` ∈ {1, 2, 3}, a coordenada **CNEFE substitui** a do ArcGIS
+como posição final do imóvel. Nos demais casos, a coordenada ArcGIS é mantida, sinalizadas como
+`arcgis_validado` (dentro dos limites) ou `arcgis_nao_validado` (fora dos limites).
+
+Na PoC de Florianópolis, esse fluxo em cascata processou cerca de **52.386 registros em apenas ~2.4 minutos**, representando uma melhoria de performance de 17× em relação às arquiteturas anteriores.
+
+##### Exemplos Práticos da Cascata
+
+Os dois exemplos abaixo ilustram como a lógica de eliminação progressiva funciona na prática.
+
+**Exemplo 1 — Registro resolvido no L3 (trace completo da cascata)**
+
+> **Entrada:** Apartamento — *"Rua Tenente Silveira, 234, CEP 88010-300, Centro"*
+>
+> - **L1:** `logr_limpo` = `"tenente silveira"` | Número 234 não consta no CNEFE para esse CEP+logradouro → **reprovado**
+> - **L2:** Candidato mais próximo = número 200 (diff = 34). Score = 0,65 × 0,99 + 0,35 × (1 ÷ 35) = 0,643 + 0,010 = **0,653** → abaixo de 0,80 → **reprovado**
+> - **L3:** Bounds encontrados: 200 (lat = −27,5901, lon = −48,5510) e 300 (lat = −27,5912, lon = −48,5523). Interpolação com *t* = (234 − 200) ÷ (300 − 200) = 0,34 → coordenada estimada. Score = 0,90 − 0,0001 × 100 = **0,880**. Distância ao ArcGIS = 31 m (≤ 500 m) → **APROVADO ✅**
+>
+> *Resultado: `cnefe_match_type = 'interpolated'`, `confidence_score = 0,880`, `is_problematic = FALSE`, coordenada CNEFE adotada como final.*
+
+**Exemplo 2 — Registro sem match (L6)**
+
+> **Entrada:** Lote — *"Servidão das Flores, 80, CEP 88063-999, Lagoa da Conceição"*
+>
+> - **L1:** CEP `88063999` não existe no CNEFE → **reprovado**
+> - **L2:** CEP inválido — sem candidatos no pré-filtro → **reprovado**
+> - **L3:** Sem bounds possíveis pelo CEP inválido → **reprovado**
+> - **L4:** CEP inválido — sem candidatos pelo CEP → **reprovado**
+> - **L5:** Bairro "Lagoa da Conceição" encontrado. Trigrama de `"servidao das flores"` vs. candidatos CNEFE: similaridade máxima = 0,28 (< 0,35 do pré-filtro) → nenhum candidato passa → **reprovado**
+> - **L6:** Registro marcado como `no_match`, `confidence_score = 0,00`, `is_problematic = TRUE`. Coordenadas ArcGIS mantidas como fallback (`arcgis_nao_validado`).
 
 #### 5. Triagem de Precisão e Recuperação Espacial (Vias Curtas)
 
@@ -276,36 +358,24 @@ Após a geocodificação inicial com ArcGIS, todos os registros são classificad
 ##### Metodologia de Recuperação Espacial (Short Streets)
 
 Para maximizar a cobertura analítica e recuperar registros de precisão 3 que possuem potencial locacional,
-implementou-se um procedimento baseado na comparação de distâncias a vias curtas versus vias totais.
+implementou-se um procedimento operacional baseado na comparação de distâncias a vias curtas versus vias totais.
 
-**Premissa Conceitual:** Uma via curta é um logradouro integralmente contido dentro de um único setor censitário.
+**Premissa:** Uma via curta é um logradouro integralmente contido dentro de um único setor censitário.
 Quando um imóvel está mais próximo de uma via curta do que de qualquer outra via, infere-se que a ambiguidade territorial
 é menor, justificando seu reaproveitamento.
 
-**Algoritmo:**
-
-1. Para cada registro de precisão 3, calcula-se a distância até a **via curta mais próxima** (máx. 100m)
-2. Calcula-se também a distância até a **via mais próxima** de toda a malha viária
-3. Se ambas as distâncias forem equivalentes (tolerância de ~2-3m), a via curta é a referência predominante
-4. Nesses casos, o registro é marcado como `flag_reap3 = True` e reaproveitado na análise
-5. Demais registros de precisão 3 recebem `flag_reap3 = False` e são descartados
+**Algoritmo resumido:** Para cada registro de precisão 3, calcula-se a distância até a via curta mais próxima (máx. 100m)
+e até a via mais próxima da malha viária completa. Se ambas forem equivalentes (tolerância ~2--3m), o registro recebe
+`flag_reap3 = True` e é incorporado ao pipeline; caso contrário, é descartado.
 
 **Bases de Dados Utilizadas:**
 
 - `eixos_osm_curtos.gpkg` — Vias curtas (contidas em 1 setor censitário)
-- `eixos_osm_dissolvidos.gpkg` — Malha viária completa (todas as vias)
-- Coordenadas de imóveis com precisão 3 da base de mercado
+- `eixos_osm_dissolvidos.gpkg` — Malha viária completa
 
-**Taxa de Recuperação:** Na POC Florianópolis, **10.23% dos registros de precisão 3** foram reaproveitados (1.236 de 12.077).
-
-**Distribuição Territorial:** A taxa de reaproveitamento varia significativamente por bairro:
-  - **Maior:** Rio Tavares (31.12%), São João do Rio Vermelho (23.82%), Itacorubi (20.84%)
-  - **Menor:** Ingleses do Rio Vermelho (3.93%), Cachoeira do Bom Jesus (10.11%)
-
-**Distribuição por Tipo de Imóvel:** Casa (14.25%), Lote/Terreno (12.28%), Escritório (10.23%), Apartamento (7.96%)
-
-**Resultado:** Após aplicação dessa metodologia, a cobertura analítica aumenta de ~73% para ~81%,
-demonstrando que a recuperação espacial é um mecanismo efetivo de otimização de cobertura sem comprometer a qualidade.
+**Resultado operacional:** Na POC Florianópolis, **10.23% dos registros de precisão 3** foram reaproveitados (1.236 de 12.077),
+elevando a cobertura analítica de ~73% para ~81%. A variação da taxa de reaproveitamento por bairro e tipologia,
+bem como a validação da metodologia, são detalhadas na [Seção 3.1](#sec-analises-aprofundadas).
 
 ### Armazenamento
 
@@ -406,7 +476,7 @@ A média é inflacionada por outliers geograficamente distantes (outliers até 3
 | **Outros** | 3.228 | 2.853 | 88.4% |
 
 **Achado Crítico:** Lotes/Terrenos tiveram taxa de processamento significativamente inferior (55% vs 88% geral),
-indicando desafio específico neste segmento (ver Seção de Desafios).
+indicando desafio específico neste segmento. As causas raiz e recomendações são detalhadas na [Seção 3.2](#sec-lote-terreno).
 
 #### Distribuição por Nível de Matching CNEFE
 
@@ -444,6 +514,9 @@ durante a validação cruzada ArcGIS vs CNEFE.
 **Período:** Janeiro - Março 2026
 **Objetivo:** Demonstrar como registros de precisão intermediária (precisão = 3) podem ser recuperados através de
 análise espacial comparativa com malha viária de setores censitários únicos.
+
+A descrição do fluxo operacional dessa metodologia no pipeline de tratamento encontra-se na Seção *Triagem de Precisão e Recuperação Espacial*;
+esta seção detalha os resultados analíticos e a validação da hipótese territorial.
 
 #### Metodologia
 
@@ -504,26 +577,18 @@ O procedimento implementa um filtro espacial de dupla verificação:
 **Interpretação:** Os registros reaproveitados apresentam áreas e valores ligeiramente maiores,
 sugerindo que a metodologia captura bem imóveis em localidades mais estruturadas (onde vias curtas existem).
 
-::: {.callout-note}
-## Observação Metodológica
-
-A metodologia de vias curtas é **conservadora por design**: apenas 10.23% dos registros de precisão 3 passam no filtro,
-garantindo que apenas aqueles com evidência territorial forte sejam reaproveitados.
-
-Essa abordagem aumenta a cobertura analítica de ~73% para ~81% sem comprometer a qualidade posicional,
-demonstrando efetividade na maximização de dados reutilizáveis.
-
-A variação territorial (Rio Tavares: 31% vs Ingleses: 3%) indica que a densidade e regularidade da malha viária
-influenciam significativamente a capacidade de recuperação.
-:::
+A metodologia é **conservadora por design**: apenas 10,23% dos registros de precisão 3 passam no filtro, garantindo que apenas aqueles com evidência territorial forte sejam reaproveitados. A cobertura analítica sobe de ~73% para ~81% sem comprometer a qualidade posicional. A variação territorial observada — Rio Tavares (31%) vs. Ingleses do Rio Vermelho (3%) — indica que a densidade e regularidade da malha viária influenciam diretamente a taxa de recuperação.
 
 ---
 
-### 2. Análise Exploratória: Desempenho em Lotes e Terrenos
+### 2. Análise Exploratória: Desempenho em Lotes e Terrenos {#sec-lote-terreno}
 
 **Período:** Março 2026
 **Objetivo:** Investigar as causas raiz da menor taxa de processamento em imóveis não-edificados
 e propor estratégias de melhoria específicas para este segmento.
+
+O achado quantitativo deste segmento é destacado em *Performance por Tipo de Imóvel* (Seção de Resultados);
+esta seção aprofunda a metodologia de diagnóstico, as causas raiz e as recomendações.
 
 #### Metodologia
 
@@ -566,19 +631,12 @@ Para entender o desempenho inferior de Lotes/Terrenos, executou-se análise expl
 | fuzzy_bairro | 33 | 396.6 m | 221.3 m |
 | no_match | 108 | — | — |
 
-::: {.callout-important}
-## Causas Raiz Identificadas
+**Causas raiz identificadas:**
 
-1. **Ausência de Numeração:** 45% dos lotes não têm match CNEFE porque não possuem número de porta definido
-2. **Prioridade CNEFE:** Base oficial prioriza edificações (casas/prédios); lotes vagos têm cobertura CNEFE menor
-3. **Áreas de Expansão:** Lotes em periferias têm precisão IBGE muito baixa (nv_geo_coord = 5-6)
-4. **Fuzzy_number Ineficiente:** Com diferenças numéricas >100 (ex: lote 100 vs CNEFE 500), o score numérico cai drasticamente
-
-**Exemplo Numérico:**
-- Entrada: Lote número 100 na Rua X
-- CNEFE: Número 500 na mesma Rua X (edificação próxima)
-- Fórmula: score = 0.65×trigram(0.95) + 0.35×(1.0/(1.0+ | 500-100 | )) = 0.617 + 0.001 = **0.618** (abaixo do threshold 0.80)
-:::
+1. **Ausência de numeração:** 45% dos lotes não têm match CNEFE porque não possuem número de porta definido
+2. **Prioridade CNEFE:** a base oficial prioriza edificações; lotes vagos têm cobertura reduzida
+3. **Áreas de expansão:** lotes em periferias concentram precisão IBGE baixa (`nv_geo_coord` = 5–6)
+4. **Score L2 degradado:** com diferenças numéricas acima de 100 (ex: lote 100 vs. CNEFE 500), o componente numérico do score cai drasticamente — score = 0,65×0,95 + 0,35×(1÷401) = **0,618** (abaixo do threshold 0,80)
 
 ---
 
@@ -616,10 +674,7 @@ A tabela abaixo resume as medianas de distância (em metros) para os quatro nív
 4. **Confiabilidade do Match Exato:** O tipo de correspondência `exact_cep_street_number` (L1) provou ser o mais robusto no CNEFE, com 88,3% dos casos dentro de 50m do ponto real do Google no Nível 1.
 5. **Heterogeneidade Espacial:** O estudo confirmou que a precisão não é uniforme; bairros como o **Centro** apresentam alta aderência em ambas as fontes, enquanto áreas como **Ponta das Canas** sofrem com deslocamentos significativos no CNEFE.
 
-::: {.callout-important}
-## Veredito Técnico
-O estudo conclui que o ArcGIS é, em média, a fonte que mais se aproxima do ponto de referência ideal. Contudo, o CNEFE (especialmente em `NV_GEO_COORD` 1 e 2) é uma fonte validadora robusta. A recomendação é que o uso do CNEFE seja sempre **qualificado pelo nível de precisão e tipo de correspondência**, conforme implementado na lógica de pesos do Geocoder V3.
-:::
+O estudo conclui que o ArcGIS é, em média, a fonte que mais se aproxima do ponto de referência ideal. Contudo, o CNEFE — especialmente em `nv_geo_coord` 1 e 2 — é uma fonte validadora robusta. O uso do CNEFE deve ser sempre **qualificado pelo nível de precisão e tipo de correspondência**, conforme implementado na lógica do Geocoder V3.
 
 ---
 
@@ -642,56 +697,29 @@ Para consolidar os aprendizados da POC Florianópolis e escalar para Lote 1 e Lo
 Os dados fornecidos pelas APIs imobiliárias apresentam alto nível de ruído:
 CEPs incorretos, números de porta ausentes ou logradouros preenchidos no campo de bairro.
 
-### Outliers de Mercado vs. Erros de Geocodificação
+### Validação Posicional e Integridade da Oferta são Processos Independentes
 
-O monitoramento avançado revelou que o indicador `vm2_estatistico` é o principal sinalizador de anomalia, representando cerca de 70% dos 12.000 outliers detectados em Florianópolis. Esta métrica provou-se crucial para distinguir entre dois problemas de naturezas distintas:
+A Detecção de Outliers e a Validação Posicional (Geocoder V3) rodam em paralelo sobre a mesma base e produzem flags independentes. Uma oferta pode ter a posição confirmada pelo CNEFE e ainda assim ser uma duplicata, ter número de quartos, área ou valor/m² fora do esperado, ou campos obrigatórios ausentes — e vice-versa. Os dois processos não se invalidam: eles respondem a perguntas diferentes.
 
-1.  **Divergência Espacial:** Quando as coordenadas (ArcGIS vs CNEFE) não batem, mas os atributos do imóvel são coerentes.
-2.  **Divergência de Atributos:** Quando o imóvel está bem geocodificado (is_problematic=FALSE), mas possui valores de venda ou áreas absurdos para a região.
+Isso tem uma implicação direta sobre os números de cobertura. O Geocoder V3 validou posicionalmente **25.325 ofertas** (`is_problematic = FALSE`). Mas essas 25.325 não são homogêneas:
 
-A integração desses dois filtros (Geocodificação V3 + Detecção de Outliers) garante que o Observatório forneça uma base que não é apenas "geograficamente precisa", mas também "economicamente plausível" para as avaliações da Receita Federal.
+- **14.921** → posição validada **e** oferta íntegra
+- **6.982** → posição validada, mas são **duplicatas**
+- **3.419** → posição validada, mas com **atributos da oferta suspeitos** (área, vagas, valor/m²)
+- **3** → posição validada, mas com **campos obrigatórios ausentes**
+
+O número que efetivamente combina os dois critérios — posição validada e oferta íntegra — é **14.921 imóveis**.
 
 #### Problema Crítico: Lotes/Terrenos
 
 Uma dificuldade notável ocorre com Lotes e Terrenos, onde a taxa de processamento foi apenas **55.0%**
-(3.369 de 6.120 imóveis), comparado a 88% para os demais tipos.
+(3.369 de 6.120 imóveis), 34,6 pontos percentuais abaixo da média geral. As principais causas são a ausência de
+numeração de porta em lotes vagos, a menor cobertura do CNEFE para imóveis não-edificados e a degradação do
+score no L2 (fuzzy_number) quando a diferença numérica entre lote e edificação vizinha supera ~100 unidades.
 
-**Análise Específica (ANALISE_LOTE_TERRENO_V3.md):**
-
-| Métrica | Lote/Terreno | Geral | Diferença |
-| --- | --- | --- | --- |
-| **Taxa de Processamento** | 55.0% | 89.6% | -34.6% |
-| **Conformidade <150m** | 33.66% | 47.83% | -14.17% |
-| **Distância Média** | 569.92 m | 215.26 m | +354.66 m |
-| **Distância Mediana** | 52.71 m | 24.35 m | +28.36 m |
-
-**Causas Raiz Identificadas:**
-
-1. **Ausência de Número de Porta:** Muitos lotes vagos não possuem numeração ou endereço definido
-2. **Prioridade CNEFE:** A base oficial (CNEFE) prioriza edificações; lotes vagos têm cobertura reduzida
-3. **Áreas de Expansão:** Lotes em periferias e áreas de expansão urbana têm menor precisão `nv_geo_coord`
-4. **Fuzzy_number Problemático:** Com números muito diferentes, o componente numérico do score cai drasticamente
-
-**Exemplo Concreto:**
-- Lote 100 procurado, mas CNEFE tem número 500 na mesma rua
-- Fórmula: `score = 0.65 × trigram + 0.35 × (1.0 / (1.0 + | 500-100 | ))`
-- Resultado: `score = 0.65 × 0.95 + 0.35 × 0.002 = 0.616` (abaixo do threshold 0.80)
-
-**Bairros com Pior Performance em Lote/Terreno:**
-
-| Bairro | Total | OK | % OK | Status |
-| --- | --- | --- | --- | --- |
-| Ingleses do Rio Vermelho | 282 | 60 | 21.3% |  |
-| Ratones | 177 | 18 | 10.2% |  |
-| Ribeirão da Ilha | 154 | 51 | 33.1% |  |
-| Campeche | 365 | 206 | 56.4% |  |
-
-**Recomendações:**
-
-1. **Aumentar threshold de ±50 para ±100 números** em L2 (fuzzy_number) especificamente para Lote/Terreno
-2. **Considerar fontes alternativas:** OpenStreetMap, Google Maps para lotes sem match CNEFE
-3. **Criar interpolação específica:** Estimar coordenadas de lotes entre endereços vizinhos conhecidos
-4. **Priorizar revisão manual:** Os 45% sem match devem ser auditados por equipe especializada
+A análise completa — com tabelas comparativas por bairro, distribuição por tipo de match e recomendações de
+ajuste de threshold — está documentada na [Seção 3.2](#sec-lote-terreno) e no arquivo
+[ANALISE_LOTE_TERRENO_V3.md](../ANALISE_LOTE_TERRENO_V3.md).
 
 ### Padronização
 
@@ -725,13 +753,40 @@ a arquitetura já sugere a possibilidade de integração futura com oráculos se
 
 ## Conclusão
 
-A Prova de Conceito realizada em Florianópolis atestou a viabilidade técnica e a escalabilidade da arquitetura proposta para o **Observatório do Mercado Imobiliário**. Ao adotar o CNEFE como *ground truth* e implementar o motor de validação cruzada **Geocoder V3**, o projeto superou a dependência exclusiva de coordenadas comerciais autodeclaradas, estabelecendo um novo padrão de rigor posicional.
+A Prova de Conceito realizada em Florianópolis atestou a viabilidade técnica e a escalabilidade da arquitetura proposta para o **Observatório do Mercado Imobiliário**. Ao adotar o CNEFE como *ground truth* e implementar o motor de validação cruzada **Geocoder V3**, o projeto superou a dependência exclusiva de coordenadas comerciais autodeclaradas, estabelecendo um novo padrão de rigor posicional e econômico sobre a base de dados imobiliários.
 
-Os resultados demonstraram que o modelo é capaz de processar grandes volumes de dados de forma assíncrona e performática. Mais importante ainda, a metodologia permitiu identificar e segregar com clareza os "outliers geográficos" (deslocamentos de endereçamento) dos "outliers econômicos" (anomalias de valor e área, identificadas pelo `vm2_estatistico`). Essa distinção é vital para garantir que as bases utilizadas pela Receita Federal não sejam contaminadas por ruídos de mercado.
+A metodologia adotada produziu dois eixos independentes de qualidade — posicional (`is_problematic`) e econômico-cadastral (`is_outlier`) —, que podem ser combinados conforme o objetivo de cada análise. Essa independência é uma característica deliberada: permite que o analista da RFB aplique filtros progressivos sem descartar dados que podem ser úteis em contextos distintos.
 
-Embora desafios inerentes à cobertura da base oficial persistam — especialmente na geocodificação de Lotes Vagos e áreas de expansão urbana, que demandarão abordagens complementares —, o arcabouço tecnológico atual é maduro. As estratégias de recuperação espacial, como a metodologia de vias curtas, e os limites dinâmicos de tolerância (ajustados pelo nível de precisão do IBGE) provaram ser eficientes para maximizar o aproveitamento da amostra sem sacrificar a integridade do dado.
+### Resultado Final: Base Duplamente Validada
 
-Em suma, a PoC de Florianópolis entregou um *dataset* de alta fidelidade e um *pipeline* reprodutível. O Observatório encontra-se, assim, estruturalmente preparado para avançar em sua expansão territorial (Lote 1 e Lote 2) e para dar início às fases de modelagem preditiva e inteligência fiscal que constituem o seu objetivo final.
+Aplicando simultaneamente os dois filtros de qualidade — `is_outlier = 0` (dado econômico limpo, sem duplicatas e campos válidos) **e** `is_problematic = FALSE` (posição confirmada pelo CNEFE) —, o resultado da PoC Florianópolis é:
+
+::: {style="border-left: 4px solid #555; background-color: #f5f5f5; padding: 1.2em 1.5em; margin: 1.5em 0;"}
+**Dataset Pronto para Análise Fiscal Direta**
+
+**14.921 imóveis** com posição validada e oferta íntegra — **17,8% da base bruta** (83.869 registros).
+
+| Métrica | Valor |
+|:---|---:|
+| Imóveis validados (duplo filtro) | **14.921** |
+| Distância mediana ao CNEFE | **8,86m** |
+| Distância média ao CNEFE | **17,73m** |
+| Composição principal | Apartamento (7.327) · Casa (4.266) · Cobertura (1.082) · Lote/Terreno (753) |
+| Tipo de negócio | Venda (14.525) · Aluguel (294) · Venda/Aluguel (102) |
+
+: Lote/Terreno representa apenas **5,0%** das ofertas duplamente validadas — reflexo direto da menor taxa de processamento CNEFE (55% vs. 89,6% geral), discutida na [Seção 3.2](#sec-lote-terreno). A expansão dessa cobertura é uma das prioridades dos próximos passos.
+
+```sql
+-- Filtro recomendado para análise fiscal direta
+SELECT * FROM _projeto_rf.monit_2025_11_poc_floripa_v3
+WHERE is_outlier = 0
+  AND is_problematic = FALSE;
+```
+:::
+
+A mediana de **8,86m** de divergência posicional entre a coordenada de mercado (ArcGIS) e a oficial (CNEFE) neste subconjunto é significativamente melhor do que a mediana global de 24,35m — evidenciando que os registros mais limpos economicamente também tendem a ter endereçamento mais preciso.
+
+Embora desafios persistam — especialmente na geocodificação de Lotes Vagos e áreas de expansão urbana —, o arcabouço tecnológico está maduro. O Observatório encontra-se estruturalmente preparado para avançar em sua expansão territorial (Lotes 1 e 2) e para dar início às fases de modelagem preditiva e inteligência fiscal que constituem o seu objetivo final.
 
 
 
