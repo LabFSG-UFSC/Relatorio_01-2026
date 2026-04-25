@@ -30,7 +30,7 @@ A execução desta PoC em Florianópolis não apenas validou a eficácia e a per
 
 ## Fluxo de dados estruturado
 
-![Fluxo completo do pipeline de dados do Observatório](img/image.png){#fig-fluxo-pipeline fig-alt="Diagrama mostrando o fluxo desde ingestão até dataset consolidado final"}
+![Fluxo completo do pipeline de dados do Observatório](img/fluxo.jpg){#fig-fluxo-pipeline fig-alt="Diagrama mostrando o fluxo desde ingestão até dataset consolidado final"}
 
 ### Fontes de dados
 
@@ -433,13 +433,13 @@ Ele detalha minuciosamente a natureza das colunas expandidas, incluindo:
 
 Estabelece a semântica correta para as equipes da RFB, incluindo explicação detalhada da lógica de threshold dinâmico.
 
-## Estudos de Caso {#sec-estudos-caso}
+## Análises Aprofundadas e Validação {#sec-analises-aprofundadas}
 
 Nesta seção, apresentamos análises detalhadas conduzidas pelos bolsistas do projeto,
 ilustrando aplicações práticas da metodologia desenvolvida e evidenciando padrões identificados
 durante a validação cruzada ArcGIS vs CNEFE.
 
-### Caso 1: Recuperação Espacial com Vias Curtas (Short Streets)
+### 1. Metodologia de Recuperação: Vias Curtas (Short Streets)
 
 **Período:** Janeiro - Março 2026
 **Objetivo:** Demonstrar como registros de precisão intermediária (precisão = 3) podem ser recuperados através de
@@ -519,7 +519,7 @@ influenciam significativamente a capacidade de recuperação.
 
 ---
 
-### Caso 2: Análise de Lotes/Terrenos (Desafio Específico V3)
+### 2. Análise Exploratória: Desempenho em Lotes e Terrenos
 
 **Período:** Março 2026
 **Objetivo:** Investigar as causas raiz da menor taxa de processamento em imóveis não-edificados
@@ -582,7 +582,7 @@ Para entender o desempenho inferior de Lotes/Terrenos, executou-se análise expl
 
 ---
 
-### Caso 3: Avaliação de Acurácia Locacional (Benchmarking Google Maps)
+### 3. Validação de Acurácia (Benchmarking com Google Maps)
 
 **Autor:** Ville Rodrigues
 **Período:** Abril 2026
@@ -623,7 +623,7 @@ O estudo conclui que o ArcGIS é, em média, a fonte que mais se aproxima do pon
 
 ---
 
-### Caso 4: Próximas Análises Recomendadas
+### 4. Recomendações e Próximos Passos
 
 Para consolidar os aprendizados da POC Florianópolis e escalar para Lote 1 e Lote 2, recomenda-se:
 
