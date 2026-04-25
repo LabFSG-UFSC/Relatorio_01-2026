@@ -30,7 +30,7 @@ A execução desta PoC em Florianópolis não apenas validou a eficácia e a per
 
 ## Fluxo de dados estruturado
 
-![Fluxo completo do pipeline de dados do Observatório](img/image.png){#fig-fluxo-pipeline fig-alt="Diagrama mostrando o fluxo desde ingestão até dataset consolidado final"}
+![Fluxo completo do pipeline de dados do Observatório](img/fluxo.jpg){#fig-fluxo-pipeline fig-alt="Diagrama mostrando o fluxo desde ingestão até dataset consolidado final"}
 
 ### Fontes de dados
 
