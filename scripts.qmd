@@ -1,1 +1,33 @@
 # Scripts e documentações
+
+## Observatório do Mercado Imobiliário
+
+### Geocoder V3 — Validação Posicional CNEFE vs ArcGIS
+
+Motor de correspondência em cascata (6 níveis) que cruza as coordenadas de mercado (ArcGIS) com o endereço oficial do CNEFE/IBGE, atribuindo a cada oferta um flag de validação posicional auditável (`is_problematic`).
+
+**Arquivo:** `geocoding_api/compare_geocodingv3.py` — repositório `geofuture/cnefe_geocoding`
+
+---
+
+### Script de Detecção de Outliers
+
+Script SQL que classifica cada oferta com um indicador de integridade cadastral (`is_outlier`), identificando duplicatas, valores de área ou preço fora do padrão e campos obrigatórios ausentes.
+
+**Arquivo:** `relatorio_poc_floripa/script_deteccao_outliers_completo_v2.sql` — repositório `geofuture/cnefe_geocoding`
+
+---
+
+### ETL PySpark — Ingestão e Normalização do Datalake
+
+Pipeline de ingestão e normalização dos dados brutos coletados dos portais imobiliários. Realiza de-para de tipologias, saneamento de campos textuais e padronização para o vocabulário da Receita Federal.
+
+**Arquivo:** `relatorio_poc_floripa/pyspark_datalake_etl.py` — repositório `geofuture/cnefe_geocoding`
+
+---
+
+### Merge Final V3 — Consolidação da Tabela de Saída
+
+Script responsável por consolidar os resultados do Geocoder V3 com os dados de origem, produzindo a tabela final `monit_2025_11_poc_floripa_v3` com todos os flags de qualidade.
+
+**Arquivo:** `geocoding_api/merge_final_v3.py` — repositório `geofuture/cnefe_geocoding`
