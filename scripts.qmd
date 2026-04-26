@@ -1,8 +1,8 @@
 # Scripts e documentações
 
-## Observatório do Mercado Imobiliário
+## Observatório do Mercado Imobiliário {#sec-scripts-obs}
 
-### Geocoder V3 — Validação Posicional CNEFE vs ArcGIS
+### Geocoder V3 — Validação Posicional CNEFE vs ArcGIS {#sec-script-geocoder}
 
 Motor de correspondência em cascata (6 níveis) que cruza as coordenadas de mercado (ArcGIS) com o endereço oficial do CNEFE/IBGE, atribuindo a cada oferta um flag de validação posicional auditável (`is_problematic`).
 
@@ -10,7 +10,7 @@ Motor de correspondência em cascata (6 níveis) que cruza as coordenadas de mer
 
 ---
 
-### Script de Detecção de Outliers
+### Script de Detecção de Outliers {#sec-script-outliers}
 
 Script SQL que classifica cada oferta com um indicador de integridade cadastral (`is_outlier`), identificando duplicatas, valores de área ou preço fora do padrão e campos obrigatórios ausentes.
 
@@ -18,7 +18,7 @@ Script SQL que classifica cada oferta com um indicador de integridade cadastral 
 
 ---
 
-### ETL PySpark — Ingestão e Normalização do Datalake
+### ETL PySpark — Ingestão e Normalização do Datalake {#sec-script-etl}
 
 Pipeline de ingestão e normalização dos dados brutos coletados dos portais imobiliários. Realiza de-para de tipologias, saneamento de campos textuais e padronização para o vocabulário da Receita Federal.
 
@@ -26,7 +26,7 @@ Pipeline de ingestão e normalização dos dados brutos coletados dos portais im
 
 ---
 
-### Merge Final V3 — Consolidação da Tabela de Saída
+### Merge Final V3 — Consolidação da Tabela de Saída {#sec-script-merge}
 
 Script responsável por consolidar os resultados do Geocoder V3 com os dados de origem, produzindo a tabela final `monit_2025_11_poc_floripa_v3` com todos os flags de qualidade.
 

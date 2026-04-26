@@ -163,6 +163,8 @@ Os dados brutos coletados frequentemente apresentam termos em inglês ou formato
   à API do ArcGIS para obter a primeira coordenada (`lat` e `lon`).
   Esta coordenada "crua" do mercado é o que será auditado a seguir.
 
+O código-fonte completo do pipeline está disponível em [Apêndice — ETL PySpark](scripts.qmd#sec-script-etl).
+
 #### 2. Saneamento de Registros (Detecção de Outliers)
 
 Antes de qualquer validação geoespacial, o pipeline executa um **sistema robusto de detecção de outliers**
@@ -219,6 +221,8 @@ O sistema foi implementado em **PostgreSQL** com o arquivo:
 relatorio_poc_floripa/script_deteccao_outliers_completo_v2.sql.sql (750+ linhas)
 ```
 
+O script completo está disponível em [Apêndice — Script de Detecção de Outliers](scripts.qmd#sec-script-outliers).
+
 Adiciona as seguintes colunas na tabela:
 - `duplicado` — Marcação de duplicata
 - `outlier_tipos` — Array de tipos de problemas
@@ -233,7 +237,7 @@ Com a base de mercado padronizada e as coordenadas primárias (ArcGIS) estabelec
 validação contra a base governamental. O **Geocoder V3** implementa uma cascata de seis níveis dentro do
 PostgreSQL: cada nível processa **exclusivamente os registros que todos os níveis anteriores não resolveram**.
 O processamento para assim que um match é encontrado — garantindo que o critério mais rigoroso sempre tenha
-prioridade sobre os mais permissivos.
+prioridade sobre os mais permissivos. O código-fonte completo do motor está disponível em [Apêndice — Geocoder V3](scripts.qmd#sec-script-geocoder).
 
 ##### Pré-processamento de Entrada
 
@@ -494,7 +498,7 @@ dispersão maior, sugerindo oportunidade de ajuste de thresholds numéricos (±5
 
 ### Dicionário de dados (V3)
 
-Toda a modelagem foi devidamente mapeada no Dicionário de Dados oficial (`DICIONARIO_DADOS.md` v3).
+Toda a modelagem foi devidamente mapeada no Dicionário de Dados oficial ([`DICIONARIO_DADOS.md`](evidencias.qmd#sec-dic-dados) v3).
 Ele detalha minuciosamente a natureza das colunas expandidas, incluindo:
 
 - **Campos de Rastreabilidade Novos:** `origem_coordenada`, `processo_geo`, `lat_final`, `lon_final`, `geom_final`
@@ -510,6 +514,8 @@ ilustrando aplicações práticas da metodologia desenvolvida e evidenciando pad
 durante a validação cruzada ArcGIS vs CNEFE.
 
 ### 1. Metodologia de Recuperação: Vias Curtas (Short Streets)
+
+*Análise completa disponível em [Apêndice — Análise Exploratória (Vias Curtas)](relatorios.qmd#sec-rel-vias-curtas).*
 
 **Período:** Janeiro - Março 2026
 **Objetivo:** Demonstrar como registros de precisão intermediária (precisão = 3) podem ser recuperados através de
@@ -583,6 +589,8 @@ A metodologia é **conservadora por design**: apenas 10,23% dos registros de pre
 
 ### 2. Análise Exploratória: Desempenho em Lotes e Terrenos {#sec-lote-terreno}
 
+*Análise completa disponível em [Apêndice — Análise de Lote/Terreno V3](relatorios.qmd#sec-rel-lote-terreno).*
+
 **Período:** Março 2026
 **Objetivo:** Investigar as causas raiz da menor taxa de processamento em imóveis não-edificados
 e propor estratégias de melhoria específicas para este segmento.
@@ -641,6 +649,8 @@ Para entender o desempenho inferior de Lotes/Terrenos, executou-se análise expl
 ---
 
 ### 3. Validação de Acurácia (Benchmarking com Google Maps)
+
+*Análise completa disponível em [Apêndice — Análise Estatística V3](relatorios.qmd#sec-rel-estatistica) e [Avaliação CNEFE V3](relatorios.qmd#sec-rel-cnefe).*
 
 **Autor:** Ville Rodrigues
 **Período:** Abril 2026
@@ -718,8 +728,7 @@ numeração de porta em lotes vagos, a menor cobertura do CNEFE para imóveis n�
 score no L2 (fuzzy_number) quando a diferença numérica entre lote e edificação vizinha supera ~100 unidades.
 
 A análise completa — com tabelas comparativas por bairro, distribuição por tipo de match e recomendações de
-ajuste de threshold — está documentada na [Seção 3.2](#sec-lote-terreno) e no arquivo
-[ANALISE_LOTE_TERRENO_V3.md](../ANALISE_LOTE_TERRENO_V3.md).
+ajuste de threshold — está documentada na [Seção 3.2](#sec-lote-terreno) e no [Apêndice — Análise de Lote/Terreno](relatorios.qmd#sec-rel-lote-terreno).
 
 ### Padronização
 

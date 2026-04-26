@@ -1,8 +1,8 @@
 # Relatórios Técnicos Detalhados
 
-## Observatório do Mercado Imobiliário
+## Observatório do Mercado Imobiliário {#sec-relatorios-obs}
 
-### Análise Exploratória — Flag de Reaproveitamento (Vias Curtas)
+### Análise Exploratória — Flag de Reaproveitamento (Vias Curtas) {#sec-rel-vias-curtas}
 
 Estudo que avalia a metodologia de reaproveitamento de registros com precisão 3 (vias curtas), quantificando o ganho de cobertura e a distribuição territorial do flag de reaproveitamento.
 
@@ -10,7 +10,7 @@ Estudo que avalia a metodologia de reaproveitamento de registros com precisão 3
 
 ---
 
-### Análise de Lote/Terreno V3
+### Análise de Lote/Terreno V3 {#sec-rel-lote-terreno}
 
 Investigação das causas da baixa taxa de processamento CNEFE para Lotes e Terrenos (55%), com exemplos numéricos do comportamento do score L2 e recomendações para as próximas versões.
 
@@ -18,7 +18,7 @@ Investigação das causas da baixa taxa de processamento CNEFE para Lotes e Terr
 
 ---
 
-### Análise Estatística V3
+### Análise Estatística V3 {#sec-rel-estatistica}
 
 Relatório com a distribuição de distâncias ArcGIS vs CNEFE por nível de match, percentis e benchmarking com Google Maps.
 
@@ -26,7 +26,7 @@ Relatório com a distribuição de distâncias ArcGIS vs CNEFE por nível de mat
 
 ---
 
-### Avaliação CNEFE V3
+### Avaliação CNEFE V3 {#sec-rel-cnefe}
 
 Avaliação comparativa detalhada entre as fontes de coordenadas (ArcGIS e CNEFE) por nível de precisão geográfica (`nv_geo_coord`).
 
