@@ -4467,6 +4467,7 @@ Figura&nbsp;5.2: Mapa de Ofertas
 <li><strong>Cálculo da Precisão Inicial:</strong> O script Spark roda uma lógica hierárquica para determinar o grau de confiança da informação inserida pelo corretor (a coluna <code>precisao</code>). Um endereço só recebe <code>precisao = 4</code> se contiver Rua, Número, Bairro e Cidade devidamente preenchidos.</li>
 <li><strong>Geocodificação via ArcGIS:</strong> Para os registros novos que ainda não possuem coordenadas em nossa base histórica (<code>tb_localizacao</code>), o pipeline do Spark efetua chamadas assíncronas (com estratégias de <em>retry</em> exponencial) à API do ArcGIS para obter a primeira coordenada (<code>lat</code> e <code>lon</code>). Esta coordenada “crua” do mercado é o que será auditado a seguir.</li>
 </ul>
+<p>O código-fonte completo do pipeline está disponível em <a href="./scripts.html#sec-script-etl">Apêndice — ETL PySpark</a>.</p>
 </section>
 </section>
 <section id="saneamento-de-registros-detecção-de-outliers" class="level4" data-number="5.2.3.2">
@@ -4565,13 +4566,14 @@ Figura&nbsp;5.2: Mapa de Ofertas
 <h5 data-number="5.2.3.2.5" class="anchored" data-anchor-id="implementação-técnica"><span class="header-section-number">5.2.3.2.5</span> Implementação Técnica</h5>
 <p>O sistema foi implementado em <strong>PostgreSQL</strong> com o arquivo:</p>
 <pre><code>relatorio_poc_floripa/script_deteccao_outliers_completo_v2.sql.sql (750+ linhas)</code></pre>
+<p>O script completo está disponível em <a href="./scripts.html#sec-script-outliers">Apêndice — Script de Detecção de Outliers</a>.</p>
 <p>Adiciona as seguintes colunas na tabela: - <code>duplicado</code> — Marcação de duplicata - <code>outlier_tipos</code> — Array de tipos de problemas - <code>verificado_outliers</code> — Validação manual realizada? - <code>updated_at</code>, <code>updated_by</code>, <code>observacoes</code> — Rastreamento de correções</p>
 <hr>
 </section>
 </section>
 <section id="validação-cruzada-avançada-geocoder-v3---postgis" class="level4" data-number="5.2.3.3">
 <h4 data-number="5.2.3.3" class="anchored" data-anchor-id="validação-cruzada-avançada-geocoder-v3---postgis"><span class="header-section-number">5.2.3.3</span> 3. Validação Cruzada Avançada (Geocoder V3 - PostGIS)</h4>
-<p>Com a base de mercado padronizada e as coordenadas primárias (ArcGIS) estabelecidas, o fluxo migra para a validação contra a base governamental. O <strong>Geocoder V3</strong> implementa uma cascata de seis níveis dentro do PostgreSQL: cada nível processa <strong>exclusivamente os registros que todos os níveis anteriores não resolveram</strong>. O processamento para assim que um match é encontrado — garantindo que o critério mais rigoroso sempre tenha prioridade sobre os mais permissivos.</p>
+<p>Com a base de mercado padronizada e as coordenadas primárias (ArcGIS) estabelecidas, o fluxo migra para a validação contra a base governamental. O <strong>Geocoder V3</strong> implementa uma cascata de seis níveis dentro do PostgreSQL: cada nível processa <strong>exclusivamente os registros que todos os níveis anteriores não resolveram</strong>. O processamento para assim que um match é encontrado — garantindo que o critério mais rigoroso sempre tenha prioridade sobre os mais permissivos. O código-fonte completo do motor está disponível em <a href="./scripts.html#sec-script-geocoder">Apêndice — Geocoder V3</a>.</p>
 <section id="pré-processamento-de-entrada" class="level5" data-number="5.2.3.3.1">
 <h5 data-number="5.2.3.3.1" class="anchored" data-anchor-id="pré-processamento-de-entrada"><span class="header-section-number">5.2.3.3.1</span> Pré-processamento de Entrada</h5>
 <p>Antes de entrar na cascata, cada registro é normalizado inteiramente em SQL:</p>
@@ -5028,7 +5030,7 @@ Tabela&nbsp;5.1: Funil de processamento e validação cruzada
 </section>
 <section id="dicionário-de-dados-v3" class="level3" data-number="5.3.3">
 <h3 data-number="5.3.3" class="anchored" data-anchor-id="dicionário-de-dados-v3"><span class="header-section-number">5.3.3</span> Dicionário de dados (V3)</h3>
-<p>Toda a modelagem foi devidamente mapeada no Dicionário de Dados oficial (<code>DICIONARIO_DADOS.md</code> v3). Ele detalha minuciosamente a natureza das colunas expandidas, incluindo:</p>
+<p>Toda a modelagem foi devidamente mapeada no Dicionário de Dados oficial (<a href="./evidencias.html#sec-dic-dados"><code>DICIONARIO_DADOS.md</code></a> v3). Ele detalha minuciosamente a natureza das colunas expandidas, incluindo:</p>
 <ul>
 <li><strong>Campos de Rastreabilidade Novos:</strong> <code>origem_coordenada</code>, <code>processo_geo</code>, <code>lat_final</code>, <code>lon_final</code>, <code>geom_final</code></li>
 <li><strong>Campos de Decisão:</strong> <code>is_problematic</code> (dinâmico por <code>nv_geo_coord</code>), <code>geo_precision_score</code>, <code>cnefe_nv_geo_coord</code></li>
@@ -5042,6 +5044,7 @@ Tabela&nbsp;5.1: Funil de processamento e validação cruzada
 <p>Nesta seção, apresentamos análises detalhadas conduzidas pelos bolsistas do projeto, ilustrando aplicações práticas da metodologia desenvolvida e evidenciando padrões identificados durante a validação cruzada ArcGIS vs CNEFE.</p>
 <section id="metodologia-de-recuperação-vias-curtas-short-streets" class="level3" data-number="5.4.1">
 <h3 data-number="5.4.1" class="anchored" data-anchor-id="metodologia-de-recuperação-vias-curtas-short-streets"><span class="header-section-number">5.4.1</span> 1. Metodologia de Recuperação: Vias Curtas (Short Streets)</h3>
+<p><em>Análise completa disponível em <a href="./relatorios.html#sec-rel-vias-curtas">Apêndice — Análise Exploratória (Vias Curtas)</a>.</em></p>
 <p><strong>Período:</strong> Janeiro - Março 2026 <strong>Objetivo:</strong> Demonstrar como registros de precisão intermediária (precisão = 3) podem ser recuperados através de análise espacial comparativa com malha viária de setores censitários únicos.</p>
 <p>A descrição do fluxo operacional dessa metodologia no pipeline de tratamento encontra-se na Seção <em>Triagem de Precisão e Recuperação Espacial</em>; esta seção detalha os resultados analíticos e a validação da hipótese territorial.</p>
 <section id="metodologia" class="level4" data-number="5.4.1.1">
@@ -5243,6 +5246,7 @@ Tabela&nbsp;5.1: Funil de processamento e validação cruzada
 </section>
 <section id="sec-lote-terreno" class="level3" data-number="5.4.2">
 <h3 data-number="5.4.2" class="anchored" data-anchor-id="sec-lote-terreno"><span class="header-section-number">5.4.2</span> 2. Análise Exploratória: Desempenho em Lotes e Terrenos</h3>
+<p><em>Análise completa disponível em <a href="./relatorios.html#sec-rel-lote-terreno">Apêndice — Análise de Lote/Terreno V3</a>.</em></p>
 <p><strong>Período:</strong> Março 2026 <strong>Objetivo:</strong> Investigar as causas raiz da menor taxa de processamento em imóveis não-edificados e propor estratégias de melhoria específicas para este segmento.</p>
 <p>O achado quantitativo deste segmento é destacado em <em>Performance por Tipo de Imóvel</em> (Seção de Resultados); esta seção aprofunda a metodologia de diagnóstico, as causas raiz e as recomendações.</p>
 <section id="metodologia-1" class="level4" data-number="5.4.2.1">
@@ -5411,6 +5415,7 @@ Tabela&nbsp;5.1: Funil de processamento e validação cruzada
 </section>
 <section id="validação-de-acurácia-benchmarking-com-google-maps" class="level3" data-number="5.4.3">
 <h3 data-number="5.4.3" class="anchored" data-anchor-id="validação-de-acurácia-benchmarking-com-google-maps"><span class="header-section-number">5.4.3</span> 3. Validação de Acurácia (Benchmarking com Google Maps)</h3>
+<p><em>Análise completa disponível em <a href="./relatorios.html#sec-rel-estatistica">Apêndice — Análise Estatística V3</a> e <a href="./relatorios.html#sec-rel-cnefe">Avaliação CNEFE V3</a>.</em></p>
 <p><strong>Autor:</strong> Ville Rodrigues <strong>Período:</strong> Abril 2026 <strong>Objetivo:</strong> Avaliar a qualidade das coordenadas do CNEFE e do ArcGIS tomando o Google Maps como referência de maior acurácia (Ground Truth).</p>
 <section id="metodologia-2" class="level4" data-number="5.4.3.1">
 <h4 data-number="5.4.3.1" class="anchored" data-anchor-id="metodologia-2"><span class="header-section-number">5.4.3.1</span> Metodologia</h4>
@@ -5515,7 +5520,7 @@ Tabela&nbsp;5.1: Funil de processamento e validação cruzada
 <section id="problema-crítico-lotesterrenos" class="level4" data-number="5.5.2.1">
 <h4 data-number="5.5.2.1" class="anchored" data-anchor-id="problema-crítico-lotesterrenos"><span class="header-section-number">5.5.2.1</span> Problema Crítico: Lotes/Terrenos</h4>
 <p>Uma dificuldade notável ocorre com Lotes e Terrenos, onde a taxa de processamento foi apenas <strong>55.0%</strong> (3.369 de 6.120 imóveis), 34,6 pontos percentuais abaixo da média geral. As principais causas são a ausência de numeração de porta em lotes vagos, a menor cobertura do CNEFE para imóveis não-edificados e a degradação do score no L2 (fuzzy_number) quando a diferença numérica entre lote e edificação vizinha supera ~100 unidades.</p>
-<p>A análise completa — com tabelas comparativas por bairro, distribuição por tipo de match e recomendações de ajuste de threshold — está documentada na <a href="#sec-lote-terreno">Seção 3.2</a> e no arquivo <a href="../ANALISE_LOTE_TERRENO_V3.md">ANALISE_LOTE_TERRENO_V3.md</a>.</p>
+<p>A análise completa — com tabelas comparativas por bairro, distribuição por tipo de match e recomendações de ajuste de threshold — está documentada na <a href="#sec-lote-terreno">Seção 3.2</a> e no <a href="./relatorios.html#sec-rel-lote-terreno">Apêndice — Análise de Lote/Terreno</a>.</p>
 </section>
 </section>
 <section id="padronização" class="level3" data-number="5.5.3">

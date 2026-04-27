@@ -330,8 +330,20 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#sec-scripts-obs" id="toc-sec-scripts-obs" class="nav-link active" data-scroll-target="#sec-scripts-obs"><span class="header-section-number">D.1</span> Observatório do Mercado Imobiliário</a>
+  <ul class="collapse">
+  <li><a href="#sec-script-geocoder" id="toc-sec-script-geocoder" class="nav-link" data-scroll-target="#sec-script-geocoder"><span class="header-section-number">D.1.1</span> Geocoder V3 — Validação Posicional CNEFE vs ArcGIS</a></li>
+  <li><a href="#sec-script-outliers" id="toc-sec-script-outliers" class="nav-link" data-scroll-target="#sec-script-outliers"><span class="header-section-number">D.1.2</span> Script de Detecção de Outliers</a></li>
+  <li><a href="#sec-script-etl" id="toc-sec-script-etl" class="nav-link" data-scroll-target="#sec-script-etl"><span class="header-section-number">D.1.3</span> ETL PySpark — Ingestão e Normalização do Datalake</a></li>
+  <li><a href="#sec-script-merge" id="toc-sec-script-merge" class="nav-link" data-scroll-target="#sec-script-merge"><span class="header-section-number">D.1.4</span> Merge Final V3 — Consolidação da Tabela de Saída</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/LabFSG-UFSC/Relatorio_01-2026/edit/main/scripts.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -355,8 +367,34 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="sec-scripts-obs" class="level2" data-number="D.1">
+<h2 data-number="D.1" class="anchored" data-anchor-id="sec-scripts-obs"><span class="header-section-number">D.1</span> Observatório do Mercado Imobiliário</h2>
+<section id="sec-script-geocoder" class="level3" data-number="D.1.1">
+<h3 data-number="D.1.1" class="anchored" data-anchor-id="sec-script-geocoder"><span class="header-section-number">D.1.1</span> Geocoder V3 — Validação Posicional CNEFE vs ArcGIS</h3>
+<p>Motor de correspondência em cascata (6 níveis) que cruza as coordenadas de mercado (ArcGIS) com o endereço oficial do CNEFE/IBGE, atribuindo a cada oferta um flag de validação posicional auditável (<code>is_problematic</code>).</p>
+<p><strong>Arquivo:</strong> <code>geocoding_api/compare_geocodingv3.py</code> — repositório <code>geofuture/cnefe_geocoding</code></p>
+<hr>
+</section>
+<section id="sec-script-outliers" class="level3" data-number="D.1.2">
+<h3 data-number="D.1.2" class="anchored" data-anchor-id="sec-script-outliers"><span class="header-section-number">D.1.2</span> Script de Detecção de Outliers</h3>
+<p>Script SQL que classifica cada oferta com um indicador de integridade cadastral (<code>is_outlier</code>), identificando duplicatas, valores de área ou preço fora do padrão e campos obrigatórios ausentes.</p>
+<p><strong>Arquivo:</strong> <code>relatorio_poc_floripa/script_deteccao_outliers_completo_v2.sql</code> — repositório <code>geofuture/cnefe_geocoding</code></p>
+<hr>
+</section>
+<section id="sec-script-etl" class="level3" data-number="D.1.3">
+<h3 data-number="D.1.3" class="anchored" data-anchor-id="sec-script-etl"><span class="header-section-number">D.1.3</span> ETL PySpark — Ingestão e Normalização do Datalake</h3>
+<p>Pipeline de ingestão e normalização dos dados brutos coletados dos portais imobiliários. Realiza de-para de tipologias, saneamento de campos textuais e padronização para o vocabulário da Receita Federal.</p>
+<p><strong>Arquivo:</strong> <code>relatorio_poc_floripa/pyspark_datalake_etl.py</code> — repositório <code>geofuture/cnefe_geocoding</code></p>
+<hr>
+</section>
+<section id="sec-script-merge" class="level3" data-number="D.1.4">
+<h3 data-number="D.1.4" class="anchored" data-anchor-id="sec-script-merge"><span class="header-section-number">D.1.4</span> Merge Final V3 — Consolidação da Tabela de Saída</h3>
+<p>Script responsável por consolidar os resultados do Geocoder V3 com os dados de origem, produzindo a tabela final <code>monit_2025_11_poc_floripa_v3</code> com todos os flags de qualidade.</p>
+<p><strong>Arquivo:</strong> <code>geocoding_api/merge_final_v3.py</code> — repositório <code>geofuture/cnefe_geocoding</code></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -779,7 +817,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
 <p><img src="img/Logo com RFB e UFSC.png" class="img-fluid" width="250"></p>
-<div class="toc-actions"><ul><li><a href="https://github.com/LabFSG-UFSC/Relatorio_01-2026/edit/main/scripts.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/LabFSG-UFSC/Relatorio_01-2026/edit/main/scripts.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
