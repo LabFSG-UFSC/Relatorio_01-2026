@@ -380,8 +380,54 @@ foram utilizadas como variáveis explicativas `area`, `Dist`, `VUM2`,
 @sec-variaveis-modelagem.
 
 Os resíduos do modelo da @tbl-LotesGLM foram krigados, conforme procedimento 
-descrito na @sec-atividades-modelagem. Por fim, estes resíduos krigados foram 
-utilizados como uma variável explicativa de localização (`layer`) para o ajuste
+descrito na @sec-atividades-modelagem, para posterior reutilização no modelo
+de regressão final para os lotes.
+
+## Atividades Desenvolvidas {#sec-atividades-modelagem}
+
+### Seleção de variáveis
+
+A seleção de variáveis foi realizada de acordo com o princípio da parcimônia
+(navalha de Ockham). Não foi utilizado nenhum método automático de seleção: ela
+foi feita através da inclusão e exclusão manual de variáveis, testando com cada
+combinação os modelos, até que um modelo ótimo fosse obtido, apenas com aquelas
+variáveis consideradas importantes, evitando assim o fenômeno do *overfitting*.
+
+Os algoritmos de seleção automática de variáveis, infelizmente, não são garantia
+de escolha do melhor modelo. Segundo @Matloff2017:
+
+> There is no panacea! Choosing a subset of predictors on the basis of
+cross-validation, AIC and so on is not foolproof by any means. Due to the
+Principle of Frequent Occurence of Rare Events, some subsets may look very
+good yet actually be artifacts.
+
+
+
+### Testes de modelos
+
+O modelo utilizado para a confecção da supercíes de valores de metro quadrado
+construído é um modelo preditivo que, por este motivo, não demanda uma 
+verificação pormenorizada das hipóteses da inferência clássica. 
+
+Para o modelo de lotes, contudo, seria desejável que as hipóteses da inferência
+clássica (linearidade, normalidade e homoscedasticidade) fossem todas 
+verificadas. No entanto, nem sempre é fácil conseguir um modelo com estas
+características. A não-verificação das hipóteses da inferência clássica, contudo,
+não invalidam a propriedade de consistência do estimador de mínimos quadrados
+[@Matloff2017, p. 81]. Ou seja, quando o tamanho da amostra $n$ tende a 
+infinito, o valor estimado, $\hat\beta$, tende a $\beta$, independentemente de
+verificação das hipóteses de homoscedasticidade e normalidade.
+
+
+## Resultados {#sec-resultados-modelagem}
+
+### Modelo Final
+
+Foram elaborados dois modelos preliminares para os imóveis de Florianópolis:
+um modelo de lotes e outro modelo de imóveis edificados, apresentados nas
+
+Com os resíduos krigados obtidos do modelo preliminar de lotes (@tbl-LotesGLM),
+foi ajustada uma variável explicativa de localização (`layer`) para o ajuste
 do modelo final de lotes, da @tbl-LotesModel:
 
 ```{r}
@@ -416,37 +462,9 @@ Este modelo, portanto, pode ser considerado viável para a predição de valores
 unitários de terrenos visando a aplicação do método evolutivo para toda a 
 cidade.
 
-## Atividades Desenvolvidas {#sec-atividades-modelagem}
+### *Outputs* de valor
 
-### Seleção de variáveis
-
-A seleção das variáveis envolvidas nas análises não foi feita de forma 
-automática, mas através da inclusão e exclusão manual de variáveis, testando
-com cada combinação os modelos, até que um modelo ótimo fosse obtido, apenas
-com aquelas variáveis consideradas importantes, evitando assim o fenômeno do
-*overfitting*.
-
-Os algoritmos de seleção de variáveis 
-
-### Testes de modelos
-
-O modelo utilizado para a confecção da supercíes de valores de metro quadrado
-construído é um modelo preditivo que, por este motivo, não demanda uma 
-verificação pormenorizada das hipóteses da inferência clássica. 
-
-Para o modelo de lotes, contudo, seria desejável que as hipóteses da inferência
-clássica (linearidade, normalidade e homoscedasticidade) fossem todas 
-verificadas. No entanto, nem sempre é fácil conseguir um modelo com estas
-características. A não-verificação das hipóteses da inferência clássica, contudo,
-não invalidam a propriedade de consistência do estimador de mínimos quadrados
-[@Matloff2017, p. 81]. Ou seja, quando o tamanho da amostra $n$ tende a 
-infinito, o valor estimado, $\hat\beta$, tende a $\beta$, independentemente de
-verificação das hipóteses de homoscedasticidade e normalidade.
-
-
-## Resultados {#sec-resultados-modelagem}
-
-### Superfície de valores de metro quadrado construído
+#### Superfície de valores de metro quadrado construído
 
 ```{r}
 #| label: fig-superficieVU
@@ -467,7 +485,74 @@ mapa_ko <-
             legend.outside=TRUE,
             attr.color = "orange",
             inner.margins = c(0.1,0.1,0.1,0.1) # bottom, left, top, right
-  ) +
+  ) + 
+  tm_compass() +
+  tm_scalebar() +
+  tm_check_fix() 
+mapa_ko
+```
+
+#### Planta de Valores Genéricos
+
+Com o modelo da @tbl-LotesModel é possível elaborar uma planta de valores 
+genéricos (PVG) para a cidade de Florianópolis. Esta PVG deve ter uma escala
+condizente com a magnitude do projeto. Se por um lado não é viável tecnicamente
+a elaboração de PVG's por face de quadras no contexto deste projeto, por outro
+lado a escala de trabalho não pode ser pequena a ponto de não permitir a 
+aplicação uma tributação com um mínimo de equidade.
+
+Uma vez definida a escala, a PVG deverá ser gerada a partir da superfície de 
+valores unitários de lotes mostrada na @fig-SuperficieVULotes.
+
+
+## Desafios {#sec-desafios-modelagem}
+
+A modelagem de valores de lotes é desafiadora, especialmente por conta da falta
+de um cadastro urbano completo, de onde poder-se-ia extrair as características
+físicas dos lotes, o que certamente melhoraria a estimação. Durante o projeto,
+variáveis cartográficas alternativas devem ser buscadas para complementar o 
+poder de explicação dos modelos de lotes urbanos.
+
+### Importância das variáveis
+
+As variáveis mais importantes para a estimação de valores unitários de lotes
+podem ser extraídas da análise da @tbl-correlacoes: a variável mais importante
+para explicar os valores unitários dos lotes foi a variável `area`, seguida da
+variável de localização (`layer`) e da variável `VUM2`.
+
+```{r}
+#| label: tbl-correlacoes
+#| tbl-cap: "Correlações"
+olsrr::ols_correlations(FinalFit) |>
+  kable(digits = 2, format.args = list(decimal.mark = ",", big.mark = "."))
+```
+
+
+### Aderência ao mercado
+
+A aderência ao mercado do modelo de lotes urbanos pode ser verificada 
+subjetivamente através da análise da superfície krigada de valores unitários
+homogeneizados para um lote residencial padrão com 450 $m^2$ de área.
+
+```{r}
+#| label: fig-SuperficieVULotes
+#| fig-cap: "Superfície de valores unitários para um lote padrão residencial de 450m2."
+# knitr::include_graphics("../POC-FLN/KO/4205407_Florianopolis_Lotes_v001.tif")
+Raster <- rast("../POC-FLN/KO/4205407_Florianopolis_Lotes_v001.tif")
+# plot(Raster, col = terrain.colors(100))
+# ggplot() +
+#   geom_spatraster(data = Raster) +
+#   scale_color_viridis_b()
+
+mapa_ko <-
+  tm_basemap(c(Satelite = "Esri.WorldImagery")) +
+  tm_shape(Raster) +
+  tm_raster(palette = col, title = "Superfície de Valores Unitários") +
+  tm_layout("Amostra de Lotes",
+            legend.outside=TRUE,
+            attr.color = "orange",
+            inner.margins = c(0.1,0.1,0.1,0.1) # bottom, left, top, right
+  ) + 
   tm_compass() +
   tm_scalebar() +
   tm_check_fix() 
@@ -475,16 +560,40 @@ mapa_ko
 ```
 
 
-### Modelo preliminar
-
-### *Outputs* de valor
-
-## Desafios {#sec-desafios-modelagem}
-
-### Qualidade das variáveis
-
-### Aderência ao mercado
-
 ## Escalabilidade {#sec-escalabilidade}
 
+A escalabilidade do processo de modelagem deve se dar de forma natural ao longo
+do projeto. Em termos de estimação, a automatização completa é um tanto 
+temerária: não se pode prescindir de efetuar um controle de qualidade através de
+uma análise crítica dos modelos, verificando a coerência dos resultados obtidos.
+A definiçãod e um fluxograma de estimação, no entanto, como mostrado na
+@fig-fluxo-modelagem, permite a divisão das tarefas entre os membros da equipe
+de estimação, o que deverá tornar o processo de estimação mais eficiente, ainda
+que demande um controle de qualidade rigoroso.
+
+Considera-se importante para a escalabilidade a utilização dos modelos
+paramétricos, melhorados, com o auxílio da krigagem, da variável de localização
+baseada nos resíduos de um modelo preliminar, pois isto permitirá, em tempo
+futuro, uma metanálise dos resultados obtidos em cada capital. Isto pode vir a
+permitir, após a confecção dos modelos em um número suficiente de capitais,
+extrapolar o conhecimento obtido para outras capitais de maneira científica, 
+evitando-se a eventual necessidade de adoção de procedimentos duvidosos, como a
+adoção de fatores de homogeneização determinísticos.
+
 ### Replicação em outros municípios
+
+A replicação em outros municípios se dará com as devidas adaptações 
+eventualmente necessárias para refletir a realidade dos mercados imobiliários 
+locais. 
+
+Como argumentado acima, a eventual extrapolação do conhecimento obtido em uma
+cidade para outra deverá ocorrer em tempo futuro, apenas após o acúmulo de
+estudos suficientes para a elaboração de uma metanálise que permita que essa
+extrapolação seja feita com segurança.
+
+A definição de um controle de qualidade objetivo objetivo do processo de 
+estimação também deverá ocorrer naturalmente ao longo do projeto, com a 
+definição de métricas adequadas para os modelos.
+
+
+

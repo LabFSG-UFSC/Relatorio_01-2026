@@ -216,7 +216,6 @@ $$ {#eq-IDW2}
 
 Em que:
   - $d_{ij} = \sqrt{(x_i-x_j)^2 + (y_i - y_j)^2}$
-
 :::
 
 
@@ -256,13 +255,51 @@ $$F_1 = \exp(\hat \beta_1 x_1); F_2 = \exp(\hat \beta_2 x_2); \ldots ; F_k =  \e
 Com a superfície de valores de metro quadrado construído elaborada conforme 
 descrito na @sec-VUM2.
 
-#### Geração da superfície de valores de lotes
+#### Geração da superfície de valores unitários de lotes
 
+A superfície de valores unitários de lotes urbanos foi obtida através de um
+procedimento geoestatístico denominado krigagem ordinária, que interpola valores
+de uma amostra a uma grade regular de pontos.
 
-## Definição de variáveis
-
-## Estratégias de modelagem
+Primeiramente, os preços unitários da amostra de lotes foram homogeneizados
+conforme procedimento descrito na @nte-fatores, a partir do modelo final de
+lotes obtido (ver @tbl-LotesModel no @sec-est), criando assim o que se denomina
+em geoestatística como variável regionalizada. Depois, estes preços 
+unitários homogeneizados foram 
 
 ## Conexão com Normas Técnicas
 
-## Aprendizados aplicados na PoC
+A avaliação em massa de imóveis urbanos ainda é matéria pendente de normatização
+na Associação Brasileira de Normas Técnicas (ABNT). A norma técnica brasileira 
+existente de avaliação em massa de imóveis foi elaborada em conjunto por duas
+importantes entidades profissionais, a saber, o Instituto Brasileiro de
+Avaliações e Perícias de Engenharia (IBAPE ) e a Sociedade Brasileira de 
+Engenharia de Avaliações (SOBREA). Este texto normativo, no entanto, ainda
+carece de força legal. Uma comissão da ABNT, portanto, tem discutido, com base
+neste texto normativo existente, a criação de um volume adicional para a 
+NBR 14.653, que irá contemplar especificamente a matéria da avaliação em massa 
+de imóveis urbanos para fins tributários.
+
+## Lições aprendidas na PoC
+
+Os procedimentos metodológicos adotados na PoC tiveram que ser adaptados à 
+realidade fática brasileira, em que o cadastro urbano de imóveis ainda pende de 
+um grande processo de desenvolvimento. Inexiste uma solução única e eficaz que 
+permita a definição do valor de referência dos imóveis de uma determinada 
+região de forma inequívoca. Pelo contrário, uma solução viável deve ser
+buscada para cada caso, dependendo das informações geográficas e mercadológicas
+existentes.
+
+A PoC Florianópolis foi importante especialmente para o aprendizado de como os 
+fluxos de atividades das diversas etapas podem ser replicados em cada localidade
+ao longo do projeto, ainda  que inexista garantia de que este fluxo manter-se-á 
+eficaz em todas as localidades e ao longo do tempo. No entanto, ainda que 
+adaptações porventura mostrem-se necessárias ao longo do projeto, a definição de
+um fluxo inicial replicável é o principal resultado obtido com a PoC 
+Florianópolis.
+
+
+
+
+
+

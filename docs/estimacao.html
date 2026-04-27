@@ -409,13 +409,12 @@ window.Quarto = {
   </ul></li>
   <li><a href="#sec-resultados-modelagem" id="toc-sec-resultados-modelagem" class="nav-link" data-scroll-target="#sec-resultados-modelagem"><span class="header-section-number">6.7</span> Resultados</a>
   <ul class="collapse">
-  <li><a href="#superfície-de-valores-de-metro-quadrado-construído" id="toc-superfície-de-valores-de-metro-quadrado-construído" class="nav-link" data-scroll-target="#superfície-de-valores-de-metro-quadrado-construído"><span class="header-section-number">6.7.1</span> Superfície de valores de metro quadrado construído</a></li>
-  <li><a href="#modelo-preliminar" id="toc-modelo-preliminar" class="nav-link" data-scroll-target="#modelo-preliminar"><span class="header-section-number">6.7.2</span> Modelo preliminar</a></li>
-  <li><a href="#outputs-de-valor" id="toc-outputs-de-valor" class="nav-link" data-scroll-target="#outputs-de-valor"><span class="header-section-number">6.7.3</span> <em>Outputs</em> de valor</a></li>
+  <li><a href="#modelo-final" id="toc-modelo-final" class="nav-link" data-scroll-target="#modelo-final"><span class="header-section-number">6.7.1</span> Modelo Final</a></li>
+  <li><a href="#outputs-de-valor" id="toc-outputs-de-valor" class="nav-link" data-scroll-target="#outputs-de-valor"><span class="header-section-number">6.7.2</span> <em>Outputs</em> de valor</a></li>
   </ul></li>
   <li><a href="#sec-desafios-modelagem" id="toc-sec-desafios-modelagem" class="nav-link" data-scroll-target="#sec-desafios-modelagem"><span class="header-section-number">6.8</span> Desafios</a>
   <ul class="collapse">
-  <li><a href="#qualidade-das-variáveis" id="toc-qualidade-das-variáveis" class="nav-link" data-scroll-target="#qualidade-das-variáveis"><span class="header-section-number">6.8.1</span> Qualidade das variáveis</a></li>
+  <li><a href="#importância-das-variáveis" id="toc-importância-das-variáveis" class="nav-link" data-scroll-target="#importância-das-variáveis"><span class="header-section-number">6.8.1</span> Importância das variáveis</a></li>
   <li><a href="#aderência-ao-mercado" id="toc-aderência-ao-mercado" class="nav-link" data-scroll-target="#aderência-ao-mercado"><span class="header-section-number">6.8.2</span> Aderência ao mercado</a></li>
   </ul></li>
   <li><a href="#sec-escalabilidade" id="toc-sec-escalabilidade" class="nav-link" data-scroll-target="#sec-escalabilidade"><span class="header-section-number">6.9</span> Escalabilidade</a>
@@ -976,7 +975,31 @@ Tabela&nbsp;6.2: Modelo linear generalizado de lotes urbanos. Coeficientes expon
 </div>
 </div>
 <p>No modelo da <a href="#tbl-LotesGLM" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a>, para a explicação dos valores unitários dos lotes foram utilizadas como variáveis explicativas <code>area</code>, <code>Dist</code>, <code>VUM2</code>, <code>renda_pct_krigada</code>, <code>ca_max</code>, <code>dens_equip_saud</code> e <code>tipo_uso</code>, descritas na <a href="#sec-variaveis-modelagem" class="quarto-xref"><span>Seção 6.4</span></a>.</p>
-<p>Os resíduos do modelo da <a href="#tbl-LotesGLM" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a> foram krigados, conforme procedimento descrito na <a href="#sec-atividades-modelagem" class="quarto-xref"><span>Seção 6.6</span></a>. Por fim, estes resíduos krigados foram utilizados como uma variável explicativa de localização (<code>layer</code>) para o ajuste do modelo final de lotes, da <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a>:</p>
+<p>Os resíduos do modelo da <a href="#tbl-LotesGLM" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a> foram krigados, conforme procedimento descrito na <a href="#sec-atividades-modelagem" class="quarto-xref"><span>Seção 6.6</span></a>, para posterior reutilização no modelo de regressão final para os lotes.</p>
+</section>
+</section>
+<section id="sec-atividades-modelagem" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="sec-atividades-modelagem"><span class="header-section-number">6.6</span> Atividades Desenvolvidas</h2>
+<section id="seleção-de-variáveis" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="seleção-de-variáveis"><span class="header-section-number">6.6.1</span> Seleção de variáveis</h3>
+<p>A seleção de variáveis foi realizada de acordo com o princípio da parcimônia (navalha de Ockham). Não foi utilizado nenhum método automático de seleção: ela foi feita através da inclusão e exclusão manual de variáveis, testando com cada combinação os modelos, até que um modelo ótimo fosse obtido, apenas com aquelas variáveis consideradas importantes, evitando assim o fenômeno do <em>overfitting</em>.</p>
+<p>Os algoritmos de seleção automática de variáveis, infelizmente, não são garantia de escolha do melhor modelo. Segundo <span class="citation" data-cites="Matloff2017">MATLOFF (<a href="references.html#ref-Matloff2017" role="doc-biblioref">2017</a>)</span>:</p>
+<blockquote class="blockquote">
+<p>There is no panacea! Choosing a subset of predictors on the basis of cross-validation, AIC and so on is not foolproof by any means. Due to the Principle of Frequent Occurence of Rare Events, some subsets may look very good yet actually be artifacts.</p>
+</blockquote>
+</section>
+<section id="testes-de-modelos" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="testes-de-modelos"><span class="header-section-number">6.6.2</span> Testes de modelos</h3>
+<p>O modelo utilizado para a confecção da supercíes de valores de metro quadrado construído é um modelo preditivo que, por este motivo, não demanda uma verificação pormenorizada das hipóteses da inferência clássica.</p>
+<p>Para o modelo de lotes, contudo, seria desejável que as hipóteses da inferência clássica (linearidade, normalidade e homoscedasticidade) fossem todas verificadas. No entanto, nem sempre é fácil conseguir um modelo com estas características. A não-verificação das hipóteses da inferência clássica, contudo, não invalidam a propriedade de consistência do estimador de mínimos quadrados <span class="citation" data-cites="Matloff2017">(<a href="references.html#ref-Matloff2017" role="doc-biblioref">MATLOFF, 2017, p. 81</a>)</span>. Ou seja, quando o tamanho da amostra <span class="math inline">\(n\)</span> tende a infinito, o valor estimado, <span class="math inline">\(\hat\beta\)</span>, tende a <span class="math inline">\(\beta\)</span>, independentemente de verificação das hipóteses de homoscedasticidade e normalidade.</p>
+</section>
+</section>
+<section id="sec-resultados-modelagem" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="sec-resultados-modelagem"><span class="header-section-number">6.7</span> Resultados</h2>
+<section id="modelo-final" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="modelo-final"><span class="header-section-number">6.7.1</span> Modelo Final</h3>
+<p>Foram elaborados dois modelos preliminares para os imóveis de Florianópolis: um modelo de lotes e outro modelo de imóveis edificados, apresentados nas</p>
+<p>Com os resíduos krigados obtidos do modelo preliminar de lotes (<a href="#tbl-LotesGLM" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a>), foi ajustada uma variável explicativa de localização (<code>layer</code>) para o ajuste do modelo final de lotes, da <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a>:</p>
 <div class="cell">
 <div id="tbl-LotesModel" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1109,24 +1132,10 @@ Tabela&nbsp;6.3: Modelo de lotes urbanos. Coeficientes exponenciados.
 <p>Como é possível notar na <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a>, o modelo final tem poder de explicar em torno de 82% dos preços unitários de mercado, um resultado que pode ser considerado notável, se consideramos a falta de diversas variáveis acerca das características físicas dos lotes (frente, forma, pedologia e outras).</p>
 <p>Este modelo, portanto, pode ser considerado viável para a predição de valores unitários de terrenos visando a aplicação do método evolutivo para toda a cidade.</p>
 </section>
-</section>
-<section id="sec-atividades-modelagem" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="sec-atividades-modelagem"><span class="header-section-number">6.6</span> Atividades Desenvolvidas</h2>
-<section id="seleção-de-variáveis" class="level3" data-number="6.6.1">
-<h3 data-number="6.6.1" class="anchored" data-anchor-id="seleção-de-variáveis"><span class="header-section-number">6.6.1</span> Seleção de variáveis</h3>
-<p>A seleção das variáveis envolvidas nas análises não foi feita de forma automática, mas através da inclusão e exclusão manual de variáveis, testando com cada combinação os modelos, até que um modelo ótimo fosse obtido, apenas com aquelas variáveis consideradas importantes, evitando assim o fenômeno do <em>overfitting</em>.</p>
-<p>Os algoritmos de seleção de variáveis</p>
-</section>
-<section id="testes-de-modelos" class="level3" data-number="6.6.2">
-<h3 data-number="6.6.2" class="anchored" data-anchor-id="testes-de-modelos"><span class="header-section-number">6.6.2</span> Testes de modelos</h3>
-<p>O modelo utilizado para a confecção da supercíes de valores de metro quadrado construído é um modelo preditivo que, por este motivo, não demanda uma verificação pormenorizada das hipóteses da inferência clássica.</p>
-<p>Para o modelo de lotes, contudo, seria desejável que as hipóteses da inferência clássica (linearidade, normalidade e homoscedasticidade) fossem todas verificadas. No entanto, nem sempre é fácil conseguir um modelo com estas características. A não-verificação das hipóteses da inferência clássica, contudo, não invalidam a propriedade de consistência do estimador de mínimos quadrados <span class="citation" data-cites="Matloff2017">(<a href="references.html#ref-Matloff2017" role="doc-biblioref">MATLOFF, 2017, p. 81</a>)</span>. Ou seja, quando o tamanho da amostra <span class="math inline">\(n\)</span> tende a infinito, o valor estimado, <span class="math inline">\(\hat\beta\)</span>, tende a <span class="math inline">\(\beta\)</span>, independentemente de verificação das hipóteses de homoscedasticidade e normalidade.</p>
-</section>
-</section>
-<section id="sec-resultados-modelagem" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="sec-resultados-modelagem"><span class="header-section-number">6.7</span> Resultados</h2>
-<section id="superfície-de-valores-de-metro-quadrado-construído" class="level3" data-number="6.7.1">
-<h3 data-number="6.7.1" class="anchored" data-anchor-id="superfície-de-valores-de-metro-quadrado-construído"><span class="header-section-number">6.7.1</span> Superfície de valores de metro quadrado construído</h3>
+<section id="outputs-de-valor" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="outputs-de-valor"><span class="header-section-number">6.7.2</span> <em>Outputs</em> de valor</h3>
+<section id="superfície-de-valores-de-metro-quadrado-construído" class="level4" data-number="6.7.2.1">
+<h4 data-number="6.7.2.1" class="anchored" data-anchor-id="superfície-de-valores-de-metro-quadrado-construído"><span class="header-section-number">6.7.2.1</span> Superfície de valores de metro quadrado construído</h4>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-superficieVU" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1142,26 +1151,115 @@ Figura&nbsp;6.7: Mapa de Valores de metro quadrado construído (R$/m2).
 </div>
 </div>
 </section>
-<section id="modelo-preliminar" class="level3" data-number="6.7.2">
-<h3 data-number="6.7.2" class="anchored" data-anchor-id="modelo-preliminar"><span class="header-section-number">6.7.2</span> Modelo preliminar</h3>
+<section id="planta-de-valores-genéricos" class="level4" data-number="6.7.2.2">
+<h4 data-number="6.7.2.2" class="anchored" data-anchor-id="planta-de-valores-genéricos"><span class="header-section-number">6.7.2.2</span> Planta de Valores Genéricos</h4>
+<p>Com o modelo da <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a> é possível elaborar uma planta de valores genéricos (PVG) para a cidade de Florianópolis. Esta PVG deve ter uma escala condizente com a magnitude do projeto. Se por um lado não é viável tecnicamente a elaboração de PVG’s por face de quadras no contexto deste projeto, por outro lado a escala de trabalho não pode ser pequena a ponto de não permitir a aplicação uma tributação com um mínimo de equidade.</p>
+<p>Uma vez definida a escala, a PVG deverá ser gerada a partir da superfície de valores unitários de lotes mostrada na <a href="#fig-SuperficieVULotes" class="quarto-xref">Figura&nbsp;<span>6.8</span></a>.</p>
 </section>
-<section id="outputs-de-valor" class="level3" data-number="6.7.3">
-<h3 data-number="6.7.3" class="anchored" data-anchor-id="outputs-de-valor"><span class="header-section-number">6.7.3</span> <em>Outputs</em> de valor</h3>
 </section>
 </section>
 <section id="sec-desafios-modelagem" class="level2" data-number="6.8">
 <h2 data-number="6.8" class="anchored" data-anchor-id="sec-desafios-modelagem"><span class="header-section-number">6.8</span> Desafios</h2>
-<section id="qualidade-das-variáveis" class="level3" data-number="6.8.1">
-<h3 data-number="6.8.1" class="anchored" data-anchor-id="qualidade-das-variáveis"><span class="header-section-number">6.8.1</span> Qualidade das variáveis</h3>
+<p>A modelagem de valores de lotes é desafiadora, especialmente por conta da falta de um cadastro urbano completo, de onde poder-se-ia extrair as características físicas dos lotes, o que certamente melhoraria a estimação. Durante o projeto, variáveis cartográficas alternativas devem ser buscadas para complementar o poder de explicação dos modelos de lotes urbanos.</p>
+<section id="importância-das-variáveis" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="importância-das-variáveis"><span class="header-section-number">6.8.1</span> Importância das variáveis</h3>
+<p>As variáveis mais importantes para a estimação de valores unitários de lotes podem ser extraídas da análise da <a href="#tbl-correlacoes" class="quarto-xref">Tabela&nbsp;<span>6.4</span></a>: a variável mais importante para explicar os valores unitários dos lotes foi a variável <code>area</code>, seguida da variável de localização (<code>layer</code>) e da variável <code>VUM2</code>.</p>
+<div class="cell">
+<div id="tbl-correlacoes" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-correlacoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.4: Correlações
+</figcaption>
+<div aria-describedby="tbl-correlacoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">Zero-order</th>
+<th style="text-align: right;">Partial</th>
+<th style="text-align: right;">Part</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">log(area/450)</td>
+<td style="text-align: right;">-0,57</td>
+<td style="text-align: right;">-0,78</td>
+<td style="text-align: right;">-0,53</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log(VUM2/10000)</td>
+<td style="text-align: right;">0,44</td>
+<td style="text-align: right;">0,46</td>
+<td style="text-align: right;">0,22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">log(renda_pct_krigada/1212)</td>
+<td style="text-align: right;">0,53</td>
+<td style="text-align: right;">0,31</td>
+<td style="text-align: right;">0,14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I(ca_max - 1)</td>
+<td style="text-align: right;">0,22</td>
+<td style="text-align: right;">0,32</td>
+<td style="text-align: right;">0,14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">log1p(dens_equip_saud)</td>
+<td style="text-align: right;">0,21</td>
+<td style="text-align: right;">0,21</td>
+<td style="text-align: right;">0,09</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tipo_usoResidencial</td>
+<td style="text-align: right;">-0,07</td>
+<td style="text-align: right;">-0,12</td>
+<td style="text-align: right;">-0,05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">layer</td>
+<td style="text-align: right;">0,41</td>
+<td style="text-align: right;">0,69</td>
+<td style="text-align: right;">0,41</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
 </section>
 <section id="aderência-ao-mercado" class="level3" data-number="6.8.2">
 <h3 data-number="6.8.2" class="anchored" data-anchor-id="aderência-ao-mercado"><span class="header-section-number">6.8.2</span> Aderência ao mercado</h3>
+<p>A aderência ao mercado do modelo de lotes urbanos pode ser verificada subjetivamente através da análise da superfície krigada de valores unitários homogeneizados para um lote residencial padrão com 450 <span class="math inline">\(m^2\)</span> de área.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-SuperficieVULotes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-SuperficieVULotes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="estimacao_files/figure-html/fig-SuperficieVULotes-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-SuperficieVULotes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.8: Superfície de valores unitários para um lote padrão residencial de 450m2.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="sec-escalabilidade" class="level2" data-number="6.9">
 <h2 data-number="6.9" class="anchored" data-anchor-id="sec-escalabilidade"><span class="header-section-number">6.9</span> Escalabilidade</h2>
+<p>A escalabilidade do processo de modelagem deve se dar de forma natural ao longo do projeto. Em termos de estimação, a automatização completa é um tanto temerária: não se pode prescindir de efetuar um controle de qualidade através de uma análise crítica dos modelos, verificando a coerência dos resultados obtidos. A definiçãod e um fluxograma de estimação, no entanto, como mostrado na <a href="#fig-fluxo-modelagem" class="quarto-xref">Figura&nbsp;<span>6.1</span></a>, permite a divisão das tarefas entre os membros da equipe de estimação, o que deverá tornar o processo de estimação mais eficiente, ainda que demande um controle de qualidade rigoroso.</p>
+<p>Considera-se importante para a escalabilidade a utilização dos modelos paramétricos, melhorados, com o auxílio da krigagem, da variável de localização baseada nos resíduos de um modelo preliminar, pois isto permitirá, em tempo futuro, uma metanálise dos resultados obtidos em cada capital. Isto pode vir a permitir, após a confecção dos modelos em um número suficiente de capitais, extrapolar o conhecimento obtido para outras capitais de maneira científica, evitando-se a eventual necessidade de adoção de procedimentos duvidosos, como a adoção de fatores de homogeneização determinísticos.</p>
 <section id="replicação-em-outros-municípios" class="level3" data-number="6.9.1">
 <h3 data-number="6.9.1" class="anchored" data-anchor-id="replicação-em-outros-municípios"><span class="header-section-number">6.9.1</span> Replicação em outros municípios</h3>
+<p>A replicação em outros municípios se dará com as devidas adaptações eventualmente necessárias para refletir a realidade dos mercados imobiliários locais.</p>
+<p>Como argumentado acima, a eventual extrapolação do conhecimento obtido em uma cidade para outra deverá ocorrer em tempo futuro, apenas após o acúmulo de estudos suficientes para a elaboração de uma metanálise que permita que essa extrapolação seja feita com segurança.</p>
+<p>A definição de um controle de qualidade objetivo objetivo do processo de estimação também deverá ocorrer naturalmente ao longo do projeto, com a definição de métricas adequadas para os modelos.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
