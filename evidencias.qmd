@@ -1,2 +1,26 @@
 # Evidências de entregas
 
+
+## Observatório do Mercado Imobiliário {#sec-evidencias-obs}
+
+### Dicionário de Dados {#sec-dic-dados}
+
+Descrição de todas as colunas da tabela final `monit_2025_11_poc_floripa_v3`, incluindo tipos, domínios e flags de qualidade.
+
+**Arquivo:** `DICIONARIO_DADOS.md` — repositório `geofuture/cnefe_geocoding`
+
+---
+
+### Documentação de Outliers {#sec-doc-outliers}
+
+Documentação completa das regras de detecção de outliers: critérios estatísticos, thresholds, exemplos e interpretação dos valores de `is_outlier`.
+
+**Arquivo:** `relatorio_poc_floripa/documentacao_outliers.md` — repositório `geofuture/cnefe_geocoding`
+
+---
+
+### Metodologia de Reaproveitamento de Vias Curtas {#sec-met-vias-curtas}
+
+Seção metodológica detalhada sobre o algoritmo de vias curtas: critérios de seleção, thresholds, exemplos por bairro e análise de cobertura.
+
+**Arquivo:** `relatorio_poc_floripa/secao_metodologica_reaproveitamento_vias_curtas.md` — repositório `geofuture/cnefe_geocoding`
