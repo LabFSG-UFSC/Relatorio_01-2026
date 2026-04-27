@@ -1,1 +1,33 @@
 # Relatórios Técnicos Detalhados
+
+## Observatório do Mercado Imobiliário {#sec-relatorios-obs}
+
+### Análise Exploratória — Flag de Reaproveitamento (Vias Curtas) {#sec-rel-vias-curtas}
+
+Estudo que avalia a metodologia de reaproveitamento de registros com precisão 3 (vias curtas), quantificando o ganho de cobertura e a distribuição territorial do flag de reaproveitamento.
+
+**Arquivo:** `relatorio_poc_floripa/analise_exploratoria_flag_reap3.md` — repositório `geofuture/cnefe_geocoding`
+
+---
+
+### Análise de Lote/Terreno V3 {#sec-rel-lote-terreno}
+
+Investigação das causas da baixa taxa de processamento CNEFE para Lotes e Terrenos (55%), com exemplos numéricos do comportamento do score L2 e recomendações para as próximas versões.
+
+**Arquivo:** `ANALISE_LOTE_TERRENO_V3.md` — repositório `geofuture/cnefe_geocoding`
+
+---
+
+### Análise Estatística V3 {#sec-rel-estatistica}
+
+Relatório com a distribuição de distâncias ArcGIS vs CNEFE por nível de match, percentis e benchmarking com Google Maps.
+
+**Arquivo:** `ANALISE_ESTATISTICA_V3.md` — repositório `geofuture/cnefe_geocoding`
+
+---
+
+### Avaliação CNEFE V3 {#sec-rel-cnefe}
+
+Avaliação comparativa detalhada entre as fontes de coordenadas (ArcGIS e CNEFE) por nível de precisão geográfica (`nv_geo_coord`).
+
+**Arquivo:** `relatorio_poc_floripa/relatorio_avaliacao_cnefe_v3.md` — repositório `geofuture/cnefe_geocoding`
