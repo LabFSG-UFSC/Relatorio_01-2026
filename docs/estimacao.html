@@ -411,6 +411,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#modelo-final" id="toc-modelo-final" class="nav-link" data-scroll-target="#modelo-final"><span class="header-section-number">6.7.1</span> Modelo Final</a></li>
   <li><a href="#outputs-de-valor" id="toc-outputs-de-valor" class="nav-link" data-scroll-target="#outputs-de-valor"><span class="header-section-number">6.7.2</span> <em>Outputs</em> de valor</a></li>
+  <li><a href="#outros-modelos" id="toc-outros-modelos" class="nav-link" data-scroll-target="#outros-modelos"><span class="header-section-number">6.7.3</span> Outros modelos</a></li>
   </ul></li>
   <li><a href="#sec-desafios-modelagem" id="toc-sec-desafios-modelagem" class="nav-link" data-scroll-target="#sec-desafios-modelagem"><span class="header-section-number">6.8</span> Desafios</a>
   <ul class="collapse">
@@ -998,13 +999,13 @@ Tabela&nbsp;6.2: Modelo linear generalizado de lotes urbanos. Coeficientes expon
 <h2 data-number="6.7" class="anchored" data-anchor-id="sec-resultados-modelagem"><span class="header-section-number">6.7</span> Resultados</h2>
 <section id="modelo-final" class="level3" data-number="6.7.1">
 <h3 data-number="6.7.1" class="anchored" data-anchor-id="modelo-final"><span class="header-section-number">6.7.1</span> Modelo Final</h3>
-<p>Foram elaborados dois modelos preliminares para os imóveis de Florianópolis: um modelo de lotes e outro modelo de imóveis edificados, apresentados nas</p>
-<p>Com os resíduos krigados obtidos do modelo preliminar de lotes (<a href="#tbl-LotesGLM" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a>), foi ajustada uma variável explicativa de localização (<code>layer</code>) para o ajuste do modelo final de lotes, da <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a>:</p>
+<p>Foi elaborado um modelo preliminar para os lotes de Florianópolis, apresentado na <a href="#tbl-LotesGLM" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a>. Deste modelos foram extraídos resíduos para verificação da dependência espacial, que se mostrou presente, como de praxe. Os resíduos do modelo da <a href="#tbl-LotesGLM" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a> foram então krigados.</p>
+<p>Com os resíduos krigados obtidos do modelo preliminar de lotes (<a href="#tbl-LotesGLM" class="quarto-xref">Tabela&nbsp;<span>6.2</span></a>), foi ajustada uma variável explicativa de localização (<code>layer</code>) para o ajuste do modelo final (modelo de regressão linear ordinária) de lotes, da <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a>:</p>
 <div class="cell">
 <div id="tbl-LotesModel" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-LotesModel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.3: Modelo de lotes urbanos. Coeficientes exponenciados.
+Tabela&nbsp;6.3: Modelo de lotes urbanos.
 </figcaption>
 <div aria-describedby="tbl-LotesModel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1023,75 +1024,75 @@ Tabela&nbsp;6.3: Modelo de lotes urbanos. Coeficientes exponenciados.
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Intercepto</td>
-<td style="text-align: right;">1.784,45</td>
+<td style="text-align: right;">7,49</td>
 <td style="text-align: right;">0,03</td>
 <td style="text-align: right;">256,23</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">1.718,85</td>
-<td style="text-align: right;">1.852,55</td>
+<td style="text-align: right;">7,45</td>
+<td style="text-align: right;">7,52</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">log(area/450)</td>
-<td style="text-align: right;">0,68</td>
+<td style="text-align: right;">-0,38</td>
 <td style="text-align: right;">0,00</td>
 <td style="text-align: right;">-76,61</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">0,68</td>
-<td style="text-align: right;">0,69</td>
+<td style="text-align: right;">-0,39</td>
+<td style="text-align: right;">-0,38</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">log(VUM2/10000)</td>
-<td style="text-align: right;">2,96</td>
+<td style="text-align: right;">1,08</td>
 <td style="text-align: right;">0,03</td>
 <td style="text-align: right;">32,09</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">2,83</td>
-<td style="text-align: right;">3,09</td>
+<td style="text-align: right;">1,04</td>
+<td style="text-align: right;">1,13</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">log(renda_pct_krigada/1212)</td>
-<td style="text-align: right;">1,42</td>
+<td style="text-align: right;">0,35</td>
 <td style="text-align: right;">0,02</td>
 <td style="text-align: right;">20,44</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">1,39</td>
-<td style="text-align: right;">1,45</td>
+<td style="text-align: right;">0,33</td>
+<td style="text-align: right;">0,37</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">I(ca_max - 1)</td>
-<td style="text-align: right;">1,08</td>
+<td style="text-align: right;">0,08</td>
 <td style="text-align: right;">0,00</td>
 <td style="text-align: right;">20,45</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">1,08</td>
-<td style="text-align: right;">1,09</td>
+<td style="text-align: right;">0,08</td>
+<td style="text-align: right;">0,09</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">log1p(dens_equip_saud)</td>
-<td style="text-align: right;">1,07</td>
+<td style="text-align: right;">0,07</td>
 <td style="text-align: right;">0,01</td>
 <td style="text-align: right;">13,21</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">1,06</td>
-<td style="text-align: right;">1,08</td>
+<td style="text-align: right;">0,06</td>
+<td style="text-align: right;">0,08</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">tipo_usoResidencial</td>
-<td style="text-align: right;">0,83</td>
+<td style="text-align: right;">-0,18</td>
 <td style="text-align: right;">0,02</td>
 <td style="text-align: right;">-7,33</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">0,81</td>
-<td style="text-align: right;">0,86</td>
+<td style="text-align: right;">-0,21</td>
+<td style="text-align: right;">-0,15</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">layer</td>
-<td style="text-align: right;">2,72</td>
+<td style="text-align: right;">1,00</td>
 <td style="text-align: right;">0,02</td>
 <td style="text-align: right;">59,38</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">2,66</td>
-<td style="text-align: right;">2,78</td>
+<td style="text-align: right;">0,98</td>
+<td style="text-align: right;">1,02</td>
 </tr>
 </tbody><tfoot>
 <tr class="odd">
@@ -1130,7 +1131,152 @@ Tabela&nbsp;6.3: Modelo de lotes urbanos. Coeficientes exponenciados.
 </div>
 </div>
 <p>Como é possível notar na <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a>, o modelo final tem poder de explicar em torno de 82% dos preços unitários de mercado, um resultado que pode ser considerado notável, se consideramos a falta de diversas variáveis acerca das características físicas dos lotes (frente, forma, pedologia e outras).</p>
-<p>Este modelo, portanto, pode ser considerado viável para a predição de valores unitários de terrenos visando a aplicação do método evolutivo para toda a cidade.</p>
+<p>Os gráficos da <span class="quarto-unresolved-ref">?fig-ResidualsFinais</span> mostram que não há presença de <em>outliers</em> ou pontos influenciantes no modelo. A normalidade dos resíduos, no entanto, hipótese da inferência clássica, não foi verificada, como fica claro quando se analisa o gráfico Q-Q.</p>
+<p>A falta da verificação da hipótese da normalidade dos resíduos, no entanto, não invalida o modelo de regressão linear. Conforme <span class="citation" data-cites="Matloff2017">MATLOFF (<a href="references.html#ref-Matloff2017" role="doc-biblioref">2017, p. 80–81</a>)</span>, <span class="math inline">\(\hat beta\)</span> é um estimador não-viesado e consistente mesmo na ausência de normalidade e/ou homoscedasticidade.</p>
+<p>O modelo da <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a>, portanto, pode ser considerado viável para a predição de valores unitários de terrenos visando a aplicação do método evolutivo para toda a cidade. Porém, os testes estatísticas e os intervalos de confiança dos coeficientes apresentados na <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a> não são válidos, pela ausência da normalidade. A <a href="#tbl-LotesModel2" class="quarto-xref">Tabela&nbsp;<span>6.4</span></a> apresenta, então, as estatísticas do modelo computadas com erros robustos (matriz HC3). Nota-se que não houve grandes modificações nos resultados dos testes e dos intervalos de confiança dos coeficientes em relação ao apresentados na <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ResiduosFinais" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ResiduosFinais-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="estimacao_files/figure-html/fig-ResiduosFinais-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ResiduosFinais-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;6.7: Resíduos do modelo final de lotes.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div id="tbl-LotesModel2" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-LotesModel2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.4: Modelo de lotes urbanos. Erros robustos.
+</figcaption>
+<div aria-describedby="tbl-LotesModel2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Termo</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Est.</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Erro-padrão</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Est. t</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p-valor</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">IC_inf</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">IC_sup</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Intercepto</td>
+<td style="text-align: right;">7,49</td>
+<td style="text-align: right;">0,04</td>
+<td style="text-align: right;">195,79</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">7,44</td>
+<td style="text-align: right;">7,54</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log(area/450)</td>
+<td style="text-align: right;">-0,38</td>
+<td style="text-align: right;">0,01</td>
+<td style="text-align: right;">-52,88</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-0,39</td>
+<td style="text-align: right;">-0,37</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">log(VUM2/10000)</td>
+<td style="text-align: right;">1,08</td>
+<td style="text-align: right;">0,03</td>
+<td style="text-align: right;">31,82</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,04</td>
+<td style="text-align: right;">1,13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log(renda_pct_krigada/1212)</td>
+<td style="text-align: right;">0,35</td>
+<td style="text-align: right;">0,02</td>
+<td style="text-align: right;">21,01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0,33</td>
+<td style="text-align: right;">0,37</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I(ca_max - 1)</td>
+<td style="text-align: right;">0,08</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">21,19</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0,08</td>
+<td style="text-align: right;">0,09</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">log1p(dens_equip_saud)</td>
+<td style="text-align: right;">0,07</td>
+<td style="text-align: right;">0,01</td>
+<td style="text-align: right;">12,78</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0,06</td>
+<td style="text-align: right;">0,08</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tipo_usoResidencial</td>
+<td style="text-align: right;">-0,18</td>
+<td style="text-align: right;">0,04</td>
+<td style="text-align: right;">-5,20</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">-0,23</td>
+<td style="text-align: right;">-0,14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">layer</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">0,02</td>
+<td style="text-align: right;">50,75</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0,98</td>
+<td style="text-align: right;">1,03</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup>a</sup> Erro-padrão dos resíduos: 0,34 em 3796 graus de liberdade</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0;"><sup>b</sup> R2: 0,82</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0;"><sup>c</sup> R2aj: 0,82</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tfoot>
+
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
 </section>
 <section id="outputs-de-valor" class="level3" data-number="6.7.2">
 <h3 data-number="6.7.2" class="anchored" data-anchor-id="outputs-de-valor"><span class="header-section-number">6.7.2</span> <em>Outputs</em> de valor</h3>
@@ -1144,7 +1290,7 @@ Tabela&nbsp;6.3: Modelo de lotes urbanos. Coeficientes exponenciados.
 <img src="estimacao_files/figure-html/fig-superficieVU-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-superficieVU-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.7: Mapa de Valores de metro quadrado construído (R$/m2).
+Figura&nbsp;6.8: Mapa de Valores de metro quadrado construído (R$/m2).
 </figcaption>
 </figure>
 </div>
@@ -1154,7 +1300,235 @@ Figura&nbsp;6.7: Mapa de Valores de metro quadrado construído (R$/m2).
 <section id="planta-de-valores-genéricos" class="level4" data-number="6.7.2.2">
 <h4 data-number="6.7.2.2" class="anchored" data-anchor-id="planta-de-valores-genéricos"><span class="header-section-number">6.7.2.2</span> Planta de Valores Genéricos</h4>
 <p>Com o modelo da <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a> é possível elaborar uma planta de valores genéricos (PVG) para a cidade de Florianópolis. Esta PVG deve ter uma escala condizente com a magnitude do projeto. Se por um lado não é viável tecnicamente a elaboração de PVG’s por face de quadras no contexto deste projeto, por outro lado a escala de trabalho não pode ser pequena a ponto de não permitir a aplicação uma tributação com um mínimo de equidade.</p>
-<p>Uma vez definida a escala, a PVG deverá ser gerada a partir da superfície de valores unitários de lotes mostrada na <a href="#fig-SuperficieVULotes" class="quarto-xref">Figura&nbsp;<span>6.8</span></a>.</p>
+<p>Uma vez definida a escala, a PVG deverá ser gerada a partir da superfície de valores unitários de lotes mostrada na <a href="#fig-SuperficieVULotes" class="quarto-xref">Figura&nbsp;<span>6.9</span></a>.</p>
+</section>
+</section>
+<section id="outros-modelos" class="level3" data-number="6.7.3">
+<h3 data-number="6.7.3" class="anchored" data-anchor-id="outros-modelos"><span class="header-section-number">6.7.3</span> Outros modelos</h3>
+<p>Nesta seção são apresentados os resultados de outros modelos estatísticos elaborados para a PoC Florianópolis. São estudos de modelos de aprendizado de máquina. Tais modelos não foram utilizados para os resultados finais da PoC, por dois motivos: primeiro, os modelos foram ajustados em paralelo ao andamento previsto para a PoC; segundo, existe a dificuldade de interpretabilidade dos modelos de aprendizado de máquina. Como ilustrado na <a href="#fig-fluxo-modelagem" class="quarto-xref">Figura&nbsp;<span>6.1</span></a>, os modelos de aprendizado de máquina devem ser utilizados ao longo do projeto, porém os seus resultados deverão ser utilizados como um caminho para a estimação linear dos valores finais, mantendo assim a interpretabilidade.</p>
+<section id="estimação-de-valores-unitários-vu-de-lotes-em-florianópolis-sc" class="level4" data-number="6.7.3.1">
+<h4 data-number="6.7.3.1" class="anchored" data-anchor-id="estimação-de-valores-unitários-vu-de-lotes-em-florianópolis-sc"><span class="header-section-number">6.7.3.1</span> Estimação de valores unitários (VU) de lotes em Florianópolis (SC)</h4>
+</section>
+<section id="objetivo" class="level4" data-number="6.7.3.2">
+<h4 data-number="6.7.3.2" class="anchored" data-anchor-id="objetivo"><span class="header-section-number">6.7.3.2</span> Objetivo</h4>
+<p>Estimar valores absolutos e unitários de lotes em Florianópolis a partir de anúncios raspados no Viva Real em 01/11/2025, e gerar superfície de valores unitários estimados.</p>
+</section>
+<section id="bases-de-dados-utilizadas" class="level4" data-number="6.7.3.3">
+<h4 data-number="6.7.3.3" class="anchored" data-anchor-id="bases-de-dados-utilizadas"><span class="header-section-number">6.7.3.3</span> Bases de dados utilizadas</h4>
+<p><code>4205407_Florianopolis_r007_2026-04-06 — variavel_geografica_amostra_omi.gpkg</code></p>
+</section>
+<section id="preparação-dos-dados" class="level4" data-number="6.7.3.4">
+<h4 data-number="6.7.3.4" class="anchored" data-anchor-id="preparação-dos-dados"><span class="header-section-number">6.7.3.4</span> Preparação dos dados</h4>
+<section id="seleção-de-observações" class="level5" data-number="6.7.3.4.1">
+<h5 data-number="6.7.3.4.1" class="anchored" data-anchor-id="seleção-de-observações"><span class="header-section-number">6.7.3.4.1</span> Seleção de observações</h5>
+<p>A partir do campo <code>arcgis_precisao</code>foram filtradas as observações com valores iguais a 3 ou 4. Em <code>tipo_negocio</code> foram filtradas “venda” ou “venda/aluguel”. Em <code>tipo_imov</code> filtraram-se <code>Apartamento</code>, <code>Casa</code>, <code>Casa de Condomínio</code>, <code>Cobertura</code> e <code>Flat</code>. Em <code>situacao</code>, foram filtradas as classificadas em “Urbana”.</p>
+</section>
+<section id="geração-de-dummies-de-tipos-de-uso" class="level5" data-number="6.7.3.4.2">
+<h5 data-number="6.7.3.4.2" class="anchored" data-anchor-id="geração-de-dummies-de-tipos-de-uso"><span class="header-section-number">6.7.3.4.2</span> Geração de <em>dummies</em> de tipos de uso</h5>
+<p>Foram geradas variáveis <em>dummy</em> para os tipos de uso constantes na base de dados: <code>d\_apartamento</code>, <code>d\_casa</code>, <code>d\_casa\_cond</code>, <code>d\_cobertura</code> e <code>d\_flat</code>.</p>
+</section>
+<section id="imputação-de-valores" class="level5" data-number="6.7.3.4.3">
+<h5 data-number="6.7.3.4.3" class="anchored" data-anchor-id="imputação-de-valores"><span class="header-section-number">6.7.3.4.3</span> Imputação de valores</h5>
+<p>Às observações com valores nulos (0) ou ausentes (NA), foram imputados valores, a partir da média dos k vizinhos mais próximos - KNN (k = 8), para as seguintes variáveis:</p>
+<ul>
+<li><p><code>val_iptu</code>: remoção prévia de valores superiores a R$ 120 mil, considerados <em>outliers</em> após inspeção visual (valores discrepantemente altos sem padrão espacial discernível). Foram realizadas 8 remoções. Apenas os valores <code>NA</code> foram imputados, pois valores nulos de IPTU podem corresponder à realidade no caso de imóveis isentos;</p></li>
+<li><p><code>ca_max</code>: corresponde ao Coeficiente de Aproveitamento máximo na localização do lote. Além dos valores ausentes, foram imputados os valores nulos, pois não se considera realista valores nulos para imóveis edificados;</p></li>
+<li><p><code>to_max</code>: corresponde à Taxa de Ocupação máxima na localização do lote. Foram imputados valores ausentes e nulos, pelas mesmas razões do <code>ca_max</code>;</p></li>
+<li><p><code>renda_med_pct</code>: corresponde à renda média per capita do setor censitário. Dada a inexistência de valores nulos, apenas os valores ausentes foram imputados;</p></li>
+<li><p><code>classe\_declividade</code>: corresponde à classe de declividade da localização do lote, variando de 1 = plano a 5 = montanhoso. Após conversão do campo para a classe <em>integer</em>, imputaram-se apenas os valores ausentes, dada a inexistência de valores nulos;</p></li>
+<li><p><code>var_ren_media</code>: corresponde à variância da renda média no setor censitário. Foram imputados apenas os valores ausentes, dada a inexistência de valores nulos.</p></li>
+</ul>
+</section>
+<section id="remoção-de-observações-com-valores-na-ou-artificialmente-baixos-para-área-total" class="level5" data-number="6.7.3.4.4">
+<h5 data-number="6.7.3.4.4" class="anchored" data-anchor-id="remoção-de-observações-com-valores-na-ou-artificialmente-baixos-para-área-total"><span class="header-section-number">6.7.3.4.4</span> Remoção de observações com valores NA ou artificialmente baixos para Área total</h5>
+<p>Todas as observações cuja variável <code>Area_total</code> exibisse valores ausentes ou menores ou iguais a 10 foram removidas. Além disso, foram removidas todas as observações com valores ausentes nas variáveis <code>qtd_vg_garagem</code>, <code>qtd_suites</code>, <code>area_total</code>.</p>
+</section>
+<section id="taxa-condominial-como-variável-dummy" class="level5" data-number="6.7.3.4.5">
+<h5 data-number="6.7.3.4.5" class="anchored" data-anchor-id="taxa-condominial-como-variável-dummy"><span class="header-section-number">6.7.3.4.5</span> Taxa condominial como variável <em>dummy</em></h5>
+<p>A muitos imóveis nâo incide taxa condominial. Por essa razão, foram criadas colunas para valores <code>NA</code> de <code>taxa_condominial</code> (como variável dummy) e imputados valores 0 para <code>NAs</code> nas colunas originais.</p>
+</section>
+<section id="tranformação-logarítmica" class="level5" data-number="6.7.3.4.6">
+<h5 data-number="6.7.3.4.6" class="anchored" data-anchor-id="tranformação-logarítmica"><span class="header-section-number">6.7.3.4.6</span> Tranformação logarítmica</h5>
+<p>De modo a reduzir a assimetria da distribuição das variáveis, tanto a dependente como as independentes, com exceção das <em>dummies</em>, foram logaritmizadas. Antes, os valores nulos foram transformados segundo as respectivas distribuições das variáveis e valores mínimos, conforme rotina a seguir:</p>
+<ul>
+<li><p><code>area_anun</code>, <code>area_total</code> <span class="math inline">\(&lt;= 10 \rightarrow\)</span> removidos;</p></li>
+<li><p><code>qtd_lote</code>, <code>val_iptu</code>, <code>dens_demo_hab_km2</code> <span class="math inline">\(= 0 \rightarrow 0,1\)</span>;</p></li>
+<li><p><code>dens_equip\_educ</code>, <code>dens_equip_saud</code>, <code>dist_area_inund</code> <span class="math inline">\(= 0 \rightarrow 0,01\)</span>;</p></li>
+<li><p><code>qtd_vg_garagem</code>, <code>qtd_suites</code>, <span class="math inline">\(= 0 \rightarrow 0,1\)</span>;</p></li>
+<li><p><code>dist_litoral</code>, <code>total_pess</code>, <span class="math inline">\(= 0 \rightarrow 1,0\)</span>;</p></li>
+<li><p><code>lote_medio_m2</code> <span class="math inline">\(= 0 \rightarrow 10,0\)</span></p></li>
+</ul>
+</section>
+<section id="detecção-de-outliers-por-regressão-robusta-com-m-estimadores" class="level5" data-number="6.7.3.4.7">
+<h5 data-number="6.7.3.4.7" class="anchored" data-anchor-id="detecção-de-outliers-por-regressão-robusta-com-m-estimadores"><span class="header-section-number">6.7.3.4.7</span> Detecção de outliers por regressão robusta com M-estimadores</h5>
+<p>A regressão robusta é uma técnica de regressão desenvolvida para reduzir a influência de outliers ou de violações pressupostos da regressão linear convencional. Ao contrário do método dos Mínimo Quadrados Ordinários (MQO), a regressão robusta penaliza menos os erros extremos, diminuindo o impacto de pontos fora do padrão. Assim, essas observações recebem pesos (w) menores (Raza <em>et al.,</em> 2024).</p>
+<p>Antes da regressão robusta, performou-se uma regressão linear simples exploratória (<code>OLS_exploratoria</code>) para verificação de eventuais variáveis não significativas e de multicolinearidade. As variáveis empregadas, logaritmizadas, foram definidas como:</p>
+<ul>
+<li><p><em>Variável dependente</em>: valor de venda anunciado (<code>log_anun_val_venda</code>);</p></li>
+<li><p><em>Variáveis independentes</em>: área privativa (<code>log_area_anun</code>); n° de vagas de garagem (<code>log_qtd_vg_garagem</code>); n° de suítes (<code>log_qtd_suites</code>); n° de banheiros (<code>log_qtd_banheiros</code> ); taxa de condomínio (<code>log_tx_condom</code>); valor de IPTU (<code>log_val_iptu</code>); área total do lote (<code>log_area_total</code>); coeficiente de aproveitamento máximo (<code>log_ca_max</code>); taxa de ocupação máxima (<code>log_to_max</code>); densidade demográfica em hab/km² (<code>log_dens_demo_hab_km2</code>); densidade de equipamentos educacionais (<code>log_dens_equip_educ</code>); densidade de equipamentos de saúde (<code>log_dens_equip_saud</code>); distância ao Centro de Florianópolis (<code>log_dist_centro</code>); distância ao litoral (<code>log_dist_litoral</code>); área média do lote em m² (log_lote_medio_m2); quantidade de domicílios (<code>log_qtd_domic</code>) total de pessoas residentes (<code>log_total_pess</code>); variação da renda média (<code>log_var_ren_media</code>); renda média per capita (log_renda_med_pct); classe de declividade (<code>log_classe_declividade</code>); distância a áreas inundáveis (<code>log_dist_area_inund</code>); quantidade de lotes (<code>log_qtd_lotes</code>), tipo de imóvel - dummy (<code>d_casa</code>, <code>d_casa_cond</code>, <code>d_cobertura</code>, <code>d_flat</code>) e dummy de taxa de condomínio (<code>tx_cond_na</code>).</p></li>
+</ul>
+<p>Os resultados demonstram a não significância de <code>log\_dens\_equip\_educ</code> (p = 0.6544) e <code>log\_dist\_centro</code> (p = 0.2430), removidas.</p>
+<p>Em seguida foi executado o modelo robusto (modelo_robusto_Lotes), com a mesma especificação da OLS_exploratoria, exceto as varáveis removidas na etapa anterior.</p>
+<p>Após a extração dos pesos <em>w</em> e de sua distribuição foram consideradas outliers as 5% observações com menores pesos, o que corresponde a <em>w</em> &lt; 0.6137, as quais foram então excluídas.</p>
+</section>
+<section id="variável-padrão-construtivo-pc" class="level5" data-number="6.7.3.4.8">
+<h5 data-number="6.7.3.4.8" class="anchored" data-anchor-id="variável-padrão-construtivo-pc"><span class="header-section-number">6.7.3.4.8</span> Variável Padrão construtivo (PC)</h5>
+<p>Foi criada uma variável <code>Padrão Construtivo</code> (PC), com clusterização a partir de <code>anun\_val\_venda</code> e <code>renda\_med\_pct</code>. Foram definidas 3 classes (k = 3): baixo padrão, médio padrão e alto padrão.</p>
+<p>Um método para a previsão espacial de clusters é a <em>kigagem indicativa</em>, a qual revela a probabilidade de uma variável pertencer a uma determinada classe no espaço, gerando uma classificação final a partir do maior valor de probabilidade para aquele ponto. Faz sentido porque tanto valor como renda exibem forte componente espacial. Portanto, PC também exibe alta correlação espacial.</p>
+<p>No entanto, a krigagem indicativa revelou-se extremamente onerosa computacionalmente. Adota-se, portanto, o k-NN espacial, mais leve computacionalmente e conceitualmente próximo à krigagem indicativa (Miao <em>et al.</em>, 2025). Este método Compara com os k-vizinhos mais próximos e verifica a que clusters (PC) eles pertencem, adotando-se uma abordagem probabilística (% de vizinhos em cada classe). O número de vizinhos foi definido como k = 8.</p>
+</section>
+</section>
+<section id="modelo-ols" class="level4" data-number="6.7.3.5">
+<h4 data-number="6.7.3.5" class="anchored" data-anchor-id="modelo-ols"><span class="header-section-number">6.7.3.5</span> Modelo OLS</h4>
+<p>O primeiro modelo produzido foi uma regressão linear simples (OLS) com a mesma especificação da regressão robusta, através da função <code>lm</code> (nativa do R). O modelo OLS exibiu os seguintes resultados:</p>
+<ul>
+<li>Desvio padrão residual = 0.2917 em 45375 graus de liberdade;</li>
+<li>R²-ajustado = 0.8249;</li>
+<li>Estatística F = 8225 em 26 e 45375 graus de liberdade;</li>
+<li><span class="math inline">\(p &lt; 2.2e-16\)</span>.</li>
+</ul>
+<p>Os quatro gráficos diagnósticos gerados (<em>Residuals vs Fitted</em>, <em>Q-Q Residuals</em>, <em>Scale-Location</em>, <em>Residuals vs Leverage</em>) revelam pequena não linearidade residual, resíduos não normalmente distribuídos, heterocedasticidade moderada e ausência de outliers ou observações muito influentes. A não linearidade e não normalidade podem dever-se à dependência e heterogeneidade espacial. Assim, foi efetuada uma análise espacial exploratória, mediante análise de autocorrelação espacial de Moran, com os seguintes resultados:</p>
+<ul>
+<li><p>I de Moran: 0.4696;</p></li>
+<li><p>I de Moran esperado sem autocorrelação espacial: -2.202352e-05;</p></li>
+<li><p>teste t: 254.24;</p></li>
+<li><p><span class="math inline">\(p &lt; 2.2e-16\)</span></p></li>
+</ul>
+<p>Valores que confirmam forte autocorrelação espacial nos resíduos.</p>
+<p>Nesse sentido, um modelo combinado hierárquico - MH + <em>machine learning</em> - ML nos resíduos (doravante MHML) é capaz de mitigar a autocorrelação espacial. O MH absorve parte da heterogeneidade espacial, enquanto o ML nos resíduos captura não linearidades, efeitos locais (equivalente ao GWR) e a microestrutura local (Liu; Kounadi; Zurita-Milla, 2022).</p>
+</section>
+<section id="modelo-hierárquico-mh" class="level4" data-number="6.7.3.6">
+<h4 data-number="6.7.3.6" class="anchored" data-anchor-id="modelo-hierárquico-mh"><span class="header-section-number">6.7.3.6</span> Modelo Hierárquico (MH)</h4>
+<p>Seguidamente, foi aplicado um modelo hierárquico (MH), com a mesma especificação do OLS, incluindo setores censitários como níveis hierarquicamente aninhados nos distritos: <code>(1 | cd_dist/cd_setor)</code> . A função adotada é <code>lmer</code> (pacote <code>lme4</code>).</p>
+<p>O MH resultou nos seguintes valores de variância para os níveis hierárquicos:</p>
+<ul>
+<li>var. cd_setor = 0.02187 (21.52%)</li>
+<li>var. cd_dist = 0.02069 (20.36%)</li>
+<li>var. residual = 0.05906 (58.11%)</li>
+</ul>
+<p>O que implica em alta variância espacial (~42%), justificando o modelo hierárquico. Observa-se que setor é o nível dominante, mas distrito é quase tão importante.</p>
+<p>Em termos de ajuste da regressão, foram obtidos:</p>
+<ul>
+<li>R² marginal (efeitos fixos) = 0.782</li>
+<li>R² condicional (efeitos fixos + aleatórios) = 0.873</li>
+</ul>
+</section>
+<section id="modelo-combinado---mhml" class="level4" data-number="6.7.3.7">
+<h4 data-number="6.7.3.7" class="anchored" data-anchor-id="modelo-combinado---mhml"><span class="header-section-number">6.7.3.7</span> Modelo Combinado - MHML</h4>
+<p>O modelo hierárquico captura a estrutura global e os efeitos espaciais de cada nível, enquanto o modelo baseado em <em>machine learning</em> (ML) captura não linearidades e interações restantes. Vários estudos sugerem que, dentre os modelos ML, os baseados em Boost exibem desempenho superior aos baseados em Random Forests (RF) (Hjort et al., 2022; Liu <em>et al.</em>, 2024; Ho; Tang; Wong, 2021). Essa abordagem híbrida é conhecida como <em>stacking residual</em> ou <em>two-stage modeling</em>, em que um modelo estatístico principal é complementado por um algoritmo de machine learning aplicado aos erros sistemáticos não explicados inicialmente.</p>
+<p>Estudos comparativos mostram que o XGBoost e o LightGBM apresentam desempenho muito semelhante (Chango-Sailema et al., 2026, sendo que em alguns casos o LightGBM supera (Indah et. al., 2025). Em vista dessas vantagens, optou-se pelo LightGBM, que possui melhor custo-benefício, performance comparável ao XGBoost e é mais leve.</p>
+<section id="estratégia-de-estimação" class="level5" data-number="6.7.3.7.1">
+<h5 data-number="6.7.3.7.1" class="anchored" data-anchor-id="estratégia-de-estimação"><span class="header-section-number">6.7.3.7.1</span> Estratégia de estimação</h5>
+<p>A base de dados foi inicialmente dividida em:</p>
+<ul>
+<li><p>70% para treino;</p></li>
+<li><p>30% para teste</p></li>
+</ul>
+<p>No conjunto de treino, realizou-se nova subdivisão:</p>
+<ul>
+<li><p>80% treino interno;</p></li>
+<li><p>20% validação.</p></li>
+</ul>
+<p>O subconjunto de validação foi utilizado durante o treinamento do LightGBM, com mecanismo de <em>early stopping</em>, prevenindo sobreajuste.</p>
+</section>
+<section id="primeira-etapa-modelo-hierárquico-mh" class="level5" data-number="6.7.3.7.2">
+<h5 data-number="6.7.3.7.2" class="anchored" data-anchor-id="primeira-etapa-modelo-hierárquico-mh"><span class="header-section-number">6.7.3.7.2</span> Primeira etapa: modelo hierárquico (MH)</h5>
+<p>Inicialmente foi ajustado o modelo hierárquico linear com a mesma especificação anterior.</p>
+</section>
+<section id="modelagem-dos-resíduos" class="level5" data-number="6.7.3.7.3">
+<h5 data-number="6.7.3.7.3" class="anchored" data-anchor-id="modelagem-dos-resíduos"><span class="header-section-number">6.7.3.7.3</span> Modelagem dos resíduos</h5>
+<p>Após a estimação do MH, foram calculados os resíduos, os quais representam parcela do valor dos imóveis não capturada pelo modelo hierárquico, incluindo relações não lineares, interações complexas entre variáveis, heterogeneidades locais e padrões difíceis de representar em regressão linear. Sobre esses resíduos foi treinado o algoritmo LightGBM.</p>
+</section>
+<section id="parâmetros-do-lightgbm" class="level5" data-number="6.7.3.7.4">
+<h5 data-number="6.7.3.7.4" class="anchored" data-anchor-id="parâmetros-do-lightgbm"><span class="header-section-number">6.7.3.7.4</span> Parâmetros do LightGBM</h5>
+<p>O modelo foi ajustado com parâmetros conservadores, priorizando generalização:</p>
+<ul>
+<li>learning rate = 0.03;</li>
+<li>n° leaves = 20;</li>
+<li>feature fraction = 0.7;</li>
+<li>bagging fraction = 0.7;</li>
+<li>bagging frequency = 5;</li>
+<li>n° rounds = 200.</li>
+</ul>
+<p>Foi adotado critério de parada antecipada após 20 iterações sem melhora na validação.</p>
+</section>
+<section id="predição-final" class="level5" data-number="6.7.3.7.5">
+<h5 data-number="6.7.3.7.5" class="anchored" data-anchor-id="predição-final"><span class="header-section-number">6.7.3.7.5</span> Predição final</h5>
+<p>A previsão final resulta da soma entre: previsão estrutural do Modelo Hierárquico + correção residual aprendida pelo LightGBM. Como o modelo foi estimado em escala logarítmica, aplicou-se retransfomação exponencial com <em>Smearing Correction</em>, corrigindo o viés da volta à escala monetária.</p>
+</section>
+<section id="resultados-comparativos" class="level5" data-number="6.7.3.7.6">
+<h5 data-number="6.7.3.7.6" class="anchored" data-anchor-id="resultados-comparativos"><span class="header-section-number">6.7.3.7.6</span> Resultados comparativos</h5>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Modelo</th>
+<th>R²</th>
+<th>RMSE</th>
+<th>MAE</th>
+<th>MAPE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OLS</td>
+<td>0.8263</td>
+<td>803.118</td>
+<td>460.729</td>
+<td>24.00%</td>
+</tr>
+<tr class="even">
+<td>MH</td>
+<td>0.8555</td>
+<td>734.440</td>
+<td>389.775</td>
+<td>19.48%</td>
+</tr>
+<tr class="odd">
+<td>MHML</td>
+<td>0.8884</td>
+<td>633.703</td>
+<td>351.822</td>
+<td>18.44%</td>
+</tr>
+</tbody>
+</table>
+<p><em>Valores monetários em R$.</em></p>
+<p>O modelo combinado (MHML) apresentou o melhor desempenho em todos os indicadores. Em relação ao OLS houve aumento substancial do poder explicativo, redução expressiva do erro absoluto médio e redução do erro percentual médio. Em relação ao modelo hierárquico isolado (MH) o LightGBM conseguiu capturar padrões residuais relevantes, houve ganho adicional de precisão e manteve-se a interpretação estrutural do MH, adicionando flexibilidade preditiva.</p>
+<p>Apesar do ganho de desempenho, persistem erros relevantes no MHML:</p>
+<ul>
+<li><p>MAE ≈ R$ 352 mil;</p></li>
+<li><p>MAPE ≈ 18,4%</p></li>
+</ul>
+<p>Isso indica que, embora robusto, o mercado imobiliário ainda contém elevada heterogeneidade não totalmente observável.</p>
+</section>
+<section id="modelo-final-operacional" class="level5" data-number="6.7.3.7.7">
+<h5 data-number="6.7.3.7.7" class="anchored" data-anchor-id="modelo-final-operacional"><span class="header-section-number">6.7.3.7.7</span> Modelo final operacional</h5>
+<p>Após a validação comparativa, o MHML foi reestimado utilizando 100% da base de dados, gerando a variável final <code>Valor_previsto_MHML_todos</code>. Essa variável corresponde ao valor estimado de mercado dos imóveis segundo o modelo combinado final.</p>
+</section>
+</section>
+<section id="geração-de-superfície-contínua-de-valores-unitários-idw" class="level4" data-number="6.7.3.8">
+<h4 data-number="6.7.3.8" class="anchored" data-anchor-id="geração-de-superfície-contínua-de-valores-unitários-idw"><span class="header-section-number">6.7.3.8</span> Geração de superfície contínua de valores unitários (IDW)</h4>
+<p>Com o objetivo de incorporar ao modelo de previsão de valores para lotes uma variável espacial representativa da dinâmica do mercado residencial, foi gerada uma superfície contínua de valores unitários (VU em R$/m²) a partir dos imóveis observados, utilizando o método de interpolação <em>Inverse Distance Weighting</em> (IDW). Essa superfície foi posteriormente exportada em formato raster (GeoTIFF) para uso como variável explicativa espacial no modelo de lotes.</p>
+<p>A área de interpolação foi contruída com zona de influência de 1000 m em torno dos pontos amostrais. Posteriormente, foi gerada grade regular com resolução espacial de 100 m, sendo que cada célula da grade corresponde ao local onde o valor unitário foi estimado.</p>
+<p>Adotaram-se os seguintes parâmetros para a interpolação IDW:</p>
+<ul>
+<li><p>Potência (idp) = 2;</p></li>
+<li><p>Máximo de vizinhos (nmax) = 50;</p></li>
+<li><p>Distância máxima (maxdist) = 3000 m.</p></li>
+</ul>
+<p>Assim, cada célula foi estimada com base em até 50 imóveis localizados num raio máximo de 3 km.</p>
+</section>
+<section id="x.-referências" class="level4" data-number="6.7.3.9">
+<h4 data-number="6.7.3.9" class="anchored" data-anchor-id="x.-referências"><span class="header-section-number">6.7.3.9</span> x. Referências</h4>
+<p>CHANGO-SAILEMA, W. G.; VELAZTEGUÍ-IZURIETA, H.; PAZUÑA-NARANJO, W. P. <em>et al.</em> XGBoost vs.&nbsp;LightGBM: An XAI Approach to National Vehicle Fleet Analysis_. Computation_, v. 14, n.&nbsp;4, 81, 2026.</p>
+<p>HJORT, A.; PENSAR, J.; SCHEEL, I.; SOMMERVOLL, D. House price prediction with gradient boosted trees under different loss functions. <em>Journal of Property Research</em>, v. 39, n.&nbsp;4, p.&nbsp;338-364, 2022.</p>
+<p>HO, W. K. O.; TANG, B.; WONG, S. W.. Predicting property prices with machine learning algorithms. <em>Journal of Property Research</em>, v. 38, n.&nbsp;1, p.&nbsp;48-70, 2021.</p>
+<p>INDAH, Y. M.; ARISTAWIDYA, R.; FITRIANTO, A.; ERFIANI, E.; JUMANSYAH, L. M. R. D.. Comparison of Random Forest, XGBoost and LightGBM Methods on the Human Development Index Classification. <em>Jambura Journal of Mathematics</em>, v. 7, n.&nbsp;1, p.&nbsp;14-18, 2025.</p>
+<p>LIU, Xiang; CHEN, Xiaohong; ORFORD, Scott; TIAN, Mingshu; ZOU, Guojian. Does better accessibility always mean higher house prices? <em>Environment and Planning B: Urban Analytics and City Science</em>, v. 51, n.&nbsp;9, p.&nbsp;2179-2195, 2024.</p>
+<p>LIU, X.; KOUNADI, O.; ZURITA-MILLA, R.. Incorporating spatial autocorrelation in machine learning models using spatial lag and eigenvector spatial filtering features. <em>ISPRS International Journal of Geo-Information</em>, v. 11, n.&nbsp;4, 2022.</p>
+<p>MIAO, Y.; LI, H.; XUE, L.; SHEN, C.; WANG, F. Application of a semi-variogram-based KNN algorithm in the spatial prediction of soil heavy metals. <em>Environmental Pollution</em>, v. 390, p.&nbsp;127436, 2026.</p>
+<p>RAZA, A.; TALIB, M.; NOOR-UL-AMIN, M.; GUNAIME, N.; BOUKHRIS, I.; NABI, M. Enhancing performance in the presence of outliers with redescending M-estimators. <em>Scientific Reports</em>, v. 14, 13529, 2024. Disponível em: <a href="https://doi.org/10.1038/s41598-024-64239-6">https://doi.org/10.1038/s41598-024-64239-6</a>. Acesso em: 16 abr 2026.</p>
+<p>TARASOV, S.; DESSOULAVY-SLIWINSKI, B. Algorithm-Driven Hedonic Real Estate Pricing – An Explainable AI Approach. <em>Real Estate Management and Valuation</em>, v. 33, n.&nbsp;1, 2025.</p>
 </section>
 </section>
 </section>
@@ -1163,12 +1537,12 @@ Figura&nbsp;6.7: Mapa de Valores de metro quadrado construído (R$/m2).
 <p>A modelagem de valores de lotes é desafiadora, especialmente por conta da falta de um cadastro urbano completo, de onde poder-se-ia extrair as características físicas dos lotes, o que certamente melhoraria a estimação. Durante o projeto, variáveis cartográficas alternativas devem ser buscadas para complementar o poder de explicação dos modelos de lotes urbanos.</p>
 <section id="importância-das-variáveis" class="level3" data-number="6.8.1">
 <h3 data-number="6.8.1" class="anchored" data-anchor-id="importância-das-variáveis"><span class="header-section-number">6.8.1</span> Importância das variáveis</h3>
-<p>As variáveis mais importantes para a estimação de valores unitários de lotes podem ser extraídas da análise da <a href="#tbl-correlacoes" class="quarto-xref">Tabela&nbsp;<span>6.4</span></a>: a variável mais importante para explicar os valores unitários dos lotes foi a variável <code>area</code>, seguida da variável de localização (<code>layer</code>) e da variável <code>VUM2</code>.</p>
+<p>As variáveis mais importantes para a estimação de valores unitários de lotes podem ser extraídas da análise da <a href="#tbl-correlacoes" class="quarto-xref">Tabela&nbsp;<span>6.5</span></a>: a variável mais importante para explicar os valores unitários dos lotes foi a variável <code>area</code>, seguida da variável de localização (<code>layer</code>) e da variável <code>VUM2</code>.</p>
 <div class="cell">
 <div id="tbl-correlacoes" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-correlacoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabela&nbsp;6.4: Correlações
+Tabela&nbsp;6.5: Correlações
 </figcaption>
 <div aria-describedby="tbl-correlacoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1243,7 +1617,7 @@ Tabela&nbsp;6.4: Correlações
 <img src="estimacao_files/figure-html/fig-SuperficieVULotes-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-SuperficieVULotes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.8: Superfície de valores unitários para um lote padrão residencial de 450m2.
+Figura&nbsp;6.9: Superfície de valores unitários para um lote padrão residencial de 450m2.
 </figcaption>
 </figure>
 </div>
