@@ -461,14 +461,14 @@ explicar em torno de 82% dos preços unitários de mercado, um resultado que pod
 ser considerado notável, se consideramos a falta de diversas variáveis acerca 
 das características físicas dos lotes (frente, forma, pedologia e outras).
 
-Os gráficos da @fig-ResidualsFinais mostram que não há presença de *outliers* 
+Os gráficos da @fig-ResiduosFinais mostram que não há presença de *outliers* 
 ou pontos influenciantes no modelo. A normalidade dos resíduos, no entanto,
 hipótese da inferência clássica, não foi verificada, como fica claro quando
 se analisa o gráfico Q-Q. 
 
 A falta da verificação da hipótese da normalidade dos resíduos, no entanto, não
 invalida o modelo de regressão linear. Conforme @Matloff2017 [p. 80-81], 
-$\hat beta$ é um estimador não-viesado e consistente mesmo na ausência de
+$\hat \beta$ é um estimador não-viesado e consistente mesmo na ausência de
 normalidade e/ou homoscedasticidade.
 
 O modelo da @tbl-LotesModel, portanto, pode ser considerado viável para a
@@ -595,7 +595,7 @@ classificadas em "Urbana".
 ##### Geração de _dummies_ de tipos de uso
 
 Foram geradas variáveis _dummy_ para os tipos de uso constantes na base de
-dados: `d\_apartamento`, `d\_casa`, `d\_casa\_cond`, `d\_cobertura` e `d\_flat`.
+dados: `d_apartamento`, `d_casa`, `d_casa_cond`, `d_cobertura` e `d_flat`.
 
 ##### Imputação de valores
 
@@ -610,7 +610,8 @@ imputados, pois valores nulos de IPTU podem corresponder à realidade no caso de
 imóveis isentos;
     
 - `ca_max`: corresponde ao Coeficiente de Aproveitamento máximo na localização 
-do lote. Além dos valores ausentes, foram imputados os valores nulos, pois não se considera realista valores nulos para imóveis edificados;
+do lote. Além dos valores ausentes, foram imputados os valores nulos, pois não 
+se considera realista valores nulos para imóveis edificados;
     
 - `to_max`: corresponde à Taxa de Ocupação máxima na localização do lote. Foram
 imputados valores ausentes e nulos, pelas mesmas razões do `ca_max`;
@@ -618,7 +619,7 @@ imputados valores ausentes e nulos, pelas mesmas razões do `ca_max`;
 - `renda_med_pct`: corresponde à renda média per capita do setor censitário. 
 Dada a inexistência de valores nulos, apenas os valores ausentes foram imputados;
     
-- `classe\_declividade`: corresponde à classe de declividade da localização do 
+- `classe_declividade`: corresponde à classe de declividade da localização do 
 lote, variando de 1 = plano a 5 = montanhoso. Após conversão do campo para a 
 classe *integer*, imputaram-se apenas os valores ausentes, dada a 
 inexistência de valores nulos;
@@ -651,7 +652,7 @@ variáveis e valores mínimos, conforme rotina a seguir:
   
 - `qtd_lote`, `val_iptu`, `dens_demo_hab_km2` $= 0 \rightarrow 0,1$;
   
-- `dens_equip\_educ`, `dens_equip_saud`, `dist_area_inund` $= 0 \rightarrow 0,01$;
+- `dens_equip_educ`, `dens_equip_saud`, `dist_area_inund` $= 0 \rightarrow 0,01$;
   
 - `qtd_vg_garagem`, `qtd_suites`, $= 0 \rightarrow 0,1$;
   
@@ -666,8 +667,8 @@ A regressão robusta é uma técnica de regressão desenvolvida para reduzir a
 influência de outliers ou de violações pressupostos da regressão linear
 convencional. Ao contrário do método dos Mínimo Quadrados Ordinários (MQO), a
 regressão robusta penaliza menos os erros extremos, diminuindo o impacto de
-pontos fora do padrão. Assim, essas observações recebem pesos (w) menores (Raza
-_et al.,_ 2024).
+pontos fora do padrão. Assim, essas observações recebem pesos (w) menores 
+[@EnhancingPerformancePresence2024].
 
 Antes da regressão robusta, performou-se uma regressão linear simples
 exploratória (`OLS_exploratoria`) para verificação de eventuais variáveis não
@@ -694,11 +695,11 @@ dummy (`d_casa`, `d_casa_cond`, `d_cobertura`, `d_flat`) e dummy de taxa de
 condomínio (`tx_cond_na`).
     
 
-Os resultados demonstram a não significância de `log\_dens\_equip\_educ`
-(p = 0.6544) e ` log\_dist\_centro` (p = 0.2430), removidas.
+Os resultados demonstram a não significância de `log_dens_equip_educ`
+(p = 0.6544) e ` log_dist_centro` (p = 0.2430), removidas.
 
-Em seguida foi executado o modelo robusto (modelo\_robusto\_Lotes), com a mesma
-especificação da OLS\_exploratoria, exceto as varáveis removidas na etapa 
+Em seguida foi executado o modelo robusto (`modelo_robusto_Lotes`), com a mesma
+especificação da `OLS_exploratoria`, exceto as varáveis removidas na etapa 
 anterior.
 
 Após a extração dos pesos _w_ e de sua distribuição foram consideradas outliers 
@@ -708,10 +709,10 @@ quais foram então excluídas.
 ##### Variável Padrão construtivo (PC)
 
 Foi criada uma variável `Padrão Construtivo` (PC), com clusterização a
-partir de `anun\_val\_venda` e `renda\_med\_pct`. Foram 
+partir de `anun_val_venda` e `renda_med_pct`. Foram 
 definidas 3 classes (k = 3): baixo padrão, médio padrão e alto padrão.
 
-Um método para a previsão espacial de clusters é a _kigagem indicativa_, a qual 
+Um método para a previsão espacial de clusters é a _krigagem indicativa_, a qual 
 revela a probabilidade de uma variável pertencer a uma determinada classe no 
 espaço, gerando uma classificação final a partir do maior valor de probabilidade
 para aquele ponto. Faz sentido porque tanto valor como renda exibem forte 
@@ -720,10 +721,10 @@ componente espacial. Portanto, PC também exibe alta correlação espacial.
 No entanto, a krigagem indicativa revelou-se extremamente onerosa 
 computacionalmente. Adota-se, portanto, o k-NN espacial, mais leve 
 computacionalmente e conceitualmente próximo à krigagem indicativa 
-(Miao _et al._, 2025). Este método Compara com os k-vizinhos mais próximos e 
-verifica a que clusters (PC) eles pertencem, adotando-se uma abordagem 
-probabilística (% de vizinhos em cada classe). O número de vizinhos foi definido
-como k = 8.
+[@ApplicationSemivariogrambasedKNN2026]. Este método Compara com os k-vizinhos 
+mais próximos e verifica a que clusters (PC) eles pertencem, adotando-se uma 
+abordagem probabilística (% de vizinhos em cada classe). O número de vizinhos 
+foi definido como k = 8.
 
 
 #### Modelo OLS
@@ -761,19 +762,18 @@ Nesse sentido, um modelo combinado hierárquico - MH + _machine learning_ - ML
 nos resíduos (doravante MHML) é capaz de mitigar a autocorrelação espacial. O MH
 absorve parte da heterogeneidade espacial, enquanto o ML nos resíduos captura
 não linearidades, efeitos locais (equivalente ao GWR) e a microestrutura local
-(Liu; Kounadi; Zurita-Milla, 2022).
+[@IncorporatingSpatialAutocorrelation2022].
 
 #### Modelo Hierárquico (MH)
 
 Seguidamente, foi aplicado um modelo hierárquico (MH), com a mesma especificação
 do OLS, incluindo setores censitários como níveis hierarquicamente aninhados nos
-distritos: `(1 | cd_dist/cd_setor)` . A função adotada é
-`lmer` (pacote `lme4`).
+distritos: `(1 | cd_dist/cd_setor)` . A função adotada é `lmer` (pacote `lme4`).
 
 O MH resultou nos seguintes valores de variância para os níveis hierárquicos:
 
-- var. cd_setor = 0.02187 (21.52%)
-- var. cd_dist = 0.02069 (20.36%)
+- var. `cd_setor` = 0.02187 (21.52%)
+- var. `cd_dist` = 0.02069 (20.36%)
 - var. residual = 0.05906 (58.11%)
     
 
@@ -792,39 +792,39 @@ O modelo hierárquico captura a estrutura global e os efeitos espaciais de cada
 nível, enquanto o modelo baseado em _machine learning_ (ML) captura não 
 linearidades e interações restantes. Vários estudos sugerem que, dentre os 
 modelos ML, os baseados em Boost exibem desempenho superior aos baseados em 
-Random Forests (RF) (Hjort et al., 2022; Liu _et al._, 2024; Ho; Tang; Wong, 
-2021). Essa abordagem híbrida é conhecida como _stacking residual_ ou 
-_two-stage modeling_, em que um modelo estatístico principal é complementado por
-um algoritmo de machine learning aplicado aos erros sistemáticos não explicados
-inicialmente.
+Random Forests (RF) [@HousePricePrediction2022; @DoesBetterAccessibility2024;
+@PredictingPropertyPrices2021]. Essa abordagem híbrida é conhecida como 
+_stacking residual_ ou _two-stage modeling_, em que um modelo estatístico 
+principal é complementado por um algoritmo de machine learning aplicado aos 
+erros sistemáticos não explicados inicialmente.
 
 Estudos comparativos mostram que o XGBoost e o LightGBM apresentam desempenho
-muito semelhante (Chango-Sailema et al., 2026, sendo que em alguns casos o
-LightGBM supera (Indah et. al., 2025). Em vista dessas vantagens, optou-se pelo
-LightGBM, que possui melhor custo-benefício, performance comparável ao XGBoost e
-é mais leve.
+muito semelhante [@XGBoostVsLightGBM2026], sendo que em alguns casos o
+LightGBM supera [@ComparisonRandomForest2025]. Em vista dessas vantagens, 
+optou-se pelo LightGBM, que possui melhor custo-benefício, performance 
+comparável ao XGBoost e é mais leve.
 
 ##### Estratégia de estimação
 
 A base de dados foi inicialmente dividida em:
 
-*   70% para treino;
-    
-*   30% para teste
+- 70% para treino;
+- 30% para teste
     
 
 No conjunto de treino, realizou-se nova subdivisão:
 
-*   80% treino interno;
-    
-*   20% validação.
+- 80% treino interno;
+- 20% validação.
     
 
-O subconjunto de validação foi utilizado durante o treinamento do LightGBM, com mecanismo de _early stopping_, prevenindo sobreajuste.
+O subconjunto de validação foi utilizado durante o treinamento do LightGBM, com 
+mecanismo de _early stopping_, prevenindo sobreajuste.
 
 ##### Primeira etapa: modelo hierárquico (MH)
 
-Inicialmente foi ajustado o modelo hierárquico linear com a mesma especificação anterior.
+Inicialmente foi ajustado o modelo hierárquico linear com a mesma especificação 
+anterior.
 
 ##### Modelagem dos resíduos
 
@@ -875,10 +875,8 @@ interpretação estrutural do MH, adicionando flexibilidade preditiva.
 
 Apesar do ganho de desempenho, persistem erros relevantes no MHML:
 
-*   MAE ≈ R$ 352 mil;
-    
-*   MAPE ≈ 18,4%
-    
+- $\text{MAE} \approx \text{R\$ } 352 mil$;
+- $\text{MAPE} \approx 18,4\%$
 
 Isso indica que, embora robusto, o mercado imobiliário ainda contém elevada 
 heterogeneidade não totalmente observável.
@@ -906,36 +904,12 @@ valor unitário foi estimado.
 
 Adotaram-se os seguintes parâmetros para a interpolação IDW:
 
-*   Potência (idp) = 2;
-    
-*   Máximo de vizinhos (nmax) = 50;
-    
-*   Distância máxima (maxdist) = 3000 m.
-    
+- Potência (idp) = 2;
+- Máximo de vizinhos (nmax) = 50;
+- Distância máxima (maxdist) = 3000 m.
 
 Assim, cada célula foi estimada com base em até 50 imóveis localizados num raio
 máximo de 3 km.
-
-#### x. Referências
-
-CHANGO-SAILEMA, W. G.; VELAZTEGUÍ-IZURIETA, H.; PAZUÑA-NARANJO, W. P. _et al._ XGBoost vs. LightGBM: An XAI Approach to National Vehicle Fleet Analysis_. Computation_, v. 14, n. 4, 81, 2026.
-
-HJORT, A.; PENSAR, J.; SCHEEL, I.; SOMMERVOLL, D. House price prediction with gradient boosted trees under different loss functions. _Journal of Property Research_, v. 39, n. 4, p. 338-364, 2022.
-
-HO, W. K. O.; TANG, B.; WONG, S. W.. Predicting property prices with machine learning algorithms. _Journal of Property Research_, v. 38, n. 1, p. 48-70, 2021.
-
-INDAH, Y. M.; ARISTAWIDYA, R.; FITRIANTO, A.; ERFIANI, E.; JUMANSYAH, L. M. R. D.. Comparison of Random Forest, XGBoost and LightGBM Methods on the Human Development Index Classification. _Jambura Journal of Mathematics_, v. 7, n. 1, p. 14-18, 2025.
-
-LIU, Xiang; CHEN, Xiaohong; ORFORD, Scott; TIAN, Mingshu; ZOU, Guojian. Does better accessibility always mean higher house prices? _Environment and Planning B: Urban Analytics and City Science_, v. 51, n. 9, p. 2179-2195, 2024.
-
-LIU, X.; KOUNADI, O.; ZURITA-MILLA, R.. Incorporating spatial autocorrelation in machine learning models using spatial lag and eigenvector spatial filtering features. _ISPRS International Journal of Geo-Information_, v. 11, n. 4, 2022.
-
-MIAO, Y.; LI, H.; XUE, L.; SHEN, C.; WANG, F. Application of a semi-variogram-based KNN algorithm in the spatial prediction of soil heavy metals. _Environmental Pollution_, v. 390, p. 127436, 2026.
-
-RAZA, A.; TALIB, M.; NOOR-UL-AMIN, M.; GUNAIME, N.; BOUKHRIS, I.; NABI, M. Enhancing performance in the presence of outliers with redescending M-estimators. _Scientific Reports_, v. 14, 13529, 2024. Disponível em: [https://doi.org/10.1038/s41598-024-64239-6](https://doi.org/10.1038/s41598-024-64239-6). Acesso em: 16 abr 2026.
-
-TARASOV, S.; DESSOULAVY-SLIWINSKI, B. Algorithm-Driven Hedonic Real Estate Pricing – An Explainable AI Approach. _Real Estate Management and Valuation_, v. 33, n. 1, 2025.
-
 
 ## Desafios {#sec-desafios-modelagem}
 

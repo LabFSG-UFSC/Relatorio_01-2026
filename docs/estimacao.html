@@ -1131,8 +1131,8 @@ Tabela&nbsp;6.3: Modelo de lotes urbanos.
 </div>
 </div>
 <p>Como é possível notar na <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a>, o modelo final tem poder de explicar em torno de 82% dos preços unitários de mercado, um resultado que pode ser considerado notável, se consideramos a falta de diversas variáveis acerca das características físicas dos lotes (frente, forma, pedologia e outras).</p>
-<p>Os gráficos da <span class="quarto-unresolved-ref">?fig-ResidualsFinais</span> mostram que não há presença de <em>outliers</em> ou pontos influenciantes no modelo. A normalidade dos resíduos, no entanto, hipótese da inferência clássica, não foi verificada, como fica claro quando se analisa o gráfico Q-Q.</p>
-<p>A falta da verificação da hipótese da normalidade dos resíduos, no entanto, não invalida o modelo de regressão linear. Conforme <span class="citation" data-cites="Matloff2017">MATLOFF (<a href="references.html#ref-Matloff2017" role="doc-biblioref">2017, p. 80–81</a>)</span>, <span class="math inline">\(\hat beta\)</span> é um estimador não-viesado e consistente mesmo na ausência de normalidade e/ou homoscedasticidade.</p>
+<p>Os gráficos da <a href="#fig-ResiduosFinais" class="quarto-xref">Figura&nbsp;<span>6.7</span></a> mostram que não há presença de <em>outliers</em> ou pontos influenciantes no modelo. A normalidade dos resíduos, no entanto, hipótese da inferência clássica, não foi verificada, como fica claro quando se analisa o gráfico Q-Q.</p>
+<p>A falta da verificação da hipótese da normalidade dos resíduos, no entanto, não invalida o modelo de regressão linear. Conforme <span class="citation" data-cites="Matloff2017">MATLOFF (<a href="references.html#ref-Matloff2017" role="doc-biblioref">2017, p. 80–81</a>)</span>, <span class="math inline">\(\hat \beta\)</span> é um estimador não-viesado e consistente mesmo na ausência de normalidade e/ou homoscedasticidade.</p>
 <p>O modelo da <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a>, portanto, pode ser considerado viável para a predição de valores unitários de terrenos visando a aplicação do método evolutivo para toda a cidade. Porém, os testes estatísticas e os intervalos de confiança dos coeficientes apresentados na <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a> não são válidos, pela ausência da normalidade. A <a href="#tbl-LotesModel2" class="quarto-xref">Tabela&nbsp;<span>6.4</span></a> apresenta, então, as estatísticas do modelo computadas com erros robustos (matriz HC3). Nota-se que não houve grandes modificações nos resultados dos testes e dos intervalos de confiança dos coeficientes em relação ao apresentados na <a href="#tbl-LotesModel" class="quarto-xref">Tabela&nbsp;<span>6.3</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -1325,7 +1325,7 @@ Figura&nbsp;6.8: Mapa de Valores de metro quadrado construído (R$/m2).
 </section>
 <section id="geração-de-dummies-de-tipos-de-uso" class="level5" data-number="6.7.3.4.2">
 <h5 data-number="6.7.3.4.2" class="anchored" data-anchor-id="geração-de-dummies-de-tipos-de-uso"><span class="header-section-number">6.7.3.4.2</span> Geração de <em>dummies</em> de tipos de uso</h5>
-<p>Foram geradas variáveis <em>dummy</em> para os tipos de uso constantes na base de dados: <code>d\_apartamento</code>, <code>d\_casa</code>, <code>d\_casa\_cond</code>, <code>d\_cobertura</code> e <code>d\_flat</code>.</p>
+<p>Foram geradas variáveis <em>dummy</em> para os tipos de uso constantes na base de dados: <code>d_apartamento</code>, <code>d_casa</code>, <code>d_casa_cond</code>, <code>d_cobertura</code> e <code>d_flat</code>.</p>
 </section>
 <section id="imputação-de-valores" class="level5" data-number="6.7.3.4.3">
 <h5 data-number="6.7.3.4.3" class="anchored" data-anchor-id="imputação-de-valores"><span class="header-section-number">6.7.3.4.3</span> Imputação de valores</h5>
@@ -1335,7 +1335,7 @@ Figura&nbsp;6.8: Mapa de Valores de metro quadrado construído (R$/m2).
 <li><p><code>ca_max</code>: corresponde ao Coeficiente de Aproveitamento máximo na localização do lote. Além dos valores ausentes, foram imputados os valores nulos, pois não se considera realista valores nulos para imóveis edificados;</p></li>
 <li><p><code>to_max</code>: corresponde à Taxa de Ocupação máxima na localização do lote. Foram imputados valores ausentes e nulos, pelas mesmas razões do <code>ca_max</code>;</p></li>
 <li><p><code>renda_med_pct</code>: corresponde à renda média per capita do setor censitário. Dada a inexistência de valores nulos, apenas os valores ausentes foram imputados;</p></li>
-<li><p><code>classe\_declividade</code>: corresponde à classe de declividade da localização do lote, variando de 1 = plano a 5 = montanhoso. Após conversão do campo para a classe <em>integer</em>, imputaram-se apenas os valores ausentes, dada a inexistência de valores nulos;</p></li>
+<li><p><code>classe_declividade</code>: corresponde à classe de declividade da localização do lote, variando de 1 = plano a 5 = montanhoso. Após conversão do campo para a classe <em>integer</em>, imputaram-se apenas os valores ausentes, dada a inexistência de valores nulos;</p></li>
 <li><p><code>var_ren_media</code>: corresponde à variância da renda média no setor censitário. Foram imputados apenas os valores ausentes, dada a inexistência de valores nulos.</p></li>
 </ul>
 </section>
@@ -1353,7 +1353,7 @@ Figura&nbsp;6.8: Mapa de Valores de metro quadrado construído (R$/m2).
 <ul>
 <li><p><code>area_anun</code>, <code>area_total</code> <span class="math inline">\(&lt;= 10 \rightarrow\)</span> removidos;</p></li>
 <li><p><code>qtd_lote</code>, <code>val_iptu</code>, <code>dens_demo_hab_km2</code> <span class="math inline">\(= 0 \rightarrow 0,1\)</span>;</p></li>
-<li><p><code>dens_equip\_educ</code>, <code>dens_equip_saud</code>, <code>dist_area_inund</code> <span class="math inline">\(= 0 \rightarrow 0,01\)</span>;</p></li>
+<li><p><code>dens_equip_educ</code>, <code>dens_equip_saud</code>, <code>dist_area_inund</code> <span class="math inline">\(= 0 \rightarrow 0,01\)</span>;</p></li>
 <li><p><code>qtd_vg_garagem</code>, <code>qtd_suites</code>, <span class="math inline">\(= 0 \rightarrow 0,1\)</span>;</p></li>
 <li><p><code>dist_litoral</code>, <code>total_pess</code>, <span class="math inline">\(= 0 \rightarrow 1,0\)</span>;</p></li>
 <li><p><code>lote_medio_m2</code> <span class="math inline">\(= 0 \rightarrow 10,0\)</span></p></li>
@@ -1361,21 +1361,21 @@ Figura&nbsp;6.8: Mapa de Valores de metro quadrado construído (R$/m2).
 </section>
 <section id="detecção-de-outliers-por-regressão-robusta-com-m-estimadores" class="level5" data-number="6.7.3.4.7">
 <h5 data-number="6.7.3.4.7" class="anchored" data-anchor-id="detecção-de-outliers-por-regressão-robusta-com-m-estimadores"><span class="header-section-number">6.7.3.4.7</span> Detecção de outliers por regressão robusta com M-estimadores</h5>
-<p>A regressão robusta é uma técnica de regressão desenvolvida para reduzir a influência de outliers ou de violações pressupostos da regressão linear convencional. Ao contrário do método dos Mínimo Quadrados Ordinários (MQO), a regressão robusta penaliza menos os erros extremos, diminuindo o impacto de pontos fora do padrão. Assim, essas observações recebem pesos (w) menores (Raza <em>et al.,</em> 2024).</p>
+<p>A regressão robusta é uma técnica de regressão desenvolvida para reduzir a influência de outliers ou de violações pressupostos da regressão linear convencional. Ao contrário do método dos Mínimo Quadrados Ordinários (MQO), a regressão robusta penaliza menos os erros extremos, diminuindo o impacto de pontos fora do padrão. Assim, essas observações recebem pesos (w) menores <span class="citation" data-cites="EnhancingPerformancePresence2024">(<a href="references.html#ref-EnhancingPerformancePresence2024" role="doc-biblioref">RAZA et al., 2024</a>)</span>.</p>
 <p>Antes da regressão robusta, performou-se uma regressão linear simples exploratória (<code>OLS_exploratoria</code>) para verificação de eventuais variáveis não significativas e de multicolinearidade. As variáveis empregadas, logaritmizadas, foram definidas como:</p>
 <ul>
 <li><p><em>Variável dependente</em>: valor de venda anunciado (<code>log_anun_val_venda</code>);</p></li>
 <li><p><em>Variáveis independentes</em>: área privativa (<code>log_area_anun</code>); n° de vagas de garagem (<code>log_qtd_vg_garagem</code>); n° de suítes (<code>log_qtd_suites</code>); n° de banheiros (<code>log_qtd_banheiros</code> ); taxa de condomínio (<code>log_tx_condom</code>); valor de IPTU (<code>log_val_iptu</code>); área total do lote (<code>log_area_total</code>); coeficiente de aproveitamento máximo (<code>log_ca_max</code>); taxa de ocupação máxima (<code>log_to_max</code>); densidade demográfica em hab/km² (<code>log_dens_demo_hab_km2</code>); densidade de equipamentos educacionais (<code>log_dens_equip_educ</code>); densidade de equipamentos de saúde (<code>log_dens_equip_saud</code>); distância ao Centro de Florianópolis (<code>log_dist_centro</code>); distância ao litoral (<code>log_dist_litoral</code>); área média do lote em m² (log_lote_medio_m2); quantidade de domicílios (<code>log_qtd_domic</code>) total de pessoas residentes (<code>log_total_pess</code>); variação da renda média (<code>log_var_ren_media</code>); renda média per capita (log_renda_med_pct); classe de declividade (<code>log_classe_declividade</code>); distância a áreas inundáveis (<code>log_dist_area_inund</code>); quantidade de lotes (<code>log_qtd_lotes</code>), tipo de imóvel - dummy (<code>d_casa</code>, <code>d_casa_cond</code>, <code>d_cobertura</code>, <code>d_flat</code>) e dummy de taxa de condomínio (<code>tx_cond_na</code>).</p></li>
 </ul>
-<p>Os resultados demonstram a não significância de <code>log\_dens\_equip\_educ</code> (p = 0.6544) e <code>log\_dist\_centro</code> (p = 0.2430), removidas.</p>
-<p>Em seguida foi executado o modelo robusto (modelo_robusto_Lotes), com a mesma especificação da OLS_exploratoria, exceto as varáveis removidas na etapa anterior.</p>
+<p>Os resultados demonstram a não significância de <code>log_dens_equip_educ</code> (p = 0.6544) e <code>log_dist_centro</code> (p = 0.2430), removidas.</p>
+<p>Em seguida foi executado o modelo robusto (<code>modelo_robusto_Lotes</code>), com a mesma especificação da <code>OLS_exploratoria</code>, exceto as varáveis removidas na etapa anterior.</p>
 <p>Após a extração dos pesos <em>w</em> e de sua distribuição foram consideradas outliers as 5% observações com menores pesos, o que corresponde a <em>w</em> &lt; 0.6137, as quais foram então excluídas.</p>
 </section>
 <section id="variável-padrão-construtivo-pc" class="level5" data-number="6.7.3.4.8">
 <h5 data-number="6.7.3.4.8" class="anchored" data-anchor-id="variável-padrão-construtivo-pc"><span class="header-section-number">6.7.3.4.8</span> Variável Padrão construtivo (PC)</h5>
-<p>Foi criada uma variável <code>Padrão Construtivo</code> (PC), com clusterização a partir de <code>anun\_val\_venda</code> e <code>renda\_med\_pct</code>. Foram definidas 3 classes (k = 3): baixo padrão, médio padrão e alto padrão.</p>
-<p>Um método para a previsão espacial de clusters é a <em>kigagem indicativa</em>, a qual revela a probabilidade de uma variável pertencer a uma determinada classe no espaço, gerando uma classificação final a partir do maior valor de probabilidade para aquele ponto. Faz sentido porque tanto valor como renda exibem forte componente espacial. Portanto, PC também exibe alta correlação espacial.</p>
-<p>No entanto, a krigagem indicativa revelou-se extremamente onerosa computacionalmente. Adota-se, portanto, o k-NN espacial, mais leve computacionalmente e conceitualmente próximo à krigagem indicativa (Miao <em>et al.</em>, 2025). Este método Compara com os k-vizinhos mais próximos e verifica a que clusters (PC) eles pertencem, adotando-se uma abordagem probabilística (% de vizinhos em cada classe). O número de vizinhos foi definido como k = 8.</p>
+<p>Foi criada uma variável <code>Padrão Construtivo</code> (PC), com clusterização a partir de <code>anun_val_venda</code> e <code>renda_med_pct</code>. Foram definidas 3 classes (k = 3): baixo padrão, médio padrão e alto padrão.</p>
+<p>Um método para a previsão espacial de clusters é a <em>krigagem indicativa</em>, a qual revela a probabilidade de uma variável pertencer a uma determinada classe no espaço, gerando uma classificação final a partir do maior valor de probabilidade para aquele ponto. Faz sentido porque tanto valor como renda exibem forte componente espacial. Portanto, PC também exibe alta correlação espacial.</p>
+<p>No entanto, a krigagem indicativa revelou-se extremamente onerosa computacionalmente. Adota-se, portanto, o k-NN espacial, mais leve computacionalmente e conceitualmente próximo à krigagem indicativa <span class="citation" data-cites="ApplicationSemivariogrambasedKNN2026">(<a href="references.html#ref-ApplicationSemivariogrambasedKNN2026" role="doc-biblioref">MIAO et al., 2026</a>)</span>. Este método Compara com os k-vizinhos mais próximos e verifica a que clusters (PC) eles pertencem, adotando-se uma abordagem probabilística (% de vizinhos em cada classe). O número de vizinhos foi definido como k = 8.</p>
 </section>
 </section>
 <section id="modelo-ols" class="level4" data-number="6.7.3.5">
@@ -1395,15 +1395,15 @@ Figura&nbsp;6.8: Mapa de Valores de metro quadrado construído (R$/m2).
 <li><p><span class="math inline">\(p &lt; 2.2e-16\)</span></p></li>
 </ul>
 <p>Valores que confirmam forte autocorrelação espacial nos resíduos.</p>
-<p>Nesse sentido, um modelo combinado hierárquico - MH + <em>machine learning</em> - ML nos resíduos (doravante MHML) é capaz de mitigar a autocorrelação espacial. O MH absorve parte da heterogeneidade espacial, enquanto o ML nos resíduos captura não linearidades, efeitos locais (equivalente ao GWR) e a microestrutura local (Liu; Kounadi; Zurita-Milla, 2022).</p>
+<p>Nesse sentido, um modelo combinado hierárquico - MH + <em>machine learning</em> - ML nos resíduos (doravante MHML) é capaz de mitigar a autocorrelação espacial. O MH absorve parte da heterogeneidade espacial, enquanto o ML nos resíduos captura não linearidades, efeitos locais (equivalente ao GWR) e a microestrutura local <span class="citation" data-cites="IncorporatingSpatialAutocorrelation2022">(<a href="references.html#ref-IncorporatingSpatialAutocorrelation2022" role="doc-biblioref">LIU et al., 2022</a>)</span>.</p>
 </section>
 <section id="modelo-hierárquico-mh" class="level4" data-number="6.7.3.6">
 <h4 data-number="6.7.3.6" class="anchored" data-anchor-id="modelo-hierárquico-mh"><span class="header-section-number">6.7.3.6</span> Modelo Hierárquico (MH)</h4>
 <p>Seguidamente, foi aplicado um modelo hierárquico (MH), com a mesma especificação do OLS, incluindo setores censitários como níveis hierarquicamente aninhados nos distritos: <code>(1 | cd_dist/cd_setor)</code> . A função adotada é <code>lmer</code> (pacote <code>lme4</code>).</p>
 <p>O MH resultou nos seguintes valores de variância para os níveis hierárquicos:</p>
 <ul>
-<li>var. cd_setor = 0.02187 (21.52%)</li>
-<li>var. cd_dist = 0.02069 (20.36%)</li>
+<li>var. <code>cd_setor</code> = 0.02187 (21.52%)</li>
+<li>var. <code>cd_dist</code> = 0.02069 (20.36%)</li>
 <li>var. residual = 0.05906 (58.11%)</li>
 </ul>
 <p>O que implica em alta variância espacial (~42%), justificando o modelo hierárquico. Observa-se que setor é o nível dominante, mas distrito é quase tão importante.</p>
@@ -1415,19 +1415,19 @@ Figura&nbsp;6.8: Mapa de Valores de metro quadrado construído (R$/m2).
 </section>
 <section id="modelo-combinado---mhml" class="level4" data-number="6.7.3.7">
 <h4 data-number="6.7.3.7" class="anchored" data-anchor-id="modelo-combinado---mhml"><span class="header-section-number">6.7.3.7</span> Modelo Combinado - MHML</h4>
-<p>O modelo hierárquico captura a estrutura global e os efeitos espaciais de cada nível, enquanto o modelo baseado em <em>machine learning</em> (ML) captura não linearidades e interações restantes. Vários estudos sugerem que, dentre os modelos ML, os baseados em Boost exibem desempenho superior aos baseados em Random Forests (RF) (Hjort et al., 2022; Liu <em>et al.</em>, 2024; Ho; Tang; Wong, 2021). Essa abordagem híbrida é conhecida como <em>stacking residual</em> ou <em>two-stage modeling</em>, em que um modelo estatístico principal é complementado por um algoritmo de machine learning aplicado aos erros sistemáticos não explicados inicialmente.</p>
-<p>Estudos comparativos mostram que o XGBoost e o LightGBM apresentam desempenho muito semelhante (Chango-Sailema et al., 2026, sendo que em alguns casos o LightGBM supera (Indah et. al., 2025). Em vista dessas vantagens, optou-se pelo LightGBM, que possui melhor custo-benefício, performance comparável ao XGBoost e é mais leve.</p>
+<p>O modelo hierárquico captura a estrutura global e os efeitos espaciais de cada nível, enquanto o modelo baseado em <em>machine learning</em> (ML) captura não linearidades e interações restantes. Vários estudos sugerem que, dentre os modelos ML, os baseados em Boost exibem desempenho superior aos baseados em Random Forests (RF) <span class="citation" data-cites="HousePricePrediction2022 DoesBetterAccessibility2024 PredictingPropertyPrices2021">(<a href="references.html#ref-PredictingPropertyPrices2021" role="doc-biblioref">HO et al., 2021</a>; <a href="references.html#ref-HousePricePrediction2022" role="doc-biblioref">HJORT et al., 2022</a>; <a href="references.html#ref-DoesBetterAccessibility2024" role="doc-biblioref">LIU et al., 2024</a>)</span>. Essa abordagem híbrida é conhecida como <em>stacking residual</em> ou <em>two-stage modeling</em>, em que um modelo estatístico principal é complementado por um algoritmo de machine learning aplicado aos erros sistemáticos não explicados inicialmente.</p>
+<p>Estudos comparativos mostram que o XGBoost e o LightGBM apresentam desempenho muito semelhante <span class="citation" data-cites="XGBoostVsLightGBM2026">(<a href="references.html#ref-XGBoostVsLightGBM2026" role="doc-biblioref">CHANGO-SAILEMA et al., 2026</a>)</span>, sendo que em alguns casos o LightGBM supera <span class="citation" data-cites="ComparisonRandomForest2025">(<a href="references.html#ref-ComparisonRandomForest2025" role="doc-biblioref">INDAH et al., 2025</a>)</span>. Em vista dessas vantagens, optou-se pelo LightGBM, que possui melhor custo-benefício, performance comparável ao XGBoost e é mais leve.</p>
 <section id="estratégia-de-estimação" class="level5" data-number="6.7.3.7.1">
 <h5 data-number="6.7.3.7.1" class="anchored" data-anchor-id="estratégia-de-estimação"><span class="header-section-number">6.7.3.7.1</span> Estratégia de estimação</h5>
 <p>A base de dados foi inicialmente dividida em:</p>
 <ul>
-<li><p>70% para treino;</p></li>
-<li><p>30% para teste</p></li>
+<li>70% para treino;</li>
+<li>30% para teste</li>
 </ul>
 <p>No conjunto de treino, realizou-se nova subdivisão:</p>
 <ul>
-<li><p>80% treino interno;</p></li>
-<li><p>20% validação.</p></li>
+<li>80% treino interno;</li>
+<li>20% validação.</li>
 </ul>
 <p>O subconjunto de validação foi utilizado durante o treinamento do LightGBM, com mecanismo de <em>early stopping</em>, prevenindo sobreajuste.</p>
 </section>
@@ -1496,8 +1496,8 @@ Figura&nbsp;6.8: Mapa de Valores de metro quadrado construído (R$/m2).
 <p>O modelo combinado (MHML) apresentou o melhor desempenho em todos os indicadores. Em relação ao OLS houve aumento substancial do poder explicativo, redução expressiva do erro absoluto médio e redução do erro percentual médio. Em relação ao modelo hierárquico isolado (MH) o LightGBM conseguiu capturar padrões residuais relevantes, houve ganho adicional de precisão e manteve-se a interpretação estrutural do MH, adicionando flexibilidade preditiva.</p>
 <p>Apesar do ganho de desempenho, persistem erros relevantes no MHML:</p>
 <ul>
-<li><p>MAE ≈ R$ 352 mil;</p></li>
-<li><p>MAPE ≈ 18,4%</p></li>
+<li><span class="math inline">\(\text{MAE} \approx \text{R\$ } 352 mil\)</span>;</li>
+<li><span class="math inline">\(\text{MAPE} \approx 18,4\%\)</span></li>
 </ul>
 <p>Isso indica que, embora robusto, o mercado imobiliário ainda contém elevada heterogeneidade não totalmente observável.</p>
 </section>
@@ -1512,23 +1512,11 @@ Figura&nbsp;6.8: Mapa de Valores de metro quadrado construído (R$/m2).
 <p>A área de interpolação foi contruída com zona de influência de 1000 m em torno dos pontos amostrais. Posteriormente, foi gerada grade regular com resolução espacial de 100 m, sendo que cada célula da grade corresponde ao local onde o valor unitário foi estimado.</p>
 <p>Adotaram-se os seguintes parâmetros para a interpolação IDW:</p>
 <ul>
-<li><p>Potência (idp) = 2;</p></li>
-<li><p>Máximo de vizinhos (nmax) = 50;</p></li>
-<li><p>Distância máxima (maxdist) = 3000 m.</p></li>
+<li>Potência (idp) = 2;</li>
+<li>Máximo de vizinhos (nmax) = 50;</li>
+<li>Distância máxima (maxdist) = 3000 m.</li>
 </ul>
 <p>Assim, cada célula foi estimada com base em até 50 imóveis localizados num raio máximo de 3 km.</p>
-</section>
-<section id="x.-referências" class="level4" data-number="6.7.3.9">
-<h4 data-number="6.7.3.9" class="anchored" data-anchor-id="x.-referências"><span class="header-section-number">6.7.3.9</span> x. Referências</h4>
-<p>CHANGO-SAILEMA, W. G.; VELAZTEGUÍ-IZURIETA, H.; PAZUÑA-NARANJO, W. P. <em>et al.</em> XGBoost vs.&nbsp;LightGBM: An XAI Approach to National Vehicle Fleet Analysis_. Computation_, v. 14, n.&nbsp;4, 81, 2026.</p>
-<p>HJORT, A.; PENSAR, J.; SCHEEL, I.; SOMMERVOLL, D. House price prediction with gradient boosted trees under different loss functions. <em>Journal of Property Research</em>, v. 39, n.&nbsp;4, p.&nbsp;338-364, 2022.</p>
-<p>HO, W. K. O.; TANG, B.; WONG, S. W.. Predicting property prices with machine learning algorithms. <em>Journal of Property Research</em>, v. 38, n.&nbsp;1, p.&nbsp;48-70, 2021.</p>
-<p>INDAH, Y. M.; ARISTAWIDYA, R.; FITRIANTO, A.; ERFIANI, E.; JUMANSYAH, L. M. R. D.. Comparison of Random Forest, XGBoost and LightGBM Methods on the Human Development Index Classification. <em>Jambura Journal of Mathematics</em>, v. 7, n.&nbsp;1, p.&nbsp;14-18, 2025.</p>
-<p>LIU, Xiang; CHEN, Xiaohong; ORFORD, Scott; TIAN, Mingshu; ZOU, Guojian. Does better accessibility always mean higher house prices? <em>Environment and Planning B: Urban Analytics and City Science</em>, v. 51, n.&nbsp;9, p.&nbsp;2179-2195, 2024.</p>
-<p>LIU, X.; KOUNADI, O.; ZURITA-MILLA, R.. Incorporating spatial autocorrelation in machine learning models using spatial lag and eigenvector spatial filtering features. <em>ISPRS International Journal of Geo-Information</em>, v. 11, n.&nbsp;4, 2022.</p>
-<p>MIAO, Y.; LI, H.; XUE, L.; SHEN, C.; WANG, F. Application of a semi-variogram-based KNN algorithm in the spatial prediction of soil heavy metals. <em>Environmental Pollution</em>, v. 390, p.&nbsp;127436, 2026.</p>
-<p>RAZA, A.; TALIB, M.; NOOR-UL-AMIN, M.; GUNAIME, N.; BOUKHRIS, I.; NABI, M. Enhancing performance in the presence of outliers with redescending M-estimators. <em>Scientific Reports</em>, v. 14, 13529, 2024. Disponível em: <a href="https://doi.org/10.1038/s41598-024-64239-6">https://doi.org/10.1038/s41598-024-64239-6</a>. Acesso em: 16 abr 2026.</p>
-<p>TARASOV, S.; DESSOULAVY-SLIWINSKI, B. Algorithm-Driven Hedonic Real Estate Pricing – An Explainable AI Approach. <em>Real Estate Management and Valuation</em>, v. 33, n.&nbsp;1, 2025.</p>
 </section>
 </section>
 </section>
@@ -1637,11 +1625,35 @@ Figura&nbsp;6.9: Superfície de valores unitários para um lote padrão residenc
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-XGBoostVsLightGBM2026" class="csl-entry" role="listitem">
+CHANGO-SAILEMA, W. G.; VELASTEGUÍ-IZURIETA, H.; PAZUÑA-NARANJO, W. P.; et al. <a href="https://doi.org/10.3390/computation14040081"><span>XGBoost</span> vs. <span>LightGBM</span>: <span>An XAI Approach</span> to <span>National Vehicle Fleet Analysis</span></a>. <strong>Computation</strong>, v. 14, n. 4, p. 81, 2026.
+</div>
+<div id="ref-HousePricePrediction2022" class="csl-entry" role="listitem">
+HJORT, A.; PENSAR, J.; SCHEEL, I.; SOMMERVOLL, D. E. <a href="https://doi.org/10.1080/09599916.2022.2070525">House Price Prediction with Gradient Boosted Trees under Different Loss Functions</a>. <strong>Journal of Property Research</strong>, v. 39, n. 4, p. 338–364, 2022. Routledge.
+</div>
+<div id="ref-PredictingPropertyPrices2021" class="csl-entry" role="listitem">
+HO, W. K. O.; TANG, B.-S.; WONG, S. W. <a href="https://doi.org/10.1080/09599916.2020.1832558">Predicting Property Prices with Machine Learning Algorithms</a>. <strong>Journal of Property Research</strong>, v. 38, n. 1, p. 48–70, 2021. Routledge.
+</div>
+<div id="ref-ComparisonRandomForest2025" class="csl-entry" role="listitem">
+INDAH, Y. M.; ARISTAWIDYA, R.; FITRIANTO, A.; ERFIANI, E.; JUMANSYAH, L. M. R. D. Comparison of <span>Random Forest</span>, <span>XGBoost</span>, and <span>LightGBM Methods</span> for the <span>Human Development Index Classification</span>. <strong>Jambura Journal of Mathematics; Vol 7, No 1: February 2025DO - 10.37905/jjom.v7i1.28290</strong>, 2025.
+</div>
+<div id="ref-DoesBetterAccessibility2024" class="csl-entry" role="listitem">
+LIU, X.; CHEN, X.; ORFORD, S.; TIAN, M.; ZOU, G. <a href="https://doi.org/10.1177/23998083241242212">Does Better Accessibility Always Mean Higher House Prices?</a> <strong>Environment and Planning B: Urban Analytics and City Science</strong>, v. 51, p. 2179–2195, 2024.
+</div>
+<div id="ref-IncorporatingSpatialAutocorrelation2022" class="csl-entry" role="listitem">
+LIU, X.; KOUNADI, O.; ZURITA-MILLA, R. <a href="https://doi.org/10.3390/ijgi11040242">Incorporating <span>Spatial Autocorrelation</span> in <span>Machine Learning Models Using Spatial Lag</span> and <span>Eigenvector Spatial Filtering Features</span></a>. <strong>ISPRS International Journal of Geo-Information</strong>, v. 11, n. 4, p. 242, 2022.
+</div>
 <div id="ref-Matloff2017" class="csl-entry" role="listitem">
 MATLOFF, N. <strong>Statistical <span>Regression</span> and <span>Classification</span>: <span>From Linear Models</span> to <span>Machine Learning</span></strong>. Boca Raton, FL, 2017.
 </div>
+<div id="ref-ApplicationSemivariogrambasedKNN2026" class="csl-entry" role="listitem">
+MIAO, Y.; LI, H.; XUE, L.; SHEN, C.; WANG, F. <a href="https://doi.org/10.1016/j.envpol.2025.127436">Application of a Semi-Variogram-Based <span>KNN</span> Algorithm in the Spatial Prediction of Soil Heavy Metals</a>. <strong>Environmental Pollution</strong>, v. 390, p. 127436, 2026.
+</div>
 <div id="ref-Huber1964" class="csl-entry" role="listitem">
 PETER J. HUBER. Robust <span>Estimation</span> of a <span>Location Parameter</span>. <strong>The Annals of Mathematical Statistics</strong>, v. 35, n. 1, p. 73–101, 1964. Disponível em: &lt;<a href="https://doi.org/10.1214/aoms/1177703732">https://doi.org/10.1214/aoms/1177703732</a>&gt;.
+</div>
+<div id="ref-EnhancingPerformancePresence2024" class="csl-entry" role="listitem">
+RAZA, A.; TALIB, M.; NOOR-UL-AMIN, M.; et al. <a href="https://doi.org/10.1038/s41598-024-64239-6">Enhancing Performance in the Presence of Outliers with Redescending <span>M-estimators</span></a>. <strong>Scientific Reports</strong>, v. 14, n. 1, p. 13529, 2024.
 </div>
 <div id="ref-Rousseeuw_least_1984" class="csl-entry" role="listitem">
 ROUSSEEUW, P. J. Least <span>Median</span> of <span>Squares</span> <span>Regression</span>. <strong>Journal of the American Statistical Association</strong>, v. 79, n. 388, p. 871–880, 1984. [American Statistical Association, Taylor &amp; Francis, Ltd.]. Disponível em: &lt;<a href="http://www.jstor.org/stable/2288718">http://www.jstor.org/stable/2288718</a>&gt;. Acesso em: 5/3/2026.
